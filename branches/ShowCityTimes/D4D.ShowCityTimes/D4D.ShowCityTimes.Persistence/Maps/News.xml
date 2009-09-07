@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- =====================================================
+    作    者 : YangFan
+    创建时间 : 2009-09-07 14:00:07
+    修 改 者 : 
+    修改时间 : 
+    描    述 : news
+===================================================== -->
+<sqlMap namespace="NewsMap" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <alias>
+    <typeAlias alias="News" assembly="D4D.ShowCityTimes.Domain.dll" type="D4D.ShowCityTimes.Domain.News" />
+  </alias>
+  <resultMaps>
+    <resultMap id="NewsBaseResult" class="News">
+      <result property="Id" column="ID_NEWS"  des="" /> 
+      <result property="Title" column="TITLE_NEWS"  des="" /> 
+      <result property="Detail" column="DETAIL_NEWS"  des="" /> 
+      <result property="Adddate" column="ADDDATE_NEWS"  des="" /> 
+      <result property="Tags" column="TAGS_NEWS"  des="" /> 
+      <result property="Newtype" column="NEWTYPE_NEWS"  des="" /> 
+      <result property="Publish" column="PUBLISH_NEWS"  des="" /> 
+    </resultMap>
+
+    <resultMap id="NewsResult" class="News" extends="NewsBaseResult" >
+      <result property="NewsType" resultMapping="NewsTypeMap.NewsTypeBaseResult" des="news" /> 
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="GetBaseNews" parameterClass="News" resultMap="NewsBaseResult">
+      <![CDATA[ SELECT news.Id AS ID_NEWS, news.Title AS TITLE_NEWS, news.Detail AS DETAIL_NEWS, news.AddDate AS ADDDATE_NEWS, news.Tags AS TAGS_NEWS, news.NewType AS NEWTYPE_NEWS, news.Publish AS PUBLISH_NEWS
+      FROM news ]]>
+      <dynamic prepend="WHERE">
+        <isNotEmpty prepend="AND"  property="Id">
+          <![CDATA[ news.Id = #Id# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="Title">
+          <![CDATA[ news.Title = #Title# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="Detail">
+          <![CDATA[ news.Detail = #Detail# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="Adddate">
+          <![CDATA[ news.AddDate = #Adddate# ]]>
+        </isNotEmpty>
+       
+        <isNotEmpty prepend="AND"  property="Tags">
+          <![CDATA[ news.Tags = #Tags# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="Newtype">
+          <![CDATA[ news.NewType = #Newtype# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="Publish">
+          <![CDATA[ news.Publish = #Publish# ]]>
+        </isNotEmpty>
+      </dynamic>
+    </select>
+
+    <select id="GetBaseNewsById" parameterClass="string" resultMap="NewsBaseResult">
+      <![CDATA[ SELECT news.Id AS ID_NEWS, news.Title AS TITLE_NEWS, news.Detail AS DETAIL_NEWS, news.AddDate AS ADDDATE_NEWS, news.Tags AS TAGS_NEWS, news.NewType AS NEWTYPE_NEWS, news.Publish AS PUBLISH_NEWS
+      FROM news
+      WHERE news.Id = #value# ]]>
+    </select>
+
+    <select id="GetNews" parameterClass="News" resultMap="NewsResult">
+      <![CDATA[ SELECT news.Id AS ID_NEWS, news.Title AS TITLE_NEWS, news.Detail AS DETAIL_NEWS, news.AddDate AS ADDDATE_NEWS, news.Tags AS TAGS_NEWS, news.NewType AS NEWTYPE_NEWS, news.Publish AS PUBLISH_NEWS
+          ,news_type.Id AS ID_NEWS_TYPE, news_type.Name AS NAME_NEWS_TYPE, news_type.Type AS TYPE_NEWS_TYPE
+      FROM news
+          LEFT JOIN news_type ON news.NewType = news_type.Id ]]>
+      <dynamic prepend="WHERE">
+        <isNotEmpty prepend="AND"  property="Id">
+          <![CDATA[ news.Id = #Id# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="Title">
+          <![CDATA[ news.Title like '%$Title$%']]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="Detail">
+          <![CDATA[ news.Detail = #Detail# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="Adddate">
+          <![CDATA[ news.AddDate = #Adddate# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="Tags">
+          <![CDATA[ news.Tags = #Tags# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="Newtype">
+          <![CDATA[ news.NewType = #Newtype# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="Publish">
+          <![CDATA[ news.Publish = #Publish# ]]>
+        </isNotEmpty>
+      </dynamic>
+    </select>
+
+    <select id="GetNewsById" parameterClass="string" resultMap="NewsResult">
+      <![CDATA[ SELECT news.Id AS ID_NEWS, news.Title AS TITLE_NEWS, news.Detail AS DETAIL_NEWS, news.AddDate AS ADDDATE_NEWS, news.Tags AS TAGS_NEWS, news.NewType AS NEWTYPE_NEWS, news.Publish AS PUBLISH_NEWS
+          ,news_type.Id AS ID_NEWS_TYPE, news_type.Name AS NAME_NEWS_TYPE, news_type.Type AS TYPE_NEWS_TYPE
+      FROM news
+          LEFT JOIN news_type ON news.NewType = news_type.Id
+      WHERE news.Id = #value# ]]>
+    </select>
+
+    <insert id="InsertNews" parameterClass="News">
+      <![CDATA[ INSERT INTO news
+      (Id, Title, Detail, AddDate, Tags, NewType, Publish)
+      VALUES(#Id#, #Title#, #Detail#, #Adddate#, #Tags#, #Newtype#, #Publish#) ]]>
+    </insert>
+
+    <update id="UpdateNews" parameterClass="News">
+      <![CDATA[ UPDATE news
+      SET Id = #Id#, Title = #Title#, Detail = #Detail#, AddDate = #Adddate#, Tags = #Tags#, NewType = #Newtype#, Publish = #Publish#
+      WHERE  news.Id = #IdOld# ]]>
+    </update>
+
+    <delete id="DeleteNewsById" parameterClass="string">
+      <![CDATA[ DELETE FROM news
+      WHERE news.Id = #value# ]]>
+    </delete>
+
+  </statements>
+</sqlMap>

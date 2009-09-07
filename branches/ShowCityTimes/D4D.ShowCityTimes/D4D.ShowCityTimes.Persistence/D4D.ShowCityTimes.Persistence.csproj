@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EF92314D-BBE5-42E0-B130-FED26006F384}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>D4D.ShowCityTimes.Persistence</RootNamespace>
+    <AssemblyName>D4D.ShowCityTimes.Persistence</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="IBatisNet.Common, Version=1.4.1.0, Culture=neutral, PublicKeyToken=ed781d9fc396c6ca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\External_bin\IBatisNet.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="IBatisNet.DataAccess, Version=1.8.1.0, Culture=neutral, PublicKeyToken=ed781d9fc396c6ca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\External_bin\IBatisNet.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="IBatisNet.DataMapper, Version=1.5.1.0, Culture=neutral, PublicKeyToken=ed781d9fc396c6ca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\External_bin\IBatisNet.DataMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Interfaces\ITagDao.cs" />
+    <Compile Include="Interfaces\INewsDao.cs" />
+    <Compile Include="Interfaces\INewsTypeDao.cs" />
+    <Compile Include="Interfaces\ITypeGroupDao.cs" />
+    <Compile Include="Interfaces\ISysdiagramsDao.cs" />
+    <Compile Include="MapperDao\TagSqlMapDao.cs" />
+    <Compile Include="MapperDao\NewsSqlMapDao.cs" />
+    <Compile Include="MapperDao\NewsTypeSqlMapDao.cs" />
+    <Compile Include="MapperDao\TypeGroupSqlMapDao.cs" />
+    <Compile Include="MapperDao\SysdiagramsSqlMapDao.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\Tag.xml" />
+    <EmbeddedResource Include="Maps\News.xml" />
+    <EmbeddedResource Include="Maps\NewsType.xml" />
+    <EmbeddedResource Include="Maps\TypeGroup.xml" />
+    <EmbeddedResource Include="Maps\Sysdiagrams.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\D4D.IbatisNet\D4D.IbatisNet.csproj">
+      <Project>{7f1acdef-7734-4c27-ac02-0dc5ba663bb7}</Project>
+      <Name>D4D.IbatisNet</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\D4D.ShowCityTimes.Domain\D4D.ShowCityTimes.Domain.csproj">
+      <Project>{a11e425d-2f1f-42cb-8d5b-7808948e0f95}</Project>
+      <Name>D4D.ShowCityTimes.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="sql\tables.sql" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

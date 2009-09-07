@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D4D.Utility", "D4D.Utility\D4D.Utility.csproj", "{A0469535-1A96-4C39-8740-D691BC7ED133}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D4D.ShowCityTimes.Domain", "D4D.ShowCityTimes.Domain\D4D.ShowCityTimes.Domain.csproj", "{A11E425D-2F1F-42CB-8D5B-7808948E0F95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D4D.ShowCityTimes.Persistence", "D4D.ShowCityTimes.Persistence\D4D.ShowCityTimes.Persistence.csproj", "{EF92314D-BBE5-42E0-B130-FED26006F384}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D4D.ShowCityTimes.Service", "D4D.ShowCityTimes.Service\D4D.ShowCityTimes.Service.csproj", "{3630538E-4075-48FA-8C9F-BEAD230D7726}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "External_bin", "External_bin\External_bin.csproj", "{F5E5EA6F-3105-4BC1-931C-50413AB1AAF6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D4D.IbatisNet", "D4D.IbatisNet\D4D.IbatisNet.csproj", "{7F1ACDEF-7734-4C27-AC02-0DC5BA663BB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D4D.ShowCityTimes.Web", "D4D.ShowCityTimes.Web\D4D.ShowCityTimes.Web.csproj", "{42507F52-1CB5-4FE3-9F8D-865AD449D080}"
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A0469535-1A96-4C39-8740-D691BC7ED133}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0469535-1A96-4C39-8740-D691BC7ED133}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0469535-1A96-4C39-8740-D691BC7ED133}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A11E425D-2F1F-42CB-8D5B-7808948E0F95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A11E425D-2F1F-42CB-8D5B-7808948E0F95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A11E425D-2F1F-42CB-8D5B-7808948E0F95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF92314D-BBE5-42E0-B130-FED26006F384}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF92314D-BBE5-42E0-B130-FED26006F384}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF92314D-BBE5-42E0-B130-FED26006F384}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3630538E-4075-48FA-8C9F-BEAD230D7726}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3630538E-4075-48FA-8C9F-BEAD230D7726}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3630538E-4075-48FA-8C9F-BEAD230D7726}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5E5EA6F-3105-4BC1-931C-50413AB1AAF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5E5EA6F-3105-4BC1-931C-50413AB1AAF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F1ACDEF-7734-4C27-AC02-0DC5BA663BB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F1ACDEF-7734-4C27-AC02-0DC5BA663BB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F1ACDEF-7734-4C27-AC02-0DC5BA663BB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42507F52-1CB5-4FE3-9F8D-865AD449D080}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42507F52-1CB5-4FE3-9F8D-865AD449D080}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42507F52-1CB5-4FE3-9F8D-865AD449D080}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42507F52-1CB5-4FE3-9F8D-865AD449D080}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

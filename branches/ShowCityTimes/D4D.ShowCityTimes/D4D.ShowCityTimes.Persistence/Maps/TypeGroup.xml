@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- =====================================================
+    作    者 : YangFan
+    创建时间 : 2009-09-07 14:00:07
+    修 改 者 : 
+    修改时间 : 
+    描    述 : type_group
+===================================================== -->
+<sqlMap namespace="TypeGroupMap" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <alias>
+    <typeAlias alias="TypeGroup" assembly="D4D.ShowCityTimes.Domain.dll" type="D4D.ShowCityTimes.Domain.TypeGroup" />
+  </alias>
+  <resultMaps>
+    <resultMap id="TypeGroupBaseResult" class="TypeGroup">
+      <result property="Id" column="ID_TYPE_GROUP"  des="" /> 
+      <result property="Name" column="NAME_TYPE_GROUP"  des="" /> 
+    </resultMap>
+
+    <resultMap id="TypeGroupResult" class="TypeGroup" extends="TypeGroupBaseResult" >
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="GetBaseTypeGroup" parameterClass="TypeGroup" resultMap="TypeGroupBaseResult">
+      <![CDATA[ SELECT type_group.id AS ID_TYPE_GROUP, type_group.Name AS NAME_TYPE_GROUP
+      FROM type_group ]]>
+      <dynamic prepend="WHERE">
+        <isNotEmpty prepend="AND"  property="Id">
+          <![CDATA[ type_group.id = #Id# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="Name">
+          <![CDATA[ type_group.Name = #Name# ]]>
+        </isNotEmpty>
+      </dynamic>
+    </select>
+
+    <select id="GetBaseTypeGroupById" parameterClass="string" resultMap="TypeGroupBaseResult">
+      <![CDATA[ SELECT type_group.id AS ID_TYPE_GROUP, type_group.Name AS NAME_TYPE_GROUP
+      FROM type_group
+      WHERE type_group.id = #value# ]]>
+    </select>
+
+    <select id="GetTypeGroup" parameterClass="TypeGroup" resultMap="TypeGroupResult">
+      <![CDATA[ SELECT type_group.id AS ID_TYPE_GROUP, type_group.Name AS NAME_TYPE_GROUP
+      FROM type_group ]]>
+      <dynamic prepend="WHERE">
+        <isNotEmpty prepend="AND"  property="Id">
+          <![CDATA[ type_group.id = #Id# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="Name">
+          <![CDATA[ type_group.Name = #Name# ]]>
+        </isNotEmpty>
+      </dynamic>
+    </select>
+
+    <select id="GetTypeGroupById" parameterClass="string" resultMap="TypeGroupResult">
+      <![CDATA[ SELECT type_group.id AS ID_TYPE_GROUP, type_group.Name AS NAME_TYPE_GROUP
+      FROM type_group
+      WHERE type_group.id = #value# ]]>
+    </select>
+
+    <insert id="InsertTypeGroup" parameterClass="TypeGroup">
+      <![CDATA[ INSERT INTO type_group
+      (id, Name)
+      VALUES(#Id#, #Name#) ]]>
+    </insert>
+
+    <update id="UpdateTypeGroup" parameterClass="TypeGroup">
+      <![CDATA[ UPDATE type_group
+      SET id = #Id#, Name = #Name#
+      WHERE  type_group.id = #IdOld# ]]>
+    </update>
+
+    <delete id="DeleteTypeGroupById" parameterClass="string">
+      <![CDATA[ DELETE FROM type_group
+      WHERE type_group.id = #value# ]]>
+    </delete>
+
+  </statements>
+</sqlMap>
