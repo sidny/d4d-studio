@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- =====================================================
+    作    者 : YangFan
+    创建时间 : 2009-09-07 14:00:07
+    修 改 者 : 
+    修改时间 : 
+    描    述 : sysdiagrams
+===================================================== -->
+<sqlMap namespace="SysdiagramsMap" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <alias>
+    <typeAlias alias="Sysdiagrams" assembly="D4D.ShowCityTimes.Domain.dll" type="D4D.ShowCityTimes.Domain.Sysdiagrams" />
+  </alias>
+  <resultMaps>
+    <resultMap id="SysdiagramsBaseResult" class="Sysdiagrams">
+      <result property="Name" column="NAME_SYSDIAGRAMS"  des="" /> 
+      <result property="PrincipalId" column="PRINCIPAL_ID_SYSDIAGRAMS"  des="" /> 
+      <result property="DiagramId" column="DIAGRAM_ID_SYSDIAGRAMS"  des="" /> 
+      <result property="Version" column="VERSION_SYSDIAGRAMS"  des="" /> 
+      <result property="Definition" column="DEFINITION_SYSDIAGRAMS"  des="" /> 
+    </resultMap>
+
+    <resultMap id="SysdiagramsResult" class="Sysdiagrams" extends="SysdiagramsBaseResult" >
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="GetBaseSysdiagrams" parameterClass="Sysdiagrams" resultMap="SysdiagramsBaseResult">
+      <![CDATA[ SELECT sysdiagrams.name AS NAME_SYSDIAGRAMS, sysdiagrams.principal_id AS PRINCIPAL_ID_SYSDIAGRAMS, sysdiagrams.diagram_id AS DIAGRAM_ID_SYSDIAGRAMS, sysdiagrams.version AS VERSION_SYSDIAGRAMS, sysdiagrams.definition AS DEFINITION_SYSDIAGRAMS
+      FROM sysdiagrams ]]>
+      <dynamic prepend="WHERE">
+        <isNotEmpty prepend="AND"  property="Name">
+          <![CDATA[ sysdiagrams.name = #Name# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="PrincipalId">
+          <![CDATA[ sysdiagrams.principal_id = #PrincipalId# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="DiagramId">
+          <![CDATA[ sysdiagrams.diagram_id = #DiagramId# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="Version">
+          <![CDATA[ sysdiagrams.version = #Version# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="Definition">
+          <![CDATA[ sysdiagrams.definition = #Definition# ]]>
+        </isNotEmpty>
+      </dynamic>
+    </select>
+
+    <select id="GetBaseSysdiagramsByDiagramId" parameterClass="string" resultMap="SysdiagramsBaseResult">
+      <![CDATA[ SELECT sysdiagrams.name AS NAME_SYSDIAGRAMS, sysdiagrams.principal_id AS PRINCIPAL_ID_SYSDIAGRAMS, sysdiagrams.diagram_id AS DIAGRAM_ID_SYSDIAGRAMS, sysdiagrams.version AS VERSION_SYSDIAGRAMS, sysdiagrams.definition AS DEFINITION_SYSDIAGRAMS
+      FROM sysdiagrams
+      WHERE sysdiagrams.diagram_id = #value# ]]>
+    </select>
+
+    <select id="GetBaseSysdiagramsByPrincipalIdName" parameterClass="Sysdiagrams" resultMap="SysdiagramsBaseResult">
+      <![CDATA[ SELECT sysdiagrams.name AS NAME_SYSDIAGRAMS, sysdiagrams.principal_id AS PRINCIPAL_ID_SYSDIAGRAMS, sysdiagrams.diagram_id AS DIAGRAM_ID_SYSDIAGRAMS, sysdiagrams.version AS VERSION_SYSDIAGRAMS, sysdiagrams.definition AS DEFINITION_SYSDIAGRAMS
+      FROM sysdiagrams
+      WHERE sysdiagrams.principal_id = #PrincipalId# AND sysdiagrams.name = #Name# ]]>
+    </select>
+
+    <select id="GetSysdiagrams" parameterClass="Sysdiagrams" resultMap="SysdiagramsResult">
+      <![CDATA[ SELECT sysdiagrams.name AS NAME_SYSDIAGRAMS, sysdiagrams.principal_id AS PRINCIPAL_ID_SYSDIAGRAMS, sysdiagrams.diagram_id AS DIAGRAM_ID_SYSDIAGRAMS, sysdiagrams.version AS VERSION_SYSDIAGRAMS, sysdiagrams.definition AS DEFINITION_SYSDIAGRAMS
+      FROM sysdiagrams ]]>
+      <dynamic prepend="WHERE">
+        <isNotEmpty prepend="AND"  property="Name">
+          <![CDATA[ sysdiagrams.name = #Name# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="PrincipalId">
+          <![CDATA[ sysdiagrams.principal_id = #PrincipalId# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="DiagramId">
+          <![CDATA[ sysdiagrams.diagram_id = #DiagramId# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="Version">
+          <![CDATA[ sysdiagrams.version = #Version# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="Definition">
+          <![CDATA[ sysdiagrams.definition = #Definition# ]]>
+        </isNotEmpty>
+      </dynamic>
+    </select>
+
+    <select id="GetSysdiagramsByDiagramId" parameterClass="string" resultMap="SysdiagramsResult">
+      <![CDATA[ SELECT sysdiagrams.name AS NAME_SYSDIAGRAMS, sysdiagrams.principal_id AS PRINCIPAL_ID_SYSDIAGRAMS, sysdiagrams.diagram_id AS DIAGRAM_ID_SYSDIAGRAMS, sysdiagrams.version AS VERSION_SYSDIAGRAMS, sysdiagrams.definition AS DEFINITION_SYSDIAGRAMS
+      FROM sysdiagrams
+      WHERE sysdiagrams.diagram_id = #value# ]]>
+    </select>
+
+    <select id="GetSysdiagramsByPrincipalIdName" parameterClass="Sysdiagrams" resultMap="SysdiagramsResult">
+      <![CDATA[ SELECT sysdiagrams.name AS NAME_SYSDIAGRAMS, sysdiagrams.principal_id AS PRINCIPAL_ID_SYSDIAGRAMS, sysdiagrams.diagram_id AS DIAGRAM_ID_SYSDIAGRAMS, sysdiagrams.version AS VERSION_SYSDIAGRAMS, sysdiagrams.definition AS DEFINITION_SYSDIAGRAMS
+      FROM sysdiagrams
+      WHERE sysdiagrams.principal_id = #PrincipalId# AND sysdiagrams.name = #Name# ]]>
+    </select>
+
+    <insert id="InsertSysdiagrams" parameterClass="Sysdiagrams">
+      <![CDATA[ INSERT INTO sysdiagrams
+      (name, principal_id, diagram_id, version, definition)
+      VALUES(#Name#, #PrincipalId#, #DiagramId#, #Version#, #Definition#) ]]>
+    </insert>
+
+    <update id="UpdateSysdiagrams" parameterClass="Sysdiagrams">
+      <![CDATA[ UPDATE sysdiagrams
+      SET name = #Name#, principal_id = #PrincipalId#, diagram_id = #DiagramId#, version = #Version#, definition = #Definition#
+      WHERE  sysdiagrams.diagram_id = #DiagramIdOld# ]]>
+    </update>
+
+    <delete id="DeleteSysdiagramsByDiagramId" parameterClass="string">
+      <![CDATA[ DELETE FROM sysdiagrams
+      WHERE sysdiagrams.diagram_id = #value# ]]>
+    </delete>
+
+    <delete id="DeleteSysdiagramsByPrincipalIdName" parameterClass="Sysdiagrams">
+      <![CDATA[ DELETE FROM sysdiagrams
+      WHERE sysdiagrams.principal_id = #PrincipalId# AND sysdiagrams.name = #Name# ]]>
+    </delete>
+
+  </statements>
+</sqlMap>

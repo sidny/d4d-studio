@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- =====================================================
+    作    者 : YangFan
+    创建时间 : 2009-09-07 14:00:06
+    修 改 者 : 
+    修改时间 : 
+    描    述 : tag
+===================================================== -->
+<sqlMap namespace="TagMap" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <alias>
+    <typeAlias alias="Tag" assembly="D4D.ShowCityTimes.Domain.dll" type="D4D.ShowCityTimes.Domain.Tag" />
+  </alias>
+  <resultMaps>
+    <resultMap id="TagBaseResult" class="Tag">
+      <result property="Id" column="ID_TAG"  des="" /> 
+      <result property="Name" column="NAME_TAG"  des="" /> 
+      <result property="Viewcount" column="VIEWCOUNT_TAG"  des="" /> 
+      <result property="Adddate" column="ADDDATE_TAG"  des="" /> 
+    </resultMap>
+
+    <resultMap id="TagResult" class="Tag" extends="TagBaseResult" >
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="GetBaseTag" parameterClass="Tag" resultMap="TagBaseResult">
+      <![CDATA[ SELECT tag.Id AS ID_TAG, tag.Name AS NAME_TAG, tag.ViewCount AS VIEWCOUNT_TAG, tag.AddDate AS ADDDATE_TAG
+      FROM tag ]]>
+      <dynamic prepend="WHERE">
+        <isNotEmpty prepend="AND"  property="Id">
+          <![CDATA[ tag.Id = #Id# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="Name">
+          <![CDATA[ tag.Name = #Name# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="Viewcount">
+          <![CDATA[ tag.ViewCount = #Viewcount# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="Adddate">
+          <![CDATA[ tag.AddDate = #Adddate# ]]>
+        </isNotEmpty>
+      </dynamic>
+    </select>
+
+    <select id="GetBaseTagById" parameterClass="string" resultMap="TagBaseResult">
+      <![CDATA[ SELECT tag.Id AS ID_TAG, tag.Name AS NAME_TAG, tag.ViewCount AS VIEWCOUNT_TAG, tag.AddDate AS ADDDATE_TAG
+      FROM tag
+      WHERE tag.Id = #value# ]]>
+    </select>
+
+    <select id="GetTag" parameterClass="Tag" resultMap="TagResult">
+      <![CDATA[ SELECT tag.Id AS ID_TAG, tag.Name AS NAME_TAG, tag.ViewCount AS VIEWCOUNT_TAG, tag.AddDate AS ADDDATE_TAG
+      FROM tag ]]>
+      <dynamic prepend="WHERE">
+        <isNotEmpty prepend="AND"  property="Id">
+          <![CDATA[ tag.Id = #Id# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="Name">
+          <![CDATA[ tag.Name = #Name# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="Viewcount">
+          <![CDATA[ tag.ViewCount = #Viewcount# ]]>
+        </isNotEmpty>
+        <isNotEmpty prepend="AND"  property="Adddate">
+          <![CDATA[ tag.AddDate = #Adddate# ]]>
+        </isNotEmpty>
+      </dynamic>
+    </select>
+
+    <select id="GetTagById" parameterClass="string" resultMap="TagResult">
+      <![CDATA[ SELECT tag.Id AS ID_TAG, tag.Name AS NAME_TAG, tag.ViewCount AS VIEWCOUNT_TAG, tag.AddDate AS ADDDATE_TAG
+      FROM tag
+      WHERE tag.Id = #value# ]]>
+    </select>
+
+    <insert id="InsertTag" parameterClass="Tag">
+      <![CDATA[ INSERT INTO tag
+      (Id, Name, ViewCount, AddDate)
+      VALUES(#Id#, #Name#, #Viewcount#, #Adddate#) ]]>
+    </insert>
+
+    <update id="UpdateTag" parameterClass="Tag">
+      <![CDATA[ UPDATE tag
+      SET Id = #Id#, Name = #Name#, ViewCount = #Viewcount#, AddDate = #Adddate#
+      WHERE  tag.Id = #IdOld# ]]>
+    </update>
+
+    <delete id="DeleteTagById" parameterClass="string">
+      <![CDATA[ DELETE FROM tag
+      WHERE tag.Id = #value# ]]>
+    </delete>
+
+  </statements>
+</sqlMap>
