@@ -62,7 +62,6 @@
     <Content Include="static\images\nav_off_08.png" />
     <Content Include="static\images\nav_off_09.png" />
     <Content Include="static\images\search_go.gif" />
-    <Content Include="static\images\search_go.htm" />
     <Content Include="static\images\search_go.png" />
     <Content Include="static\images\search_input.png" />
     <Content Include="Web.config" />
