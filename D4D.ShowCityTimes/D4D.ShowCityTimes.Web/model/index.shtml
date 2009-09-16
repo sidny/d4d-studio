@@ -1,0 +1,4 @@
+<!--#include file="top.html" -->
+<div><img src="../static/images/banner.png" width="970" height="290" vspace="5" /></div>
+
+<!--#include file="footer.html" -->
