@@ -1,0 +1,49 @@
+<!--#include file="top.html" -->
+<!--#include file="menu.html" -->
+<div class="main">
+<div class="channel">
+  <h1>全部照片</h1>
+</div>
+<div class="album">
+	<ul class="clearfix">
+		<li>
+            <p><a href="#"><img src="/static/images/album/ex.gif" /></a></p> 
+            <p><a href="#">王铮亮─09年最新写真</a></p>
+            <p><a href="#" style="color:red">70张</a> | 2009-08-20</p>
+        </li>
+       <li>
+            <p><a href="#"><img src="/static/images/album/ex.gif" /></a></p> 
+            <p><a href="#">王铮亮─09年最新写真</a></p>
+            <p><a href="#" style="color:red">70张</a> | 2009-08-20</p>
+        </li>
+        <li>
+            <p><a href="#"><img src="/static/images/album/ex.gif" /></a></p> 
+            <p><a href="#">王铮亮─09年最新写真</a></p>
+            <p><a href="#" style="color:red">70张</a> | 2009-08-20</p>
+        </li>
+        <li>
+        <p><a href="#"><img src="/static/images/album/ex.gif" /></a></p> 
+        <p><a href="#">王铮亮─09年最新写真</a></p>
+        <p><a href="#" style="color:red">70张</a> | 2009-08-20</p>
+     </li>
+     <li>
+            <p><a href="#"><img src="/static/images/album/ex.gif" /></a></p> 
+            <p><a href="#">王铮亮─09年最新写真</a></p>
+            <p><a href="#" style="color:red">70张</a> | 2009-08-20</p>
+        </li>
+        <li>
+            <p><a href="#"><img src="/static/images/album/ex.gif" /></a></p> 
+            <p><a href="#">王铮亮─09年最新写真</a></p>
+            <p><a href="#" style="color:red">70张</a> | 2009-08-20</p>
+        </li>
+
+<li>
+            <p><a href="#"><img src="/static/images/album/ex.gif" /></a></p> 
+            <p><a href="#">王铮亮─09年最新写真</a></p>
+            <p><a href="#" style="color:red">70张</a> | 2009-08-20</p>
+        </li>
+
+	</ul>
+</div>
+</div>
+<!--#include file="footer.html" -->
