@@ -42,15 +42,25 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />
+    <Content Include="model\album.shtml" />
+    <Content Include="model\album_detail.shtml" />
+    <Content Include="model\album_list.shtml" />
+    <Content Include="model\calender.shtml" />
     <Content Include="model\footer.html" />
-    <Content Include="model\index.html" />
     <Content Include="model\index.shtml" />
     <Content Include="model\menu.html" />
     <Content Include="model\news.shtml" />
+    <Content Include="model\news_comments.shtml" />
+    <Content Include="model\search.shtml" />
+    <Content Include="model\sitemap.shtml" />
     <Content Include="model\top.html" />
     <Content Include="static\default.css" />
+    <Content Include="static\images\album\album_bg.gif" />
+    <Content Include="static\images\album\big.jpg" />
+    <Content Include="static\images\album\ex.gif" />
     <Content Include="static\images\banner.png" />
     <Content Include="static\images\bg.png" />
+    <Content Include="static\images\calendar_nav.png" />
     <Content Include="static\images\link.png" />
     <Content Include="static\images\logo.png" />
     <Content Include="static\images\nav.png" />
@@ -69,9 +79,13 @@
     <Content Include="static\images\nav_off_08.png" />
     <Content Include="static\images\nav_off_09.png" />
     <Content Include="static\images\pic.jpg" />
+    <Content Include="static\images\pic_s.png" />
+    <Content Include="static\images\pic_s_bg.png" />
+    <Content Include="static\images\search\nav.gif" />
     <Content Include="static\images\search_go.gif" />
     <Content Include="static\images\search_go.png" />
     <Content Include="static\images\search_input.png" />
+    <Content Include="static\images\title\Untitled-1.gif" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
