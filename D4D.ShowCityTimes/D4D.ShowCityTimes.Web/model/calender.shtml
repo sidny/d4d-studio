@@ -1,0 +1,18 @@
+<!--#include file="top.html" -->
+<!--#include file="menu.html" -->
+<div class="main">
+  <table width="690" border="0" cellspacing="0" cellpadding="0" class="calander">
+    <tr>
+      <th colspan="5"><img src="/static/images/calendar_nav.png" width="690" height="38" /></td>
+      </tr>
+    <tr>
+      <td width="56" align="center" valign="middle"><img src="../static/images/pic_s.png" width="56" height="56" /><br />
+        张靓影</td>
+      <td width="110" align="center" valign="middle">2009年9月29日</td>
+      <td width="110" align="center" valign="middle">深圳华侨城</td>
+      <td width="136" align="center" valign="middle">青岛蓝色畅想演出</td>
+      <td width="278" valign="middle">我猜我猜我猜猜猜 我猜我猜我猜猜猜 我猜我猜我猜猜猜 我猜我猜我猜猜猜 我猜我猜我猜猜猜 我猜我猜我猜猜猜我猜我猜我猜猜猜我猜我猜我猜猜猜 我猜我猜我猜猜猜 我猜我猜我猜猜猜 我猜我猜我猜猜猜 我猜我猜我猜猜猜 我猜我猜我猜猜猜我猜我猜我猜猜猜</td>
+    </tr>
+  </table>
+</div>
+<!--#include file="footer.html" -->
