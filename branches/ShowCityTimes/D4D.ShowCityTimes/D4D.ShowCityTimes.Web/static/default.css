@@ -40,6 +40,16 @@ div.header{ height:86px; text-align:center; position:relative; padding-top:10px;
 .news-top li.big p.title b{ font-size:16px; color:red}
 .news-list{ padding-top:24px;}
 .news-list li {height:30px;}
+.comments li{ line-height:21px; border-bottom:1px solid #f0f0f0; padding:5px;}
+.comments li a{ color:red}
+.TabbedPanels {	margin: 0px;padding: 0px;float: left;clear: none;width: 100%;}
+.TabbedPanelsTabGroup {margin: 0px;padding: 0px;}
+.TabbedPanelsTab {position: relative;top: 1px;float: left;padding: 4px 10px;font-size:14px;font-family:"微软雅黑",simhei;	list-style: none;-moz-user-select: none;-khtml-user-select: none;cursor: pointer;}
+.TabbedPanelsTabHover,.TabbedPanelsTabSelected {color:red;}
+.TabbedPanelsContentGroup {clear: both;}
+.TabbedPanelsContent {padding: 4px;}
+.singer .TabbedPanelsTabGroup{ border-bottom:1px solid #cbcbcb; height:40px;}
+.singer .TabbedPanelsContent { line-height:20px;}
 
 
 .album ul,.album_list ul{padding:20px 0;}

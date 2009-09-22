@@ -1,0 +1,39 @@
+﻿<!--#include file="top.html" -->
+<!--#include file="menu.html" -->
+<div class="main">
+<div class="channel">
+  <h1><font color="red">王铮亮</font>/个人档案</h1>
+</div>
+
+<ul class="comments">
+	<li>
+    	<p><a href="#" target="_blank">用户名</a> 发表于<label> 2009-3-29</label></p>
+    	<p>风雨难阻歌迷热情，张靓颖献歌广汉风雨难阻歌迷热情，张靓颖献歌广汉风雨难阻歌迷热情，张靓颖献歌广汉</p>
+    </li>
+    <li>
+    	<p><a href="#" target="_blank">用户名</a> 发表于<label> 2009-3-29</label></p>
+    	<p>风雨难阻歌迷热情，张靓颖献歌广汉风雨难阻歌迷热情，张靓颖献歌广汉风雨难阻歌迷热情，张靓颖献歌广汉</p>
+    </li>
+    <li>
+    	<p><a href="#" target="_blank">用户名</a> 发表于<label> 2009-3-29</label></p>
+    	<p>风雨难阻歌迷热情，张靓颖献歌广汉风雨难阻歌迷热情，张靓颖献歌广汉风雨难阻歌迷热情，张靓颖献歌广汉</p>
+    </li>
+    <li>
+    	<p><a href="#" target="_blank">用户名</a> 发表于<label> 2009-3-29</label></p>
+    	<p>风雨难阻歌迷热情，张靓颖献歌广汉风雨难阻歌迷热情，张靓颖献歌广汉风雨难阻歌迷热情，张靓颖献歌广汉</p>
+    </li>
+    <li>
+    	<p><a href="#" target="_blank">用户名</a> 发表于<label> 2009-3-29</label></p>
+    	<p>风雨难阻歌迷热情，张靓颖献歌广汉风雨难阻歌迷热情，张靓颖献歌广汉风雨难阻歌迷热情，张靓颖献歌广汉</p>
+    </li>
+    <li>
+    	<p><a href="#" target="_blank">用户名</a> 发表于<label> 2009-3-29</label></p>
+    	<p>风雨难阻歌迷热情，张靓颖献歌广汉风雨难阻歌迷热情，张靓颖献歌广汉风雨难阻歌迷热情，张靓颖献歌广汉</p>
+    </li>
+    <li>
+    	<p><a href="#" target="_blank">用户名</a> 发表于<label> 2009-3-29</label></p>
+    	<p>风雨难阻歌迷热情，张靓颖献歌广汉风雨难阻歌迷热情，张靓颖献歌广汉风雨难阻歌迷热情，张靓颖献歌广汉</p>
+    </li>
+</ul>
+</div>
+<!--#include file="footer.html" -->
