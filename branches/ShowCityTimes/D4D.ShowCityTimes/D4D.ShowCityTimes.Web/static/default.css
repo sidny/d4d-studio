@@ -50,7 +50,7 @@ div.header{ height:86px; text-align:center; position:relative; padding-top:10px;
 .TabbedPanelsContent {padding: 4px;}
 .singer .TabbedPanelsTabGroup{ border-bottom:1px solid #cbcbcb; height:40px;}
 .singer .TabbedPanelsContent { line-height:20px;}
-
+.calander td{ padding:20px 0; border-bottom:1px solid #cbcbcb}
 
 .album ul,.album_list ul{padding:20px 0;}
 .album li{ float:left; width:150px; text-align:center; line-height:20px; margin-right:20px;}
