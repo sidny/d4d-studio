@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="D4D.Web.svc.news" CodeBehind="news.svc.cs" %>
