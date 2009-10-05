@@ -1,0 +1,42 @@
+﻿<?xml version="1.0"?>
+<sqlMap xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" namespace="news">
+	<alias>
+		<typeAlias alias="news" type="D4D.Model.News,D4D.Model" />
+	</alias>
+	<resultMaps>
+		<resultMap id="SelectAllResult" class="news">
+			<result property="Id" column="Id" />
+			<result property="Title" column="Title" />
+			<result property="Detail" column="Detail" />
+			<result property="Preview" column="Preview" />
+			<result property="AddDate" column="AddDate" />
+			<result property="NewType" column="NewType" />
+			<result property="Publish" column="Publish" />
+			<result property="Hits" column="Hits" />
+		</resultMap>
+	</resultMaps>
+	<statements>
+		<select id="GetMaxID" resultClass="int">
+			select max(ID) from news
+		</select>
+		<select id="Exists" resultClass="int" parameterclass="int">
+			select count(1) from  news where ID = #value#
+		</select>
+		<insert id="Insertnews" parameterclass="news">
+			<selectKey property="ID" type="post" resultClass="int">
+				${selectKey}
+			</selectKey>
+			insert into news(Title,Detail,Preview,NewType) 
+				values (#Title#,#Detail#,#Preview#,#NewType#)
+		</insert>
+		<delete id="Deletenews" parameterclass="int">
+			delete from  news where ID = #value#
+		</delete>
+		<select id="SelectAllnews" resultMap="SelectAllResult">
+			select * from  news
+		</select>
+		<select id="SelectByID" resultMap="SelectAllResult" resultClass="news" parameterclass="int">
+			select * from news where ID = #value#
+		</select>
+	</statements>
+</sqlMap>
