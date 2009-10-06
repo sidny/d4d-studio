@@ -1,0 +1,23 @@
+﻿<?xml version="1.0"?>
+<sqlMap xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" namespace="UserLogin">
+  <alias>
+    <typeAlias alias="UserLogin" type="D4D.Model.UserLogin,D4D.Application" />
+  </alias>
+  <resultMaps>
+    <resultMap id="SelectAllResult" class="UserLogin">
+      <result property="Id" column="Id" />
+      <result property="UserName" column="UserName" />
+      <result property="PassWord" column="PassWord" />
+      <result property="Email" column="Email" />
+      <result property="AddDate" column="AddDate" />
+    </resultMap>
+  </resultMaps>
+  <statements>
+    <select id="GetMaxID" resultClass="int">select max(ID) from user_login</select>
+    <select id="Exists" resultClass="int" parameterclass="int">select count(1) from  user_login where ID = #value#</select>
+    <insert id="InsertUserLogin" parameterclass="UserLogin">insert into user_login(Id,UserName,PassWord,Email,AddDate) values (#Id#,#UserName#,#PassWord#,#Email#,#AddDate#)</insert>
+    <delete id="DeleteUserLogin" parameterclass="int">delete from  user_login where ID = #value#</delete>
+    <select id="SelectAllUserLogin" resultMap="SelectAllResult">select * from  user_login</select>
+    <select id="SelectByID" resultMap="SelectAllResult" resultClass="UserLogin" parameterclass="int">select * from user_login where ID = #value#</select>
+  </statements>
+</sqlMap>

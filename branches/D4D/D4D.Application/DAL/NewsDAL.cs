@@ -20,7 +20,7 @@ namespace D4D.DAL
 		/// </summary>
 		public bool Exists(object Id)
 		{
-			return ExecuteExists("Exists", Id);
+			return ExecuteExists("News.Exists", Id);
 		}
 
 
@@ -29,7 +29,7 @@ namespace D4D.DAL
         /// </summary>
         public int Count()
         {
-            return ExecuteQueryForObject<int>("CountAllByPage", null);
+            return ExecuteQueryForObject<int>("News.CountAllByPage", null);
         }
 
 		/// <summary>
@@ -37,14 +37,14 @@ namespace D4D.DAL
 		/// </summary>
 		public int Add(D4D.Model.News model)
 		{
-			return ExecuteInsert("InsertNews", model);
+			return ExecuteInsert("News.InsertNews", model);
 		}
 		/// <summary>
 		/// 更新一条数据
 		/// </summary>
 		public void Update(D4D.Model.News model)
 		{
-			ExecuteUpdate("UpdateNews", model);
+			ExecuteUpdate("News.UpdateNews", model);
 		}
 
 		/// <summary>
@@ -52,7 +52,7 @@ namespace D4D.DAL
 		/// </summary>
 		public void Delete(D4D.Model.News model)
 		{
-			ExecuteDelete("DeleteNews", model);
+			ExecuteDelete("News.DeleteNews", model);
 		}
 
 
@@ -61,7 +61,7 @@ namespace D4D.DAL
 		/// </summary>
 		public D4D.Model.News GetModel(object Id)
 		{
-			D4D.Model.News model = ExecuteQueryForObject<D4D.Model.News>("SelectById", Id);
+			D4D.Model.News model = ExecuteQueryForObject<D4D.Model.News>("News.SelectById", Id);
 			return model;
 		}
 
@@ -71,7 +71,7 @@ namespace D4D.DAL
         public IList<D4D.Model.News> GetList(D4D.Model.News model, int recodeRange,int pageSize)
 		{
 			IList<D4D.Model.News> list = null;
-            list = ExecuteQueryForList<D4D.Model.News>("SelectAllNews", model,recodeRange,pageSize); 
+            list = ExecuteQueryForList<D4D.Model.News>("News.SelectAllNews", model,recodeRange,pageSize); 
 			return list; 
 		}
 
@@ -88,7 +88,7 @@ namespace D4D.DAL
             map.Add("recordRange", recordRange);
             map.Add("pageSize", pageSize);
             map.Add("totalCount", 0);
-            list = ExecuteQueryForList<D4D.Model.News>("SelectAllNews", map);
+            list = ExecuteQueryForList<D4D.Model.News>("News.SelectAllNews", map);
             return list;
         }
 
