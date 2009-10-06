@@ -1,0 +1,24 @@
+﻿<?xml version="1.0"?>
+<sqlMap xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" namespace="Image">
+  <alias>
+    <typeAlias alias="Image" type="D4D.Model.Image,D4D.Application" />
+  </alias>
+  <resultMaps>
+    <resultMap id="SelectAllResult" class="Image">
+      <result property="Id" column="Id" />
+      <result property="AlbumId" column="AlbumId" />
+      <result property="Url" column="Url" />
+      <result property="AddDate" column="AddDate" />
+    </resultMap>
+  </resultMaps>
+  <statements>
+    <select id="GetMaxID" resultClass="int">select max(ID) from image</select>
+    <select id="Exists" resultClass="int" parameterclass="int">select count(1) from  image where ID = #value#</select>
+    <insert id="InsertImage" parameterclass="Image">
+      <selectKey property="ID" type="post" resultClass="int">${selectKey}</selectKey>insert into image(AlbumId,Url) values (#AlbumId#,#Url#)
+    </insert>
+    <delete id="DeleteImage" parameterclass="int">delete from  image where ID = #value#</delete>
+    <select id="SelectAllImage" resultMap="SelectAllResult">select * from  image</select>
+    <select id="SelectByID" resultMap="SelectAllResult" resultClass="Image" parameterclass="int">select * from image where ID = #value#</select>
+  </statements>
+</sqlMap>

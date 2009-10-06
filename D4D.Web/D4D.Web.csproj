@@ -58,20 +58,178 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
-    <Reference Include="System.EnterpriseServices" />
-    <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="admin\Admin.Master.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Admin.Master.designer.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Accounts\Add.aspx.cs">
+      <DependentUpon>add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Accounts\Add.aspx.designer.cs">
+      <DependentUpon>add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Accounts\Admin\EditRole.aspx.cs">
+      <DependentUpon>editrole.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Accounts\Admin\EditRole.aspx.designer.cs">
+      <DependentUpon>editrole.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Accounts\Admin\Index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Accounts\Admin\Index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Accounts\Admin\PermissionAdmin.aspx.cs">
+      <DependentUpon>permissionadmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Accounts\Admin\PermissionAdmin.aspx.designer.cs">
+      <DependentUpon>permissionadmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Accounts\Admin\RoleAdmin.aspx.cs">
+      <DependentUpon>RoleAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Accounts\Admin\RoleAdmin.aspx.designer.cs">
+      <DependentUpon>RoleAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Accounts\Admin\RoleAssignment.aspx.cs">
+      <DependentUpon>roleassignment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Accounts\Admin\RoleAssignment.aspx.designer.cs">
+      <DependentUpon>roleassignment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Accounts\Admin\UserAdmin.aspx.cs">
+      <DependentUpon>UserAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Accounts\Admin\UserAdmin.aspx.designer.cs">
+      <DependentUpon>UserAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Accounts\Admin\UserAdminList.aspx.cs">
+      <DependentUpon>UserAdminList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Accounts\Admin\UserAdminList.aspx.designer.cs">
+      <DependentUpon>UserAdminList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Accounts\Admin\UserAssignmentRole.aspx.cs">
+      <DependentUpon>UserAssignmentRole.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Accounts\Admin\UserAssignmentRole.aspx.designer.cs">
+      <DependentUpon>UserAssignmentRole.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Accounts\Admin\UserType.aspx.cs">
+      <DependentUpon>UserType.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Accounts\Admin\UserType.aspx.designer.cs">
+      <DependentUpon>UserType.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Accounts\SetPass.aspx.cs">
+      <DependentUpon>setpass.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Accounts\SetPass.aspx.designer.cs">
+      <DependentUpon>setpass.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Accounts\userinfo.aspx.cs">
+      <DependentUpon>userinfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Accounts\userinfo.aspx.designer.cs">
+      <DependentUpon>userinfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Accounts\usermodify.aspx.cs">
+      <DependentUpon>usermodify.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Accounts\usermodify.aspx.designer.cs">
+      <DependentUpon>usermodify.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Accounts\userPass.aspx.cs">
+      <DependentUpon>userpass.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Accounts\userPass.aspx.designer.cs">
+      <DependentUpon>userpass.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Accounts\userupdate.aspx.cs">
+      <DependentUpon>userupdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Accounts\userupdate.aspx.designer.cs">
+      <DependentUpon>userupdate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Main.aspx.cs">
+      <DependentUpon>Main.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Main.aspx.designer.cs">
+      <DependentUpon>Main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Relogin.aspx.cs">
+      <DependentUpon>Relogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Relogin.aspx.designer.cs">
+      <DependentUpon>Relogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\ShowCallBoard.aspx.cs">
+      <DependentUpon>ShowCallBoard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ShowCallBoard.aspx.designer.cs">
+      <DependentUpon>ShowCallBoard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ValidateCode.ashx.cs">
+      <DependentUpon>ValidateCode.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="svc\news.svc.cs">
@@ -83,21 +241,323 @@
       <Project>{1AC62894-214E-4EB1-87AB-9D83AC5AE368}</Project>
       <Name>D4D.Application</Name>
     </ProjectReference>
+    <ProjectReference Include="..\D4D.Common\Common.csproj">
+      <Project>{E3D8759A-C5EB-402D-9F10-F5C6029A8D1A}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\D4D.DBUtility\DBUtility.csproj">
       <Project>{0988C62E-247F-471F-A183-DB509C7A3839}</Project>
       <Name>DBUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LTP.Accounts\LTP.Accounts.csproj">
+      <Project>{86D2B20D-B407-48BE-874E-4920AC9A831F}</Project>
+      <Name>LTP.Accounts</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="properties.config" />
     <Content Include="providers.config" />
     <Content Include="sqlmap.config" />
-    <Content Include="static\js\jquery-1.3.2.min.js" />
     <Content Include="static\js\jquery.pagination.js" />
     <Content Include="svc\news.svc" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin\Admin.Master" />
+    <Content Include="admin\Accounts\add.aspx" />
+    <Content Include="admin\Accounts\Admin\editrole.aspx" />
+    <Content Include="admin\Accounts\Admin\index.aspx" />
+    <Content Include="admin\Accounts\Admin\permissionadmin.aspx" />
+    <Content Include="admin\Accounts\Admin\RoleAdmin.aspx" />
+    <Content Include="admin\Accounts\Admin\roleassignment.aspx" />
+    <Content Include="admin\Accounts\Admin\UserAdmin.aspx" />
+    <Content Include="admin\Accounts\Admin\UserAdminList.aspx" />
+    <Content Include="admin\Accounts\Admin\UserAssignmentRole.aspx" />
+    <Content Include="admin\Accounts\Admin\UserType.aspx" />
+    <Content Include="admin\Accounts\images\adminLeftArrow.gif" />
+    <Content Include="admin\Accounts\images\admin_top_bg.gif" />
+    <Content Include="admin\Accounts\images\bg.gif" />
+    <Content Include="admin\Accounts\images\bg1.gif" />
+    <Content Include="admin\Accounts\images\bg2.gif" />
+    <Content Include="admin\Accounts\images\bg3.gif" />
+    <Content Include="admin\Accounts\images\bottombg.gif" />
+    <Content Include="admin\Accounts\images\btnreview.GIF" />
+    <Content Include="admin\Accounts\images\button-join.gif" />
+    <Content Include="admin\Accounts\images\button-login.gif" />
+    <Content Include="admin\Accounts\images\button_add.gif" />
+    <Content Include="admin\Accounts\images\button_back.gif" />
+    <Content Include="admin\Accounts\images\button_cancel.gif" />
+    <Content Include="admin\Accounts\images\button_close.gif" />
+    <Content Include="admin\Accounts\images\button_del.gif" />
+    <Content Include="admin\Accounts\images\button_edit.gif" />
+    <Content Include="admin\Accounts\images\button_look.gif" />
+    <Content Include="admin\Accounts\images\button_ok.gif" />
+    <Content Include="admin\Accounts\images\button_save.gif" />
+    <Content Include="admin\Accounts\images\button_search.GIF" />
+    <Content Include="admin\Accounts\images\button_sift.gif" />
+    <Content Include="admin\Accounts\images\button_update.gif" />
+    <Content Include="admin\Accounts\images\lan1.gif" />
+    <Content Include="admin\Accounts\images\lan12.gif" />
+    <Content Include="admin\Accounts\images\loading.gif" />
+    <Content Include="admin\Accounts\images\navspacer.gif" />
+    <Content Include="admin\Accounts\images\skin2\downbg.gif" />
+    <Content Include="admin\Accounts\images\skin2\topbar_01.jpg" />
+    <Content Include="admin\Accounts\images\topbg.gif" />
+    <Content Include="admin\Accounts\setpass.aspx" />
+    <Content Include="admin\Accounts\style\css.css" />
+    <Content Include="admin\Accounts\style\style.css" />
+    <Content Include="admin\Accounts\userinfo.aspx" />
+    <Content Include="admin\Accounts\usermodify.aspx" />
+    <Content Include="admin\Accounts\userpass.aspx" />
+    <Content Include="admin\Accounts\userupdate.aspx" />
+    <Content Include="admin\Images\about16.gif" />
+    <Content Include="admin\Images\add16.gif" />
+    <Content Include="admin\Images\a_te01.gif" />
+    <Content Include="admin\Images\a_te02.gif" />
+    <Content Include="admin\Images\b1.gif" />
+    <Content Include="admin\Images\b11-1.gif" />
+    <Content Include="admin\Images\b11-2.gif" />
+    <Content Include="admin\Images\b11.gif" />
+    <Content Include="admin\Images\b12.gif" />
+    <Content Include="admin\Images\b13-1.gif" />
+    <Content Include="admin\Images\b13-2.gif" />
+    <Content Include="admin\Images\b13.gif" />
+    <Content Include="admin\Images\b3.gif" />
+    <Content Include="admin\Images\b4.gif" />
+    <Content Include="admin\Images\b5.gif" />
+    <Content Include="admin\Images\bar_00.gif" />
+    <Content Include="admin\Images\bar_01.gif" />
+    <Content Include="admin\Images\bar_02.gif" />
+    <Content Include="admin\Images\bar_03.gif" />
+    <Content Include="admin\Images\bar_04.gif" />
+    <Content Include="admin\Images\bar_05.gif" />
+    <Content Include="admin\Images\bar_06.gif" />
+    <Content Include="admin\Images\bar_07.gif" />
+    <Content Include="admin\Images\bar_08.gif" />
+    <Content Include="admin\Images\bar_10.gif" />
+    <Content Include="admin\Images\bg.gif" />
+    <Content Include="admin\Images\bgx.GIF" />
+    <Content Include="admin\Images\bg_01.gif" />
+    <Content Include="admin\Images\bg_02.gif" />
+    <Content Include="admin\Images\bg_03.gif" />
+    <Content Include="admin\Images\blank.gif" />
+    <Content Include="admin\Images\bottom_01.gif" />
+    <Content Include="admin\Images\bottom_02.gif" />
+    <Content Include="admin\Images\bottom_03.gif" />
+    <Content Include="admin\Images\Briefcase16.gif" />
+    <Content Include="admin\Images\Briefcase32.gif" />
+    <Content Include="admin\Images\button_edit.gif" />
+    <Content Include="admin\Images\button_search.GIF" />
+    <Content Include="admin\Images\c6.gif" />
+    <Content Include="admin\Images\card16.gif" />
+    <Content Include="admin\Images\card32.gif" />
+    <Content Include="admin\Images\company16.gif" />
+    <Content Include="admin\Images\css.css" />
+    <Content Include="admin\Images\d2.gif" />
+    <Content Include="admin\Images\d3.gif" />
+    <Content Include="admin\Images\desktop16.gif" />
+    <Content Include="admin\Images\desktop32.gif" />
+    <Content Include="admin\Images\desktop_01.gif" />
+    <Content Include="admin\Images\desktop_02.gif" />
+    <Content Include="admin\Images\desktop_03.gif" />
+    <Content Include="admin\Images\dsj16.gif" />
+    <Content Include="admin\Images\dsj32.gif" />
+    <Content Include="admin\Images\f3.gif" />
+    <Content Include="admin\Images\f4.gif" />
+    <Content Include="admin\Images\find16.gif" />
+    <Content Include="admin\Images\find32.gif" />
+    <Content Include="admin\Images\folder16.gif" />
+    <Content Include="admin\Images\folder32.gif" />
+    <Content Include="admin\Images\foldergreen_16.gif" />
+    <Content Include="admin\Images\ger16.gif" />
+    <Content Include="admin\Images\ger32.gif" />
+    <Content Include="admin\Images\gongg16.gif" />
+    <Content Include="admin\Images\gongg32.gif" />
+    <Content Include="admin\Images\gongzkp16.gif" />
+    <Content Include="admin\Images\gongzkp32.gif" />
+    <Content Include="admin\Images\help16.gif" />
+    <Content Include="admin\Images\help32.gif" />
+    <Content Include="admin\Images\image.gif" />
+    <Content Include="admin\Images\in_bg.gif" />
+    <Content Include="admin\Images\left-1-1.gif" />
+    <Content Include="admin\Images\left-1-2.gif" />
+    <Content Include="admin\Images\left-1-3.gif" />
+    <Content Include="admin\Images\left-1.gif" />
+    <Content Include="admin\Images\left-2-1.gif" />
+    <Content Include="admin\Images\left-2-2.gif" />
+    <Content Include="admin\Images\left-2-3.gif" />
+    <Content Include="admin\Images\left-2.gif" />
+    <Content Include="admin\Images\left-3-1.gif" />
+    <Content Include="admin\Images\left-3-2.gif" />
+    <Content Include="admin\Images\left-3-3.gif" />
+    <Content Include="admin\Images\left-3.gif" />
+    <Content Include="admin\Images\left-bj-1.gif" />
+    <Content Include="admin\Images\left-bj-2.gif" />
+    <Content Include="admin\Images\left-bj-3.gif" />
+    <Content Include="admin\Images\left-bj.gif" />
+    <Content Include="admin\Images\Loading.gif" />
+    <Content Include="admin\Images\login.css" />
+    <Content Include="admin\Images\login_p_img02.gif" />
+    <Content Include="admin\Images\login_p_img03.gif" />
+    <Content Include="admin\Images\login_p_img04.gif" />
+    <Content Include="admin\Images\login_p_img05.gif" />
+    <Content Include="admin\Images\login_p_img11.gif" />
+    <Content Include="admin\Images\mag16.gif" />
+    <Content Include="admin\Images\mail16.gif" />
+    <Content Include="admin\Images\main_01.gif" />
+    <Content Include="admin\Images\main_04.gif" />
+    <Content Include="admin\Images\main_05.gif" />
+    <Content Include="admin\Images\main_06.gif" />
+    <Content Include="admin\Images\main_08.gif" />
+    <Content Include="admin\Images\main_09.gif" />
+    <Content Include="admin\Images\member_t04.JPG" />
+    <Content Include="admin\Images\MenuImg\288.GIF" />
+    <Content Include="admin\Images\MenuImg\about16.gif" />
+    <Content Include="admin\Images\MenuImg\bbs16.gif" />
+    <Content Include="admin\Images\MenuImg\find16.gif" />
+    <Content Include="admin\Images\MenuImg\folder16.gif" />
+    <Content Include="admin\Images\MenuImg\foldergreen_16.gif" />
+    <Content Include="admin\Images\MenuImg\ger16.gif" />
+    <Content Include="admin\Images\MenuImg\help16.gif" />
+    <Content Include="admin\Images\MenuImg\news16.gif" />
+    <Content Include="admin\Images\MenuImg\out16.gif" />
+    <Content Include="admin\Images\MenuImg\Programs16.gif" />
+    <Content Include="admin\Images\MenuImg\quanx16.gif" />
+    <Content Include="admin\Images\MenuImg\thumbnails.gif" />
+    <Content Include="admin\Images\MenuImg\times.gif" />
+    <Content Include="admin\Images\MenuImg\ts16.gif" />
+    <Content Include="admin\Images\MenuImg\user16.gif" />
+    <Content Include="admin\Images\MenuImg\xinx16.gif" />
+    <Content Include="admin\Images\MenuImg\zhut16.gif" />
+    <Content Include="admin\Images\MenuImg\zjsp16.gif" />
+    <Content Include="admin\Images\message16.gif" />
+    <Content Include="admin\Images\module16.gif" />
+    <Content Include="admin\Images\module32.gif" />
+    <Content Include="admin\Images\more1.gif" />
+    <Content Include="admin\Images\myfile16.gif" />
+    <Content Include="admin\Images\myfile32.gif" />
+    <Content Include="admin\Images\news16.gif" />
+    <Content Include="admin\Images\onecard16.gif" />
+    <Content Include="admin\Images\onecard32.gif" />
+    <Content Include="admin\Images\out16.gif" />
+    <Content Include="admin\Images\out32.gif" />
+    <Content Include="admin\Images\plan16.gif" />
+    <Content Include="admin\Images\plan32.gif" />
+    <Content Include="admin\Images\point07.gif" />
+    <Content Include="admin\Images\quanx16.gif" />
+    <Content Include="admin\Images\quanx32.gif" />
+    <Content Include="admin\Images\right-bj-1.gif" />
+    <Content Include="admin\Images\right-bj-2.gif" />
+    <Content Include="admin\Images\right-bj-3.gif" />
+    <Content Include="admin\Images\right-bj.gif" />
+    <Content Include="admin\Images\spacer.gif" />
+    <Content Include="admin\Images\style.css" />
+    <Content Include="admin\Images\top-1-1.gif" />
+    <Content Include="admin\Images\top-1-2.gif" />
+    <Content Include="admin\Images\top-1-3.gif" />
+    <Content Include="admin\Images\top-1.gif" />
+    <Content Include="admin\Images\top-2-1.gif" />
+    <Content Include="admin\Images\top-2-2.gif" />
+    <Content Include="admin\Images\top-2-3.gif" />
+    <Content Include="admin\Images\top-2.gif" />
+    <Content Include="admin\Images\top-3-1.gif" />
+    <Content Include="admin\Images\top-3-2.gif" />
+    <Content Include="admin\Images\top-3-3.gif" />
+    <Content Include="admin\Images\top-3.gif" />
+    <Content Include="admin\Images\top-4-1.gif" />
+    <Content Include="admin\Images\top-4-2.gif" />
+    <Content Include="admin\Images\top-4-3.gif" />
+    <Content Include="admin\Images\top-4.gif" />
+    <Content Include="admin\Images\top-5-1.gif" />
+    <Content Include="admin\Images\top-5-2.gif" />
+    <Content Include="admin\Images\top-5-3.gif" />
+    <Content Include="admin\Images\top-5.gif" />
+    <Content Include="admin\Images\top-bj-1.gif" />
+    <Content Include="admin\Images\top-bj-2.gif" />
+    <Content Include="admin\Images\top-bj-3.gif" />
+    <Content Include="admin\Images\top-bj.gif" />
+    <Content Include="admin\Images\topbar_01.jpg" />
+    <Content Include="admin\Images\topbar_02.jpg" />
+    <Content Include="admin\Images\topbar_03.jpg" />
+    <Content Include="admin\Images\tubiao_01.GIF" />
+    <Content Include="admin\Images\tubiao_02.gif" />
+    <Content Include="admin\Images\user16.gif" />
+    <Content Include="admin\Images\vote16.gif" />
+    <Content Include="admin\Images\x16.gif" />
+    <Content Include="admin\Images\xinx16.gif" />
+    <Content Include="admin\Images\xinx32.gif" />
+    <Content Include="admin\Images\yw16.gif" />
+    <Content Include="admin\Images\zhut16.gif" />
+    <Content Include="admin\Images\zjsp16.gif" />
+    <Content Include="admin\Login.aspx" />
+    <Content Include="admin\Logout.aspx" />
+    <Content Include="admin\Main.aspx" />
+    <Content Include="admin\Relogin.aspx" />
+    <Content Include="admin\ShowCallBoard.aspx" />
+    <Content Include="admin\Style.css" />
+    <Content Include="admin\Index.aspx" />
+    <Content Include="static\js\jquery-1.3.2-vsdoc.js" />
+    <Content Include="static\js\jquery-1.3.2.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="admin\Accounts\Add.aspx.resx">
+      <DependentUpon>Add.aspx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\Accounts\Admin\EditRole.aspx.resx">
+      <DependentUpon>EditRole.aspx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\Accounts\Admin\Index.aspx.resx">
+      <DependentUpon>Index.aspx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\Accounts\Admin\PermissionAdmin.aspx.resx">
+      <DependentUpon>PermissionAdmin.aspx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\Accounts\Admin\RoleAdmin.aspx.resx">
+      <DependentUpon>RoleAdmin.aspx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\Accounts\Admin\RoleAssignment.aspx.resx">
+      <DependentUpon>RoleAssignment.aspx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\Accounts\Admin\UserAdmin.aspx.resx">
+      <DependentUpon>UserAdmin.aspx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\Accounts\userinfo.aspx.resx">
+      <DependentUpon>userinfo.aspx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\Accounts\usermodify.aspx.resx">
+      <DependentUpon>usermodify.aspx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\Accounts\userPass.aspx.resx">
+      <DependentUpon>userPass.aspx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\Accounts\userupdate.aspx.resx">
+      <DependentUpon>userupdate.aspx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\Logout.aspx.resx">
+      <DependentUpon>Logout.aspx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\Main.aspx.resx">
+      <DependentUpon>Main.aspx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\Relogin.aspx.resx">
+      <DependentUpon>Relogin.aspx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\ShowCallBoard.aspx.resx">
+      <DependentUpon>ShowCallBoard.aspx.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="admin\Accounts\images\skin2\Thumbs.db" />
+    <None Include="admin\Accounts\images\skin2\vssver2.scc" />
+    <None Include="admin\Accounts\images\Thumbs.db" />
+    <None Include="admin\Accounts\images\vssver2.scc" />
+    <None Include="admin\Images\MenuImg\Thumbs.db" />
+    <None Include="admin\Images\Thumbs.db" />
+    <Content Include="Control\ValidateCode.ashx" />
+    <Content Include="Global.asax" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Class\Control\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
@@ -116,12 +576,10 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49833</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>
-          </IISUrl>
+          <IISUrl>http://localhost/D4D.Web</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

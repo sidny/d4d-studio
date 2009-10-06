@@ -192,11 +192,29 @@ namespace D4D.DBUtility
             }
             catch (Exception e)
             {
-                throw new DataMapperException("Error executing query '" + statementName + "' for delete.  Cause: " + e.Message, e);
+                throw new DataMapperException("Error executing query '" + statementName + "' for query.  Cause: " + e.Message, e);
             }
             
         }
 
+        
+            /// <summary>
+        /// 获取最大ID
+        /// </summary>
+        /// <param name="statementName">操作名</param>
+        /// <param name="parameterObject">参数</param>
+        protected int ExecuteGetMaxID(string statementName)
+        {
+            try
+            {
+            	return (int)sqlMap.QueryForObject(statementName,null);
+            }
+            catch (Exception e)
+            {
+                throw new DataMapperException("Error executing query '" + statementName + "' for MaxID.  Cause: " + e.Message, e);
+            }
+            
+        }
         ///// <summary>
         ///// 得到流水号
         ///// </summary>
