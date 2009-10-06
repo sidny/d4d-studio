@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0"?>
-<sqlMap xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" namespace="news">
+<sqlMap xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" namespace="News">
 	<alias>
 		<typeAlias alias="news" type="D4D.Model.News,D4D.Application" />
 	</alias>

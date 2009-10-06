@@ -45,12 +45,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\ImageDAL.cs" />
     <Compile Include="DAL\NewsDAL.cs" />
+    <Compile Include="DAL\UserLoginDAL.cs" />
+    <Compile Include="Model\Comment.cs" />
+    <Compile Include="Model\Image.cs" />
     <Compile Include="Model\News.cs" />
+    <Compile Include="Model\NewsTag.cs" />
+    <Compile Include="Model\NewsType.cs" />
+    <Compile Include="Model\PhotoAlbum.cs" />
+    <Compile Include="Model\Tag.cs" />
+    <Compile Include="Model\TypeGroup.cs" />
+    <Compile Include="Model\UserLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Maps\News.xml">
+    <Content Include="Maps\News.xml">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Content>
+    <Content Include="Maps\Image.xml" />
+    <Content Include="Maps\UserLogin.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\D4D.DBUtility\DBUtility.csproj">
