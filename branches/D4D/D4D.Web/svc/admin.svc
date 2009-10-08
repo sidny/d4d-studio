@@ -1,0 +1,62 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="D4D.Web.svc.admin" %>
+using System;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.ServiceModel.Activation;
+using System.ServiceModel.Web;
+using System.Collections;
+using LTP.Accounts.Data;
+using LTP.Accounts.Bus;
+using System.Data;
+using System.Collections.Generic;
+using System.Web.SessionState;
+
+namespace D4D.Web.svc
+{
+    [ServiceContract(Namespace = "")]
+    [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
+    public class admin :IRequiresSessionState
+    {
+        // Add [WebGet] attribute to use HTTP GET
+        [OperationContract]
+        public void DoWork()
+        {
+            // Add your operation implementation here
+            return;
+        }
+       
+        [OperationContract]
+        [WebGet(RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
+        public IList<SvcPermission> GetPermission(int catId)
+        {
+            
+            PermissionCategory pc = new PermissionCategory();
+            DataTable dt = pc.GetPermissionsInCategory(catId).Tables[0];
+            IList<SvcPermission> plist = new List<SvcPermission>();
+            for (int i = 0; i < dt.Rows.Count;i++ )
+            {
+                DataRow dr = dt.Rows[i];
+                SvcPermission sp = new SvcPermission();
+                sp.Id = (int)dr["PermissionID"];
+                sp.Desc = (string)dr["Description"];
+                sp.Url = (string)dr["Url"];
+                plist.Add(sp);
+            }
+            return plist;
+        }
+        
+        
+       
+        
+        // Add more operations here and mark them with [OperationContract]
+    }
+
+    public struct SvcPermission
+    {
+        public int Id;
+        public String Desc;
+        public String Url;
+    }
+}
+
