@@ -78,67 +78,67 @@
     <Compile Include="admin\Accounts\Add.aspx.designer.cs">
       <DependentUpon>add.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\Accounts\Admin\EditRole.aspx.cs">
+    <Compile Include="admin\Accounts\EditRole.aspx.cs">
       <DependentUpon>editrole.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\Accounts\Admin\EditRole.aspx.designer.cs">
+    <Compile Include="admin\Accounts\EditRole.aspx.designer.cs">
       <DependentUpon>editrole.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\Accounts\Admin\Index.aspx.cs">
+    <Compile Include="admin\Accounts\Index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\Accounts\Admin\Index.aspx.designer.cs">
+    <Compile Include="admin\Accounts\Index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\Accounts\Admin\PermissionAdmin.aspx.cs">
+    <Compile Include="admin\Accounts\PermissionAdmin.aspx.cs">
       <DependentUpon>permissionadmin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\Accounts\Admin\PermissionAdmin.aspx.designer.cs">
+    <Compile Include="admin\Accounts\PermissionAdmin.aspx.designer.cs">
       <DependentUpon>permissionadmin.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\Accounts\Admin\RoleAdmin.aspx.cs">
+    <Compile Include="admin\Accounts\RoleAdmin.aspx.cs">
       <DependentUpon>RoleAdmin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\Accounts\Admin\RoleAdmin.aspx.designer.cs">
+    <Compile Include="admin\Accounts\RoleAdmin.aspx.designer.cs">
       <DependentUpon>RoleAdmin.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\Accounts\Admin\RoleAssignment.aspx.cs">
+    <Compile Include="admin\Accounts\RoleAssignment.aspx.cs">
       <DependentUpon>roleassignment.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\Accounts\Admin\RoleAssignment.aspx.designer.cs">
+    <Compile Include="admin\Accounts\RoleAssignment.aspx.designer.cs">
       <DependentUpon>roleassignment.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\Accounts\Admin\UserAdmin.aspx.cs">
+    <Compile Include="admin\Accounts\UserAdmin.aspx.cs">
       <DependentUpon>UserAdmin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\Accounts\Admin\UserAdmin.aspx.designer.cs">
+    <Compile Include="admin\Accounts\UserAdmin.aspx.designer.cs">
       <DependentUpon>UserAdmin.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\Accounts\Admin\UserAdminList.aspx.cs">
+    <Compile Include="admin\Accounts\UserAdminList.aspx.cs">
       <DependentUpon>UserAdminList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\Accounts\Admin\UserAdminList.aspx.designer.cs">
+    <Compile Include="admin\Accounts\UserAdminList.aspx.designer.cs">
       <DependentUpon>UserAdminList.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\Accounts\Admin\UserAssignmentRole.aspx.cs">
+    <Compile Include="admin\Accounts\UserAssignmentRole.aspx.cs">
       <DependentUpon>UserAssignmentRole.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\Accounts\Admin\UserAssignmentRole.aspx.designer.cs">
+    <Compile Include="admin\Accounts\UserAssignmentRole.aspx.designer.cs">
       <DependentUpon>UserAssignmentRole.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\Accounts\Admin\UserType.aspx.cs">
+    <Compile Include="admin\Accounts\UserType.aspx.cs">
       <DependentUpon>UserType.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\Accounts\Admin\UserType.aspx.designer.cs">
+    <Compile Include="admin\Accounts\UserType.aspx.designer.cs">
       <DependentUpon>UserType.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\Accounts\SetPass.aspx.cs">
@@ -176,6 +176,13 @@
     <Compile Include="admin\Accounts\userupdate.aspx.designer.cs">
       <DependentUpon>userupdate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -190,33 +197,12 @@
     <Compile Include="admin\Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\Main.aspx.cs">
-      <DependentUpon>Main.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="admin\Main.aspx.designer.cs">
-      <DependentUpon>Main.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="admin\Relogin.aspx.cs">
-      <DependentUpon>Relogin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="admin\Relogin.aspx.designer.cs">
-      <DependentUpon>Relogin.aspx</DependentUpon>
-    </Compile>
     <Compile Include="admin\ShowCallBoard.aspx.cs">
       <DependentUpon>ShowCallBoard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="admin\ShowCallBoard.aspx.designer.cs">
       <DependentUpon>ShowCallBoard.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="admin\Index.aspx.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="admin\Index.aspx.designer.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
     <Compile Include="Control\ValidateCode.ashx.cs">
       <DependentUpon>ValidateCode.ashx</DependentUpon>
@@ -232,9 +218,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="svc\news.svc.cs">
-      <DependentUpon>news.svc</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\D4D.Application\D4D.Application.csproj">
@@ -264,15 +247,15 @@
   <ItemGroup>
     <Content Include="admin\Admin.Master" />
     <Content Include="admin\Accounts\add.aspx" />
-    <Content Include="admin\Accounts\Admin\editrole.aspx" />
-    <Content Include="admin\Accounts\Admin\index.aspx" />
-    <Content Include="admin\Accounts\Admin\permissionadmin.aspx" />
-    <Content Include="admin\Accounts\Admin\RoleAdmin.aspx" />
-    <Content Include="admin\Accounts\Admin\roleassignment.aspx" />
-    <Content Include="admin\Accounts\Admin\UserAdmin.aspx" />
-    <Content Include="admin\Accounts\Admin\UserAdminList.aspx" />
-    <Content Include="admin\Accounts\Admin\UserAssignmentRole.aspx" />
-    <Content Include="admin\Accounts\Admin\UserType.aspx" />
+    <Content Include="admin\Accounts\editrole.aspx" />
+    <Content Include="admin\Accounts\index.aspx" />
+    <Content Include="admin\Accounts\permissionadmin.aspx" />
+    <Content Include="admin\Accounts\RoleAdmin.aspx" />
+    <Content Include="admin\Accounts\roleassignment.aspx" />
+    <Content Include="admin\Accounts\UserAdmin.aspx" />
+    <Content Include="admin\Accounts\UserAdminList.aspx" />
+    <Content Include="admin\Accounts\UserAssignmentRole.aspx" />
+    <Content Include="admin\Accounts\UserType.aspx" />
     <Content Include="admin\Accounts\images\adminLeftArrow.gif" />
     <Content Include="admin\Accounts\images\admin_top_bg.gif" />
     <Content Include="admin\Accounts\images\bg.gif" />
@@ -303,8 +286,8 @@
     <Content Include="admin\Accounts\images\skin2\topbar_01.jpg" />
     <Content Include="admin\Accounts\images\topbg.gif" />
     <Content Include="admin\Accounts\setpass.aspx" />
-    <Content Include="admin\Accounts\style\css.css" />
-    <Content Include="admin\Accounts\style\style.css" />
+    <Content Include="admin\style\css.css" />
+    <Content Include="admin\style\style.css" />
     <Content Include="admin\Accounts\userinfo.aspx" />
     <Content Include="admin\Accounts\usermodify.aspx" />
     <Content Include="admin\Accounts\userpass.aspx" />
@@ -490,11 +473,8 @@
     <Content Include="admin\Images\zjsp16.gif" />
     <Content Include="admin\Login.aspx" />
     <Content Include="admin\Logout.aspx" />
-    <Content Include="admin\Main.aspx" />
-    <Content Include="admin\Relogin.aspx" />
     <Content Include="admin\ShowCallBoard.aspx" />
     <Content Include="admin\Style.css" />
-    <Content Include="admin\Index.aspx" />
     <Content Include="static\js\jquery-1.3.2-vsdoc.js" />
     <Content Include="static\js\jquery-1.3.2.js" />
   </ItemGroup>
@@ -502,22 +482,22 @@
     <EmbeddedResource Include="admin\Accounts\Add.aspx.resx">
       <DependentUpon>Add.aspx.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="admin\Accounts\Admin\EditRole.aspx.resx">
+    <EmbeddedResource Include="admin\Accounts\EditRole.aspx.resx">
       <DependentUpon>EditRole.aspx.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="admin\Accounts\Admin\Index.aspx.resx">
+    <EmbeddedResource Include="admin\Accounts\Index.aspx.resx">
       <DependentUpon>Index.aspx.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="admin\Accounts\Admin\PermissionAdmin.aspx.resx">
+    <EmbeddedResource Include="admin\Accounts\PermissionAdmin.aspx.resx">
       <DependentUpon>PermissionAdmin.aspx.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="admin\Accounts\Admin\RoleAdmin.aspx.resx">
+    <EmbeddedResource Include="admin\Accounts\RoleAdmin.aspx.resx">
       <DependentUpon>RoleAdmin.aspx.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="admin\Accounts\Admin\RoleAssignment.aspx.resx">
+    <EmbeddedResource Include="admin\Accounts\RoleAssignment.aspx.resx">
       <DependentUpon>RoleAssignment.aspx.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="admin\Accounts\Admin\UserAdmin.aspx.resx">
+    <EmbeddedResource Include="admin\Accounts\UserAdmin.aspx.resx">
       <DependentUpon>UserAdmin.aspx.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="admin\Accounts\userinfo.aspx.resx">
@@ -535,12 +515,6 @@
     <EmbeddedResource Include="admin\Logout.aspx.resx">
       <DependentUpon>Logout.aspx.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="admin\Main.aspx.resx">
-      <DependentUpon>Main.aspx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="admin\Relogin.aspx.resx">
-      <DependentUpon>Relogin.aspx.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="admin\ShowCallBoard.aspx.resx">
       <DependentUpon>ShowCallBoard.aspx.cs</DependentUpon>
     </EmbeddedResource>
@@ -549,13 +523,43 @@
     <None Include="admin\Accounts\images\skin2\Thumbs.db" />
     <None Include="admin\Accounts\images\skin2\vssver2.scc" />
     <None Include="admin\Accounts\images\Thumbs.db" />
-    <None Include="admin\Accounts\images\vssver2.scc" />
     <None Include="admin\Images\MenuImg\Thumbs.db" />
+    <None Include="admin\Images\skin2\Thumbs.db" />
+    <None Include="admin\Images\skin2\vssver2.scc" />
     <None Include="admin\Images\Thumbs.db" />
+    <Content Include="admin\default.aspx" />
+    <Content Include="admin\Images\adminLeftArrow.gif" />
+    <Content Include="admin\Images\admin_top_bg.gif" />
+    <Content Include="admin\Images\bg1.gif" />
+    <Content Include="admin\Images\bg2.gif" />
+    <Content Include="admin\Images\bg3.gif" />
+    <Content Include="admin\Images\bottombg.gif" />
+    <Content Include="admin\Images\btnreview.GIF" />
+    <Content Include="admin\Images\button-join.gif" />
+    <Content Include="admin\Images\button-login.gif" />
+    <Content Include="admin\Images\button_add.gif" />
+    <Content Include="admin\Images\button_back.gif" />
+    <Content Include="admin\Images\button_cancel.gif" />
+    <Content Include="admin\Images\button_close.gif" />
+    <Content Include="admin\Images\button_del.gif" />
+    <Content Include="admin\Images\button_look.gif" />
+    <Content Include="admin\Images\button_ok.gif" />
+    <Content Include="admin\Images\button_save.gif" />
+    <Content Include="admin\Images\button_sift.gif" />
+    <Content Include="admin\Images\button_update.gif" />
+    <Content Include="admin\Images\lan1.gif" />
+    <Content Include="admin\Images\lan12.gif" />
+    <Content Include="admin\Images\navspacer.gif" />
+    <Content Include="admin\Images\skin2\downbg.gif" />
+    <Content Include="admin\Images\skin2\topbar_01.jpg" />
+    <Content Include="admin\Images\topbg.gif" />
     <Content Include="Control\ValidateCode.ashx" />
     <Content Include="Global.asax" />
+    <Content Include="svc\admin.svc" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="admin\News\" />
+    <Folder Include="admin\Tag\" />
     <Folder Include="App_Data\" />
     <Folder Include="Class\Control\" />
   </ItemGroup>

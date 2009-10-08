@@ -11,15 +11,8 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-<script type="text/javascript">
-   
-</script>
-    <form id="form1" runat="server">
-    <div>
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+<asp:ContentPlaceHolder ID="ContentBody" runat="server">
         
-        </asp:ContentPlaceHolder>
-    </div>
-    </form>
+</asp:ContentPlaceHolder>
 </body>
 </html>
