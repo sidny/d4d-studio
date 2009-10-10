@@ -93,7 +93,7 @@ namespace D4D.Platform.Persistence
         /// </summary>
         /// <param name="maxCount"></param>
         /// <returns></returns>
-        internal static List<Tag> GetTopTag(int maxCount)
+        internal static List<Tag> GetTopTags(int maxCount)
         {
             List<Tag> list = new List<Tag>(maxCount);
 
@@ -112,6 +112,38 @@ namespace D4D.Platform.Persistence
                          list.Add(tag);
                      },
                      maxCount);
+
+            return list;
+        }
+
+        internal static List<Tag> GetPagedTags(PagingContext pager)
+        {
+            List<Tag> list = new List<Tag>(pager.RecordsPerPage);
+
+            SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+               "dbo.GetPagedTags",
+               delegate(IParameterSet parameters)
+               {
+                   parameters.AddWithValue("@PageIndex", pager.CurrentPageNumber);
+                   parameters.AddWithValue("@PageSize", pager.RecordsPerPage);                  
+                   parameters.AddWithValue("@NumberOfCount", 0, ParameterDirectionWrap.Output);
+               },
+               delegate(IRecord record)
+               {
+                   Tag tag = new Tag();
+                   tag.TagId = record.GetInt32OrDefault(0, 0);
+                   tag.TagName = record.GetStringOrEmpty(1);
+                   tag.Hits = record.GetInt32OrDefault(2, 0);
+                   tag.AddUserID = record.GetInt32OrDefault(3, 0);
+                   tag.AddDate = record.GetDateTime(4);
+
+                   list.Add(tag);
+               },
+               delegate(IParameterSet outputParameters)
+               {
+                   pager.TotalRecordCount = outputParameters.GetValue("@NumberOfCount") == DBNull.Value ? 0 : (int)outputParameters.GetValue("@NumberOfCount");
+               }
+           );      
 
             return list;
         }
