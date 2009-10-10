@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="D4DGateway.cs" />
     <Compile Include="Domain\D4DDefine.cs" />
+    <Compile Include="Domain\PagingContext.cs" />
     <Compile Include="Domain\Tag.cs" />
     <Compile Include="Persistence\TagsDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
