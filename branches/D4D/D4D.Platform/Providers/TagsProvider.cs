@@ -59,9 +59,18 @@ namespace D4D.Platform.Providers
         /// </summary>
         /// <param name="maxCount"></param>
         /// <returns></returns>
-        public List<Tag> GetTopTag(int maxCount)
+        public List<Tag> GetTopTags(int maxCount)
         {
-            return TagsDao.GetTopTag(maxCount);
+            return TagsDao.GetTopTags(maxCount);
+        }
+        /// <summary>
+        /// 获取带分页的Tags
+        /// </summary>
+        /// <param name="pager"></param>
+        /// <returns></returns>
+        public List<Tag> GetPagedTags(PagingContext pager)
+        {
+            return TagsDao.GetPagedTags(pager);
         }
     }
 }
