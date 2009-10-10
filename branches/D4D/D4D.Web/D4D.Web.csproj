@@ -218,6 +218,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Test\TagsTestPage.aspx.cs">
+      <DependentUpon>TagsTestPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\TagsTestPage.aspx.designer.cs">
+      <DependentUpon>TagsTestPage.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\D4D.Application\D4D.Application.csproj">
@@ -231,6 +238,10 @@
     <ProjectReference Include="..\D4D.DBUtility\DBUtility.csproj">
       <Project>{0988C62E-247F-471F-A183-DB509C7A3839}</Project>
       <Name>DBUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\D4D.Platform\D4D.Platform.csproj">
+      <Project>{F0CAA2F4-5BB4-4BD4-879B-7C8C49ED9782}</Project>
+      <Name>D4D.Platform</Name>
     </ProjectReference>
     <ProjectReference Include="..\LTP.Accounts\LTP.Accounts.csproj">
       <Project>{86D2B20D-B407-48BE-874E-4920AC9A831F}</Project>
@@ -556,6 +567,7 @@
     <Content Include="Control\ValidateCode.ashx" />
     <Content Include="Global.asax" />
     <Content Include="svc\admin.svc" />
+    <Content Include="Test\TagsTestPage.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="admin\News\" />
@@ -582,7 +594,7 @@
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost/D4D.Web</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>True</UseCustomServer>
+          <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>http://localhost</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
