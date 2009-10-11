@@ -13,7 +13,7 @@ namespace Maticsoft.Web.Admin
 			Session.Clear();
 			Session.Abandon();
 			Response.Clear();
-			Response.Write("<script language=javascript>window.close();</script>");
+			Response.Write("<script language=javascript>window.opener=null;window.close();</script>");
 			Response.End();
 				
 		}
