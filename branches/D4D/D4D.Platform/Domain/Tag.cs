@@ -5,7 +5,7 @@ using System.Text;
 
 namespace D4D.Platform.Domain
 {
-    public class Tag
+    public class Tag : BaseD4DDomain
     {
 
         public Tag() { }
@@ -28,15 +28,15 @@ namespace D4D.Platform.Domain
             get;
             set;
         }
-        public int AddUserID
-        {
-            get;
-            set;
-        }
-        public DateTime AddDate
-        {
-            get;
-            set;
-        }
+        //public int AddUserID
+        //{
+        //    get;
+        //    set;
+        //}
+        //public DateTime AddDate
+        //{
+        //    get;
+        //    set;
+        //}
     }
 }
