@@ -58,8 +58,7 @@ namespace D4D.Web.admin
                     Session.Clear();
                     Session.Abandon();
                     Response.Clear();
-                    Response.Write("<script defer>window.alert('您没有权限进入本页或当前登录用户已过期！\\n请重新登录或与管理员联系！');parent.location='" + Request.ApplicationPath + "/" + loginPage + "';</script>");
-                    Response.End();
+                    Response.Redirect(loginPage);
                 }
 
         }

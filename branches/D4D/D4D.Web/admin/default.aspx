@@ -13,6 +13,8 @@
         })
         $("div.top-nav span").css("cursor", "pointer")
         .click(function() {
+			$(this).parent().children().removeClass("on");
+			$(this).addClass("on");
             $.get("/svc/admin.svc/getPermission",
                 { catId: $(this).attr("href"),cache:false },
                 function(response) {
@@ -27,29 +29,34 @@
     });
 </script>
 <style type="text/css">
-body{ padding:0; margin:0;}
-.top-nav{  float:right; text-align:center;}
-.left-nav{ float:left; width:200px; height:600px;}
-.content{ height:600px; width:800px; float:left; border:1px solid #ccc; border-right:0;}
+body{ padding:0; margin:0; font-size:12px;}
+.top{height: 64px; background:url(/static/images/admin/top.png) bottom repeat-x;}
+.top-nav{  float:left; width:760px; padding-top:41px;}
+.top-nav span{ padding:10px; font-weight:bold; color:white;}
+.top-nav span.on{background:white; color:black}
+.top-nav span a{ color:#FCC; text-decoration:none}
+.left-nav{ float:left; width:240px; height:500px; background:#4f4f4f;}
+.left-nav p{ border-bottom: 1px solid #616161; color:white; padding-left:60px; height:23px;}
+.left-nav p a{ color:white; text-decoration:none}
+.content{ height:500px; width:760px; float:left; border-left:1px solid #ccc; }
+
 </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentBody" runat="server">
-    <div class="top" style="height: 100px; width:1000px;">
+    <div class="top">
+    <img src="/static/images/admin/logo.png" align="left" />
     <div class="top-nav">
-        <asp:Repeater ID="menuList" runat="server">
-            <ItemTemplate>
-               <span href="<%#((Hashtable)Container.DataItem)["CategoryID"]%>"><%#((Hashtable)Container.DataItem)["Description"]%></span>
-            </ItemTemplate>
-        </asp:Repeater>
-        <p></p>
-        <p></p>
-        
+    
+    <asp:Repeater ID="menuList" runat="server">
+	<ItemTemplate><span href="<%#((Hashtable)Container.DataItem)["CategoryID"]%>"><%#((Hashtable)Container.DataItem)["Description"]%></span></ItemTemplate>
+    </asp:Repeater>
+    <span><a href="logout.aspx" target="_top">退出登录</a></span>
     </div>
 </div>
 <div class="left-nav">
 
 </div>
 <div class="content">
-<iframe scrolling="yes" id="ContentFrame" name="ContentFrame"  frameborder="0" src="about:blank" width="100%" height="100%"></iframe>
+<iframe scrolling="auto" id="ContentFrame" name="ContentFrame"  frameborder="0" src="about:blank" width="100%" height="100%"></iframe>
 </div>
 </asp:Content>
