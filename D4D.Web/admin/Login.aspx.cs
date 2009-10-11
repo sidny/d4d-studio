@@ -136,7 +136,7 @@ namespace Maticsoft.Web.Admin
                     }
                     else
                     {
-                        Response.Redirect("/admin/default.aspx");
+                        Response.Redirect("./");
                     }
                 }
             }
