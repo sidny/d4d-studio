@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LtpPageControl, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\LtpPageControl.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core">
@@ -297,8 +301,6 @@
     <Content Include="admin\Accounts\images\skin2\topbar_01.jpg" />
     <Content Include="admin\Accounts\images\topbg.gif" />
     <Content Include="admin\Accounts\setpass.aspx" />
-    <Content Include="admin\style\css.css" />
-    <Content Include="admin\style\style.css" />
     <Content Include="admin\Accounts\userinfo.aspx" />
     <Content Include="admin\Accounts\usermodify.aspx" />
     <Content Include="admin\Accounts\userpass.aspx" />
@@ -533,7 +535,6 @@
   <ItemGroup>
     <None Include="admin\Accounts\images\skin2\Thumbs.db" />
     <None Include="admin\Accounts\images\skin2\vssver2.scc" />
-    <None Include="admin\Accounts\images\Thumbs.db" />
     <None Include="admin\Images\MenuImg\Thumbs.db" />
     <None Include="admin\Images\skin2\Thumbs.db" />
     <None Include="admin\Images\skin2\vssver2.scc" />
@@ -566,6 +567,43 @@
     <Content Include="admin\Images\topbg.gif" />
     <Content Include="Control\ValidateCode.ashx" />
     <Content Include="Global.asax" />
+    <Content Include="static\default.css" />
+    <Content Include="static\images\admin\top.png" />
+    <Content Include="static\images\album\album_bg.gif" />
+    <Content Include="static\images\album\big.jpg" />
+    <Content Include="static\images\album\ex.gif" />
+    <Content Include="static\images\banner.png" />
+    <Content Include="static\images\bg.png" />
+    <Content Include="static\images\calendar_nav.png" />
+    <Content Include="static\images\link.png" />
+    <Content Include="static\images\logo.png" />
+    <Content Include="static\images\music.jpg" />
+    <Content Include="static\images\nav.png" />
+    <Content Include="static\images\nav_03.png" />
+    <Content Include="static\images\nav_04.png" />
+    <Content Include="static\images\nav_05.png" />
+    <Content Include="static\images\nav_06.png" />
+    <Content Include="static\images\nav_07.png" />
+    <Content Include="static\images\nav_08.png" />
+    <Content Include="static\images\nav_09.png" />
+    <Content Include="static\images\nav_off_03.png" />
+    <Content Include="static\images\nav_off_04.png" />
+    <Content Include="static\images\nav_off_05.png" />
+    <Content Include="static\images\nav_off_06.png" />
+    <Content Include="static\images\nav_off_07.png" />
+    <Content Include="static\images\nav_off_08.png" />
+    <Content Include="static\images\nav_off_09.png" />
+    <Content Include="static\images\pic.jpg" />
+    <Content Include="static\images\pic2.jpg" />
+    <Content Include="static\images\pic_s.png" />
+    <Content Include="static\images\pic_s_bg.png" />
+    <Content Include="static\images\search\nav.gif" />
+    <Content Include="static\images\search_go.gif" />
+    <Content Include="static\images\search_go.png" />
+    <Content Include="static\images\search_input.png" />
+    <Content Include="static\images\title\Untitled-1.gif" />
+    <Content Include="static\SpryAssets\SpryTabbedPanels.css" />
+    <Content Include="static\SpryAssets\SpryTabbedPanels.js" />
     <Content Include="svc\admin.svc" />
     <Content Include="Test\TagsTestPage.aspx" />
   </ItemGroup>
