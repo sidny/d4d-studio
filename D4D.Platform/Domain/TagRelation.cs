@@ -25,7 +25,7 @@ namespace D4D.Platform.Domain
             set;
         }
 
-        public int ObjectType
+        public ObjectTypeDefine ObjectType
         {
             get;
             set;

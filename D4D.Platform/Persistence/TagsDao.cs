@@ -194,7 +194,9 @@ namespace D4D.Platform.Persistence
             SafeProcedure.ExecuteNonQuery(
              Database.GetDatabase(D4DDefine.DBInstanceName),
              "dbo.TagRelation_SetRelation",
-             tagRelation.TagId,tagRelation.ObjectId,tagRelation.ObjectType,tagRelation.AddUserID );
+             tagRelation.TagId,tagRelation.ObjectId,
+             (int)tagRelation.ObjectType,
+             tagRelation.AddUserID );
         }
 
         internal static void DeleteTagRelation(int tagId,int objectId,int objectType)
@@ -234,7 +236,7 @@ namespace D4D.Platform.Persistence
                          tag.Id = record.GetInt32OrDefault(0,0);
                          tag.TagId = record.GetInt32OrDefault(1, 0);
                          tag.ObjectId = record.GetInt32OrDefault(2, 0);
-                         tag.ObjectType = record.GetInt32OrDefault(3, 0);
+                         tag.ObjectType =(ObjectTypeDefine)(record.GetInt32OrDefault(3, 0));
                          tag.AddUserID = record.GetInt32OrDefault(4, 0);
                          tag.AddDate = record.GetDateTime(5);
                      },
@@ -256,7 +258,7 @@ namespace D4D.Platform.Persistence
                          tag.Id = record.GetInt32OrDefault(0, 0);
                          tag.TagId = record.GetInt32OrDefault(1, 0);
                          tag.ObjectId = record.GetInt32OrDefault(2, 0);
-                         tag.ObjectType = record.GetInt32OrDefault(3, 0);
+                         tag.ObjectType = (ObjectTypeDefine)(record.GetInt32OrDefault(3, 0));
                          tag.AddUserID = record.GetInt32OrDefault(4, 0);
                          tag.AddDate = record.GetDateTime(5);
                          list.Add(tag);
@@ -279,7 +281,7 @@ namespace D4D.Platform.Persistence
                          tag.Id = record.GetInt32OrDefault(0, 0);
                          tag.TagId = record.GetInt32OrDefault(1, 0);
                          tag.ObjectId = record.GetInt32OrDefault(2, 0);
-                         tag.ObjectType = record.GetInt32OrDefault(3, 0);
+                         tag.ObjectType = (ObjectTypeDefine)(record.GetInt32OrDefault(3, 0));
                          tag.AddUserID = record.GetInt32OrDefault(4, 0);
                          tag.AddDate = record.GetDateTime(5);
                          list.Add(tag);

@@ -39,24 +39,24 @@ namespace D4D.Platform.Providers
             return MusicDao.GetMusicTitle(musicId);
         }
 
-        public List<MusicTitle> GetPagedMusicTitles(PagingContext pager)
+        public List<MusicTitle> GetPagedMusicTitles(PagingContext pager, PublishStatus publishStatus)
         {
-            return MusicDao.GetPagedMusicTitles(pager);
+            return MusicDao.GetPagedMusicTitles(pager, (int)publishStatus);
         }
 
-        public List<MusicTitle> GetPagedMusicTitlesByBandId(PagingContext pager, int bandId)
+        public List<MusicTitle> GetPagedMusicTitlesByBandId(PagingContext pager, int bandId, PublishStatus publishStatus)
         {
-            return MusicDao.GetPagedMusicTitlesByBandId(pager, bandId);
+            return MusicDao.GetPagedMusicTitlesByBandId(pager, bandId, (int)publishStatus);
         }
 
-        public List<MusicTitle> GetPagedMusicTitlesByBandIdANDPublishYear(PagingContext pager, int bandId, int publishYear)
+        public List<MusicTitle> GetPagedMusicTitlesByBandIdANDPublishYear(PagingContext pager, int bandId, int publishYear, PublishStatus publishStatus)
         {
-            return MusicDao.GetPagedMusicTitlesByBandIdANDPublishYear(pager, bandId, publishYear);
+            return MusicDao.GetPagedMusicTitlesByBandIdANDPublishYear(pager, bandId, publishYear, (int)publishStatus);
         }
 
-        public List<MusicTitle> GetPagedMusicTitlesByPublishYear(PagingContext pager, int publishYear)
+        public List<MusicTitle> GetPagedMusicTitlesByPublishYear(PagingContext pager, int publishYear, PublishStatus publishStatus)
         {
-            return MusicDao.GetPagedMusicTitlesByPublishYear(pager, publishYear);
+            return MusicDao.GetPagedMusicTitlesByPublishYear(pager, publishYear, (int)publishStatus);
         }
         #endregion
 
@@ -82,9 +82,9 @@ namespace D4D.Platform.Providers
             return MusicDao.GetMusicSongList(listId);
         }
 
-        public List<MusicSongList> GetMusicSongListByMusicId(int musicId)
+        public List<MusicSongList> GetMusicSongListByMusicId(int musicId ,PublishStatus publishStatus)
         {
-            return MusicDao.GetMusicSongListByMusicId(musicId);
+            return MusicDao.GetMusicSongListByMusicId(musicId, (int)publishStatus);
         }
         #endregion
     }

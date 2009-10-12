@@ -89,14 +89,14 @@ namespace D4D.Platform.Providers
             TagsDao.SetTagRelation(tagRelation);
         }
 
-        public void DeleteTagRelation(int tagId, int objectId, int objectType)
+        public void DeleteTagRelation(int tagId, int objectId, ObjectTypeDefine objectType)
         {
-            TagsDao.DeleteTagRelation(tagId, objectId, objectType);
+            TagsDao.DeleteTagRelation(tagId, objectId, (int)objectType);
         }
 
-        public void DeleteTagRelationByObject(int objectId, int objectType)
+        public void DeleteTagRelationByObject(int objectId, ObjectTypeDefine objectType)
         {
-            TagsDao.DeleteTagRelationByObject( objectId, objectType);
+            TagsDao.DeleteTagRelationByObject(objectId, (int)objectType);
         }
 
         public void DeleteTagRelationByTagId(int tagId)
@@ -104,14 +104,14 @@ namespace D4D.Platform.Providers
             TagsDao.DeleteTagRelationByTagId(tagId);
         }
 
-        public TagRelation GetTagRelation(int tagId, int objectId, int objectType)
+        public TagRelation GetTagRelation(int tagId, int objectId, ObjectTypeDefine objectType)
         {
-            return TagsDao.GetTagRelation(tagId, objectId, objectType);
+            return TagsDao.GetTagRelation(tagId, objectId, (int)objectType);
         }
 
-        public List<TagRelation> GetTagRelationByObject(int objectId, int objectType)
+        public List<TagRelation> GetTagRelationByObject(int objectId, ObjectTypeDefine objectType)
         {
-            return TagsDao.GetTagRelationByObject(objectId, objectType);
+            return TagsDao.GetTagRelationByObject(objectId, (int)objectType);
         }
 
         public List<TagRelation> GetTagRelationByTagId(int tagId)
