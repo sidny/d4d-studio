@@ -1,0 +1,12 @@
+<%@ Master Language="C#"
+ AutoEventWireup="true" CodeBehind="Channel.master.cs" 
+ MasterPageFile="~/MasterPage/Main.Master" Inherits="D4D.Web.MasterPage.Channel" %>
+<%@ Register src="../Control/menu.ascx" tagname="menu" tagprefix="D4D" %>
+<asp:Content runat="server" ContentPlaceHolderID="ContentHeader" ID="ContentHeaderPlace">
+    <asp:ContentPlaceHolder ID="ContentHeader" runat="server"></asp:ContentPlaceHolder>
+</asp:Content>
+
+<asp:Content runat="server" ContentPlaceHolderID="ContentMain" ID="ContentMainPlace">
+    <D4D:menu runat="server" id="leftmenu"></D4D:menu>
+    <asp:ContentPlaceHolder ID="ContentMain" runat="server"></asp:ContentPlaceHolder>
+</asp:Content>
