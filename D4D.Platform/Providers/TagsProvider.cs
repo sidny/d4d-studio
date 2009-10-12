@@ -19,6 +19,8 @@ namespace D4D.Platform.Providers
             }
         }
         #endregion
+
+        #region tag
         /// <summary>
         /// tagid<0 表示新增
         /// >0 则为更新
@@ -72,5 +74,50 @@ namespace D4D.Platform.Providers
         {
             return TagsDao.GetPagedTags(pager);
         }
+
+        public Dictionary<int, Tag> GetTags20(List<int> tagIds)
+        {
+            return TagsDao.GetTags20(tagIds);
+        }
+
+        #endregion
+
+        #region tagrelation
+
+        public void SetTagRelation(TagRelation tagRelation)
+        {
+            TagsDao.SetTagRelation(tagRelation);
+        }
+
+        public void DeleteTagRelation(int tagId, int objectId, int objectType)
+        {
+            TagsDao.DeleteTagRelation(tagId, objectId, objectType);
+        }
+
+        public void DeleteTagRelationByObject(int objectId, int objectType)
+        {
+            TagsDao.DeleteTagRelationByObject( objectId, objectType);
+        }
+
+        public void DeleteTagRelationByTagId(int tagId)
+        {
+            TagsDao.DeleteTagRelationByTagId(tagId);
+        }
+
+        public TagRelation GetTagRelation(int tagId, int objectId, int objectType)
+        {
+            return TagsDao.GetTagRelation(tagId, objectId, objectType);
+        }
+
+        public List<TagRelation> GetTagRelationByObject(int objectId, int objectType)
+        {
+            return TagsDao.GetTagRelationByObject(objectId, objectType);
+        }
+
+        public List<TagRelation> GetTagRelationByTagId(int tagId)
+        {
+            return TagsDao.GetTagRelationByTagId(tagId);
+        }
+        #endregion
     }
 }

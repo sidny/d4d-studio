@@ -8,6 +8,8 @@ namespace D4D.Platform.Persistence
 {
     internal static class TagsDao
     {
+
+        #region Tag
         /// <summary>
         /// tagid<0 表示新增
         /// >0 则为更新
@@ -147,5 +149,146 @@ namespace D4D.Platform.Persistence
 
             return list;
         }
+        internal static Dictionary<int, Tag> GetTags20(List<int> tagIds)
+        {
+
+            Dictionary<int, Tag> dic = new Dictionary<int, Tag>();
+
+            if (tagIds != null && tagIds.Count > 0)
+            {
+                SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+               "dbo.Tags_GetTags20",
+               delegate(IParameterSet parameters)
+               {
+                   int maxCount = tagIds.Count > 20 ? 20 : tagIds.Count;
+                   for (int i = 0; i < maxCount; i++)
+                   {
+                       parameters.AddWithValue("@tid" + (i + 1).ToString(), tagIds[i]);
+                   }
+               },
+               delegate(IRecord record)
+               {
+                   Tag tag = new Tag();
+                   tag.TagId = record.GetInt32OrDefault(0, 0);
+                   tag.TagName = record.GetStringOrEmpty(1);
+                   tag.Hits = record.GetInt32OrDefault(2, 0);
+                   tag.AddUserID = record.GetInt32OrDefault(3, 0);
+                   tag.AddDate = record.GetDateTime(4);
+
+                   if (!dic.ContainsKey(tag.TagId))
+                       dic.Add(tag.TagId, tag);
+               }
+           );      
+            }
+
+            return dic;
+        }
+        #endregion
+
+        #region tag relation
+
+        internal static void SetTagRelation(TagRelation tagRelation)
+        {
+            if (tagRelation == null) return;
+
+            SafeProcedure.ExecuteNonQuery(
+             Database.GetDatabase(D4DDefine.DBInstanceName),
+             "dbo.TagRelation_SetRelation",
+             tagRelation.TagId,tagRelation.ObjectId,tagRelation.ObjectType,tagRelation.AddUserID );
+        }
+
+        internal static void DeleteTagRelation(int tagId,int objectId,int objectType)
+        {        
+
+            SafeProcedure.ExecuteNonQuery(
+             Database.GetDatabase(D4DDefine.DBInstanceName),
+             "dbo.TagRelation_Delete",
+             tagId, objectId, objectType);
+        }
+
+        internal static void DeleteTagRelationByObject(int objectId, int objectType)
+        {
+
+            SafeProcedure.ExecuteNonQuery(
+             Database.GetDatabase(D4DDefine.DBInstanceName),
+             "dbo.TagRelation_DeleteByObject",
+              objectId, objectType);
+        }
+
+        internal static void DeleteTagRelationByTagId(int tagId)
+        {
+            SafeProcedure.ExecuteNonQuery(
+             Database.GetDatabase(D4DDefine.DBInstanceName),
+             "dbo.TagRelation_DeleteByTagId",
+             tagId);
+        }
+        internal static TagRelation GetTagRelation(int tagId, int objectId, int objectType)
+        {
+            TagRelation tag = new TagRelation();
+            
+                SafeProcedure.ExecuteAndMapRecords(
+                        Database.GetDatabase(D4DDefine.DBInstanceName),
+                     "dbo.TagRelation_Get",
+                     delegate(IRecord record)
+                     {
+                         tag.Id = record.GetInt32OrDefault(0,0);
+                         tag.TagId = record.GetInt32OrDefault(1, 0);
+                         tag.ObjectId = record.GetInt32OrDefault(2, 0);
+                         tag.ObjectType = record.GetInt32OrDefault(3, 0);
+                         tag.AddUserID = record.GetInt32OrDefault(4, 0);
+                         tag.AddDate = record.GetDateTime(5);
+                     },
+                     tagId, objectId, objectType);
+            
+            return tag;
+        }
+
+        internal static List<TagRelation> GetTagRelationByObject(int objectId, int objectType)
+        {
+            List<TagRelation> list = new List<TagRelation>();
+
+            SafeProcedure.ExecuteAndMapRecords(
+                        Database.GetDatabase(D4DDefine.DBInstanceName),
+                     "dbo.TagRelation_GetByObject",
+                     delegate(IRecord record)
+                     {
+                         TagRelation tag = new TagRelation();
+                         tag.Id = record.GetInt32OrDefault(0, 0);
+                         tag.TagId = record.GetInt32OrDefault(1, 0);
+                         tag.ObjectId = record.GetInt32OrDefault(2, 0);
+                         tag.ObjectType = record.GetInt32OrDefault(3, 0);
+                         tag.AddUserID = record.GetInt32OrDefault(4, 0);
+                         tag.AddDate = record.GetDateTime(5);
+                         list.Add(tag);
+                     },
+                     objectId, objectType);
+
+            return list;
+        }
+
+        internal static List<TagRelation> GetTagRelationByTagId(int tagId)
+        {
+            List<TagRelation> list = new List<TagRelation>();
+
+            SafeProcedure.ExecuteAndMapRecords(
+                        Database.GetDatabase(D4DDefine.DBInstanceName),
+                     "dbo.TagRelation_GetByTagId",
+                     delegate(IRecord record)
+                     {
+                         TagRelation tag = new TagRelation();
+                         tag.Id = record.GetInt32OrDefault(0, 0);
+                         tag.TagId = record.GetInt32OrDefault(1, 0);
+                         tag.ObjectId = record.GetInt32OrDefault(2, 0);
+                         tag.ObjectType = record.GetInt32OrDefault(3, 0);
+                         tag.AddUserID = record.GetInt32OrDefault(4, 0);
+                         tag.AddDate = record.GetDateTime(5);
+                         list.Add(tag);
+                     },
+                     tagId);
+
+            return list;
+        }
+
+        #endregion
     }
 }

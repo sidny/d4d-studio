@@ -56,6 +56,7 @@
     <Compile Include="Domain\MusicTitle.cs" />
     <Compile Include="Domain\PagingContext.cs" />
     <Compile Include="Domain\Tag.cs" />
+    <Compile Include="Domain\TagRelation.cs" />
     <Compile Include="Persistence\MusicDao.cs" />
     <Compile Include="Persistence\TagsDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
