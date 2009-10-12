@@ -10,7 +10,7 @@ namespace D4D.Platform.Domain
         public const string DBInstanceName = "d4d";
     }
 
-    public enum ObjectType
+    public enum ObjectTypeDefine:int
     {
         None = 0,
         News = 1,
@@ -18,7 +18,14 @@ namespace D4D.Platform.Domain
         Song = 3,
         Album=4,
         Image=5,
-
-
+    }
+    /// <summary>
+    /// 发布状态
+    /// </summary>
+    public enum PublishStatus:int
+    {
+        None = 0,//未发布
+        Publish = 1,//发布 
+        ALL = 2
     }
 }

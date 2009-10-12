@@ -5,47 +5,44 @@ using System.Text;
 
 namespace D4D.Platform.Domain
 {
-    public class MusicSongList : BaseD4DDomain
+    public class Image : BaseD4DDomain
     {
-       
-        public MusicSongList() { }
-        public MusicSongList(int listId)
+         public Image() { }
+         public Image(int imageId)
         {
-            ListId = listId;
+            ImageId = imageId;
         }
-
-        public int ListId
-        {
-            get;
-            set;
-        }
-        public int MusicId
+         public int ImageId
         {
             get;
             set;
         }
 
-        public string SongName
+         public int AlbumId
+         {
+             get;
+             set;
+         }
+
+         public string ImageName
         {
             get;
             set;
         }
 
-        public string SongFile
+         public string ImageFile
         {
             get;
             set;
         }
 
-        public string SongTime
+         public string SImageFile
         {
             get;
             set;
-        }        
+        }
 
-       
-
-        public PublishStatus Status
+         public PublishStatus Status
         {
             get;
             set;
