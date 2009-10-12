@@ -9,4 +9,16 @@ namespace D4D.Platform.Domain
     {
         public const string DBInstanceName = "d4d";
     }
+
+    public enum ObjectType
+    {
+        None = 0,
+        News = 1,
+        MusicTitle = 2,
+        Song = 3,
+        Album=4,
+        Image=5,
+
+
+    }
 }
