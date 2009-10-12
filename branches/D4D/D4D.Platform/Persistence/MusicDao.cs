@@ -28,7 +28,7 @@ namespace D4D.Platform.Persistence
                  parameters.AddWithValue("@PublishDate", m.PublishDate);
                  parameters.AddWithValue("@PublishYear", m.PublishYear);
                  parameters.AddWithValue("@AddUserId", m.AddUserID);
-                 parameters.AddWithValue("@Status", m.Status);
+                 parameters.AddWithValue("@Status", (int)(m.Status));
                  parameters.AddWithValue("@RetVal", DBNull.Value, ParameterDirectionWrap.ReturnValue);
 
              },
@@ -70,14 +70,14 @@ namespace D4D.Platform.Persistence
                          m.PublishYear = record.GetInt32OrDefault(7, 0);
                          m.AddUserID = record.GetInt32OrDefault(8, 0);
                          m.AddDate = record.GetDateTime(9);
-                         m.Status = record.GetInt32OrDefault(10, 0);
+                         m.Status = (PublishStatus)(record.GetInt32OrDefault(10, 0));
                      },
                      musicId);
             }
             return m;
         }
         
-        internal static List<MusicTitle> GetPagedMusicTitles(PagingContext pager)
+        internal static List<MusicTitle> GetPagedMusicTitles(PagingContext pager,int publishStatus)
         {
             List<MusicTitle> list = new List<MusicTitle>(pager.RecordsPerPage);
 
@@ -85,6 +85,7 @@ namespace D4D.Platform.Persistence
                "dbo.Music_GetPagedMusicTitle",
                delegate(IParameterSet parameters)
                {
+                   parameters.AddWithValue("@PublishStatus", publishStatus);
                    parameters.AddWithValue("@PageIndex", pager.CurrentPageNumber);
                    parameters.AddWithValue("@PageSize", pager.RecordsPerPage);
                    parameters.AddWithValue("@NumberOfCount", 0, ParameterDirectionWrap.Output);
@@ -102,7 +103,7 @@ namespace D4D.Platform.Persistence
                    m.PublishYear = record.GetInt32OrDefault(7, 0);
                    m.AddUserID = record.GetInt32OrDefault(8, 0);
                    m.AddDate = record.GetDateTime(9);
-                   m.Status = record.GetInt32OrDefault(10, 0);
+                   m.Status = (PublishStatus)(record.GetInt32OrDefault(10, 0));
 
                    list.Add(m);
                },
@@ -115,7 +116,7 @@ namespace D4D.Platform.Persistence
             return list;
         }
 
-        internal static List<MusicTitle> GetPagedMusicTitlesByBandId(PagingContext pager,int bandId)
+        internal static List<MusicTitle> GetPagedMusicTitlesByBandId(PagingContext pager, int bandId, int publishStatus)
         {
             List<MusicTitle> list = new List<MusicTitle>(pager.RecordsPerPage);
 
@@ -124,6 +125,7 @@ namespace D4D.Platform.Persistence
                delegate(IParameterSet parameters)
                {
                    parameters.AddWithValue("@BandId", bandId);
+                   parameters.AddWithValue("@PublishStatus", publishStatus);
                    parameters.AddWithValue("@PageIndex", pager.CurrentPageNumber);
                    parameters.AddWithValue("@PageSize", pager.RecordsPerPage);
                    parameters.AddWithValue("@NumberOfCount", 0, ParameterDirectionWrap.Output);
@@ -141,7 +143,7 @@ namespace D4D.Platform.Persistence
                    m.PublishYear = record.GetInt32OrDefault(7, 0);
                    m.AddUserID = record.GetInt32OrDefault(8, 0);
                    m.AddDate = record.GetDateTime(9);
-                   m.Status = record.GetInt32OrDefault(10, 0);
+                   m.Status = (PublishStatus)(record.GetInt32OrDefault(10, 0));
 
                    list.Add(m);
                },
@@ -154,7 +156,7 @@ namespace D4D.Platform.Persistence
             return list;
         }
 
-        internal static List<MusicTitle> GetPagedMusicTitlesByBandIdANDPublishYear(PagingContext pager, int bandId, int publishYear)
+        internal static List<MusicTitle> GetPagedMusicTitlesByBandIdANDPublishYear(PagingContext pager, int bandId, int publishYear, int publishStatus)
         {
             List<MusicTitle> list = new List<MusicTitle>(pager.RecordsPerPage);
 
@@ -164,6 +166,7 @@ namespace D4D.Platform.Persistence
                {
                    parameters.AddWithValue("@PublishYear", publishYear);
                    parameters.AddWithValue("@BandId", bandId);
+                   parameters.AddWithValue("@PublishStatus", publishStatus);
                    parameters.AddWithValue("@PageIndex", pager.CurrentPageNumber);
                    parameters.AddWithValue("@PageSize", pager.RecordsPerPage);
                    parameters.AddWithValue("@NumberOfCount", 0, ParameterDirectionWrap.Output);
@@ -181,7 +184,7 @@ namespace D4D.Platform.Persistence
                    m.PublishYear = record.GetInt32OrDefault(7, 0);
                    m.AddUserID = record.GetInt32OrDefault(8, 0);
                    m.AddDate = record.GetDateTime(9);
-                   m.Status = record.GetInt32OrDefault(10, 0);
+                   m.Status = (PublishStatus)(record.GetInt32OrDefault(10, 0));
 
                    list.Add(m);
                },
@@ -194,7 +197,7 @@ namespace D4D.Platform.Persistence
             return list;
         }
 
-        internal static List<MusicTitle> GetPagedMusicTitlesByPublishYear(PagingContext pager, int publishYear)
+        internal static List<MusicTitle> GetPagedMusicTitlesByPublishYear(PagingContext pager, int publishYear, int publishStatus)
         {
             List<MusicTitle> list = new List<MusicTitle>(pager.RecordsPerPage);
 
@@ -203,6 +206,7 @@ namespace D4D.Platform.Persistence
                delegate(IParameterSet parameters)
                {
                    parameters.AddWithValue("@PublishYear", publishYear);
+                   parameters.AddWithValue("@PublishStatus", publishStatus);
                    parameters.AddWithValue("@PageIndex", pager.CurrentPageNumber);
                    parameters.AddWithValue("@PageSize", pager.RecordsPerPage);
                    parameters.AddWithValue("@NumberOfCount", 0, ParameterDirectionWrap.Output);
@@ -220,7 +224,7 @@ namespace D4D.Platform.Persistence
                    m.PublishYear = record.GetInt32OrDefault(7, 0);
                    m.AddUserID = record.GetInt32OrDefault(8, 0);
                    m.AddDate = record.GetDateTime(9);
-                   m.Status = record.GetInt32OrDefault(10, 0);
+                   m.Status = (PublishStatus)(record.GetInt32OrDefault(10, 0));
 
                    list.Add(m);
                },
@@ -250,7 +254,7 @@ namespace D4D.Platform.Persistence
                  parameters.AddWithValue("@SongFile", m.SongFile);
                  parameters.AddWithValue("@SongTime", m.SongTime);                
                  parameters.AddWithValue("@AddUserId", m.AddUserID);
-                 parameters.AddWithValue("@Status", m.Status);
+                 parameters.AddWithValue("@Status",(int)(m.Status));
                  parameters.AddWithValue("@RetVal", DBNull.Value, ParameterDirectionWrap.ReturnValue);
 
              },
@@ -301,14 +305,14 @@ namespace D4D.Platform.Persistence
                          m.SongTime = record.GetStringOrEmpty(4);                        
                          m.AddUserID = record.GetInt32OrDefault(5, 0);
                          m.AddDate = record.GetDateTime(6);
-                         m.Status = record.GetInt32OrDefault(7, 0);
+                         m.Status = (PublishStatus)(record.GetInt32OrDefault(7, 0));
                      },
                      listId);
             }
             return m;
         }
 
-        internal static List<MusicSongList> GetMusicSongListByMusicId(int musicId)
+        internal static List<MusicSongList> GetMusicSongListByMusicId(int musicId, int publishStatus)
         {
             List<MusicSongList> list = new List<MusicSongList>();
             if (musicId > 0)
@@ -326,11 +330,11 @@ namespace D4D.Platform.Persistence
                          m.SongTime = record.GetStringOrEmpty(4);
                          m.AddUserID = record.GetInt32OrDefault(5, 0);
                          m.AddDate = record.GetDateTime(6);
-                         m.Status = record.GetInt32OrDefault(7, 0);
+                         m.Status = (PublishStatus)(record.GetInt32OrDefault(7, 0));
 
                          list.Add(m);
                      },
-                     musicId);
+                     publishStatus,musicId);
             }
             return list;
         }

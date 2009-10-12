@@ -73,7 +73,7 @@ namespace D4D.Platform.Domain
         //    set;
         //}
 
-        public int Status
+        public PublishStatus Status
         {
             get;
             set;
