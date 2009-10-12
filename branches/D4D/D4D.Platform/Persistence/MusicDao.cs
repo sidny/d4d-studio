@@ -76,7 +76,23 @@ namespace D4D.Platform.Persistence
             }
             return m;
         }
-        
+        internal static void MapMusicTitleList(IRecord record, List<MusicTitle> list)
+        {
+            MusicTitle m = new MusicTitle();
+            m.MusicId = record.GetInt32OrDefault(0, 0);
+            m.Title = record.GetStringOrEmpty(1);
+            m.Body = record.GetStringOrEmpty(2);
+            m.SImage = record.GetStringOrEmpty(3);
+            m.LImage = record.GetStringOrEmpty(4);
+            m.BandId = record.GetInt32OrDefault(5, 0);
+            m.PublishDate = record.GetDateTime(6);
+            m.PublishYear = record.GetInt32OrDefault(7, 0);
+            m.AddUserID = record.GetInt32OrDefault(8, 0);
+            m.AddDate = record.GetDateTime(9);
+            m.Status = (PublishStatus)(record.GetInt32OrDefault(10, 0));
+
+            list.Add(m);
+        }
         internal static List<MusicTitle> GetPagedMusicTitles(PagingContext pager,int publishStatus)
         {
             List<MusicTitle> list = new List<MusicTitle>(pager.RecordsPerPage);
@@ -92,20 +108,7 @@ namespace D4D.Platform.Persistence
                },
                delegate(IRecord record)
                {
-                   MusicTitle m = new MusicTitle();
-                   m.MusicId = record.GetInt32OrDefault(0, 0);
-                   m.Title = record.GetStringOrEmpty(1);
-                   m.Body = record.GetStringOrEmpty(2);
-                   m.SImage = record.GetStringOrEmpty(3);
-                   m.LImage = record.GetStringOrEmpty(4);
-                   m.BandId = record.GetInt32OrDefault(5, 0);
-                   m.PublishDate = record.GetDateTime(6);
-                   m.PublishYear = record.GetInt32OrDefault(7, 0);
-                   m.AddUserID = record.GetInt32OrDefault(8, 0);
-                   m.AddDate = record.GetDateTime(9);
-                   m.Status = (PublishStatus)(record.GetInt32OrDefault(10, 0));
-
-                   list.Add(m);
+                   MapMusicTitleList(record, list);
                },
                delegate(IParameterSet outputParameters)
                {
@@ -132,20 +135,7 @@ namespace D4D.Platform.Persistence
                },
                delegate(IRecord record)
                {
-                   MusicTitle m = new MusicTitle();
-                   m.MusicId = record.GetInt32OrDefault(0, 0);
-                   m.Title = record.GetStringOrEmpty(1);
-                   m.Body = record.GetStringOrEmpty(2);
-                   m.SImage = record.GetStringOrEmpty(3);
-                   m.LImage = record.GetStringOrEmpty(4);
-                   m.BandId = record.GetInt32OrDefault(5, 0);
-                   m.PublishDate = record.GetDateTime(6);
-                   m.PublishYear = record.GetInt32OrDefault(7, 0);
-                   m.AddUserID = record.GetInt32OrDefault(8, 0);
-                   m.AddDate = record.GetDateTime(9);
-                   m.Status = (PublishStatus)(record.GetInt32OrDefault(10, 0));
-
-                   list.Add(m);
+                   MapMusicTitleList(record, list);
                },
                delegate(IParameterSet outputParameters)
                {
@@ -173,20 +163,7 @@ namespace D4D.Platform.Persistence
                },
                delegate(IRecord record)
                {
-                   MusicTitle m = new MusicTitle();
-                   m.MusicId = record.GetInt32OrDefault(0, 0);
-                   m.Title = record.GetStringOrEmpty(1);
-                   m.Body = record.GetStringOrEmpty(2);
-                   m.SImage = record.GetStringOrEmpty(3);
-                   m.LImage = record.GetStringOrEmpty(4);
-                   m.BandId = record.GetInt32OrDefault(5, 0);
-                   m.PublishDate = record.GetDateTime(6);
-                   m.PublishYear = record.GetInt32OrDefault(7, 0);
-                   m.AddUserID = record.GetInt32OrDefault(8, 0);
-                   m.AddDate = record.GetDateTime(9);
-                   m.Status = (PublishStatus)(record.GetInt32OrDefault(10, 0));
-
-                   list.Add(m);
+                   MapMusicTitleList(record, list);
                },
                delegate(IParameterSet outputParameters)
                {
@@ -213,20 +190,7 @@ namespace D4D.Platform.Persistence
                },
                delegate(IRecord record)
                {
-                   MusicTitle m = new MusicTitle();
-                   m.MusicId = record.GetInt32OrDefault(0, 0);
-                   m.Title = record.GetStringOrEmpty(1);
-                   m.Body = record.GetStringOrEmpty(2);
-                   m.SImage = record.GetStringOrEmpty(3);
-                   m.LImage = record.GetStringOrEmpty(4);
-                   m.BandId = record.GetInt32OrDefault(5, 0);
-                   m.PublishDate = record.GetDateTime(6);
-                   m.PublishYear = record.GetInt32OrDefault(7, 0);
-                   m.AddUserID = record.GetInt32OrDefault(8, 0);
-                   m.AddDate = record.GetDateTime(9);
-                   m.Status = (PublishStatus)(record.GetInt32OrDefault(10, 0));
-
-                   list.Add(m);
+                   MapMusicTitleList(record, list);
                },
                delegate(IParameterSet outputParameters)
                {
@@ -312,6 +276,20 @@ namespace D4D.Platform.Persistence
             return m;
         }
 
+        internal static void MapMusicSongList(IRecord record, List<MusicSongList> list)
+        {
+            MusicSongList m = new MusicSongList();
+            m.ListId = record.GetInt32OrDefault(0, 0);
+            m.MusicId = record.GetInt32OrDefault(1, 0);
+            m.SongName = record.GetStringOrEmpty(2);
+            m.SongFile = record.GetStringOrEmpty(3);
+            m.SongTime = record.GetStringOrEmpty(4);
+            m.AddUserID = record.GetInt32OrDefault(5, 0);
+            m.AddDate = record.GetDateTime(6);
+            m.Status = (PublishStatus)(record.GetInt32OrDefault(7, 0));
+
+            list.Add(m);
+        }
         internal static List<MusicSongList> GetMusicSongListByMusicId(int musicId, int publishStatus)
         {
             List<MusicSongList> list = new List<MusicSongList>();
@@ -322,17 +300,7 @@ namespace D4D.Platform.Persistence
                      "dbo.Music_GetMusicSongListByMusicId",
                      delegate(IRecord record)
                      {
-                         MusicSongList m = new MusicSongList();
-                         m.ListId = record.GetInt32OrDefault(0, 0);
-                         m.MusicId = record.GetInt32OrDefault(1, 0);
-                         m.SongName = record.GetStringOrEmpty(2);
-                         m.SongFile = record.GetStringOrEmpty(3);
-                         m.SongTime = record.GetStringOrEmpty(4);
-                         m.AddUserID = record.GetInt32OrDefault(5, 0);
-                         m.AddDate = record.GetDateTime(6);
-                         m.Status = (PublishStatus)(record.GetInt32OrDefault(7, 0));
-
-                         list.Add(m);
+                         MapMusicSongList(record, list);
                      },
                      publishStatus,musicId);
             }
