@@ -32,6 +32,8 @@ namespace D4D.Platform.Providers
        {
            return ShowDao.GetShow(showId);
        }
+
+      
        public List<Show> GetPagedShow(PagingContext pager, PublishStatus publishStatus)
        {
            return ShowDao.GetPagedShow(pager, (int)publishStatus);
