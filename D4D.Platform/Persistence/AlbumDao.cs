@@ -78,6 +78,24 @@ namespace D4D.Platform.Persistence
             return m;
         }
 
+        internal static void MapAlbumList(IRecord record, List<Album> list)
+        {
+            Album m = new Album();
+            m.AlbumId = record.GetInt32OrDefault(0, 0);
+            m.Title = record.GetStringOrEmpty(1);
+            m.BandId = record.GetInt32OrDefault(2, 0);
+            m.PublishDate = record.GetDateTime(3);
+            m.PublishYear = record.GetInt32OrDefault(4, 0);
+            m.PublishMonth = record.GetInt32OrDefault(5, 0);
+            m.AddUserID = record.GetInt32OrDefault(6, 0);
+            m.AddDate = record.GetDateTime(7);
+            m.Status = (PublishStatus)(record.GetInt32OrDefault(8, 0));
+            m.TotalCount = record.GetInt32OrDefault(9, 0);
+            m.SImage = record.GetStringOrEmpty(10);
+            m.LImage = record.GetStringOrEmpty(11);
+
+            list.Add(m);
+        }
         internal static List<Album> GetPagedAlbums(PagingContext pager, int publishStatus)
         {
             List<Album> list = new List<Album>(pager.RecordsPerPage);
@@ -93,21 +111,7 @@ namespace D4D.Platform.Persistence
                },
                delegate(IRecord record)
                {
-                   Album m = new Album();
-                   m.AlbumId = record.GetInt32OrDefault(0, 0);
-                   m.Title = record.GetStringOrEmpty(1);
-                   m.BandId = record.GetInt32OrDefault(2, 0);
-                   m.PublishDate = record.GetDateTime(3);
-                   m.PublishYear = record.GetInt32OrDefault(4, 0);
-                   m.PublishMonth = record.GetInt32OrDefault(5, 0);
-                   m.AddUserID = record.GetInt32OrDefault(6, 0);
-                   m.AddDate = record.GetDateTime(7);
-                   m.Status = (PublishStatus)(record.GetInt32OrDefault(8, 0));
-                   m.TotalCount = record.GetInt32OrDefault(9, 0);
-                   m.SImage = record.GetStringOrEmpty(10);
-                   m.LImage = record.GetStringOrEmpty(11);
-
-                   list.Add(m);
+                   MapAlbumList(record, list);
                },
                delegate(IParameterSet outputParameters)
                {
@@ -137,21 +141,7 @@ namespace D4D.Platform.Persistence
                },
                delegate(IRecord record)
                {
-                   Album m = new Album();
-                   m.AlbumId = record.GetInt32OrDefault(0, 0);
-                   m.Title = record.GetStringOrEmpty(1);
-                   m.BandId = record.GetInt32OrDefault(2, 0);
-                   m.PublishDate = record.GetDateTime(3);
-                   m.PublishYear = record.GetInt32OrDefault(4, 0);
-                   m.PublishMonth = record.GetInt32OrDefault(5, 0);
-                   m.AddUserID = record.GetInt32OrDefault(6, 0);
-                   m.AddDate = record.GetDateTime(7);
-                   m.Status = (PublishStatus)(record.GetInt32OrDefault(8, 0));
-                   m.TotalCount = record.GetInt32OrDefault(9, 0);
-                   m.SImage = record.GetStringOrEmpty(10);
-                   m.LImage = record.GetStringOrEmpty(11);
-
-                   list.Add(m);
+                   MapAlbumList(record, list);
                },
                delegate(IParameterSet outputParameters)
                {
@@ -178,21 +168,7 @@ namespace D4D.Platform.Persistence
                },
                delegate(IRecord record)
                {
-                   Album m = new Album();
-                   m.AlbumId = record.GetInt32OrDefault(0, 0);
-                   m.Title = record.GetStringOrEmpty(1);
-                   m.BandId = record.GetInt32OrDefault(2, 0);
-                   m.PublishDate = record.GetDateTime(3);
-                   m.PublishYear = record.GetInt32OrDefault(4, 0);
-                   m.PublishMonth = record.GetInt32OrDefault(5, 0);
-                   m.AddUserID = record.GetInt32OrDefault(6, 0);
-                   m.AddDate = record.GetDateTime(7);
-                   m.Status = (PublishStatus)(record.GetInt32OrDefault(8, 0));
-                   m.TotalCount = record.GetInt32OrDefault(9, 0);
-                   m.SImage = record.GetStringOrEmpty(10);
-                   m.LImage = record.GetStringOrEmpty(11);
-
-                   list.Add(m);
+                   MapAlbumList(record, list);
                },
                delegate(IParameterSet outputParameters)
                {
@@ -221,21 +197,7 @@ namespace D4D.Platform.Persistence
                },
                delegate(IRecord record)
                {
-                   Album m = new Album();
-                   m.AlbumId = record.GetInt32OrDefault(0, 0);
-                   m.Title = record.GetStringOrEmpty(1);
-                   m.BandId = record.GetInt32OrDefault(2, 0);
-                   m.PublishDate = record.GetDateTime(3);
-                   m.PublishYear = record.GetInt32OrDefault(4, 0);
-                   m.PublishMonth = record.GetInt32OrDefault(5, 0);
-                   m.AddUserID = record.GetInt32OrDefault(6, 0);
-                   m.AddDate = record.GetDateTime(7);
-                   m.Status = (PublishStatus)(record.GetInt32OrDefault(8, 0));
-                   m.TotalCount = record.GetInt32OrDefault(9, 0);
-                   m.SImage = record.GetStringOrEmpty(10);
-                   m.LImage = record.GetStringOrEmpty(11);
-
-                   list.Add(m);
+                   MapAlbumList(record, list);
                },
                delegate(IParameterSet outputParameters)
                {
@@ -323,6 +285,21 @@ namespace D4D.Platform.Persistence
             return m;
         }
 
+        internal static void MapImageList(IRecord record, List<Image> list)
+        {
+            Image m = new Image();
+
+            m.ImageId = record.GetInt32OrDefault(0, 0);
+            m.AlbumId = record.GetInt32OrDefault(1, 0);
+            m.ImageName = record.GetStringOrEmpty(2);
+            m.ImageFile = record.GetStringOrEmpty(3);
+            m.AddUserID = record.GetInt32OrDefault(4, 0);
+            m.AddDate = record.GetDateTime(5);
+            m.Status = (PublishStatus)(record.GetInt32OrDefault(6, 0));
+            m.SImageFile = record.GetStringOrEmpty(7);
+
+            list.Add(m);
+        }
         internal static List<Image> GetImagesByMusicId(int albumId, int publishStatus)
         {
             List<Image> list = new List<Image>();
@@ -333,18 +310,7 @@ namespace D4D.Platform.Persistence
                      "dbo.Image_GetByAlbumId",
                      delegate(IRecord record)
                      {
-                         Image m = new Image();
-                       
-                          m.ImageId = record.GetInt32OrDefault(0, 0);
-                         m.AlbumId = record.GetInt32OrDefault(1, 0);
-                         m.ImageName = record.GetStringOrEmpty(2);
-                         m.ImageFile = record.GetStringOrEmpty(3);
-                         m.AddUserID = record.GetInt32OrDefault(4, 0);
-                         m.AddDate = record.GetDateTime(5);
-                         m.Status = (PublishStatus)(record.GetInt32OrDefault(6, 0));
-                         m.SImageFile = record.GetStringOrEmpty(7);
-
-                         list.Add(m);
+                         MapImageList(record, list);
                      },
                      publishStatus, albumId);
             }
@@ -367,18 +333,7 @@ namespace D4D.Platform.Persistence
                },
                delegate(IRecord record)
                {
-                   Image m = new Image();
-
-                   m.ImageId = record.GetInt32OrDefault(0, 0);
-                   m.AlbumId = record.GetInt32OrDefault(1, 0);
-                   m.ImageName = record.GetStringOrEmpty(2);
-                   m.ImageFile = record.GetStringOrEmpty(3);
-                   m.AddUserID = record.GetInt32OrDefault(4, 0);
-                   m.AddDate = record.GetDateTime(5);
-                   m.Status = (PublishStatus)(record.GetInt32OrDefault(6, 0));
-                   m.SImageFile = record.GetStringOrEmpty(7);
-
-                   list.Add(m);
+                   MapImageList(record, list);
                },
                delegate(IParameterSet outputParameters)
                {

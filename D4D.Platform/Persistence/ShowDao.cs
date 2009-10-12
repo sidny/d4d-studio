@@ -76,6 +76,24 @@ namespace D4D.Platform.Persistence
             return m;
         }
 
+        internal static void MapList(IRecord record, List<Show> list)
+        {
+            Show m = new Show();
+            m.ShowId = record.GetInt32OrDefault(0, 0);
+            m.Title = record.GetStringOrEmpty(1);
+            m.Body = record.GetStringOrEmpty(2);
+            m.SImage = record.GetStringOrEmpty(3);
+            m.LImage = record.GetStringOrEmpty(4);
+            m.BandId = record.GetInt32OrDefault(5, 0);
+            m.ShowDate = record.GetDateTime(6);
+            m.ShowPlace = record.GetStringOrEmpty(7);
+            m.AddUserID = record.GetInt32OrDefault(8, 0);
+            m.AddDate = record.GetDateTime(9);
+            m.Status = (PublishStatus)(record.GetInt32OrDefault(10, 0));
+
+            list.Add(m);
+        }
+     
         internal static List<Show> GetPagedShow(PagingContext pager, int publishStatus)
         {
             List<Show> list = new List<Show>(pager.RecordsPerPage);
@@ -91,20 +109,8 @@ namespace D4D.Platform.Persistence
                },
                delegate(IRecord record)
                {
-                   Show m = new Show();
-                   m.ShowId = record.GetInt32OrDefault(0, 0);
-                   m.Title = record.GetStringOrEmpty(1);
-                   m.Body = record.GetStringOrEmpty(2);
-                   m.SImage = record.GetStringOrEmpty(3);
-                   m.LImage = record.GetStringOrEmpty(4);
-                   m.BandId = record.GetInt32OrDefault(5, 0);
-                   m.ShowDate = record.GetDateTime(6);
-                   m.ShowPlace = record.GetStringOrEmpty(7);
-                   m.AddUserID = record.GetInt32OrDefault(8, 0);
-                   m.AddDate = record.GetDateTime(9);
-                   m.Status = (PublishStatus)(record.GetInt32OrDefault(10, 0));
-
-                   list.Add(m);
+                   MapList(record, list);
+                 
                },
                delegate(IParameterSet outputParameters)
                {
@@ -131,20 +137,7 @@ namespace D4D.Platform.Persistence
                },
                delegate(IRecord record)
                {
-                   Show m = new Show();
-                   m.ShowId = record.GetInt32OrDefault(0, 0);
-                   m.Title = record.GetStringOrEmpty(1);
-                   m.Body = record.GetStringOrEmpty(2);
-                   m.SImage = record.GetStringOrEmpty(3);
-                   m.LImage = record.GetStringOrEmpty(4);
-                   m.BandId = record.GetInt32OrDefault(5, 0);
-                   m.ShowDate = record.GetDateTime(6);
-                   m.ShowPlace = record.GetStringOrEmpty(7);
-                   m.AddUserID = record.GetInt32OrDefault(8, 0);
-                   m.AddDate = record.GetDateTime(9);
-                   m.Status = (PublishStatus)(record.GetInt32OrDefault(10, 0));
-
-                   list.Add(m);
+                   MapList(record, list);
                },
                delegate(IParameterSet outputParameters)
                {
@@ -175,20 +168,7 @@ namespace D4D.Platform.Persistence
                },
                delegate(IRecord record)
                {
-                   Show m = new Show();
-                   m.ShowId = record.GetInt32OrDefault(0, 0);
-                   m.Title = record.GetStringOrEmpty(1);
-                   m.Body = record.GetStringOrEmpty(2);
-                   m.SImage = record.GetStringOrEmpty(3);
-                   m.LImage = record.GetStringOrEmpty(4);
-                   m.BandId = record.GetInt32OrDefault(5, 0);
-                   m.ShowDate = record.GetDateTime(6);
-                   m.ShowPlace = record.GetStringOrEmpty(7);
-                   m.AddUserID = record.GetInt32OrDefault(8, 0);
-                   m.AddDate = record.GetDateTime(9);
-                   m.Status = (PublishStatus)(record.GetInt32OrDefault(10, 0));
-
-                   list.Add(m);
+                   MapList(record, list);
                },
                delegate(IParameterSet outputParameters)
                {
@@ -217,20 +197,7 @@ namespace D4D.Platform.Persistence
                },
                delegate(IRecord record)
                {
-                   Show m = new Show();
-                   m.ShowId = record.GetInt32OrDefault(0, 0);
-                   m.Title = record.GetStringOrEmpty(1);
-                   m.Body = record.GetStringOrEmpty(2);
-                   m.SImage = record.GetStringOrEmpty(3);
-                   m.LImage = record.GetStringOrEmpty(4);
-                   m.BandId = record.GetInt32OrDefault(5, 0);
-                   m.ShowDate = record.GetDateTime(6);
-                   m.ShowPlace = record.GetStringOrEmpty(7);
-                   m.AddUserID = record.GetInt32OrDefault(8, 0);
-                   m.AddDate = record.GetDateTime(9);
-                   m.Status = (PublishStatus)(record.GetInt32OrDefault(10, 0));
-
-                   list.Add(m);
+                   MapList(record, list);
                },
                delegate(IParameterSet outputParameters)
                {
