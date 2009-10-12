@@ -15,5 +15,38 @@ namespace D4D.Platform
                 return TagsProvider.Instance;
             }
         }
+
+        public static AlbumProvider AlbumProvider
+        {
+            get
+            {
+                return AlbumProvider.Instance;
+            }
+        }
+
+        public static CommentProvider CommentProvider
+        {
+            get
+            {
+                return CommentProvider.Instance;
+            }
+        }
+
+        public static MusicProvider MusicProvider
+        {
+            get
+            {
+                return MusicProvider.Instance;
+            }
+        }
+
+        public static ShowProvider ShowProvider
+        {
+            get
+            {
+                return ShowProvider.Instance;
+            }
+        }
+       
     }
 }
