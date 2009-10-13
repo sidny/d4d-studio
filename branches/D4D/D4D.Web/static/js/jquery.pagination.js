@@ -76,7 +76,7 @@ jQuery.fn.pagination = function(maxentries, opts) {
             // Helper function for generating a single link (or a span tag if it'S the current page)
             var appendItem = function(page_id, appendopts) {
                 page_id = page_id < 0 ? 0 : (page_id < np ? page_id : np - 1); // Normalize page id to sane value
-                appendopts = jQuery.extend({ text: page_id + 1, classes: "current" }, appendopts || {});
+                appendopts = jQuery.extend({ text: page_id + 1, classes: "" }, appendopts || {});
                 if (page_id == current_page) {
                     var lnk = $("<span class='current'>" + (appendopts.text) + "</span>");
                 }
