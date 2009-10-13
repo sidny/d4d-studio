@@ -4,12 +4,16 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
-
+using log4net;
 namespace D4D.Web
 {
     public class Global : System.Web.HttpApplication
     {
         private System.ComponentModel.IContainer components = null;
+
+        private static readonly ILog log = LogManager.GetLogger("d4d");
+       
+
 
         public Global()
         {
@@ -18,6 +22,8 @@ namespace D4D.Web
 
         protected void Application_Start(Object sender, EventArgs e)
         {
+            log.Info("WebService Start....");
+            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
             #region 默认蓝
 
             Application["1xtop1_bgimage"] = "images/top-1.gif"; //顶框背景图片
@@ -71,7 +77,25 @@ namespace D4D.Web
         }
         protected void Application_Error(Object sender, EventArgs e)
         {
+            string url = String.Empty;
+            HttpApplication app = (HttpApplication)sender;
+            if (app != null)
+            {
+                HttpContext context = app.Context;
+                if (context != null)
+                {
+                    url = context.Request.Url.ToString();
 
+                }
+            }
+
+            string referrer = string.Empty;
+            Exception ex = Server.GetLastError();       
+         
+
+            log.Error(url,ex);
+
+       
         }
         protected void Session_End(Object sender, EventArgs e)
         {
@@ -79,7 +103,21 @@ namespace D4D.Web
         }
         protected void Application_End(Object sender, EventArgs e)
         {
+            log.Info("WebService End....");
         }
+
+        void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            Exception exc = e.ExceptionObject as Exception;
+
+            if (exc != null)
+            {
+                log.Error("Unhandled exception on thread Background Exception Policy", exc);
+              
+
+            }
+        }
+
 
         #region Web 窗体设计器生成的代码
         /// <summary>
