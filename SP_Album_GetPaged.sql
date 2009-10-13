@@ -52,7 +52,7 @@ BEGIN
 
 
 		SELECT   
-		         AlbumId 
+		         AlbumId, 
                Title,
 			   BandId,
 			   PublishDate,
