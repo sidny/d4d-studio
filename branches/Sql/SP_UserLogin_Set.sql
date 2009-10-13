@@ -19,7 +19,7 @@ BEGIN
   
   
 	UPDATE	userlogin
-	SET		UserName = @UserName,[Password]=@Password,Email = @Email,
+	SET		UserName = @UserName,[Password]=@Password,Email = @Email
 	WHERE  UserId = @UserId 
 	
 	
