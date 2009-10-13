@@ -13,7 +13,7 @@ AS
 BEGIN	
 	
     SELECT 
-               MusicId 
+               MusicId, 
                Title,
 			   Body,
 			   SImage,
