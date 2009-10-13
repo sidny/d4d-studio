@@ -209,12 +209,26 @@
     <Compile Include="admin\Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\Music\MusicTitle.aspx.cs">
+      <DependentUpon>MusicTitle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Music\MusicTitle.aspx.designer.cs">
+      <DependentUpon>MusicTitle.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\ShowCallBoard.aspx.cs">
       <DependentUpon>ShowCallBoard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="admin\ShowCallBoard.aspx.designer.cs">
       <DependentUpon>ShowCallBoard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Tag\TagsInfo.aspx.cs">
+      <DependentUpon>TagsInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Tag\TagsInfo.aspx.designer.cs">
+      <DependentUpon>TagsInfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="channel\news\news.aspx.cs">
       <DependentUpon>news.aspx</DependentUpon>
@@ -582,6 +596,8 @@
     <None Include="admin\Images\skin2\Thumbs.db" />
     <None Include="admin\Images\skin2\vssver2.scc" />
     <None Include="admin\Images\Thumbs.db" />
+    <Content Include="admin\Music\MusicTitle.aspx" />
+    <Content Include="admin\Tag\TagsInfo.aspx" />
     <Content Include="channel\news\news.aspx" />
     <Content Include="urlmappings.config" />
     <Content Include="Control\menu.ascx" />
@@ -659,7 +675,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="admin\News\" />
-    <Folder Include="admin\Tag\" />
     <Folder Include="App_Data\" />
     <Folder Include="Class\Control\" />
   </ItemGroup>
