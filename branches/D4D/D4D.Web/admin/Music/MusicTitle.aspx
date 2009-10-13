@@ -1,12 +1,8 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MusicTitle.aspx.cs" Inherits="D4D.Web.admin.Music.MusicTitle" %>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" >
-<head runat="server">
-    <title>音乐专辑编辑</title>
-</head>
-<body>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MusicTitle.aspx.cs" MasterPageFile="~/admin/Admin.Master" Inherits="D4D.Web.admin.Music.MusicTitle" %>
+<asp:Content ContentPlaceHolderID="head" runat="server">
+ <title>音乐专辑编辑</title>
+</asp:Content>
+<asp:Content ContentPlaceHolderID="ContentBody" runat="server">
     <form id="form1" runat="server">
     <div>
             <div>专辑编辑</div>
@@ -52,6 +48,27 @@
                去第<asp:TextBox ID="txtGoToPageNum" runat="server" Width="35px">1</asp:TextBox>页<asp:Button 
                     ID="btnGoPage" runat="server" Text="Go" onclick="btnGoPage_Click" /></div>
     </div>
+    <div id="pager"></div>
+    
+<script type="text/javascript">
+    $(document).ready(function() {
+    var cur = parseInt("<%=PageIndex %>")-1;
+        var total = parseInt("<%=PageTotalCount %>");
+        $("#pager").pagination(
+          total,
+                {
+                    items_per_page: 2,
+                    num_display_entries: 10,
+                    current_page: cur,
+                    num_edge_entries: 0,
+                    prev_text: "Prev",
+                    next_text: "Next",
+                    callback:function(id){
+                        location.href="musictitle.aspx?page="+ (id+1);
+                    }
+                });
+    });
+</script>
     </form>
-</body>
-</html>
+    
+    </asp:Content>
