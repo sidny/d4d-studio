@@ -47,6 +47,15 @@ namespace D4D.Platform
                 return ShowProvider.Instance;
             }
         }
+
+
+        public static NewsProvider NewsProvider
+        {
+            get
+            {
+                return NewsProvider.Instance;
+            }
+        }
        
     }
 }
