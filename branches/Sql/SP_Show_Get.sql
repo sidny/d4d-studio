@@ -12,7 +12,7 @@ AS
 BEGIN	
 	
     SELECT 
-               ShowId 
+               ShowId, 
               Title,
 			   Body,
 			   SImage,
