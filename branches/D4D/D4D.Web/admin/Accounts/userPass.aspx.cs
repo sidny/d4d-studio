@@ -72,8 +72,8 @@ namespace Maticsoft.Web.Accounts
 					AccountsPrincipal user=new AccountsPrincipal(Context.User.Identity.Name);
 					User currentUser=new LTP.Accounts.Bus.User(user);
 				
-					currentUser.Password=AccountsPrincipal.EncryptPassword(txtPassword.Text);					
-
+					//currentUser.Password=AccountsPrincipal.EncryptPassword(txtPassword.Text);					
+                    currentUser.NonEncryptPasswordPassword = txtPassword.Text;
 					if (!currentUser.Update())
 					{
 						this.lblMsg.ForeColor=Color.Red;
