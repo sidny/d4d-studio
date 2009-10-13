@@ -26,6 +26,14 @@ namespace D4D.Web.admin.Music
                 return page;
             }
         }
+        private int totalCount;
+        protected int PageTotalCount
+        {
+            get
+            {
+                return totalCount;
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -43,6 +51,7 @@ namespace D4D.Web.admin.Music
             repMusicTitle.DataSource = D4DGateway.MusicProvider.GetPagedMusicTitles(pager,
                 PublishStatus.ALL);
             repMusicTitle.DataBind();
+            totalCount = pager.TotalRecordCount;
 
         }
 
