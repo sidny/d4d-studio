@@ -596,10 +596,10 @@
     <None Include="admin\Images\skin2\Thumbs.db" />
     <None Include="admin\Images\skin2\vssver2.scc" />
     <None Include="admin\Images\Thumbs.db" />
+    <Content Include="urlrewrite.config" />
     <Content Include="admin\Music\MusicTitle.aspx" />
     <Content Include="admin\Tag\TagsInfo.aspx" />
     <Content Include="channel\news\news.aspx" />
-    <Content Include="urlmappings.config" />
     <Content Include="Control\menu.ascx" />
     <Content Include="MasterPage\Main.Master" />
     <Content Include="Control\footer.ascx" />
