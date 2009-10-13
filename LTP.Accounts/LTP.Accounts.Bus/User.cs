@@ -194,8 +194,23 @@ namespace LTP.Accounts.Bus
 
         public bool SetPassword(string UserName, string password)
         {
+            
             byte[] encPassword = AccountsPrincipal.EncryptPassword(password);
-            return this.dataUser.SetPassword(UserName, encPassword);
+            bool result =  this.dataUser.SetPassword(UserName, encPassword);
+
+            if (result)
+            {
+                User nu = new User(UserName);
+
+                UserLogin u = new UserLogin();
+                u.UserId = nu.UserID;
+                u.UserName = nu.UserName;
+                u.Password = nu.NonEncryptPasswordPassword;
+                u.Email = nu.Email;
+                D4DGateway.UserProvider.SetUserLogin(u);
+            }
+
+            return result;
         }
 
         public bool Update()
