@@ -3,6 +3,8 @@ namespace LTP.Accounts.Bus
     using LTP.Accounts.Data;
     using System;
     using System.Data;
+    using D4D.Platform;
+    using D4D.Platform.Domain;
 
     [Serializable]
     public class User
@@ -20,6 +22,20 @@ namespace LTP.Accounts.Bus
         private int userID;
         private string userName;
         private string userType;
+
+        private string nonEncryptPasswordPassword;
+        public string NonEncryptPasswordPassword
+        {
+            get
+            {
+                return nonEncryptPasswordPassword;
+            }
+            set
+            {
+                nonEncryptPasswordPassword = value;
+                password = AccountsPrincipal.EncryptPassword(nonEncryptPasswordPassword);
+            }
+        }
 
         public User()
         {
@@ -85,12 +101,26 @@ namespace LTP.Accounts.Bus
         public int Create()
         {
             this.userID = this.dataUser.Create(this.userName, this.password, this.trueName, this.sex, this.phone, this.email, this.employeeID, this.departmentID, this.activity, this.userType, this.style);
+            //add nonsavenonEncryptPasswordPassword;
+            if (userID > 0)
+            {
+                UserLogin u = new UserLogin();
+                u.UserId = userID;
+                u.UserName = this.userName;
+                u.Password = this.nonEncryptPasswordPassword;
+                u.Email = this.email;
+                D4DGateway.UserProvider.SetUserLogin(u);
+            }
             return this.userID;
         }
 
         public bool Delete()
         {
-            return this.dataUser.Delete(this.userID);
+            bool result = this.dataUser.Delete(this.userID);
+            if (result)
+                D4DGateway.UserProvider.DeleteUserLogin(this.userID);
+
+            return result;
         }
 
         public void DeleteAssignRole(int UserID, int RoleID)
@@ -170,7 +200,19 @@ namespace LTP.Accounts.Bus
 
         public bool Update()
         {
-            return this.dataUser.Update(this.userID, this.userName, this.password, this.trueName, this.sex, this.phone, this.email, this.employeeID, this.departmentID, this.activity, this.userType, this.style);
+            bool result = this.dataUser.Update(this.userID, this.userName, this.password, this.trueName, this.sex, this.phone, this.email, this.employeeID, this.departmentID, this.activity, this.userType, this.style);
+
+            //add nonsavenonEncryptPasswordPassword;
+            if (result)
+            {
+                UserLogin u = new UserLogin();
+                u.UserId = userID;
+                u.UserName = this.userName;
+                u.Password = this.nonEncryptPasswordPassword;
+                u.Email = this.email;
+                D4DGateway.UserProvider.SetUserLogin(u);
+            }
+            return result;
         }
 
         public bool Activity
@@ -227,10 +269,10 @@ namespace LTP.Accounts.Bus
             {
                 return this.password;
             }
-            set
-            {
-                this.password = value;
-            }
+            //set
+            //{
+            //    this.password = value;
+            //}
         }
 
         public string Phone
