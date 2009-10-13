@@ -76,7 +76,8 @@ namespace Maticsoft.Web.Accounts
 				return;
 			}			
 			newUser.UserName=txtUserName.Text;
-			newUser.Password=AccountsPrincipal.EncryptPassword(txtPassword.Text);
+			//newUser.Password=AccountsPrincipal.EncryptPassword(txtPassword.Text);
+            newUser.NonEncryptPasswordPassword = txtPassword.Text;
 			newUser.TrueName=txtTrueName.Text;
 			if(RadioButton1.Checked)
 				newUser.Sex="ÄÐ";
