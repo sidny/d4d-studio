@@ -28,4 +28,11 @@ namespace D4D.Platform.Domain
         Publish = 1,//发布 
         ALL = 2
     }
+
+    public enum BandType : int
+    {
+        Company = 0,
+        ZLY =1,
+        WZL=2
+    }
 }
