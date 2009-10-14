@@ -57,5 +57,15 @@ namespace D4D.Platform.Providers
             return NewsDao.GetPagedShowByShowDate(pager,  sTime, eTime, (int)publishStatus);
         }
 
+        public List<News> GetPagedNewsByTag(PagingContext pager, PublishStatus publishStatus, int tagId)
+        {
+            return NewsDao.GetPagedNewsByTag(pager, (int)publishStatus, tagId);
+        }
+
+        public List<News> GetPagedNewsByTagAndNewsType(PagingContext pager, PublishStatus publishStatus, int tagId,
+            BandType newsType)
+        {
+            return NewsDao.GetPagedNewsByTagAndNewsType(pager, (int)publishStatus, tagId, (int)newsType);
+        }
     }
 }

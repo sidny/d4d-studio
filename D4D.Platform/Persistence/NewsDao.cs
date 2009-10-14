@@ -213,6 +213,64 @@ namespace D4D.Platform.Persistence
 
             return list;
         }
+
+
+        internal static List<News> GetPagedNewsByTag(PagingContext pager, int publishStatus, int tagId)
+        {
+            List<News> list = new List<News>(pager.RecordsPerPage);
+
+            SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+               "dbo.News_GetPagedByTag",
+               delegate(IParameterSet parameters)
+               {
+                   parameters.AddWithValue("@TagId", tagId);
+                   parameters.AddWithValue("@PublishStatus", publishStatus);
+                   parameters.AddWithValue("@PageIndex", pager.CurrentPageNumber);
+                   parameters.AddWithValue("@PageSize", pager.RecordsPerPage);
+                   parameters.AddWithValue("@NumberOfCount", 0, ParameterDirectionWrap.Output);
+               },
+               delegate(IRecord record)
+               {
+                   MapList(record, list);
+
+               },
+               delegate(IParameterSet outputParameters)
+               {
+                   pager.TotalRecordCount = outputParameters.GetValue("@NumberOfCount") == DBNull.Value ? 0 : (int)outputParameters.GetValue("@NumberOfCount");
+               }
+           );
+
+            return list;
+        }
+
+        internal static List<News> GetPagedNewsByTagAndNewsType(PagingContext pager, int publishStatus, int tagId, int newsType)
+        {
+            List<News> list = new List<News>(pager.RecordsPerPage);
+
+            SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+               "dbo.News_GetPagedByTagAndNewsType",
+               delegate(IParameterSet parameters)
+               {
+                   parameters.AddWithValue("@NewsType", newsType);
+                   parameters.AddWithValue("@TagId", tagId);
+                   parameters.AddWithValue("@PublishStatus", publishStatus);
+                   parameters.AddWithValue("@PageIndex", pager.CurrentPageNumber);
+                   parameters.AddWithValue("@PageSize", pager.RecordsPerPage);
+                   parameters.AddWithValue("@NumberOfCount", 0, ParameterDirectionWrap.Output);
+               },
+               delegate(IRecord record)
+               {
+                   MapList(record, list);
+
+               },
+               delegate(IParameterSet outputParameters)
+               {
+                   pager.TotalRecordCount = outputParameters.GetValue("@NumberOfCount") == DBNull.Value ? 0 : (int)outputParameters.GetValue("@NumberOfCount");
+               }
+           );
+
+            return list;
+        }
         #endregion
     }
 }
