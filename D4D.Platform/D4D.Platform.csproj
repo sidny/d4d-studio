@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="D4DGateway.cs" />
     <Compile Include="Domain\Album.cs" />
+    <Compile Include="Domain\BandInfo.cs" />
     <Compile Include="Domain\BaseD4DDomain.cs" />
     <Compile Include="Domain\Comment.cs" />
     <Compile Include="Domain\D4DDefine.cs" />
