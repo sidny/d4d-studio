@@ -161,7 +161,6 @@
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>xcopy $(TargetDir)$(TargetFileName) $(ProjectDir)..\lib\ /s /e /y</PostBuildEvent>
   </PropertyGroup>
 </Project>

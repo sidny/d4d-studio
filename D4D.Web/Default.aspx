@@ -13,8 +13,7 @@
     <div id="list">
     <asp:Repeater ID="ListNews" runat="server">
     <ItemTemplate>
-        <%#((D4D.Model.News)Container.DataItem).Title %>,<%#((D4D.Model.News)Container.DataItem).Id %>
-    </ItemTemplate>
+     </ItemTemplate>
     </asp:Repeater>
     </div>
     </form>

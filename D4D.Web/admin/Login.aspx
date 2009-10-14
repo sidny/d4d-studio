@@ -112,8 +112,7 @@
                                     <tbody>
                                         <tr>
                                             <td width="245" height="80" align="center" valign="top">
-                                                <img height="67" src="images/member_t04.jpg" width="245">
-                                            </td>
+                                                &nbsp;</td>
                                             <td align="right" valign="top">
                                                 <br>
                                                 &nbsp;
@@ -196,8 +195,7 @@
                                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                     <tr>
                                         <td height="70" align="center">
-                                            Copyright(C) 2004-2008 Maticsoft All Rights Reserved.
-                                        </td>
+                                            &nbsp;</td>
                                     </tr>
                                 </table>
                             </td>
