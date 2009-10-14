@@ -6,8 +6,6 @@ using System.ServiceModel;
 using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
 using System.Collections.Generic;
-using D4D.Model;
-using D4D.DAL;
 
 namespace D4D.Web.svc
 {
@@ -25,14 +23,13 @@ namespace D4D.Web.svc
 
         [OperationContract]
         [WebGet(RequestFormat=WebMessageFormat.Json,BodyStyle=WebMessageBodyStyle.WrappedRequest,ResponseFormat=WebMessageFormat.Json)]
-        public IList<News> GetNewsList(int p,int size)
+        public IList<string> GetNewsList(int p,int size)
         {
-            return newsDAL.GetList(null, p * size+1, size); 
+            return new List<string>();
         }
 
 
 
-        private NewsDAL newsDAL = new NewsDAL();
         // Add more operations here and mark them with [OperationContract]
     }
 }

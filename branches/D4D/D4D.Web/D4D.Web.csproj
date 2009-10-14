@@ -34,6 +34,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="LTP.Common, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\LTP.Common.dll</HintPath>
+    </Reference>
     <Reference Include="LtpPageControl, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\LtpPageControl.dll</HintPath>
@@ -230,6 +234,13 @@
     <Compile Include="admin\Tag\TagsInfo.aspx.designer.cs">
       <DependentUpon>TagsInfo.aspx</DependentUpon>
     </Compile>
+    <Compile Include="channel\music\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="channel\music\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
     <Compile Include="channel\news\news.aspx.cs">
       <DependentUpon>news.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -288,18 +299,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\D4D.Application\D4D.Application.csproj">
-      <Project>{1AC62894-214E-4EB1-87AB-9D83AC5AE368}</Project>
-      <Name>D4D.Application</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\D4D.Common\Common.csproj">
-      <Project>{E3D8759A-C5EB-402D-9F10-F5C6029A8D1A}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\D4D.DBUtility\DBUtility.csproj">
-      <Project>{0988C62E-247F-471F-A183-DB509C7A3839}</Project>
-      <Name>DBUtility</Name>
-    </ProjectReference>
     <ProjectReference Include="..\D4D.Platform\D4D.Platform.csproj">
       <Project>{F0CAA2F4-5BB4-4BD4-879B-7C8C49ED9782}</Project>
       <Name>D4D.Platform</Name>
@@ -596,6 +595,7 @@
     <None Include="admin\Images\skin2\Thumbs.db" />
     <None Include="admin\Images\skin2\vssver2.scc" />
     <None Include="admin\Images\Thumbs.db" />
+    <Content Include="channel\music\index.aspx" />
     <Content Include="static\images\music\control_pause_blue.png" />
     <Content Include="static\images\music\control_play_blue.png" />
     <Content Include="static\images\music\control_stop_blue.png" />
