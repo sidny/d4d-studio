@@ -596,6 +596,15 @@
     <None Include="admin\Images\skin2\Thumbs.db" />
     <None Include="admin\Images\skin2\vssver2.scc" />
     <None Include="admin\Images\Thumbs.db" />
+    <Content Include="static\images\music\control_pause_blue.png" />
+    <Content Include="static\images\music\control_play_blue.png" />
+    <Content Include="static\images\music\control_stop_blue.png" />
+    <Content Include="static\images\music\sound_mute.png" />
+    <Content Include="static\images\music\sound_none.png" />
+    <Content Include="static\js\jquery.musiccontrol.js" />
+    <Content Include="static\js\ui.core.js" />
+    <Content Include="static\js\ui.slider.js" />
+    <Content Include="static\musiccontrol.css" />
     <Content Include="urlrewrite.config" />
     <Content Include="admin\Music\MusicTitle.aspx" />
     <Content Include="admin\Tag\TagsInfo.aspx" />
