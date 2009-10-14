@@ -8,6 +8,7 @@ namespace D4D.Platform.Domain
     public class D4DDefine
     {
         public const string DBInstanceName = "d4d";
+        public const string DEFAULT_PROFILEPATH = @"d:\sitefiles\profile\";
     }
 
     public enum ObjectTypeDefine:int
