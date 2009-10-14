@@ -73,6 +73,19 @@ namespace D4D.Platform.Providers
             return AlbumDao.GetPagedAlbumsByPublishYearMonth(pager, (int)publishStatus,
                 pulishYear, publishMonth);
         }
+
+        public List<Album> GetPagedAlbumsByTag(PagingContext pager, PublishStatus publishStatus, int tagId)
+        {
+            return AlbumDao.GetPagedAlbumsByTag(pager, (int)publishStatus,
+               tagId); 
+        }
+
+        public List<Album> GetPagedAlbumsByTagAndBand(PagingContext pager, PublishStatus publishStatus, int tagId, int bandId)
+        {
+            return AlbumDao.GetPagedAlbumsByTagAndBand(pager, (int)publishStatus,
+              tagId, bandId); 
+        }
+
         #endregion
 
         #region Image

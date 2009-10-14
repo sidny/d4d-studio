@@ -208,6 +208,63 @@ namespace D4D.Platform.Persistence
             return list;
         }
 
+        internal static List<Album> GetPagedAlbumsByTag(PagingContext pager, int publishStatus,int tagId)
+        {
+            List<Album> list = new List<Album>(pager.RecordsPerPage);
+
+            SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+               "dbo.Album_GetPagedByTag",
+               delegate(IParameterSet parameters)
+               {
+                   parameters.AddWithValue("@TagId", tagId);
+                   parameters.AddWithValue("@PublishStatus", publishStatus);
+                   parameters.AddWithValue("@PageIndex", pager.CurrentPageNumber);
+                   parameters.AddWithValue("@PageSize", pager.RecordsPerPage);
+                   parameters.AddWithValue("@NumberOfCount", 0, ParameterDirectionWrap.Output);
+               },
+               delegate(IRecord record)
+               {
+                   MapAlbumList(record, list);
+               },
+               delegate(IParameterSet outputParameters)
+               {
+                   pager.TotalRecordCount = outputParameters.GetValue("@NumberOfCount") == DBNull.Value ? 0 : (int)outputParameters.GetValue("@NumberOfCount");
+               }
+           );
+
+            return list;
+        }
+
+
+        internal static List<Album> GetPagedAlbumsByTagAndBand(PagingContext pager, int publishStatus, int tagId,int bandId)
+        {
+            List<Album> list = new List<Album>(pager.RecordsPerPage);
+
+            SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+               "dbo.Album_GetPagedByTagANDBand",
+               delegate(IParameterSet parameters)
+               {
+                   parameters.AddWithValue("@BandId", bandId);
+                   parameters.AddWithValue("@TagId", tagId);
+                   parameters.AddWithValue("@PublishStatus", publishStatus);
+                   parameters.AddWithValue("@PageIndex", pager.CurrentPageNumber);
+                   parameters.AddWithValue("@PageSize", pager.RecordsPerPage);
+                   parameters.AddWithValue("@NumberOfCount", 0, ParameterDirectionWrap.Output);
+               },
+               delegate(IRecord record)
+               {
+                   MapAlbumList(record, list);
+               },
+               delegate(IParameterSet outputParameters)
+               {
+                   pager.TotalRecordCount = outputParameters.GetValue("@NumberOfCount") == DBNull.Value ? 0 : (int)outputParameters.GetValue("@NumberOfCount");
+               }
+           );
+
+            return list;
+        }
+
+
         #endregion 
 
         #region Image

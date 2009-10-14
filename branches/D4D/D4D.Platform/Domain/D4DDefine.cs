@@ -18,6 +18,7 @@ namespace D4D.Platform.Domain
         Song = 3,
         Album=4,
         Image=5,
+        Show = 6
     }
     /// <summary>
     /// 发布状态
