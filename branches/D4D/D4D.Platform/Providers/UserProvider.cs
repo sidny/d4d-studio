@@ -20,6 +20,7 @@ namespace D4D.Platform.Providers
         }
         #endregion
 
+        #region UserLogin
         public void SetUserLogin(UserLogin u)
         {
             UserDao.SetUserLogin(u);
@@ -34,5 +35,19 @@ namespace D4D.Platform.Providers
         {
             return UserDao.GetUserLoginFromEmail(email);
         }
+
+        #endregion 
+
+        #region BandInfo
+        public int  SetBandInfo(BandInfo info)
+        {
+            return UserDao.SetBandInfo(info);
+        }
+
+        public List<BandInfo> GetAllBandInfos(int minIndex)
+        {
+            return UserDao.GetAllBandInfos(minIndex);
+        }
+        #endregion
     }
 }
