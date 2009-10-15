@@ -120,7 +120,7 @@
 
             case 2:
                 if (IsRewrite) return string.Format("/music/b{0}/s{1}.html",BandId, id);
-                else return string.Format("songlist.aspx?id={0}&bandid={1}", id, BandId);
+                else return string.Format("songs.aspx?id={0}&bandid={1}", id, BandId);
             default:
                 return (IsRewrite)? "/music.html":"index.aspx";
         }
