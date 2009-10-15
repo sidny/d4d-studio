@@ -4,44 +4,47 @@
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader">
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentMain" runat="server">
-<form runat="server">
-<asp:Calendar ID="Calendar1" runat="server" BackColor="#FFFFCC" 
-        BorderColor="#FFCC66" BorderWidth="1px" DayNameFormat="Shortest" 
-        Font-Names="Verdana" Font-Size="8pt" ForeColor="#663399" Height="200px" 
-        SelectedDate="2009-10-28" ShowGridLines="True" Width="220px" 
-    EnableViewState="False">
-        <SelectedDayStyle BackColor="#CCCCFF" Font-Bold="True" />
-        <SelectorStyle BackColor="#FFCC66" />
-        <TodayDayStyle BackColor="#FFCC66" ForeColor="White" />
-        <OtherMonthDayStyle ForeColor="#CC9966" />
-        <NextPrevStyle Font-Size="9pt" ForeColor="#FFFFCC" />
-        <DayHeaderStyle BackColor="#FFCC66" Font-Bold="True" Height="1px" />
-        <TitleStyle BackColor="#990000" Font-Bold="True" Font-Size="9pt" 
-            ForeColor="#FFFFCC" />
-    </asp:Calendar>
-    </form>
+    <div class="music">
     <asp:Repeater ID="repMusicTitle" runat="server">
         <HeaderTemplate>
             <ul>
-                
         </HeaderTemplate>
         <ItemTemplate>
             <li>            
             <p class="pic"><a href="<%#GetUrl(((MusicTitle)Container.DataItem).MusicId,2) %>"><img src="<%#((MusicTitle)Container.DataItem).SImage %>" width="75" height="65" /></a></p>
-            <p><a href="<%#GetUrl(((MusicTitle)Container.DataItem).MusicId,2) %>">
-            <%#((MusicTitle)Container.DataItem).Title %></a></p>
-            <p>
-
-
-歌手：<%#((MusicTitle)Container.DataItem).BandId %>   发行：<%#GetDate(((MusicTitle)Container.DataItem).PublishDate)%>
+            <p class="text"><a href="<%#GetUrl(((MusicTitle)Container.DataItem).MusicId,2) %>">
+            <%#((MusicTitle)Container.DataItem).Title %></a> 
+               <br />
+               歌手：<%#((MusicTitle)Container.DataItem).BandId %>
+               发行：<%#GetDate(((MusicTitle)Container.DataItem).PublishDate)%>
             </p>
             </li>
-            <%#(Container.ItemIndex%2 == 1)?"<li class=\"line\">------------</li>":"" %>
+            <%#(Container.ItemIndex%2 == 1)?"<li class=\"line\"></li>":"" %>
         </ItemTemplate>
         <FooterTemplate>
             </ul>
         </FooterTemplate>
     </asp:Repeater>
+    <div class="pagestyle" id="pager"></div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+    var cur = parseInt("<%=PageIndex %>");
+        var total = parseInt("<%=PageTotalCount %>");
+        $("#pager").pagination(
+          total,
+                {
+                    items_per_page: 1,
+                    num_display_entries: 10,
+                    current_page: cur - 1,
+                    link_to: "/music/b<%=BandId %>/__id__.html",
+                    prev_text: "上一页",
+                    next_text: "下一页",
+                    callback: function() { return true; }
+                });
+    });
+</script>
 </asp:Content>
 
 <script runat="server">

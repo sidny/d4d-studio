@@ -11,5 +11,5 @@
         <input type="image" src="/static/images/search_go.gif" align="absmiddle" style="float: right" />
         <input type="text" class="text" /></form>
     </div>
-    <a href="#"><img src="/static/images/nav_off_03.png" alt="" /></a><a href="#"><img src="/static/images/nav_off_04.png" alt="" /></a><a href="#"><img src="/static/images/nav_off_05.png" alt="" /></a><a href="#"><img src="/static/images/nav_off_06.png" alt="" /></a><a href="#"><img src="/static/images/nav_off_07.png"  alt="" /></a><a href="#"><img src="/static/images/nav_off_08.png" alt="" /></a><a href="#"><img src="/static/images/nav_off_09.png" alt="" /></a>
+    <div><a href="#"><img src="/static/images/nav_off_03.png" alt="" /></a><a href="#"><img src="/static/images/nav_off_04.png" alt="" /></a><a href="#"><img src="/static/images/nav_off_05.png" alt="" /></a><a href="#"><img src="/static/images/nav_off_06.png" alt="" /></a><a href="#"><img src="/static/images/nav_off_07.png"  alt="" /></a><a href="#"><img src="/static/images/nav_off_08.png" alt="" /></a><a href="#"><img src="/static/images/nav_off_09.png" alt="" /></a></div>
 </div>

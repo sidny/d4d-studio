@@ -83,7 +83,7 @@ jQuery.fn.pagination = function(maxentries, opts) {
                 else {
                     var lnk = $("<a>" + (appendopts.text) + "</a>")
 						.bind("click", getClickHandler(page_id))
-						.attr('href', opts.link_to.replace(/__id__/, page_id));
+						.attr('href', opts.link_to.replace(/__id__/, page_id+1));
 
 
                 }
