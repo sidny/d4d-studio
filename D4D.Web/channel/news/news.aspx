@@ -1,5 +1,38 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="news.aspx.cs" Inherits="D4D.Web.channel.news.news" MasterPageFile="~/MasterPage/Channel.Master" %>
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader"></asp:Content>
 <asp:Content ContentPlaceHolderID="ContentMain" runat="server">
-    <%=Request["id"] %>
+<div class="main">
+<div class="channel">
+  <h1>全部新闻</h1>
+</div>
+<ul class="news-top">
+  <li class="big">
+	<p class="title"><a href="#"><b>《张靓颖@音乐》日本首发鉴赏会即将举行！</b></a> <em>标签：<a href="#">张靓影</a> <a href="#">蓝色畅想</a></em> <label> 2009-3-29</label></p>
+    <p><a href="#"><img src="/static/images/pic.jpg"/></a></p>
+	<p>2009年3月29日晚，日本东京时尚聚集地涩谷区，张靓颖的新专辑《张靓颖@音乐》日本首发鉴赏会将拉开帷幕。</p>
+  </li>
+ 
+  <li>
+	<p class="pic"><a href="#"><img width="70" height="60" /></a></p>
+	<p><a href="#"><b>《张靓颖@音乐》日本首发鉴赏会即将举行！</b></a> <em>标签：<a href="#">张靓影</a> <a href="#">蓝色畅想</a></em> <label> 2009-3-29</label></p>
+	<p>2009年3月29日晚，日本东京时尚聚集地涩谷区，张靓颖的新专辑《张靓颖@音乐》日本首发鉴赏会将拉开帷幕。</p>
+  </li>
+  <li>
+	<p class="pic"><a href="#"><img width="70" height="60" /></a></p>
+	<p><a href="#"><b>《张靓颖@音乐》日本首发鉴赏会即将举行！</b></a> <em>标签：<a href="#">张靓影</a> <a href="#">蓝色畅想</a></em> <label> 2009-3-29</label></p>
+	<p>2009年3月29日晚，日本东京时尚聚集地涩谷区，张靓颖的新专辑《张靓颖@音乐》日本首发鉴赏会将拉开帷幕。</p>
+  </li>
+</ul>
+<ul class="news-list">
+	<li> + <a href="#" target="_blank">风雨难阻歌迷热情，张靓颖献歌广汉</a> <em>标签：<a href="#">张靓影</a> <a href="#">蓝色畅想</a></em> <label> 2009-3-29</label></li>
+    <li> + <a href="#" target="_blank">风雨难阻歌迷热情，张靓颖献歌广汉</a> <em>标签：<a href="#">张靓影</a> <a href="#">蓝色畅想</a></em> <label> 2009-3-29</label></li>
+    <li> + <a href="#" target="_blank">风雨难阻歌迷热情，张靓颖献歌广汉</a> <em>标签：<a href="#">张靓影</a> <a href="#">蓝色畅想</a></em> <label> 2009-3-29</label></li>
+    <li> + <a href="#" target="_blank">风雨难阻歌迷热情，张靓颖献歌广汉</a> <em>标签：<a href="#">张靓影</a> <a href="#">蓝色畅想</a></em> <label> 2009-3-29</label></li>
+    <li> + <a href="#" target="_blank">风雨难阻歌迷热情，张靓颖献歌广汉</a> <em>标签：<a href="#">张靓影</a> <a href="#">蓝色畅想</a></em> <label> 2009-3-29</label></li>
+    <li> + <a href="#" target="_blank">风雨难阻歌迷热情，张靓颖献歌广汉</a> <em>标签：<a href="#">张靓影</a> <a href="#">蓝色畅想</a></em> <label> 2009-3-29</label></li>
+    <li> + <a href="#" target="_blank">风雨难阻歌迷热情，张靓颖献歌广汉</a> <em>标签：<a href="#">张靓影</a> <a href="#">蓝色畅想</a></em> <label> 2009-3-29</label></li>
+    <li> + <a href="#" target="_blank">风雨难阻歌迷热情，张靓颖献歌广汉</a> <em>标签：<a href="#">张靓影</a> <a href="#">蓝色畅想</a></em> <label> 2009-3-29</label></li>
+	
+</ul>
+</div>
 </asp:Content>
