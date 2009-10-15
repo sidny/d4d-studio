@@ -234,13 +234,6 @@
     <Compile Include="admin\Tag\TagsInfo.aspx.designer.cs">
       <DependentUpon>TagsInfo.aspx</DependentUpon>
     </Compile>
-    <Compile Include="channel\music\index.aspx.cs">
-      <DependentUpon>index.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="channel\music\index.aspx.designer.cs">
-      <DependentUpon>index.aspx</DependentUpon>
-    </Compile>
     <Compile Include="channel\news\news.aspx.cs">
       <DependentUpon>news.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -595,7 +588,15 @@
     <None Include="admin\Images\skin2\Thumbs.db" />
     <None Include="admin\Images\skin2\vssver2.scc" />
     <None Include="admin\Images\Thumbs.db" />
+    <Content Include="channel\calender\index.aspx" />
+    <Content Include="channel\news\comment.aspx" />
+    <Content Include="channel\photo\index.aspx" />
     <Content Include="channel\music\index.aspx" />
+    <Content Include="channel\music\songs.aspx" />
+    <Content Include="channel\photo\slider.aspx" />
+    <Content Include="channel\photo\photo.aspx" />
+    <Content Include="channel\singer\index.aspx" />
+    <Content Include="channel\sitemap\index.aspx" />
     <Content Include="static\images\music\control_pause_blue.png" />
     <Content Include="static\images\music\control_play_blue.png" />
     <Content Include="static\images\music\control_stop_blue.png" />
