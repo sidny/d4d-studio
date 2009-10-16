@@ -220,6 +220,13 @@
     <Compile Include="admin\Music\MusicTitle.aspx.designer.cs">
       <DependentUpon>MusicTitle.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\Music\songs.aspx.cs">
+      <DependentUpon>songs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Music\songs.aspx.designer.cs">
+      <DependentUpon>songs.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\ShowCallBoard.aspx.cs">
       <DependentUpon>ShowCallBoard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -588,6 +595,7 @@
     <None Include="admin\Images\skin2\Thumbs.db" />
     <None Include="admin\Images\skin2\vssver2.scc" />
     <None Include="admin\Images\Thumbs.db" />
+    <Content Include="admin\Music\songs.aspx" />
     <Content Include="channel\calender\index.aspx" />
     <Content Include="channel\news\comment.aspx" />
     <Content Include="channel\photo\index.aspx" />
@@ -686,7 +694,6 @@
   <ItemGroup>
     <Folder Include="admin\News\" />
     <Folder Include="App_Data\" />
-    <Folder Include="Class\Control\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />

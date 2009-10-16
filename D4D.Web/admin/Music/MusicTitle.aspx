@@ -4,13 +4,14 @@
 </asp:Content>
 <asp:Content ContentPlaceHolderID="ContentBody" runat="server">
     <form id="form1" runat="server">
-    <div>
+    <asp:Panel runat="server" ID="addPanel">
             <div>专辑编辑</div>
             <div>
              <table cellspacing="1" cellpadding="4" rules="all"  align="center" width="100%" class="grid">
                     <tr>
                       <th align="center" width="100">专辑名称</th>
-                      <td><asp:TextBox ID="txtTitle" runat="server" Width="500px"></asp:TextBox></td>
+                      <td><asp:TextBox ID="txtTitle" runat="server" Width="500px"></asp:TextBox>
+                      <asp:HiddenField ID="txtMusicId" runat="server" Value="0" ></asp:HiddenField></td>
                       </tr>
                       <tr>
                      <th width="100">专辑描述</th>
@@ -18,7 +19,10 @@
                     </tr>
                      <tr>
                      <th align="center" width="100">歌手</th>
-                      <td><asp:TextBox ID="txtBandId" runat="server">1</asp:TextBox></td>
+                      <td>
+                          <asp:DropDownList ID="bandIdList" runat="server">
+                          </asp:DropDownList>
+                         </td>
                     </tr>
                      <tr>
                      <th align="center" width="100">发布状态</th>
@@ -26,11 +30,11 @@
                     </tr>
                     <tr>
                     <th align="center" width="100">封面小图</th>
-                      <td><asp:TextBox ID="txtSImage" runat="server" Width="500px">http://images.google.com/intl/en_ALL/images/logos/images_logo_lg.gif</asp:TextBox></td>
+                      <td><asp:TextBox ID="txtSImage" runat="server" Width="500px"></asp:TextBox></td>
                     </tr>
                      <tr>
                     <th align="center" width="100">封面大图</th>
-                      <td><asp:TextBox ID="txtLImage" runat="server" Width="500px">http://images.google.com/intl/en_ALL/images/logos/images_logo_lg.gif</asp:TextBox></td>
+                      <td><asp:TextBox ID="txtLImage" runat="server" Width="500px"></asp:TextBox></td>
                     </tr>
                      <tr>
                     <th align="center" width="100">添加人ID</th>
@@ -41,9 +45,11 @@
                       <td><asp:Button ID="btnAdd" runat="server" Text="新增" onclick="btnAdd_Click" /></td>
                     </tr>
                     </table>
-            <div>专辑列表</div>
+           </div>
+            </asp:Panel>
+            <asp:Panel runat="server" ID="listPanel">
             <div>
-            
+             <div>专辑列表</div>
             
             <asp:Repeater ID="repMusicTitle" runat=server 
                     onitemdatabound="repMusicTitle_ItemDataBound">
@@ -64,7 +70,7 @@
                 <ItemTemplate>
                     <tr align="center">
                       <td align="center" style="width: 30px;"><asp:Literal ID="litID" runat="server"></asp:Literal></td>
-                      <td><asp:Literal ID="litTitle" runat="server"></asp:Literal></td>
+                      <td><a href="songs.aspx?id=<asp:Literal ID="litID_1" runat="server"/>"><asp:Literal ID="litTitle" runat="server"></asp:Literal></a></td>
                       <td><asp:Literal ID="litBandId" runat="server"></asp:Literal></td>
                       <td style="width: 30px;"><a href='<asp:Literal ID="litLImage" runat="server"></asp:Literal>' target="_blank"><img src='<asp:Literal ID="litSImage" runat="server"></asp:Literal>' width="25" height="25" /></a>
                       </td>
@@ -77,17 +83,19 @@
                 </ItemTemplate>
                 <FooterTemplate>
                      <tr align="right" style="font-size: medium; white-space: nowrap;">
-                      <td colspan="9" valign="middle" class="pagestyle" id="pager"></td>
+                      <td colspan="8" valign="middle" class="pagestyle" id="pager"></td>
+                      <td><asp:Button ID="btnAddShow" runat="server" OnClick="btnAdd_Show" Text="新增" /></td>
                     </tr>
                     </table>
                 </FooterTemplate>        
                 </asp:Repeater>
             </div>
 
-            <div>当前页：<asp:Label ID="labCurrentPage" runat="server" Text="0"></asp:Label>,总页数：<asp:Label ID="labTotalCount" runat="server" Text="0"></asp:Label>,
+            <!-- div>当前页：<asp:Label ID="labCurrentPage" runat="server" Text="0"></asp:Label>,总页数：<asp:Label ID="labTotalCount" runat="server" Text="0"></asp:Label>,
                去第<asp:TextBox ID="txtGoToPageNum" runat="server" Width="35px">1</asp:TextBox>页<asp:Button 
-                    ID="btnGoPage" runat="server" Text="Go" onclick="btnGoPage_Click" /></div>
-    </div>
+                    ID="btnGoPage" runat="server" Text="Go" onclick="btnGoPage_Click" /></div -->
+                    
+          </asp:Panel>
     
 <script type="text/javascript">
     $(document).ready(function() {
@@ -96,7 +104,7 @@
         $("#pager").pagination(
           total,
                 {
-                    items_per_page: 1,
+                    items_per_page: <%=PageSize %>,
                     num_display_entries: 10,
                     current_page: cur - 1,
                     num_edge_entries: 0,
