@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MusicTitle.aspx.cs" MasterPageFile="~/admin/Admin.Master" Inherits="D4D.Web.admin.Music.MusicTitle" %>
+<%@ Register src="../Controls/FileUpload.ascx" tagname="FileUpload" tagprefix="uc1" %>
 <asp:Content ContentPlaceHolderID="head" runat="server">
     <title>音乐专辑编辑</title>
 </asp:Content>
@@ -26,15 +27,24 @@
                     </tr>
                      <tr>
                      <th align="center" width="100">发布状态</th>
-                      <td><asp:TextBox ID="txtStatus" runat="server">1</asp:TextBox></td>
+                      <td>
+                          <asp:DropDownList ID="ddlPublishStatus" runat="server">
+                              <asp:ListItem Value="0">未发布</asp:ListItem>
+                              <asp:ListItem Selected="True" Value="1">发布</asp:ListItem>                              
+                          </asp:DropDownList>
+                        </td>
                     </tr>
                     <tr>
                     <th align="center" width="100">封面小图</th>
-                      <td><asp:TextBox ID="txtSImage" runat="server" Width="500px"></asp:TextBox></td>
+                      <td>
+                          <uc1:FileUpload ID="fuSImage" runat="server" />
+                        </td>
                     </tr>
                      <tr>
                     <th align="center" width="100">封面大图</th>
-                      <td><asp:TextBox ID="txtLImage" runat="server" Width="500px"></asp:TextBox></td>
+                      <td>
+                          <uc1:FileUpload ID="fuLImage" runat="server" />
+                         </td>
                     </tr>
                      <tr>
                     <th align="center" width="100">添加人ID</th>

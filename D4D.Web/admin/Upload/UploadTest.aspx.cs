@@ -11,7 +11,17 @@ namespace D4D.Web.admin.Upload
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Write(FileUpload1.UploadResult);
+           
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Write(ddlPublishStatus.SelectedValue);
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            ddlPublishStatus.SelectedValue = "0";
         }
 
        
