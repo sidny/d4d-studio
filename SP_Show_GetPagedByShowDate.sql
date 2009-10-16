@@ -37,7 +37,7 @@ BEGIN
 			@Results (Id)
 			SELECT	ShowId  
 			FROM dbo.shows WITH(NOLOCK)		
-			WHERE ShowDate>=@STime AND ShowDate<=@ETime
+			WHERE ShowDate>=@STime AND EndDate<=@ETime
 			ORDER BY ShowDate DESC 	
 	END
 	ELSE 
@@ -46,7 +46,7 @@ BEGIN
 			@Results (Id)
 			SELECT	ShowId  
 			FROM dbo.shows WITH(NOLOCK)	
-			WHERE [Status] =@PublishStatus 	 AND ShowDate>=@STime AND ShowDate<=@ETime
+			WHERE [Status] =@PublishStatus 	 AND ShowDate>=@STime AND EndDate<=@ETime
 			ORDER BY ShowDate DESC 	
 	END 
 	
@@ -65,7 +65,8 @@ BEGIN
 			   ShowPlace,
 			   AddUserId,
 			   AddDate,
-			  [Status]
+			  [Status],
+			  EndDate
 		FROM dbo.shows t WITH(NOLOCK)
 		INNER JOIN @Results r ON  (t.ShowId = r.Id)	
 		WHERE 
