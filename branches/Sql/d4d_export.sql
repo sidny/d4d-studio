@@ -71,7 +71,7 @@ CREATE TABLE [comment] (
 	[Id] [int] IDENTITY (1, 1) NOT NULL ,
 	[UserId] [int] NULL ,
 	[NewsId] [int] NULL ,
-	[Detail] [nvarchar] (0) COLLATE Chinese_PRC_CI_AS NULL ,
+	[Detail] [nvarchar]  COLLATE Chinese_PRC_CI_AS NULL ,
 	[AddDate] [datetime] NOT NULL 
 ) ON [PRIMARY]
 GO
@@ -102,7 +102,7 @@ GO
 CREATE TABLE [news] (
 	[Id] [int] IDENTITY (1, 1) NOT NULL ,
 	[Title] [nvarchar] (200) COLLATE Chinese_PRC_CI_AS NOT NULL ,
-	[Detail] [nvarchar] (0) COLLATE Chinese_PRC_CI_AS NULL ,
+	[Detail] [nvarchar]  COLLATE Chinese_PRC_CI_AS NULL ,
 	[Preview] [nvarchar] (3000) COLLATE Chinese_PRC_CI_AS NULL ,
 	[AddDate] [datetime] NOT NULL ,
 	[NewType] [int] NULL ,
@@ -145,16 +145,6 @@ CREATE TABLE [photo_album] (
 GO
 
 
-/****** Object:  Table [dbo].[sysdiagrams]    Script Date: 2009-10-7 22:44:30 ******/
-CREATE TABLE [sysdiagrams] (
-	[name] [sysname] NOT NULL ,
-	[principal_id] [int] NOT NULL ,
-	[diagram_id] [int] IDENTITY (1, 1) NOT NULL ,
-	[version] [int] NULL ,
-	[definition] [varbinary] (-1) NULL 
-) ON [PRIMARY]
-GO
-
 
 /****** Object:  Table [dbo].[tag]    Script Date: 2009-10-7 22:44:30 ******/
 CREATE TABLE [tag] (
@@ -188,44 +178,44 @@ GO
 /* Data for table Accounts_PermissionCategories */
 SET identity_insert [Accounts_PermissionCategories] on
 
-INSERT [Accounts_PermissionCategories] ([CategoryID], [Description]) VALUES (1, 'ç³»ç»Ÿç®¡ç†')
-INSERT [Accounts_PermissionCategories] ([CategoryID], [Description]) VALUES (2, 'æ–°é—»ç®¡ç†')
-INSERT [Accounts_PermissionCategories] ([CategoryID], [Description]) VALUES (3, 'ä¸»èœå•æ˜¾ç¤ºæ§åˆ¶')
-INSERT [Accounts_PermissionCategories] ([CategoryID], [Description]) VALUES (4, 'å•†å“ç®¡ç†')
+INSERT [Accounts_PermissionCategories] ([CategoryID], [Description]) VALUES (1, 'ÏµÍ³¹ÜÀí')
+INSERT [Accounts_PermissionCategories] ([CategoryID], [Description]) VALUES (2, 'ĞÂÎÅ¹ÜÀí')
+INSERT [Accounts_PermissionCategories] ([CategoryID], [Description]) VALUES (3, 'Ö÷²Ëµ¥ÏÔÊ¾¿ØÖÆ')
+INSERT [Accounts_PermissionCategories] ([CategoryID], [Description]) VALUES (4, 'ÉÌÆ·¹ÜÀí')
 SET identity_insert [Accounts_PermissionCategories] off
 GO
 /* Data for table Accounts_Permissions */
 SET identity_insert [Accounts_Permissions] on
 
-INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (1, 'å¸æˆ·ç®¡ç†', 1, 'Accounts/UserAdmin.aspx')
-INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (2, 'èœå•ç®¡ç†', 1, '')
-INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (3, 'ç”¨æˆ·ç®¡ç†', 1, 'Accounts/UserAdmin.aspx')
-INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (4, 'æƒé™è§’è‰²ç®¡ç†', 1, 'Accounts/RoleAdmin.aspx')
-INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (5, 'ç³»ç»Ÿæ—¥å¿—ç®¡ç†', 1, '')
-INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (6, 'ç³»ç»Ÿç®¡ç†èœå•æ˜¾ç¤º', 3, '')
-INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (7, 'æ–°é—»ç±»åˆ«å¢åŠ ', 2, '')
-INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (8, 'æ–°é—»ç±»åˆ«ä¿®æ”¹', 2, '')
-INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (9, 'æ–°é—»ç±»åˆ«åˆ é™¤', 2, '')
-INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (10, 'æ–°é—»ç±»åˆ«æŸ¥è¯¢', 2, '')
-INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (11, 'æ–°é—»å¢åŠ ', 2, '')
-INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (12, 'æ–°é—»ä¿®æ”¹', 2, '')
-INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (13, 'æ–°é—»åˆ é™¤', 2, '')
-INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (14, 'æ–°é—»æŸ¥è¯¢', 2, '')
-INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (15, 'å›¾ç‰‡ç®¡ç†', 2, '')
-INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (16, 'æ–°é—»ç±»åˆ«', 3, '')
-INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (17, 'æ–°é—»ç®¡ç†', 3, '')
-INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (18, 'å“ç‰Œç®¡ç†', 3, '')
-INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (19, 'ç±»åˆ«ç®¡ç†', 3, '')
-INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (20, 'å•†å“ç®¡ç†', 3, '')
-INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (21, 'å¢åŠ å•†å“', 4, '')
-INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (22, 'ä¿®æ”¹å•†å“', 4, '')
-INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (23, 'åˆ é™¤å•†å“', 4, '')
-INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (24, 'å…¶ä»–æŠ€æœ¯ä»£ç ', 3, '')
-INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (25, 'å•†å“ç±»åˆ«ç¼–è¾‘', 4, '')
-INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (26, 'å•†å“ç±»åˆ«åˆ é™¤', 4, '')
-INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (27, 'å•†å“ç±»åˆ«æŸ¥è¯¢', 4, '')
-INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (28, 'å•†å“ç±»åˆ«å¢åŠ ', 4, '')
-INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (29, 'å•†å“æŸ¥è¯¢', 4, '')
+INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (1, 'ÕÊ»§¹ÜÀí', 1, 'Accounts/UserAdmin.aspx')
+INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (2, '²Ëµ¥¹ÜÀí', 1, '')
+INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (3, 'ÓÃ»§¹ÜÀí', 1, 'Accounts/UserAdmin.aspx')
+INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (4, 'È¨ÏŞ½ÇÉ«¹ÜÀí', 1, 'Accounts/RoleAdmin.aspx')
+INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (5, 'ÏµÍ³ÈÕÖ¾¹ÜÀí', 1, '')
+INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (6, 'ÏµÍ³¹ÜÀí²Ëµ¥ÏÔÊ¾', 3, '')
+INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (7, 'ĞÂÎÅÀà±ğÔö¼Ó', 2, '')
+INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (8, 'ĞÂÎÅÀà±ğĞŞ¸Ä', 2, '')
+INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (9, 'ĞÂÎÅÀà±ğÉ¾³ı', 2, '')
+INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (10, 'ĞÂÎÅÀà±ğ²éÑ¯', 2, '')
+INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (11, 'ĞÂÎÅÔö¼Ó', 2, '')
+INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (12, 'ĞÂÎÅĞŞ¸Ä', 2, '')
+INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (13, 'ĞÂÎÅÉ¾³ı', 2, '')
+INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (14, 'ĞÂÎÅ²éÑ¯', 2, '')
+INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (15, 'ÒôÀÖ¹ÜÀí', 2, 'Music/MusicTitle.aspx')
+INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (16, 'ĞÂÎÅÀà±ğ', 3, '')
+INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (17, 'ĞÂÎÅ¹ÜÀí', 3, '')
+INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (18, 'Æ·ÅÆ¹ÜÀí', 3, '')
+INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (19, 'Àà±ğ¹ÜÀí', 3, '')
+INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (20, 'ÉÌÆ·¹ÜÀí', 3, '')
+INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (21, 'Ôö¼ÓÉÌÆ·', 4, '')
+INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (22, 'ĞŞ¸ÄÉÌÆ·', 4, '')
+INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (23, 'É¾³ıÉÌÆ·', 4, '')
+INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (24, 'ÆäËû¼¼Êõ´úÂë', 3, '')
+INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (25, 'ÉÌÆ·Àà±ğ±à¼­', 4, '')
+INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (26, 'ÉÌÆ·Àà±ğÉ¾³ı', 4, '')
+INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (27, 'ÉÌÆ·Àà±ğ²éÑ¯', 4, '')
+INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (28, 'ÉÌÆ·Àà±ğÔö¼Ó', 4, '')
+INSERT [Accounts_Permissions] ([PermissionID], [Description], [CategoryID], [Url]) VALUES (29, 'ÉÌÆ·²éÑ¯', 4, '')
 SET identity_insert [Accounts_Permissions] off
 GO
 /* Data for table Accounts_RolePermissions */
@@ -270,10 +260,10 @@ INSERT [Accounts_RolePermissions] ([RoleID], [PermissionID]) VALUES (3, 11)
 /* Data for table Accounts_Roles */
 SET identity_insert [Accounts_Roles] on
 
-INSERT [Accounts_Roles] ([RoleID], [Description]) VALUES (1, 'ç³»ç»Ÿç®¡ç†å‘˜')
-INSERT [Accounts_Roles] ([RoleID], [Description]) VALUES (2, 'æ™®é€šç”¨æˆ·')
-INSERT [Accounts_Roles] ([RoleID], [Description]) VALUES (3, 'æ–°é—»ç¼–è¾‘')
-INSERT [Accounts_Roles] ([RoleID], [Description]) VALUES (4, 'å•†å“ç¼–è¾‘')
+INSERT [Accounts_Roles] ([RoleID], [Description]) VALUES (1, 'ÏµÍ³¹ÜÀíÔ±')
+INSERT [Accounts_Roles] ([RoleID], [Description]) VALUES (2, 'ÆÕÍ¨ÓÃ»§')
+INSERT [Accounts_Roles] ([RoleID], [Description]) VALUES (3, 'ĞÂÎÅ±à¼­')
+INSERT [Accounts_Roles] ([RoleID], [Description]) VALUES (4, 'ÉÌÆ·±à¼­')
 SET identity_insert [Accounts_Roles] off
 GO
 /* Data for table Accounts_UserRoles */
@@ -283,9 +273,9 @@ INSERT [Accounts_UserRoles] ([UserID], [RoleID]) VALUES (2, 1)
 /* Data for table Accounts_Users */
 SET identity_insert [Accounts_Users] on
 
-INSERT [Accounts_Users] ([UserID], [UserName], [Password], [TrueName], [Sex], [Phone], [Email], [EmployeeID], [DepartmentID], [Activity], [UserType], [Style]) VALUES (1, 'admin', 0xE91FE173F59B63D62A934CE1A010F2B114C1F3, 'Maticsoft', 'ç”·', '123456', 'admin@herosoft.com', 0, '-1', 1, 'AA', 1)
-INSERT [Accounts_Users] ([UserID], [UserName], [Password], [TrueName], [Sex], [Phone], [Email], [EmployeeID], [DepartmentID], [Activity], [UserType], [Style]) VALUES (2, 'user', 0xE91FE173F59B63D62A934CE1A010F2B114C1F3, 'æ™®é€šç”¨æˆ·', 'ç”·', '1232456', 'user@maticsoft.com', 0, '-1', 1, 'AA', 1)
-INSERT [Accounts_Users] ([UserID], [UserName], [Password], [TrueName], [Sex], [Phone], [Email], [EmployeeID], [DepartmentID], [Activity], [UserType], [Style]) VALUES (3, 'yangfan', 0x6ED5833CF35286EBF8662B7B5949F0D742BBEC3F, 'yangfan', 'ç”·', '', '', 0, '-1', 1, 'AA', 1)
+INSERT [Accounts_Users] ([UserID], [UserName], [Password], [TrueName], [Sex], [Phone], [Email], [EmployeeID], [DepartmentID], [Activity], [UserType], [Style]) VALUES (1, 'admin', 0xE91FE173F59B63D62A934CE1A010F2B114C1F3, 'Maticsoft', 'ÄĞ', '123456', 'admin@herosoft.com', 0, '-1', 1, 'AA', 1)
+INSERT [Accounts_Users] ([UserID], [UserName], [Password], [TrueName], [Sex], [Phone], [Email], [EmployeeID], [DepartmentID], [Activity], [UserType], [Style]) VALUES (2, 'user', 0xE91FE173F59B63D62A934CE1A010F2B114C1F3, 'ÆÕÍ¨ÓÃ»§', 'ÄĞ', '1232456', 'user@maticsoft.com', 0, '-1', 1, 'AA', 1)
+INSERT [Accounts_Users] ([UserID], [UserName], [Password], [TrueName], [Sex], [Phone], [Email], [EmployeeID], [DepartmentID], [Activity], [UserType], [Style]) VALUES (3, 'yangfan', 0x6ED5833CF35286EBF8662B7B5949F0D742BBEC3F, 'yangfan', 'ÄĞ', '', '', 0, '-1', 1, 'AA', 1)
 SET identity_insert [Accounts_Users] off
 GO
 /* Data for table comment */
@@ -1788,203 +1778,6 @@ GO
 SET ANSI_NULLS ON 
 GO
 
-/****** Object:  Stored Procedure dbo.sp_alterdiagram    Script Date: 2009-10-7 22:44:37 ******/
-
-	CREATE PROCEDURE dbo.sp_alterdiagram
-	(
-		@diagramname 	sysname,
-		@owner_id	int	= null,
-		@version 	int,
-		@definition 	varbinary(max)
-	)
-	WITH EXECUTE AS 'dbo'
-	AS
-	BEGIN
-		set nocount on
-	
-		declare @theId 			int
-		declare @retval 		int
-		declare @IsDbo 			int
-		
-		declare @UIDFound 		int
-		declare @DiagId			int
-		declare @ShouldChangeUID	int
-	
-		if(@diagramname is null)
-		begin
-			RAISERROR ('Invalid ARG', 16, 1)
-			return -1
-		end
-	
-		execute as caller;
-		select @theId = DATABASE_PRINCIPAL_ID();	 
-		select @IsDbo = IS_MEMBER(N'db_owner'); 
-		if(@owner_id is null)
-			select @owner_id = @theId;
-		revert;
-	
-		select @ShouldChangeUID = 0
-		select @DiagId = diagram_id, @UIDFound = principal_id from dbo.sysdiagrams where principal_id = @owner_id and name = @diagramname 
-		
-		if(@DiagId IS NULL or (@IsDbo = 0 and @theId <> @UIDFound))
-		begin
-			RAISERROR ('Diagram does not exist or you do not have permission.', 16, 1);
-			return -3
-		end
-	
-		if(@IsDbo <> 0)
-		begin
-			if(@UIDFound is null or USER_NAME(@UIDFound) is null) -- invalid principal_id
-			begin
-				select @ShouldChangeUID = 1 ;
-			end
-		end
-
-		-- update dds data			
-		update dbo.sysdiagrams set definition = @definition where diagram_id = @DiagId ;
-
-		-- change owner
-		if(@ShouldChangeUID = 1)
-			update dbo.sysdiagrams set principal_id = @theId where diagram_id = @DiagId ;
-
-		-- update dds version
-		if(@version is not null)
-			update dbo.sysdiagrams set version = @version where diagram_id = @DiagId ;
-
-		return 0
-	END
-	
-GO
-
-SET QUOTED_IDENTIFIER OFF 
-GO
-SET ANSI_NULLS ON 
-GO
-
-SET QUOTED_IDENTIFIER ON 
-GO
-SET ANSI_NULLS ON 
-GO
-
-/****** Object:  Stored Procedure dbo.sp_creatediagram    Script Date: 2009-10-7 22:44:38 ******/
-
-	CREATE PROCEDURE dbo.sp_creatediagram
-	(
-		@diagramname 	sysname,
-		@owner_id		int	= null, 	
-		@version 		int,
-		@definition 	varbinary(max)
-	)
-	WITH EXECUTE AS 'dbo'
-	AS
-	BEGIN
-		set nocount on
-	
-		declare @theId int
-		declare @retval int
-		declare @IsDbo	int
-		declare @userName sysname
-		if(@version is null or @diagramname is null)
-		begin
-			RAISERROR (N'E_INVALIDARG', 16, 1);
-			return -1
-		end
-	
-		execute as caller;
-		select @theId = DATABASE_PRINCIPAL_ID(); 
-		select @IsDbo = IS_MEMBER(N'db_owner');
-		revert; 
-		
-		if @owner_id is null
-		begin
-			select @owner_id = @theId;
-		end
-		else
-		begin
-			if @theId <> @owner_id
-			begin
-				if @IsDbo = 0
-				begin
-					RAISERROR (N'E_INVALIDARG', 16, 1);
-					return -1
-				end
-				select @theId = @owner_id
-			end
-		end
-		-- next 2 line only for test, will be removed after define name unique
-		if EXISTS(select diagram_id from dbo.sysdiagrams where principal_id = @theId and name = @diagramname)
-		begin
-			RAISERROR ('The name is already used.', 16, 1);
-			return -2
-		end
-	
-		insert into dbo.sysdiagrams(name, principal_id , version, definition)
-				VALUES(@diagramname, @theId, @version, @definition) ;
-		
-		select @retval = @@IDENTITY 
-		return @retval
-	END
-	
-GO
-
-SET QUOTED_IDENTIFIER OFF 
-GO
-SET ANSI_NULLS ON 
-GO
-
-SET QUOTED_IDENTIFIER ON 
-GO
-SET ANSI_NULLS ON 
-GO
-
-/****** Object:  Stored Procedure dbo.sp_dropdiagram    Script Date: 2009-10-7 22:44:38 ******/
-
-	CREATE PROCEDURE dbo.sp_dropdiagram
-	(
-		@diagramname 	sysname,
-		@owner_id	int	= null
-	)
-	WITH EXECUTE AS 'dbo'
-	AS
-	BEGIN
-		set nocount on
-		declare @theId 			int
-		declare @IsDbo 			int
-		
-		declare @UIDFound 		int
-		declare @DiagId			int
-	
-		if(@diagramname is null)
-		begin
-			RAISERROR ('Invalid value', 16, 1);
-			return -1
-		end
-	
-		EXECUTE AS CALLER;
-		select @theId = DATABASE_PRINCIPAL_ID();
-		select @IsDbo = IS_MEMBER(N'db_owner'); 
-		if(@owner_id is null)
-			select @owner_id = @theId;
-		REVERT; 
-		
-		select @DiagId = diagram_id, @UIDFound = principal_id from dbo.sysdiagrams where principal_id = @owner_id and name = @diagramname 
-		if(@DiagId IS NULL or (@IsDbo = 0 and @UIDFound <> @theId))
-		begin
-			RAISERROR ('Diagram does not exist or you do not have permission.', 16, 1)
-			return -3
-		end
-	
-		delete from dbo.sysdiagrams where diagram_id = @DiagId;
-	
-		return 0;
-	END
-	
-GO
-
-SET QUOTED_IDENTIFIER OFF 
-GO
-SET ANSI_NULLS ON 
-GO
 
 SET QUOTED_IDENTIFIER ON 
 GO
@@ -2032,18 +1825,18 @@ GO
 /****** Object:  Stored Procedure dbo.sp_GetRecordByPage    Script Date: 2009-10-7 22:44:38 ******/
 
 CREATE PROCEDURE [dbo].[sp_GetRecordByPage]
-    @tblName      varchar(255),       -- è¡¨å
-    @fldName      varchar(255),       -- å­—æ®µå
-    @PageSize     int = 10,           -- é¡µå°ºå¯¸
-    @PageIndex    int = 1,            -- é¡µç 
-    @IsReCount    bit = 0,            -- è¿”å›è®°å½•æ€»æ•°, é 0 å€¼åˆ™è¿”å›
-    @OrderType    bit = 0,            -- è®¾ç½®æ’åºç±»å‹, é 0 å€¼åˆ™é™åº
-    @strWhere     varchar(1000) = ''  -- æŸ¥è¯¢æ¡ä»¶ (æ³¨æ„: ä¸è¦åŠ  where)
+    @tblName      varchar(255),       -- ±íÃû
+    @fldName      varchar(255),       -- ×Ö¶ÎÃû
+    @PageSize     int = 10,           -- Ò³³ß´ç
+    @PageIndex    int = 1,            -- Ò³Âë
+    @IsReCount    bit = 0,            -- ·µ»Ø¼ÇÂ¼×ÜÊı, ·Ç 0 ÖµÔò·µ»Ø
+    @OrderType    bit = 0,            -- ÉèÖÃÅÅĞòÀàĞÍ, ·Ç 0 ÖµÔò½µĞò
+    @strWhere     varchar(1000) = ''  -- ²éÑ¯Ìõ¼ş (×¢Òâ: ²»Òª¼Ó where)
 AS
 
-declare @strSQL   varchar(6000)       -- ä¸»è¯­å¥
-declare @strTmp   varchar(100)        -- ä¸´æ—¶å˜é‡
-declare @strOrder varchar(400)        -- æ’åºç±»å‹
+declare @strSQL   varchar(6000)       -- Ö÷Óï¾ä
+declare @strTmp   varchar(100)        -- ÁÙÊ±±äÁ¿
+declare @strOrder varchar(400)        -- ÅÅĞòÀàĞÍ
 
 if @OrderType != 0
 begin
@@ -2106,20 +1899,20 @@ GO
 
 CREATE PROCEDURE [dbo].[sp_GetRecordByPageOrder]
  
- @tblName varchar(255),   -- è¡¨å 
- @fldName varchar(255),   -- æ˜¾ç¤ºå­—æ®µå 
- @OrderfldName varchar(255),  -- æ’åºå­—æ®µå 
- @StatfldName varchar(255),  -- ç»Ÿè®¡å­—æ®µå 
- @PageSize int = 10,   -- é¡µå°ºå¯¸ 
- @PageIndex int = 1,   -- é¡µç  
- @IsReCount bit = 0,   -- è¿”å›è®°å½•æ€»æ•°, é 0 å€¼åˆ™è¿”å› 
- @OrderType bit = 0,   -- è®¾ç½®æ’åºç±»å‹, é 0 å€¼åˆ™é™åº 
- @strWhere varchar(1000) = ''  -- æŸ¥è¯¢æ¡ä»¶ (æ³¨æ„: ä¸è¦åŠ  where) 
+ @tblName varchar(255),   -- ±íÃû 
+ @fldName varchar(255),   -- ÏÔÊ¾×Ö¶ÎÃû 
+ @OrderfldName varchar(255),  -- ÅÅĞò×Ö¶ÎÃû 
+ @StatfldName varchar(255),  -- Í³¼Æ×Ö¶ÎÃû 
+ @PageSize int = 10,   -- Ò³³ß´ç 
+ @PageIndex int = 1,   -- Ò³Âë 
+ @IsReCount bit = 0,   -- ·µ»Ø¼ÇÂ¼×ÜÊı, ·Ç 0 ÖµÔò·µ»Ø 
+ @OrderType bit = 0,   -- ÉèÖÃÅÅĞòÀàĞÍ, ·Ç 0 ÖµÔò½µĞò 
+ @strWhere varchar(1000) = ''  -- ²éÑ¯Ìõ¼ş (×¢Òâ: ²»Òª¼Ó where) 
 AS 
 
- declare @strSQL varchar(6000)  -- ä¸»è¯­å¥ 
- declare @strTmp varchar(100)   -- ä¸´æ—¶å˜é‡ 
- declare @strOrder varchar(400)  -- æ’åºç±»å‹ 
+ declare @strSQL varchar(6000)  -- Ö÷Óï¾ä 
+ declare @strTmp varchar(100)   -- ÁÙÊ±±äÁ¿ 
+ declare @strOrder varchar(400)  -- ÅÅĞòÀàĞÍ 
 
 if @OrderType != 0 
  begin 
@@ -2219,103 +2012,6 @@ GO
 SET ANSI_NULLS ON 
 GO
 
-SET QUOTED_IDENTIFIER ON 
-GO
-SET ANSI_NULLS ON 
-GO
-
-/****** Object:  Stored Procedure dbo.sp_helpdiagramdefinition    Script Date: 2009-10-7 22:44:38 ******/
-
-	CREATE PROCEDURE dbo.sp_helpdiagramdefinition
-	(
-		@diagramname 	sysname,
-		@owner_id	int	= null 		
-	)
-	WITH EXECUTE AS N'dbo'
-	AS
-	BEGIN
-		set nocount on
-
-		declare @theId 		int
-		declare @IsDbo 		int
-		declare @DiagId		int
-		declare @UIDFound	int
-	
-		if(@diagramname is null)
-		begin
-			RAISERROR (N'E_INVALIDARG', 16, 1);
-			return -1
-		end
-	
-		execute as caller;
-		select @theId = DATABASE_PRINCIPAL_ID();
-		select @IsDbo = IS_MEMBER(N'db_owner');
-		if(@owner_id is null)
-			select @owner_id = @theId;
-		revert; 
-	
-		select @DiagId = diagram_id, @UIDFound = principal_id from dbo.sysdiagrams where principal_id = @owner_id and name = @diagramname;
-		if(@DiagId IS NULL or (@IsDbo = 0 and @UIDFound <> @theId ))
-		begin
-			RAISERROR ('Diagram does not exist or you do not have permission.', 16, 1);
-			return -3
-		end
-
-		select version, definition FROM dbo.sysdiagrams where diagram_id = @DiagId ; 
-		return 0
-	END
-	
-GO
-
-SET QUOTED_IDENTIFIER OFF 
-GO
-SET ANSI_NULLS ON 
-GO
-
-SET QUOTED_IDENTIFIER ON 
-GO
-SET ANSI_NULLS ON 
-GO
-
-/****** Object:  Stored Procedure dbo.sp_helpdiagrams    Script Date: 2009-10-7 22:44:38 ******/
-
-	CREATE PROCEDURE dbo.sp_helpdiagrams
-	(
-		@diagramname sysname = NULL,
-		@owner_id int = NULL
-	)
-	WITH EXECUTE AS N'dbo'
-	AS
-	BEGIN
-		DECLARE @user sysname
-		DECLARE @dboLogin bit
-		EXECUTE AS CALLER;
-			SET @user = USER_NAME();
-			SET @dboLogin = CONVERT(bit,IS_MEMBER('db_owner'));
-		REVERT;
-		SELECT
-			[Database] = DB_NAME(),
-			[Name] = name,
-			[ID] = diagram_id,
-			[Owner] = USER_NAME(principal_id),
-			[OwnerID] = principal_id
-		FROM
-			sysdiagrams
-		WHERE
-			(@dboLogin = 1 OR USER_NAME(principal_id) = @user) AND
-			(@diagramname IS NULL OR name = @diagramname) AND
-			(@owner_id IS NULL OR principal_id = @owner_id)
-		ORDER BY
-			4, 5, 1
-	END
-	
-GO
-
-SET QUOTED_IDENTIFIER OFF 
-GO
-SET ANSI_NULLS ON 
-GO
-
 SET QUOTED_IDENTIFIER OFF 
 GO
 SET ANSI_NULLS ON 
@@ -2351,8 +2047,8 @@ DECLARE   @type   varchar(100)
 DECLARE   @prec   int 
 
 /*Set   sorting   variables.*/ 
-/*CHARINDEX( 'DESC ',@Sort)è¿”å›DESCåœ¨@Sortè¡¨è¾¾å¼ä¸­çš„èµ·ç‚¹ä½ç½®ï¼Œè¿”å›int*/ 
-/*å¦‚æœ   @Sortä¸­å‡ºç° 'DESC 'åˆ™ç”¨ç©ºå­—ç¬¦æ›¿æ¢æ‰å¹¶ä½¿@operator= ' <= '*/ 
+/*CHARINDEX( 'DESC ',@Sort)·µ»ØDESCÔÚ@Sort±í´ïÊ½ÖĞµÄÆğµãÎ»ÖÃ£¬·µ»Øint*/ 
+/*Èç¹û   @SortÖĞ³öÏÖ 'DESC 'ÔòÓÃ¿Õ×Ö·ûÌæ»»µô²¢Ê¹@operator= ' <= '*/ 
 IF   CHARINDEX( 'DESC ',@Sort)> 0   
 BEGIN 
 SET   @strSortColumn   =   REPLACE(@Sort,   'DESC ',   ' ') 
@@ -2365,7 +2061,7 @@ SET   @strSortColumn   =   REPLACE(@Sort,   'ASC ',   ' ')
 SET   @operator   =   '> = ' 
 END 
 
-/*   è¿”å›è¡¨è¾¾å¼ä¸­ç‚¹å·çš„å³è¾¹,å³å­—æ®µå*/ 
+/*   ·µ»Ø±í´ïÊ½ÖĞµãºÅµÄÓÒ±ß,¼´×Ö¶ÎÃû*/ 
 IF   CHARINDEX( '. ',   @strSortColumn)   >   0 
 BEGIN 
 SET   @SortTable   =   SUBSTRING(@strSortColumn,   0,   CHARINDEX( '. ',@strSortColumn)) 
@@ -2378,9 +2074,9 @@ SET   @SortName   =   @strSortColumn
 END 
 
 /* 
-t   =   systypesè¡¨   
-c   =   syscolumnsè¡¨   
-o   =   sysobjectsè¡¨   
+t   =   systypes±í   
+c   =   syscolumns±í   
+o   =   sysobjects±í   
 sysobjects   o   =   sysobjects   as   o   
 */ 
 SELECT   @type=t.name,   @prec=c.prec 
@@ -2403,13 +2099,13 @@ IF   @PageNumber   <   1
 SET   @PageNumber   =   1 
 
 /*Set   paging   variables.*/ 
-/*å°†@strPageSize   è½¬åŒ–ä¸ºå­—ç¬¦å‹*/ 
-/*CAST()   é€šè¿‡è¡¨è¾¾å¼è½¬åŒ–æ•°æ®ç±»å‹è‡ªå®šä¹‰è½¬åŒ–*/ 
+/*½«@strPageSize   ×ª»¯Îª×Ö·ûĞÍ*/ 
+/*CAST()   Í¨¹ı±í´ïÊ½×ª»¯Êı¾İÀàĞÍ×Ô¶¨Òå×ª»¯*/ 
 SET   @strPageSize   =   CAST(@PageSize   AS   varchar(50)) 
 SET   @strStartRow   =   CAST(((@PageNumber   -   1)*@PageSize   +   1)   AS   varchar(50)) 
 
 /*Set   filter   &   group   variables.*/ 
-/*æ¡ä»¶å¦‚æœä¸ºç©ºåŠ whereï¼Œå¦åˆ™åŠ and*/ 
+/*Ìõ¼şÈç¹ûÎª¿Õ¼Ówhere£¬·ñÔò¼Óand*/ 
 IF   @Filter   IS   NOT   NULL   AND   @Filter   !=   ' ' 
 BEGIN 
 SET   @strFilter   =   '   WHERE   '   +   @Filter   +   '   ' 
@@ -2448,153 +2144,6 @@ GO
 SET ANSI_NULLS ON 
 GO
 
-SET QUOTED_IDENTIFIER ON 
-GO
-SET ANSI_NULLS ON 
-GO
-
-/****** Object:  Stored Procedure dbo.sp_renamediagram    Script Date: 2009-10-7 22:44:38 ******/
-
-	CREATE PROCEDURE dbo.sp_renamediagram
-	(
-		@diagramname 		sysname,
-		@owner_id		int	= null,
-		@new_diagramname	sysname
-	
-	)
-	WITH EXECUTE AS 'dbo'
-	AS
-	BEGIN
-		set nocount on
-		declare @theId 			int
-		declare @IsDbo 			int
-		
-		declare @UIDFound 		int
-		declare @DiagId			int
-		declare @DiagIdTarg		int
-		declare @u_name			sysname
-		if((@diagramname is null) or (@new_diagramname is null))
-		begin
-			RAISERROR ('Invalid value', 16, 1);
-			return -1
-		end
-	
-		EXECUTE AS CALLER;
-		select @theId = DATABASE_PRINCIPAL_ID();
-		select @IsDbo = IS_MEMBER(N'db_owner'); 
-		if(@owner_id is null)
-			select @owner_id = @theId;
-		REVERT;
-	
-		select @u_name = USER_NAME(@owner_id)
-	
-		select @DiagId = diagram_id, @UIDFound = principal_id from dbo.sysdiagrams where principal_id = @owner_id and name = @diagramname 
-		if(@DiagId IS NULL or (@IsDbo = 0 and @UIDFound <> @theId))
-		begin
-			RAISERROR ('Diagram does not exist or you do not have permission.', 16, 1)
-			return -3
-		end
-	
-		-- if((@u_name is not null) and (@new_diagramname = @diagramname))	-- nothing will change
-		--	return 0;
-	
-		if(@u_name is null)
-			select @DiagIdTarg = diagram_id from dbo.sysdiagrams where principal_id = @theId and name = @new_diagramname
-		else
-			select @DiagIdTarg = diagram_id from dbo.sysdiagrams where principal_id = @owner_id and name = @new_diagramname
-	
-		if((@DiagIdTarg is not null) and  @DiagId <> @DiagIdTarg)
-		begin
-			RAISERROR ('The name is already used.', 16, 1);
-			return -2
-		end		
-	
-		if(@u_name is null)
-			update dbo.sysdiagrams set [name] = @new_diagramname, principal_id = @theId where diagram_id = @DiagId
-		else
-			update dbo.sysdiagrams set [name] = @new_diagramname where diagram_id = @DiagId
-		return 0
-	END
-	
-GO
-
-SET QUOTED_IDENTIFIER OFF 
-GO
-SET ANSI_NULLS ON 
-GO
-
-SET QUOTED_IDENTIFIER ON 
-GO
-SET ANSI_NULLS ON 
-GO
-
-/****** Object:  Stored Procedure dbo.sp_upgraddiagrams    Script Date: 2009-10-7 22:44:38 ******/
-
-	CREATE PROCEDURE dbo.sp_upgraddiagrams
-	AS
-	BEGIN
-		IF OBJECT_ID(N'dbo.sysdiagrams') IS NOT NULL
-			return 0;
-	
-		CREATE TABLE dbo.sysdiagrams
-		(
-			name sysname NOT NULL,
-			principal_id int NOT NULL,	-- we may change it to varbinary(85)
-			diagram_id int PRIMARY KEY IDENTITY,
-			version int,
-	
-			definition varbinary(max)
-			CONSTRAINT UK_principal_name UNIQUE
-			(
-				principal_id,
-				name
-			)
-		);
-
-
-		/* Add this if we need to have some form of extended properties for diagrams */
-		/*
-		IF OBJECT_ID(N'dbo.sysdiagram_properties') IS NULL
-		BEGIN
-			CREATE TABLE dbo.sysdiagram_properties
-			(
-				diagram_id int,
-				name sysname,
-				value varbinary(max) NOT NULL
-			)
-		END
-		*/
-
-		IF OBJECT_ID(N'dbo.dtproperties') IS NOT NULL
-		begin
-			insert into dbo.sysdiagrams
-			(
-				[name],
-				[principal_id],
-				[version],
-				[definition]
-			)
-			select	 
-				convert(sysname, dgnm.[uvalue]),
-				DATABASE_PRINCIPAL_ID(N'dbo'),			-- will change to the sid of sa
-				0,							-- zero for old format, dgdef.[version],
-				dgdef.[lvalue]
-			from dbo.[dtproperties] dgnm
-				inner join dbo.[dtproperties] dggd on dggd.[property] = 'DtgSchemaGUID' and dggd.[objectid] = dgnm.[objectid]	
-				inner join dbo.[dtproperties] dgdef on dgdef.[property] = 'DtgSchemaDATA' and dgdef.[objectid] = dgnm.[objectid]
-				
-			where dgnm.[property] = 'DtgSchemaNAME' and dggd.[uvalue] like N'_EA3E6268-D998-11CE-9454-00AA00A3F36E_' 
-			return 2;
-		end
-		return 1;
-	END
-	
-GO
-
-SET QUOTED_IDENTIFIER OFF 
-GO
-SET ANSI_NULLS ON 
-GO
 
 SET QUOTED_IDENTIFIER ON 
 GO
