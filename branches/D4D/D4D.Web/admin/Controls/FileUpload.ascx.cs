@@ -14,7 +14,7 @@ namespace D4D.Web.admin.Controls
     {
         private static readonly ILog log = LogManager.GetLogger("d4d");
 
-        public string UploadHttpFilePath
+        public string UploadResult
         {
             get
             {
