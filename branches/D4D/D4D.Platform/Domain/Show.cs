@@ -54,6 +54,12 @@ namespace D4D.Platform.Domain
             set;
         }
 
+        public DateTime EndDate
+        {
+            get;
+            set;
+        }
+
         public string ShowPlace
         {
             get;
