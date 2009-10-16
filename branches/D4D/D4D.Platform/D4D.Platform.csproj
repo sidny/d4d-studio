@@ -66,6 +66,7 @@
     <Compile Include="Domain\UserLogin.cs" />
     <Compile Include="Persistence\AlbumDao.cs" />
     <Compile Include="Persistence\CommentDao.cs" />
+    <Compile Include="Persistence\BandInfoDao.cs" />
     <Compile Include="Persistence\MusicDao.cs" />
     <Compile Include="Persistence\NewsDao.cs" />
     <Compile Include="Persistence\ShowDao.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\AlbumProvider.cs" />
     <Compile Include="Providers\CommentProvider.cs" />
+    <Compile Include="Providers\BandInfoProvider.cs" />
     <Compile Include="Providers\MusicProvider.cs" />
     <Compile Include="Providers\NewsProvider.cs" />
     <Compile Include="Providers\ShowProvider.cs" />

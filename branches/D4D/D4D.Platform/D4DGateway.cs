@@ -64,6 +64,14 @@ namespace D4D.Platform
                 return UserProvider.Instance;
             }
         }
+
+        public static BandInfoProvider BandInfoProvider
+        {
+            get
+            {
+                return BandInfoProvider.Instance;
+            }
+        }
        
     }
 }
