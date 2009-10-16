@@ -19,7 +19,7 @@ BEGIN
 			   Info3,
 			   Remark
     FROM bandinfo With(nolock)
-    WHERE BandId>@MinIndex
+    WHERE BandId>=@MinIndex
  
 END
 GO
