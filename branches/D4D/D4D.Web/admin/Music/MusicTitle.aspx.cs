@@ -88,9 +88,12 @@ namespace D4D.Web.admin.Music
                 {
                    D4D.Platform.Domain.MusicTitle musicTitle = D4DGateway.MusicProvider.GetMusicTitle(id);
                    txtMusicId.Value = musicTitle.MusicId.ToString();
-                   txtLImage.Text = musicTitle.LImage;
-                   txtSImage.Text = musicTitle.SImage;
-                   txtStatus.Text = ((int)musicTitle.Status).ToString();
+                   fuLImage.UploadResult = musicTitle.LImage;
+                   fuSImage.UploadResult = musicTitle.SImage;
+                   ddlPublishStatus.SelectedValue = ((int)musicTitle.Status).ToString();
+                   //txtLImage.Text = musicTitle.LImage;
+                   //txtSImage.Text = musicTitle.SImage;
+                   //txtStatus.Text = ((int)musicTitle.Status).ToString();
                    txtTitle.Text = musicTitle.Title;
                    txtBody.Text = musicTitle.Body;
                    bandIdList.SelectedValue = musicTitle.BandId.ToString();
@@ -150,8 +153,11 @@ namespace D4D.Web.admin.Music
             D4D.Platform.Domain.MusicTitle m = new D4D.Platform.Domain.MusicTitle();
             m.Title = txtTitle.Text;
             m.Body = txtBody.Text;
-            m.SImage = txtSImage.Text;
-            m.LImage = txtLImage.Text;
+            //m.SImage = txtSImage.Text;
+            //m.LImage = txtLImage.Text;
+
+            m.SImage = fuSImage.UploadResult;
+            m.LImage = fuLImage.UploadResult;
             int musicId = 0;
             int.TryParse(txtMusicId.Value, out musicId);
             m.MusicId = musicId;
@@ -164,7 +170,8 @@ namespace D4D.Web.admin.Music
              m.PublishDate = DateTime.Now;
 
               int status = 1;
-             int.TryParse(txtStatus.Text, out status);
+             //int.TryParse(txtStatus.Text, out status);
+              int.TryParse(ddlPublishStatus.SelectedValue, out status);
              m.Status = (PublishStatus)status;
             int result =  D4DGateway.MusicProvider.SetMusicTitle(m);
             addPanel.Visible = false;

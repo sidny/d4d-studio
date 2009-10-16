@@ -68,31 +68,31 @@ namespace D4D.Web.admin.Music {
         protected global::System.Web.UI.WebControls.DropDownList bandIdList;
         
         /// <summary>
-        /// txtStatus control.
+        /// ddlPublishStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtStatus;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPublishStatus;
         
         /// <summary>
-        /// txtSImage control.
+        /// fuSImage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSImage;
+        protected global::D4D.Web.admin.Controls.FileUpload fuSImage;
         
         /// <summary>
-        /// txtLImage control.
+        /// fuLImage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLImage;
+        protected global::D4D.Web.admin.Controls.FileUpload fuLImage;
         
         /// <summary>
         /// txtAddUserId control.
