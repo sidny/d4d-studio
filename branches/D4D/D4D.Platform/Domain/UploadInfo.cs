@@ -80,7 +80,7 @@ namespace D4D.Platform.Domain
         {
             get
             {
-                return UploadRootHttpPath + fileGuidName.ToByteArray() + FileExtension;
+                return UploadRootHttpPath + FileGuidName.ToString() + FileExtension;
             }
         }
     }
