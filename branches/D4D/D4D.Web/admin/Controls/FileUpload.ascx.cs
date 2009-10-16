@@ -20,7 +20,16 @@ namespace D4D.Web.admin.Controls
             {
                 return txtUploadResult.Text;
             }
+            set
+            {
+                txtUploadResult.Text = value;
+                fileUpload.Visible = false;
+                txtUploadResult.Visible = true;
+                btnShowResult.Text = "通过选择上传";
+            }
         }
+
+        
        
         protected void Page_Load(object sender, EventArgs e)
         {
