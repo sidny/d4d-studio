@@ -27,8 +27,7 @@
                     <tr align="center">
                       <th align="center" style="width: 30px;">编号</th>
                       <th>Tag</th>
-                      <th>歌手</th>
-                      <th style="width: 30px;">封面小图</th>
+                    
                       <th>发布状态</th>
                       <th>添加人ID</th>
                       <th>添加日期</th>
@@ -82,3 +81,7 @@
 </script>
 </form>
 </asp:Content>
+<script runat="server">
+	
+
+</script>
