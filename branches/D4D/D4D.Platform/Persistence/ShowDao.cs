@@ -25,6 +25,7 @@ namespace D4D.Platform.Persistence
                  parameters.AddWithValue("@LImage", m.LImage);
                  parameters.AddWithValue("@BandId", m.BandId);
                  parameters.AddWithValue("@ShowDate", m.ShowDate);
+                 parameters.AddWithValue("@EndDate", m.EndDate);
                  parameters.AddWithValue("@ShowPlace", m.ShowPlace);
                  parameters.AddWithValue("@AddUserId", m.AddUserID);
                  parameters.AddWithValue("@Status", (int)(m.Status));
@@ -70,6 +71,7 @@ namespace D4D.Platform.Persistence
                          m.AddUserID = record.GetInt32OrDefault(8, 0);
                          m.AddDate = record.GetDateTime(9);
                          m.Status = (PublishStatus)(record.GetInt32OrDefault(10, 0));
+                         m.EndDate = record.GetDateTime(11);
                      },
                      showId);
             }
@@ -90,7 +92,7 @@ namespace D4D.Platform.Persistence
             m.AddUserID = record.GetInt32OrDefault(8, 0);
             m.AddDate = record.GetDateTime(9);
             m.Status = (PublishStatus)(record.GetInt32OrDefault(10, 0));
-
+            m.EndDate = record.GetDateTime(11);
             list.Add(m);
         }
      

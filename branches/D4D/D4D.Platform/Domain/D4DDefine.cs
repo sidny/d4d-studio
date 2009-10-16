@@ -9,6 +9,8 @@ namespace D4D.Platform.Domain
     {
         public const string DBInstanceName = "d4d";
         public const string DEFAULT_PROFILEPATH = @"d:\sitefiles\profile\";
+        public const string DEFAULT_UPLOADROOTPATH = @"d:\sitefiles\upload\";
+        public const string DEFAULT_UPLOADROOTHTTPPATH = "http://www.showcitytimes.net/upload/";
     }
 
     public enum ObjectTypeDefine:int

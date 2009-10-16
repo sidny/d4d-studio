@@ -63,6 +63,7 @@
     <Compile Include="Domain\Show.cs" />
     <Compile Include="Domain\Tag.cs" />
     <Compile Include="Domain\TagRelation.cs" />
+    <Compile Include="Domain\UploadInfo.cs" />
     <Compile Include="Domain\UserLogin.cs" />
     <Compile Include="Persistence\AlbumDao.cs" />
     <Compile Include="Persistence\CommentDao.cs" />
