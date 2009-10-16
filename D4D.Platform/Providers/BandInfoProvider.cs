@@ -27,6 +27,10 @@ namespace D4D.Platform.Providers
             return BandInfoDao.SetBandInfo(info);
         }
 
+        public List<BandInfo> GetBandInfoList()
+        {
+            return BandInfoDao.GetAllBandInfo(0);
+        }
         public List<BandInfo> GetAllBandInfo(int minIndex)
         {
             return BandInfoDao.GetAllBandInfo(minIndex);
