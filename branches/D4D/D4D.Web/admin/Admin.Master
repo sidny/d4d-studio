@@ -17,5 +17,10 @@
 <asp:ContentPlaceHolder ID="ContentBody" runat="server">
         
 </asp:ContentPlaceHolder>
+<asp:Panel runat="server" ID="failPanel" Visible="false">
+    <script type="text/javascript">
+        top.location = "/admin/";
+    </script>
+</asp:Panel>
 </body>
 </html>

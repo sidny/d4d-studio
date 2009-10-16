@@ -23,6 +23,15 @@ namespace D4D.Web.admin.Music {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// addPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel addPanel;
+        
+        /// <summary>
         /// txtTitle control.
         /// </summary>
         /// <remarks>
@@ -30,6 +39,15 @@ namespace D4D.Web.admin.Music {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTitle;
+        
+        /// <summary>
+        /// txtMusicId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField txtMusicId;
         
         /// <summary>
         /// txtBody control.
@@ -41,13 +59,13 @@ namespace D4D.Web.admin.Music {
         protected global::System.Web.UI.WebControls.TextBox txtBody;
         
         /// <summary>
-        /// txtBandId control.
+        /// bandIdList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBandId;
+        protected global::System.Web.UI.WebControls.DropDownList bandIdList;
         
         /// <summary>
         /// txtStatus control.
@@ -93,6 +111,15 @@ namespace D4D.Web.admin.Music {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAdd;
+        
+        /// <summary>
+        /// listPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel listPanel;
         
         /// <summary>
         /// repMusicTitle control.
