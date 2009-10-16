@@ -27,9 +27,27 @@ namespace D4D.Platform.Providers
             return BandInfoDao.SetBandInfo(info);
         }
 
+        public List<BandInfo> GetBandInfoList(bool needCompany)
+        {
+             List<BandInfo> list =  BandInfoDao.GetAllBandInfo(0);
+
+             if (list == null)
+                 list = new List<BandInfo>();
+
+             if (needCompany)
+             {
+                 BandInfo bInfo = new BandInfo();
+                 bInfo.BandId = 0;
+                 bInfo.BandName = "¹«Ë¾";
+                 list.Add(bInfo);
+             }
+
+             return list;
+        }
+
         public List<BandInfo> GetBandInfoList()
         {
-            return BandInfoDao.GetAllBandInfo(0);
+            return GetBandInfoList(false);
         }
         public List<BandInfo> GetAllBandInfo(int minIndex)
         {
