@@ -11,7 +11,7 @@ namespace D4D.Web.admin.Upload
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Write(FileUpload1.UploadHttpFilePath);
+            Response.Write(FileUpload1.UploadResult);
         }
 
        
