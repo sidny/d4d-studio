@@ -22,7 +22,8 @@ BEGIN
 			   ShowPlace,
 			   AddUserId,
 			   AddDate,
-			  [Status]
+			  [Status],
+			  EndDate
     FROM shows With(nolock)
     WHERE ShowId =  @ShowId
  

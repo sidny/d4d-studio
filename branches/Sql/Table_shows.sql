@@ -1,7 +1,7 @@
 USE [d4d]
 GO
 
-/****** Object:  Table [dbo].[shows]    Script Date: 10/12/2009 23:58:00 ******/
+/****** Object:  Table [dbo].[shows]    Script Date: 10/15/2009 23:58:04 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -20,6 +20,7 @@ CREATE TABLE [dbo].[shows](
 	[AddUserId] [int] NULL,
 	[AddDate] [datetime] NULL,
 	[Status] [int] NULL,
+	[EndDate] [datetime] NULL,
  CONSTRAINT [PK_shows] PRIMARY KEY CLUSTERED 
 (
 	[ShowId] ASC
