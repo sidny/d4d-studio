@@ -64,7 +64,8 @@ BEGIN
 			   ShowPlace,
 			   AddUserId,
 			   AddDate,
-			  [Status]
+			  [Status],
+			  EndDate
 		FROM dbo.shows t WITH(NOLOCK)
 		INNER JOIN @Results r ON  (t.ShowId = r.Id)	
 		WHERE 

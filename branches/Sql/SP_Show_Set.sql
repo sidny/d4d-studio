@@ -15,6 +15,7 @@ CREATE PROCEDURE dbo.Show_Set
    @LImage AS NVARCHAR(1000),
    @BandId AS INT,
    @ShowDate AS DATETIME,
+   @EndDate AS DATETIME,
    @ShowPlace AS NVARCHAR(500),   
    @AddUserId AS INT,   
    @Status AS INT
@@ -34,7 +35,8 @@ BEGIN
 			   ShowPlace,
 			   AddUserId,
 			   AddDate,
-			  [Status]
+			  [Status],
+			  EndDate
 			   )
 		 VALUES
 			   (@Title
@@ -46,7 +48,8 @@ BEGIN
 			   ,@ShowPlace
 			   ,@AddUserId
 			   ,GETDATE()
-			   ,@Status
+			   ,@Status,
+			   @EndDate
 			 )
 		SET @ShowId = 	 @@IDENTITY 
    END
@@ -56,7 +59,7 @@ BEGIN
     SET  Title = @Title,Body=@Body,SImage= @SImage,
     LImage=@LImage,BandId=@BandId,ShowDate=@ShowDate,
     ShowPlace=@ShowPlace,AddUserId=@AddUserId,AddDate=GETDATE(),
-    [Status]=@Status
+    [Status]=@Status,EndDate=@EndDate
     WHERE ShowId =  @ShowId
    END
 	
