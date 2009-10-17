@@ -58,7 +58,7 @@ namespace Maticsoft.Web.Admin
             }
 
             #region ºÏ≤È—È÷§¬Î
-            if ((Session["CheckCode"] != null) || (Session["CheckCode"].ToString() != ""))
+            if ((Session["CheckCode"] != null) && (Session["CheckCode"].ToString() != ""))
             {
                 if (Session["CheckCode"].ToString().ToLower() != this.CheckCode.Value.ToLower())
                 {
