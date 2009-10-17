@@ -80,7 +80,7 @@
                 <ItemTemplate>
                     <tr align="center">
                       <td align="center" style="width: 30px;"><asp:Literal ID="litID" runat="server"></asp:Literal></td>
-                      <td><a href="songs.aspx?id=<asp:Literal ID="litID_1" runat="server"/>"><asp:Literal ID="litTitle" runat="server"></asp:Literal></a></td>
+                      <td><a href='songs.aspx?id=<asp:Literal ID="litID_1" runat="server"/>'><asp:Literal ID="litTitle" runat="server"></asp:Literal></a></td>
                       <td><asp:Literal ID="litBandId" runat="server"></asp:Literal></td>
                       <td style="width: 30px;"><a href='<asp:Literal ID="litLImage" runat="server"></asp:Literal>' target="_blank"><img src='<asp:Literal ID="litSImage" runat="server"></asp:Literal>' width="25" height="25" /></a>
                       </td>
@@ -118,7 +118,7 @@
                     num_display_entries: 10,
                     current_page: cur - 1,
                     num_edge_entries: 0,
-                    link_to:"musictitle.aspx?page=__id__",
+                    link_to:location.href.replace(/page=\d+/ig,"page=__id__"),
                     prev_text: "上一页",
                     next_text: "下一页",
                     callback: function(id) {
