@@ -227,13 +227,6 @@
     <Compile Include="admin\Music\MusicTitle.aspx.designer.cs">
       <DependentUpon>MusicTitle.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\Music\songs.aspx.cs">
-      <DependentUpon>songs.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="admin\Music\songs.aspx.designer.cs">
-      <DependentUpon>songs.aspx</DependentUpon>
-    </Compile>
     <Compile Include="admin\ShowCallBoard.aspx.cs">
       <DependentUpon>ShowCallBoard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -609,6 +602,8 @@
     <None Include="admin\Images\skin2\Thumbs.db" />
     <None Include="admin\Images\skin2\vssver2.scc" />
     <None Include="admin\Images\Thumbs.db" />
+    <Content Include="admin\Album\Album.aspx" />
+    <Content Include="admin\Album\Image.aspx" />
     <Content Include="admin\Controls\FileUpload.ascx" />
     <Content Include="admin\Music\songs.aspx" />
     <Content Include="admin\Upload\UploadTest.aspx" />
