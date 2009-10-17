@@ -4,52 +4,62 @@
 <%@ Import Namespace="LTP.Accounts.Bus"%>
 <%@ Register src="../Controls/FileUpload.ascx" tagname="FileUpload" tagprefix="uc1" %>
 <asp:Content ContentPlaceHolderID="head" runat="server">
-    <title>星程编辑</title>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="ContentBody" runat="server">
 <form id="form1" runat="server">
+            <asp:Panel ID="listPanel" runat="server">
             <div>
-             <div>星程列表</div>
+             <div><h1>星程列表</h1></div>
+             
+            <asp:Repeater ID="repList" runat="server" OnItemDataBound="repList_ItemDataBound">
+                <HeaderTemplate>
                 <table cellspacing="1" cellpadding="4" rules="all"  align="center" width="100%" class="grid">
                     <tr align="center">
                       <th align="center" style="width: 30px;">编号</th>
                       <th>名称</th>
+                      <th>地点</th>
                       <th>状态</th>
                       <th>开始日期</th>
                       <th>结束日期</th>
                       <th style="width: 30px;">修改</th>
                       <th style="width: 30px;">删除</th>
                     </tr>
+                     </HeaderTemplate>
+                    <ItemTemplate>
                     <tr align="center">
-                      <td align="center" style="width: 30px;"><asp:Literal ID="litId" runat="server"></asp:Literal></td>
-                      <td><asp:Literal ID="litTitle1" runat="server"></asp:Literal></td>
-                      <td><asp:Literal ID="litStatus" runat="server"></asp:Literal></td>
+                      <td align="center" style="width: 30px;"><asp:Literal ID="litID" runat="server"></asp:Literal></td>
+                      <td><asp:Literal ID="litTitle" runat="server"></asp:Literal></td>
+                      <td><asp:Literal ID="litShowPlace" runat="server"></asp:Literal></td>
+                      <td><asp:CheckBox ID="litStatus" Enabled="false" runat="server"></asp:CheckBox></td>
                       <td><asp:Literal ID="litShowDate" runat="server"></asp:Literal></td>
                       <td><asp:Literal ID="litEndDate" runat="server"></asp:Literal></td>
                       <td style="width: 30px;"><asp:Button ID="btnUpdate" runat="server" OnClick="btnUpdate_Click" Text="修改" /></td>
                       <td style="width: 30px;"><asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click"  Text="删除" /> </td>
                     </tr>
-             
+             </ItemTemplate>
+                <FooterTemplate>
                      <tr align="right" style="font-size: medium; white-space: nowrap;">
-                      <td colspan="6" valign="middle" class="pagestyle" id="pager"></td>
+                      <td colspan="7" valign="middle" class="pagestyle" id="pager"></td>
                       <td class="pagestyle"><asp:Button ID="btnAddShow" runat="server" OnClick="btnAdd_Show" Text="新增" /></td>
                     </tr>
                     </table>
+                    </FooterTemplate>
+               </asp:Repeater>
                
             </div>
-
-                    
-            <div>编辑星程</div>
+            </asp:Panel>
+            <asp:Panel ID="addPanel" runat="server">
+            <div><h1>编辑星程</h1></div>
             <div>
              <table cellspacing="1" cellpadding="4" rules="all"  align="center" width="100%" class="grid">
                     <tr>
                       <th align="center" width="100">标题</th>
-                      <td><asp:TextBox ID="txtTitle1" runat="server" Width="500px"></asp:TextBox>
+                      <td><asp:TextBox ID="txtTitle" runat="server" Width="500px"></asp:TextBox>
                       <asp:HiddenField ID="txtShowId" runat="server" Value="0" ></asp:HiddenField></td>
                       </tr>
                       <tr>
                      <th width="100">Body</th>
-                      <td><asp:TextBox ID="txtBody" runat="server" Width="500px"></asp:TextBox></td>
+                      <td><asp:TextBox ID="txtBody" Rows="4" runat="server" Width="500px" TextMode="MultiLine"></asp:TextBox></td>
                     </tr>
                      <tr>
                      <th align="center" width="100">SImage</th>
@@ -86,6 +96,28 @@
                     </tr>
                     </table>
            </div>
+           
+           </asp:Panel>
+           <script type="text/javascript">
+            $(document).ready(function() {
+                var cur = parseInt("<%=PageIndex %>");
+                var total = parseInt("<%=PageTotalCount %>");
+                $("#pager").pagination(
+                  total,
+                        {
+                            items_per_page: <%=PageSize %>,
+                            num_display_entries: 10,
+                            current_page: cur - 1,
+                            num_edge_entries: 0,
+                            link_to:location.href.replace(/page=\d+/ig,"page=__id__"),
+                            prev_text: "上一页",
+                            next_text: "下一页",
+                            callback: function(id) {
+                                return true;
+                            }
+                        });
+            });
+        </script>
 </form>
 </asp:Content>
 <script runat="server">
@@ -118,39 +150,140 @@ protected int PageIndex
     {
         if (!IsPostBack)
         {
+            addPanel.Visible = false;
+            BindList();
+            BindBandList();
         }
     }
 
    
     private void BindList()
     {
-       
+        PagingContext pager = new PagingContext();
+        pager.RecordsPerPage = PageSize;
+        pager.CurrentPageNumber = PageIndex;
+        System.Collections.Generic.IList<Show> list = D4DGateway.ShowProvider.GetPagedShow(pager,PublishStatus.ALL);
+        repList.DataSource = list;
+        repList.DataBind();
 
+    }
+    private void BindBandList()
+    {
+        System.Collections.Generic.List<BandInfo> list = D4DGateway.BandInfoProvider.GetBandInfoList();
+
+        txtBandId.DataSource = list;
+        txtBandId.DataValueField = "BandId";
+        txtBandId.DataTextField = "BandName";
+        txtBandId.DataBind();
     }
 
     protected void btnUpdate_Click(object sender, EventArgs e)
     {
         
+        Button bt = sender as Button;
+
+        RepeaterItem ri = bt.Parent as RepeaterItem;
+
+        Literal litID = ri.FindControl("litID") as Literal;
+
+        if (!object.Equals(litID, null))
+        {
+            int id = 0;
+            if (int.TryParse(litID.Text, out id))
+            {
+                Show show = D4DGateway.ShowProvider.GetShow(id);
+                DrawAddPanel(show);
+                addPanel.Visible = true;
+            }
+        }
     }
     protected void btnDelete_Click(object sender, EventArgs e)
     {
-       
+        Button bt = sender as Button;
+
+        RepeaterItem ri = bt.Parent as RepeaterItem;
+
+        Literal litID = ri.FindControl("litID") as Literal;
+        if (!object.Equals(litID, null))
+        {
+            int id = 0;
+            if (int.TryParse(litID.Text, out id))
+            {
+                D4DGateway.ShowProvider.DeleteShow(id);
+                BindList();
+            }
+        }
     }
 
 
     protected void repList_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
-        
+        Show item = e.Item.DataItem as Show;
+        if (item != null)
+        {
+            Literal litID = e.Item.FindControl("litID") as Literal;
+            litID.Text = item.ShowId.ToString();
+            CheckBox litStatus = e.Item.FindControl("litStatus") as CheckBox;
+            litStatus.Checked = (item.Status == PublishStatus.Publish);
+
+            Literal litTitle = e.Item.FindControl("litTitle") as Literal;
+            litTitle.Text = item.Title;
+            Literal litShowPlace = e.Item.FindControl("litShowPlace") as Literal;
+            litShowPlace.Text = item.ShowPlace;
+            Literal litShowDate = e.Item.FindControl("litShowDate") as Literal;
+            litShowDate.Text = item.ShowDate.ToString("yyyy-MM-dd");
+            Literal litEndDate = e.Item.FindControl("litEndDate") as Literal;
+            litEndDate.Text = item.EndDate.ToString("yyyy-MM-dd");
+        }
     }
 
     protected void btnAdd_Click(object sender, EventArgs e)
     {
+        Show item = new Show();
+        int id = 0;
+        int.TryParse(txtShowId.Value, out id);
+        item.ShowId = id;
+        item.Body = txtBody.Text;
+        DateTime date = DateTime.MinValue;    
+        DateTime.TryParse(txtShowDate.Text, out date);
+        item.ShowDate = date;
+        DateTime.TryParse(txtEndDate.Text, out date);
+        item.EndDate = date;
+        item.LImage = txtLImage.UploadResult ;
+         item.SImage =txtSImage.UploadResult;
+        item.ShowPlace = txtShowPlace.Text;
+        if(txtStatus.Checked) item.Status = PublishStatus.Publish;
+         item.Title = txtTitle.Text ;
+         item.AddDate = DateTime.Now;
+         item.AddUserID = D4D.Web.Helper.AdminHelper.CurrentUser.UserID;
+        int result = D4DGateway.ShowProvider.SetShow(item);
+        addPanel.Visible = false;
+
+        BindList();
     }
 
     protected void btnAdd_Show(object sender, EventArgs e)
     {
-       
+        DrawAddPanel(null);
+        addPanel.Visible = true;
+        btnAdd.Text = "添加";
     }
-
+    private void DrawAddPanel(Show item)
+    {
+        if (item == null) item = new Show();
+        txtShowId.Value = item.ShowId.ToString();
+        if (item.BandId > 0)
+        {
+            txtBandId.SelectedValue = item.BandId.ToString();
+        }
+        txtBody.Text =  item.Body;
+        txtEndDate.Text = (item.EndDate == DateTime.MinValue) ? DateTime.Now.ToLongDateString() : item.EndDate.ToLongDateString();
+        txtShowDate.Text = (item.ShowDate == DateTime.MinValue) ? DateTime.Now.ToLongDateString() : item.ShowDate.ToLongDateString();
+        txtLImage.UploadResult = item.LImage;
+        txtSImage.UploadResult = item.SImage;
+        txtShowPlace.Text = item.ShowPlace;
+        txtStatus.Checked = (item.Status == PublishStatus.Publish);
+        txtTitle.Text = item.Title;
+    }
 
     </script>
