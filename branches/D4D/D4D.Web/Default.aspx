@@ -24,6 +24,7 @@
         $("#pager").pagination(
         parseInt("<%=TotalCount %>"),
         { items_per_page: "<%=PageSize %>",
+            link_to:location.href.replace(/page=\d+/ig,"page=__id__"),
             callback: function(page) {
                 $.get("/svc/news.svc/getnewslist",
                 { p: page, size: "<%=PageSize %>",cache:false},

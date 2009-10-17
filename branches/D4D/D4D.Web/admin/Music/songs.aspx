@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="songs.aspx.cs" Inherits="D4D.Web.admin.Music.songs" MasterPageFile="~/admin/Admin.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/admin/Admin.Master" %>
 <%@ Import Namespace="D4D.Platform"%>
 <%@ Import Namespace="D4D.Platform.Domain" %>
 <%@ Import Namespace="LTP.Accounts.Bus"%>

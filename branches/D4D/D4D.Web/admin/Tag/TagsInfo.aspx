@@ -20,15 +20,13 @@
             <div>
              <div>Tag列表</div>
             
-            <asp:Repeater ID="repList" runat=server 
+            <asp:Repeater ID="repList" runat="server" 
                     onitemdatabound="repList_ItemDataBound">
                 <HeaderTemplate>
                 <table cellspacing="1" cellpadding="4" rules="all"  align="center" width="100%" class="grid">
                     <tr align="center">
                       <th align="center" style="width: 30px;">编号</th>
                       <th>Tag</th>
-                    
-                      <th>发布状态</th>
                       <th>添加人ID</th>
                       <th>添加日期</th>
                       <th style="width: 30px;">修改</th>
@@ -47,7 +45,7 @@
                 </ItemTemplate>
                 <FooterTemplate>
                      <tr align="right" style="font-size: medium; white-space: nowrap;">
-                      <td colspan="8" valign="middle" class="pagestyle" id="pager"></td>
+                      <td colspan="5" valign="middle" class="pagestyle" id="pager"></td>
                       <td><asp:Button ID="btnAddShow" runat="server" OnClick="btnAdd_Show" Text="新增" /></td>
                     </tr>
                     </table>
@@ -70,7 +68,7 @@
                     num_display_entries: 10,
                     current_page: cur - 1,
                     num_edge_entries: 0,
-                    link_to:".aspx?page=__id__",
+                    link_to:"TagsInfo.aspx?page=__id__",
                     prev_text: "上一页",
                     next_text: "下一页",
                     callback: function(id) {
