@@ -57,7 +57,7 @@
                     <tr>
                       <th align="center" width="100">相册名称</th>
                       <td><asp:TextBox ID="txtTitle" runat="server" Width="500px"></asp:TextBox>
-                      <asp:HiddenField ID="AlbumId" runat="server" Value="0" ></asp:HiddenField></td>
+                      <asp:HiddenField ID="txtAlbumId" runat="server" Value="0" ></asp:HiddenField></td>
                       </tr>
                       <tr>
                      <th width="100">歌手</th>
