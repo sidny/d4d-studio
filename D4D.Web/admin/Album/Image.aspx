@@ -13,15 +13,15 @@
             
             <table cellspacing="1" cellpadding="4" rules="all"  align="center" width="100%" class="grid">
                     <tr align="center">
-                      <th align="center" style="width: 30px;"><asp:Image ID="imgMusic" runat="server" Width="30" /></th>
-                      <td>专辑名称:  <asp:Label ID="txtMusicTitle" runat="server"></asp:Label></td>
-                      <td width="30"><a href="MusicTitle.aspx">返回</a></td>
+                      <th align="center" style="width: 30px;"><asp:Image ID="imgAlbum" runat="server" Width="30" /></th>
+                      <td>相册名称:  <asp:Label ID="txtAlbumTitle" runat="server"></asp:Label></td>
+                      <td width="30"><a href="Album.aspx">返回</a></td>
                     </tr>
             </table>
             <br />
             <br />
-            <asp:Repeater ID="repSongList" runat="server"
-                    onitemdatabound="repSongList_ItemDataBound">
+            <asp:Repeater ID="repList" runat="server"
+                    onitemdatabound="repList_ItemDataBound">
                 <HeaderTemplate>
                 <table cellspacing="1" cellpadding="4" rules="all"  align="center" width="100%" class="grid">
                     <tr align="center">
@@ -29,6 +29,7 @@
                       <th>图片名称</th>
                       <th>小图</th>
                       <th>发布状态</th>
+                      <th>发布时间</th>
                       <th style="width: 30px;">修改</th>
                       <th style="width: 30px;">删除</th>
                     </tr>
@@ -37,15 +38,16 @@
                     <tr align="center">
                       <td align="center" style="width: 30px;"><asp:Literal ID="litID" runat="server"></asp:Literal></td>
                       <td><asp:Literal ID="litImageName" runat="server"></asp:Literal></td>
-                      <td><asp:Literal ID="litSImageFile" runat="server"></asp:Literal></td>
+                      <td><asp:Image ID="litSImageFile" runat="server"></asp:Image></td>
                       <td><asp:CheckBox ID="litStatus" runat="server"></asp:CheckBox></td>
+                      <td><asp:Literal ID="LitAddDate" runat="server"></asp:Literal></td>
                       <td style="width: 30px;"><asp:Button ID="btnUpdate" runat="server" OnClick="btnUpdate_Click" Text="修改" /></td>
                       <td style="width: 30px;"><asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click"  Text="删除" /> </td>
                     </tr>
                 </ItemTemplate>
                 <FooterTemplate>
                      <tr align="right" style="font-size: medium; white-space: nowrap;">
-                      <td colspan="5" valign="middle" class="pagestyle" id="pager"></td>
+                      <td colspan="6" valign="middle" class="pagestyle" id="pager"></td>
                       <td class="pagestyle"><asp:Button ID="btnAddShow" runat="server" OnClick="btnAdd_Show" Text="新增" /></td>
                     </tr>
                     </table>
@@ -65,14 +67,15 @@
                       <td><asp:TextBox ID="txtImageName" runat="server" Width="500px"></asp:TextBox>
                       <asp:HiddenField ID="txtImageId" runat="server" Value="0" ></asp:HiddenField></td>
                       </tr>
+                       <tr>
+                     <th width="100">小图</th>
+                      <td> <uc1:FileUpload ID="txtSImageFile" runat="server" /></td>
+                    </tr>
                       <tr>
                      <th width="100">图片地址</th>
-                      <td> <uc1:FileUpload ID="txtfuImageFile" runat="server" /></td>
+                      <td> <uc1:FileUpload ID="txtLImageFile" runat="server" /></td>
                     </tr>
-                      <tr>
-                     <th width="100">小图</th>
-                      <td> <uc1:FileUpload ID="txtfuSImageFile" runat="server" /></td>
-                    </tr>
+                     
                      <tr>
                      <th align="center" width="100">发布状态</th>
                       <td><asp:CheckBox ID="txtStatus" runat="server"></asp:CheckBox></td>
@@ -107,7 +110,7 @@
     }
     protected int PageSize = 10;
     private int totalCount;	
-    protected int MusicId
+    protected int AlbumId
     {
         get
         {
@@ -132,24 +135,24 @@
     {
         if (!IsPostBack)
         {
-           // addPanel.Visible = false;
-            BindSongList();
-            BindMusicTitle();
+            addPanel.Visible = false;
+            BindList();
+            BindTitle();
         }
     }
 
-    private void BindMusicTitle()
+    private void BindTitle()
     {
-        MusicTitle music = D4DGateway.MusicProvider.GetMusicTitle(MusicId);
-        imgMusic.ImageUrl = music.SImage;
-        txtMusicTitle.Text = music.Title;
+        Album item = D4DGateway.AlbumProvider.GetAlbum(AlbumId);
+        imgAlbum.ImageUrl = item.SImage;
+        txtAlbumTitle.Text = item.Title;
     }
 
-    private void BindSongList()
+    private void BindList()
     {
-        System.Collections.Generic.IList<MusicSongList> list  =  D4DGateway.MusicProvider.GetMusicSongListByMusicId(MusicId,PublishStatus.ALL);
-        repSongList.DataSource = list;
-        repSongList.DataBind();
+        System.Collections.Generic.IList<D4D.Platform.Domain.Image> list  =  D4DGateway.AlbumProvider.GetImagesByMusicId(AlbumId,PublishStatus.ALL);
+        repList.DataSource = list;
+        repList.DataBind();
 
 
     }
@@ -166,14 +169,11 @@
         {
             int id = 0;
             if (int.TryParse(litID.Text, out id))
-            {/*
-                D4D.Platform.Domain.MusicSongList m = D4DGateway.MusicProvider.GetMusicSongList(id);
-                txtMusicId.Value = id.ToString();
-                txtStatus.Checked = (m.Status == PublishStatus.Publish);
-                txtTitle.Text = m.SongName;
-                txtBody.Text = m.SongFile;
+            {
+                D4D.Platform.Domain.Image item = D4DGateway.AlbumProvider.GetImage(id);
+                DrawAddPanel(item);
                 addPanel.Visible = true;
-             */   btnAdd.Text = "更新";
+                btnAdd.Text = "更新";
             }
         }
     }
@@ -189,65 +189,73 @@
             int id = 0;
             if (int.TryParse(litID.Text, out id))
             {
-                D4DGateway.MusicProvider.DeleteMusicSongList(id);
-                BindSongList();
+                D4DGateway.AlbumProvider.DeleteImage(id);
+                BindList();
             }
         }
 
     }
 
 
-    protected void repSongList_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    protected void repList_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
-        D4D.Platform.Domain.MusicSongList m = e.Item.DataItem as D4D.Platform.Domain.MusicSongList;
+        D4D.Platform.Domain.Image m = e.Item.DataItem as D4D.Platform.Domain.Image;
 
         if (m != null)
         {
-           /* Literal litId = e.Item.FindControl("litID") as Literal;
-            Literal litSongName= e.Item.FindControl("litSongName") as Literal;
-            Literal litSongFile = e.Item.FindControl("litSongFile") as Literal;
+            Literal litId = e.Item.FindControl("litID") as Literal;
+            Literal litImageName = e.Item.FindControl("litImageName") as Literal;
+            System.Web.UI.WebControls.Image litSImageFile = e.Item.FindControl("litSImageFile") as System.Web.UI.WebControls.Image;
             CheckBox litStatus = e.Item.FindControl("litStatus") as CheckBox;
             Literal litAddDate = e.Item.FindControl("litAddDate") as Literal;
             
-            litId.Text = m.ListId.ToString();
-            litSongName.Text = m.SongName;
-            litSongFile.Text = m.SongFile.ToString();
+            litId.Text = m.ImageId.ToString();
+            litImageName.Text = m.ImageName;
+            litSImageFile.ImageUrl = m.SImageFile.ToString();
             litStatus.Checked = (m.Status == PublishStatus.Publish);
             litStatus.Enabled = false;
-            litAddDate.Text = m.AddDate.ToLongDateString();*/
+            litAddDate.Text = m.AddDate.ToLongDateString();
         }
     }
 
     protected void btnAdd_Click(object sender, EventArgs e)
     {
-       /* D4D.Platform.Domain.MusicSongList m = new D4D.Platform.Domain.MusicSongList();
-        m.SongName = txtTitle.Text;
-        m.SongFile = txtBody.Text;
-        int musicId = 0;
-        int.TryParse(txtMusicId.Value, out musicId);
-        m.ListId = musicId;
-        m.MusicId = MusicId;
+        D4D.Platform.Domain.Image item = new D4D.Platform.Domain.Image();
+        int id = 0;
+        int.TryParse(txtImageId.Value, out id);
+        item.ImageId = id;
+        item.ImageFile = txtLImageFile.UploadResult;
+        item.SImageFile = txtSImageFile.UploadResult;
+        item.ImageName = txtImageName.Text;
+        item.AddDate = DateTime.Now;
+        item.AlbumId = AlbumId;
         User currentUser = Session["UserInfo"] as User;
-        m.AddUserID = currentUser.UserID;
-        int status = 0;
-        if (txtStatus.Checked) status = 1;
+        item.AddUserID = currentUser.UserID;
+        if (txtStatus.Checked)
+            item.Status = PublishStatus.Publish;
+        int result = D4DGateway.AlbumProvider.SetImage(item);
         
-        m.Status = (PublishStatus)status;
-        int result = D4DGateway.MusicProvider.SetMusicSongList(m);
+        
         addPanel.Visible = false;
-
-        BindSongList();*/
+        
+        BindList();
     }
 
     protected void btnAdd_Show(object sender, EventArgs e)
     {
-       /* txtMusicId.Value = "0";
-        txtTitle.Text = "";
-        txtBody.Text = "";
-        txtStatus.Checked = false;
+        DrawAddPanel(null);
         addPanel.Visible = true;
-        btnAdd.Text = "添加";*/
+        btnAdd.Text = "添加";
     }
 
+    private void DrawAddPanel(D4D.Platform.Domain.Image item)
+    {
+        if (item == null) item = new D4D.Platform.Domain.Image();
+        txtImageId.Value = item.ImageId.ToString();
+        txtLImageFile.UploadResult = item.ImageFile;
+        txtSImageFile.UploadResult = item.SImageFile;
+        txtStatus.Checked = (item.Status == PublishStatus.Publish);
+        txtImageName.Text = item.ImageName;
+    }
 
     </script>
