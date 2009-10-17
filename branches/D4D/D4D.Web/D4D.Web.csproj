@@ -234,13 +234,6 @@
     <Compile Include="admin\ShowCallBoard.aspx.designer.cs">
       <DependentUpon>ShowCallBoard.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\Tag\TagsInfo.aspx.cs">
-      <DependentUpon>TagsInfo.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="admin\Tag\TagsInfo.aspx.designer.cs">
-      <DependentUpon>TagsInfo.aspx</DependentUpon>
-    </Compile>
     <Compile Include="admin\Upload\UploadTest.aspx.cs">
       <DependentUpon>UploadTest.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -254,6 +247,8 @@
     </Compile>
     <Compile Include="channel\news\news.aspx.designer.cs">
       <DependentUpon>news.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Helper\AdminHelper.cs">
     </Compile>
     <Compile Include="Control\menu.ascx.cs">
       <DependentUpon>menu.ascx</DependentUpon>
@@ -607,6 +602,7 @@
     <Content Include="admin\Album\Image.aspx" />
     <Content Include="admin\Controls\FileUpload.ascx" />
     <Content Include="admin\Music\songs.aspx" />
+    <Content Include="admin\Show\Show.aspx" />
     <Content Include="admin\Upload\UploadTest.aspx" />
     <Content Include="channel\calender\index.aspx" />
     <Content Include="channel\news\comment.aspx" />
