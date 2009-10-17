@@ -36,7 +36,7 @@
     });
 </script>
 <style type="text/css">
-body{ padding:0; margin:0; font-size:12px;}
+body{ padding:0; margin:0; font-size:12px; overflow:hidden;}
 .top{height: 64px; background:url(/static/images/admin/top.png) bottom repeat-x;}
 .top-nav{  float:left; width:760px; padding-top:41px;}
 .top-nav span{ padding:10px; font-weight:bold; color:white;}
@@ -64,6 +64,6 @@ body{ padding:0; margin:0; font-size:12px;}
 
 </div>
 <div class="content">
-<iframe scrolling="auto" id="ContentFrame" name="ContentFrame"  frameborder="0" src="about:blank" width="100%" height="100%"></iframe>
+<iframe scrolling="auto" id="ContentFrame" name="ContentFrame"  frameborder="0" src="about:blank" width="100%" height="99.9%"></iframe>
 </div>
 </asp:Content>
