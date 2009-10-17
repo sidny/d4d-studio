@@ -42,6 +42,11 @@ namespace LTP.Accounts.Bus
         {
             this.dal.Update(UserType, Description);
         }
+        public enum Type
+        {
+            Admin =1,
+            Guest = 2
+        }
     }
 }
 
