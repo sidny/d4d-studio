@@ -89,7 +89,7 @@ namespace Maticsoft.Web.Accounts
 			newUser.EmployeeID=0;
             //newUser.DepartmentID=this.Dropdepart.SelectedValue;
 			newUser.Activity=true;
-            newUser.UserType = "AA";
+            newUser.UserType = ((int)UserType.Type.Admin).ToString();
 			newUser.Style=1;
 			int userid=newUser.Create();		
 			if (userid == -100)
