@@ -162,6 +162,10 @@ namespace LTP.Accounts.Bus
         {
             return this.dataUser.GetUsersByType(usertype, key);
         }
+        public DataSet GetUserList(UserType.Type type)
+        {
+            return GetUsersByType(((int)type).ToString(), string.Empty);
+        }
 
         public bool HasUser(string userName)
         {
@@ -373,6 +377,8 @@ namespace LTP.Accounts.Bus
                 this.userType = value;
             }
         }
+
+       
     }
 }
 
