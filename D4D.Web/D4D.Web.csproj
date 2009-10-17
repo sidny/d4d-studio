@@ -603,6 +603,7 @@
     <None Include="admin\Images\skin2\vssver2.scc" />
     <None Include="admin\Images\Thumbs.db" />
     <Content Include="admin\Album\Album.aspx" />
+    <Content Include="admin\Band\BandInfo.aspx" />
     <Content Include="admin\Album\Image.aspx" />
     <Content Include="admin\Controls\FileUpload.ascx" />
     <Content Include="admin\Music\songs.aspx" />
