@@ -23,13 +23,13 @@ namespace D4D.Web.MasterPage {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentHeader;
         
         /// <summary>
-        /// leftmenu control.
+        /// menuPlace control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::D4D.Web.Control.menu leftmenu;
+        protected global::System.Web.UI.WebControls.PlaceHolder menuPlace;
         
         /// <summary>
         /// ContentMain control.

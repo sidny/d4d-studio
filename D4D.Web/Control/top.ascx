@@ -11,5 +11,25 @@
         <input type="image" src="/static/images/search_go.gif" align="absmiddle" style="float: right" />
         <input type="text" class="text" /></form>
     </div>
-    <div><a href="#"><img src="/static/images/nav_off_03.png" alt="" /></a><a href="#"><img src="/static/images/nav_off_04.png" alt="" /></a><a href="#"><img src="/static/images/nav_off_05.png" alt="" /></a><a href="#"><img src="/static/images/nav_off_06.png" alt="" /></a><a href="#"><img src="/static/images/nav_off_07.png"  alt="" /></a><a href="#"><img src="/static/images/nav_off_08.png" alt="" /></a><a href="#"><img src="/static/images/nav_off_09.png" alt="" /></a></div>
+    <div><a href="/"><img src="/static/images/nav_<%=GetMenu("/") %>03.png" alt="" /></a><a href="/news.html"><img src="/static/images/nav_<%=GetMenu("news") %>04.png" alt="" /></a><a href="/calender.html"><img src="/static/images/nav_<%=GetMenu("calender") %>05.png" alt="" /></a><a href="/singer.html"><img src="/static/images/nav_<%=GetMenu("singer") %>06.png" alt="" /></a><a href="/music.html"><img src="/static/images/nav_<%=GetMenu("music") %>07.png"  alt="" /></a><a href="/video.html"><img src="/static/images/nav_<%=GetMenu("video") %>08.png" alt="" /></a><a href="/photo.html"><img src="/static/images/nav_<%=GetMenu("photo") %>09.png" alt="" /></a></div>
 </div>
+
+<script runat="server">
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        string[] path = Request.AppRelativeCurrentExecutionFilePath.Split('/');
+        if (path.Length >= 3)
+        {
+            channel = path[2];
+        }
+    }
+    private string channel = "/";
+    protected string GetMenu( string str)
+    {
+
+        if (str == channel) return "";
+        else return "off_";
+        
+    }
+    
+</script>
