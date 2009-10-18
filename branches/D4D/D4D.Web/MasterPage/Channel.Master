@@ -7,6 +7,6 @@
 </asp:Content>
 
 <asp:Content runat="server" ContentPlaceHolderID="ContentMain" ID="ContentMainPlace">
-    <D4D:menu runat="server" id="leftmenu"></D4D:menu>
-    <asp:ContentPlaceHolder ID="ContentMain" runat="server"></asp:ContentPlaceHolder>
+<asp:PlaceHolder ID="menuPlace" runat="server"></asp:PlaceHolder>
+<asp:ContentPlaceHolder ID="ContentMain" runat="server"></asp:ContentPlaceHolder>
 </asp:Content>

@@ -11,7 +11,14 @@ namespace D4D.Web.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            string[] path = Request.AppRelativeCurrentExecutionFilePath.Split('/');
+            if (path.Length > 3)
+            {
+                string controlPath = "~/Control/" + path[2] + ".ascx";
+                System.Web.UI.Control uc = Page.LoadControl(controlPath);
+                uc.ID = "uc" + path[2];
+                menuPlace.Controls.Add(uc);
+            }
         }
     }
 }

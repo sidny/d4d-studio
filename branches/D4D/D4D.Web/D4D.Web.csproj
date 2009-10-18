@@ -250,6 +250,7 @@
     </Compile>
     <Compile Include="Classes\Helper\AdminHelper.cs">
     </Compile>
+    <Compile Include="Classes\Helper\Helper.cs" />
     <Compile Include="Control\menu.ascx.cs">
       <DependentUpon>menu.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -613,6 +614,13 @@
     <Content Include="channel\photo\photo.aspx" />
     <Content Include="channel\singer\index.aspx" />
     <Content Include="channel\sitemap\index.aspx" />
+    <Content Include="channel\video\index.aspx" />
+    <Content Include="Control\calender.ascx" />
+    <Content Include="Control\singer.ascx" />
+    <Content Include="Control\video.ascx" />
+    <Content Include="Control\photo.ascx" />
+    <Content Include="Control\music.ascx" />
+    <Content Include="Control\news.ascx" />
     <Content Include="static\images\admin\logo.png" />
     <Content Include="static\images\admin\row.png" />
     <Content Include="static\images\music\control_pause_blue.png" />

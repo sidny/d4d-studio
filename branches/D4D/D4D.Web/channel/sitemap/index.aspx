@@ -13,60 +13,60 @@
 <div class="sitemap clearfix">
     <dl>
         <dt>星闻</dt>
-        <dd><a href="#">全部星闻</a></dd>
-        <dd><a href="#">全部星闻</a></dd>
-        <dd><a href="#">全部星闻</a></dd>
-        <dd><a href="#">全部星闻</a></dd>
-    </dl>
-    <dl>
-        <dt>星闻</dt>
-        <dd><a href="#">全部星闻</a></dd>
+        <dd><a href="/news.html">全部星闻</a></dd>
         <dd><a href="#">全部星闻</a></dd>
         <dd><a href="#">全部星闻</a></dd>
         <dd><a href="#">全部星闻</a></dd>
     </dl>
     <dl>
-        <dt>星闻</dt>
-        <dd><a href="#">全部星闻</a></dd>
-        <dd><a href="#">全部星闻</a></dd>
-        <dd><a href="#">全部星闻</a></dd>
-        <dd><a href="#">全部星闻</a></dd>
-    </dl>
-    <dl>
-        <dt>星闻</dt>
-        <dd><a href="#">全部星闻</a></dd>
+        <dt>星程</dt>
+        <dd><a href="/calender.html">全部星闻</a></dd>
         <dd><a href="#">全部星闻</a></dd>
         <dd><a href="#">全部星闻</a></dd>
         <dd><a href="#">全部星闻</a></dd>
     </dl>
     <dl>
-        <dt>星闻</dt>
-        <dd><a href="#">全部星闻</a></dd>
-        <dd><a href="#">全部星闻</a></dd>
-        <dd><a href="#">全部星闻</a></dd>
-        <dd><a href="#">全部星闻</a></dd>
-    </dl>
-    <dl>
-        <dt>星闻</dt>
-        <dd><a href="#">全部星闻</a></dd>
+        <dt>艺人</dt>
+        <dd><a href="/singer.html">全部星闻</a></dd>
         <dd><a href="#">全部星闻</a></dd>
         <dd><a href="#">全部星闻</a></dd>
         <dd><a href="#">全部星闻</a></dd>
     </dl>
     <dl>
-        <dt>星闻</dt>
-        <dd><a href="#">全部星闻</a></dd>
+        <dt>音乐</dt>
+        <dd><a href="/music.html">全部星闻</a></dd>
         <dd><a href="#">全部星闻</a></dd>
         <dd><a href="#">全部星闻</a></dd>
         <dd><a href="#">全部星闻</a></dd>
     </dl>
     <dl>
+        <dt>视频</dt>
+        <dd><a href="/video.html">全部星闻</a></dd>
+        <dd><a href="#">全部星闻</a></dd>
+        <dd><a href="#">全部星闻</a></dd>
+        <dd><a href="#">全部星闻</a></dd>
+    </dl>
+    <dl>
+        <dt>图片</dt>
+        <dd><a href="/photo.html">全部星闻</a></dd>
+        <dd><a href="#">全部星闻</a></dd>
+        <dd><a href="#">全部星闻</a></dd>
+        <dd><a href="#">全部星闻</a></dd>
+    </dl>
+    <dl>
+        <dt style="background:#5a5a5a">关于我们</dt>
+        <dd><a href="#">全部星闻</a></dd>
+        <dd><a href="#">全部星闻</a></dd>
+        <dd><a href="#">全部星闻</a></dd>
+        <dd><a href="#">全部星闻</a></dd>
+    </dl>
+    <!-- dl>
         <dt>星闻</dt>
         <dd><a href="#">全部星闻</a></dd>
         <dd><a href="#">全部星闻</a></dd>
         <dd><a href="#">全部星闻</a></dd>
         <dd><a href="#">全部星闻</a></dd>
-    </dl> 
+    </dl --> 
 </div>
 
 </asp:Content>
