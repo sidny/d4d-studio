@@ -613,6 +613,8 @@
     <Content Include="channel\photo\photo.aspx" />
     <Content Include="channel\singer\index.aspx" />
     <Content Include="channel\sitemap\index.aspx" />
+    <Content Include="static\images\admin\logo.png" />
+    <Content Include="static\images\admin\row.png" />
     <Content Include="static\images\music\control_pause_blue.png" />
     <Content Include="static\images\music\control_play_blue.png" />
     <Content Include="static\images\music\control_stop_blue.png" />
