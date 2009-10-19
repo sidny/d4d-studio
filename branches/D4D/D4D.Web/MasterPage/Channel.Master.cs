@@ -14,7 +14,7 @@ namespace D4D.Web.MasterPage
             string[] path = Request.AppRelativeCurrentExecutionFilePath.Split('/');
             if (path.Length > 3)
             {
-                string controlPath = "~/Control/" + path[2] + ".ascx";
+                string controlPath = "~/channel/" + path[2] + "/menu.ascx";
                 System.Web.UI.Control uc = Page.LoadControl(controlPath);
                 uc.ID = "uc" + path[2];
                 menuPlace.Controls.Add(uc);
