@@ -31,14 +31,17 @@
 <script type="text/javascript">
     $(document).ready(function() {
     var cur = parseInt("<%=PageIndex %>");
-        var total = parseInt("<%=PageTotalCount %>");
+    var total = parseInt("<%=PageTotalCount %>");
+        var href = location.href;
+        if(href.match(/page=\d+/gi)) href = href.replace(/page=\d+/ig,"page=__id__");
+        else href +="?page=__id__";
         $("#pager").pagination(
           total,
                 {
                     items_per_page: 1,
                     num_display_entries: 10,
                     current_page: cur - 1,
-                    link_to: "/music/b<%=BandId %>/__id__.html",
+                    link_to: href,
                     prev_text: "上一页",
                     next_text: "下一页",
                     callback: function() { return true; }
@@ -119,7 +122,7 @@
                 else return string.Format("index.aspx?id=" + id);
 
             case 2:
-                if (IsRewrite) return string.Format("/music/b{0}/s{1}.html",BandId, id);
+                if (IsRewrite) return string.Format("/music/b{0}/song/{1}.html",BandId, id);
                 else return string.Format("songs.aspx?id={0}&bandid={1}", id, BandId);
             default:
                 return (IsRewrite)? "/music.html":"index.aspx";

@@ -15,7 +15,7 @@ namespace D4D.Web.Helper
                 List<BandInfo> list = HttpContext.Current.Session["BandList"] as List<BandInfo>;
                 if (list == null)
                 {
-                    list = D4D.Platform.D4DGateway.BandInfoProvider.GetBandInfoList(true);
+                    list = D4D.Platform.D4DGateway.BandInfoProvider.GetBandInfoList(false);
                     list = (from a in list
                            orderby a.BandId
                            select a).ToList();
