@@ -9,6 +9,7 @@
     <div class="channel">
       <h1><font color="red">王铮亮</font>/个人档案</h1>
     </div>
+    
     <div class="singer">
       <div class="clearfix"><img src="/static/images/pic2.jpg" vspace="20" /></div>
       <div class="content">
