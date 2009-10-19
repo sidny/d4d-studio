@@ -39,7 +39,7 @@
             }
             else
             {
-                return string.Format("<a href=\"http://localhost/music/b{0}.html\">{1}音乐</a>", band.BandId, band.BandName);
+                return string.Format("<a href=\"/music/b{0}.html\">{1}音乐</a>", band.BandId, band.BandName);
             }
         }
         else
@@ -50,7 +50,7 @@
             }
             else
             {
-                return string.Format("<a href=\"http://localhost/music.html\">全部音乐</a>");
+                return string.Format("<a href=\"/music.html\">全部音乐</a>");
             }
         }
 
