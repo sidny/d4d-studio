@@ -24,7 +24,8 @@ namespace D4D.Platform.Persistence
                  parameters.AddWithValue("@Info1", info.Info1);
                  parameters.AddWithValue("@Info2", info.Info2);
                  parameters.AddWithValue("@Info3", info.Info3);
-                 parameters.AddWithValue("@Remark", info.Remark);             
+                 parameters.AddWithValue("@Remark", info.Remark);
+                 parameters.AddWithValue("@DeleteFlag", info.DeleteFlag);             
                  parameters.AddWithValue("@RetVal", DBNull.Value, ParameterDirectionWrap.ReturnValue);
 
              },
