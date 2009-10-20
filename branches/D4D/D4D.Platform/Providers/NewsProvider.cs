@@ -30,9 +30,9 @@ namespace D4D.Platform.Providers
             NewsDao.DeleteNews(newsId);
         }
 
-        public News GetShow(int newsId)
+        public News GetNews(int newsId)
         {
-            return NewsDao.GetShow(newsId);
+            return NewsDao.GetNews(newsId);
         }
 
         public List<News> GetPagedNews(PagingContext pager, PublishStatus publishStatus)
