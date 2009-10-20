@@ -76,11 +76,11 @@
                     </tr>
                     <tr>
                      <th width="100">开始日期</th>
-                      <td><asp:TextBox ID="txtShowDate" runat="server" Width="500px"></asp:TextBox></td>
+                      <td><asp:TextBox ID="txtShowDate" runat="server" CssClass="has-datepicker"></asp:TextBox></td>
                     </tr>
                     <tr>
                      <th width="100">结束日期</th>
-                      <td><asp:TextBox ID="txtEndDate" runat="server" Width="500px"></asp:TextBox></td>
+                      <td><asp:TextBox ID="txtEndDate" runat="server" CssClass="has-datepicker"></asp:TextBox></td>
                     </tr>
                     <tr>
                      <th width="100">ShowPlace</th>
@@ -92,7 +92,7 @@
                     </tr>
                     <tr>
                     <th align="center" width="100">&nbsp;</th>
-                      <td><asp:Button ID="btnAdd" runat="server" Text="新增" onclick="btnAdd_Click" /></td>
+                      <td><asp:Button ID="btnAdd" runat="server" Text="保存" onclick="btnAdd_Click" /></td>
                     </tr>
                     </table>
            </div>
@@ -278,7 +278,6 @@ protected int PageIndex
     {
         DrawAddPanel(null);
         addPanel.Visible = true;
-        btnAdd.Text = "添加";
     }
     private void DrawAddPanel(Show item)
     {
