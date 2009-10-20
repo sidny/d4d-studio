@@ -44,5 +44,11 @@ namespace D4D.Platform.Domain
             set;
         }
 
+        public int DeleteFlag
+        {
+            get;
+            set;
+        }
+
     }
 }
