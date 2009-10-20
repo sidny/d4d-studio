@@ -29,7 +29,7 @@ namespace D4D.Platform.Persistence
                  parameters.AddWithValue("@PublishDate", m.PublishDate);                
                  parameters.AddWithValue("@AddUserId", m.AddUserID);
                  parameters.AddWithValue("@Status", (int)(m.Status));
-                 parameters.AddWithValue("@ShowPlace", m.Remark);
+                 parameters.AddWithValue("@Remark", m.Remark);
                  parameters.AddWithValue("@RetVal", DBNull.Value, ParameterDirectionWrap.ReturnValue);
 
              },
@@ -52,7 +52,7 @@ namespace D4D.Platform.Persistence
             }
         }
 
-        internal static News GetShow(int newsId)
+        internal static News GetNews(int newsId)
         {
             News m = new News(newsId);
             if (newsId > 0)
