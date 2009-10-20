@@ -604,6 +604,7 @@
     <Content Include="admin\Band\BandProfile.aspx" />
     <Content Include="admin\Controls\FileUpload.ascx" />
     <Content Include="admin\Music\songs.aspx" />
+    <Content Include="admin\News\News.aspx" />
     <Content Include="admin\Show\Show.aspx" />
     <Content Include="admin\Upload\UploadTest.aspx" />
     <Content Include="channel\calender\index.aspx" />
@@ -711,7 +712,6 @@
     <Content Include="Test\TagsTestPage.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="admin\News\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
