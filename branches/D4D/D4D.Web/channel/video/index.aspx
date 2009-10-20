@@ -28,20 +28,35 @@
     <div class="pagestyle" id="pager"></div>
 </div>
 
+
 <script type="text/javascript">
     $(document).ready(function() {
-    var cur = parseInt("<%=PageIndex %>");
+        var cur = parseInt("<%=PageIndex %>");
         var total = parseInt("<%=PageTotalCount %>");
+        var pageSize = parseInt("<%=PageSize %>");
+        var href = location.pathname;
+        if (location.search) {
+            if (!location.search.match(/page=\d+/ig)) {
+                href += location.search + "&page=__id__";
+            } else {
+                href += location.search;
+            }
+        } else {
+            href += "?page=__id__";
+        }
         $("#pager").pagination(
           total,
                 {
-                    items_per_page: 1,
+                    items_per_page: pageSize,
                     num_display_entries: 10,
                     current_page: cur - 1,
-                    link_to: "/music/b<%=BandId %>/__id__.html",
+                    num_edge_entries: 0,
+                    link_to: href.replace(/page=\d+/ig, "page=__id__"),
                     prev_text: "上一页",
                     next_text: "下一页",
-                    callback: function() { return true; }
+                    callback: function(id) {
+                        return true;
+                    }
                 });
     });
 </script>
