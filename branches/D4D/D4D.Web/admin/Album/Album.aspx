@@ -76,9 +76,13 @@
                       <td><uc1:FileUpload ID="txtLImage" runat="server" /></td>
                     </tr>
                      <tr>
+                     <th align="center" width="100">Tag标签</th>
+                      <td><asp:TextBox ID="txtTags" Width="500px" runat="server"></asp:TextBox></td>
+                    </tr>
+                     <tr>
                      <th align="center" width="100">发布状态</th>
                       <td><asp:CheckBox ID="txtStatus" runat="server"></asp:CheckBox></td>
-                    </tr>
+                    </tr>                   
                     <tr>
                     <th align="center" width="100">&nbsp;</th>
                       <td><asp:Button ID="btnAdd" runat="server" Text="新增" onclick="btnAdd_Click" /></td>
