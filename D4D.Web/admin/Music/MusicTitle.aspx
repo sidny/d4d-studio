@@ -111,7 +111,7 @@
     $(document).ready(function() {
         var cur = parseInt("<%=PageIndex %>");
         var total = parseInt("<%=PageTotalCount %>");
-        var pageSize = parent("<%=PageSize %>");
+        var pageSize = parseInt("<%=PageSize %>");
         var href = location.pathname;
         if(location.search){
             if(!location.search.match(/page=\d+/ig)){
