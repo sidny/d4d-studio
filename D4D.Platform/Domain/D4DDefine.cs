@@ -12,7 +12,11 @@ namespace D4D.Platform.Domain
         public const string DEFAULT_UPLOADROOTPATH = @"d:\sitefiles\upload\";
         public const string DEFAULT_UPLOADROOTHTTPPATH = "http://www.showcitytimes.net/upload/";
     }
-
+    public enum NewsType : int
+    {
+        Normal = 0,
+        Video = 1
+    }
     public enum ObjectTypeDefine:int
     {
         None = 0,
@@ -21,7 +25,8 @@ namespace D4D.Platform.Domain
         Song = 3,
         Album=4,
         Image=5,
-        Show = 6
+        Show = 6,
+        Video=7,
     }
     /// <summary>
     /// 发布状态
