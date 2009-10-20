@@ -601,6 +601,7 @@
     <Content Include="admin\Album\Album.aspx" />
     <Content Include="admin\Band\BandInfo.aspx" />
     <Content Include="admin\Album\Image.aspx" />
+    <Content Include="admin\Band\BandProfile.aspx" />
     <Content Include="admin\Controls\FileUpload.ascx" />
     <Content Include="admin\Music\songs.aspx" />
     <Content Include="admin\Show\Show.aspx" />
