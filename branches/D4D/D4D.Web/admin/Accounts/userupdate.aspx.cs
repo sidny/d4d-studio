@@ -142,7 +142,7 @@ namespace Maticsoft.Web.Accounts
 			}
 			else 
 			{
-				Response.Redirect("Admin/useradmin.aspx");
+				Response.Redirect("/Admin/useradmin.aspx");
 			}			
 		}
 

@@ -176,6 +176,7 @@ protected int PageIndex
         pager.CurrentPageNumber = PageIndex;
         System.Collections.Generic.IList<Show> list = D4DGateway.ShowProvider.GetPagedShow(pager,PublishStatus.ALL);
         repList.DataSource = list;
+        totalCount = pager.TotalRecordCount;
         repList.DataBind();
 
     }
