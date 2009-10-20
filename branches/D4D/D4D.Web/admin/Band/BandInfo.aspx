@@ -6,6 +6,14 @@
     <title>艺人编辑</title>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="ContentBody" runat="server">
+<script language="javascript">
+    function ConfirmDelete() {
+    if (window.confirm("您确认删除么？"))
+        return true;
+     else
+         return false;
+    }
+</script>
 <form id="form1" runat="server">
             <asp:Panel ID="listPanel" runat="server">
             <div>
@@ -24,9 +32,9 @@
                     <ItemTemplate>
                     <tr align="center">
                       <td align="center" style="width: 30px;"><asp:Literal ID="litId" runat="server"></asp:Literal></td>
-                      <td><asp:Literal ID="litBandName" runat="server"></asp:Literal></td>
+                      <td><asp:HyperLink ID="litBandName" runat="server"></asp:HyperLink></td>
                       <td style="width: 30px;"><asp:Button ID="btnUpdate" runat="server" OnClick="btnUpdate_Click" Text="修改" /></td>
-                      <td style="width: 30px;"><asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click"  Text="删除" /> </td>
+                      <td style="width: 30px;"><asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click"  Text="删除" OnClientClick="return  ConfirmDelete()" /> </td>
                     </tr>
                 </ItemTemplate>
                 <FooterTemplate>
@@ -50,6 +58,7 @@
                       <asp:HiddenField ID="txtBandId" runat="server" Value="0" ></asp:HiddenField></td>
                       </tr>
                       <tr>
+                     <!--
                      <th width="100">Info1</th>
                       <td><asp:TextBox ID="txtInfo1" runat="server" Width="500px"></asp:TextBox></td>
                     </tr>
@@ -66,6 +75,7 @@
                       <td><asp:TextBox ID="txtRemark" runat="server" Width="500px"></asp:TextBox></td>
                     </tr>
                     <tr>
+                    -->
                     <th align="center" width="100">&nbsp;</th>
                       <td><asp:Button ID="btnAdd" runat="server" Text="新增" onclick="btnAdd_Click" /></td>
                     </tr>
@@ -120,7 +130,7 @@ protected int PageIndex
 
     protected void btnUpdate_Click(object sender, EventArgs e)
     {
-        /*
+        
         Button bt = sender as Button;
 
         RepeaterItem ri = bt.Parent as RepeaterItem;
@@ -132,14 +142,14 @@ protected int PageIndex
             int id = 0;
             if (int.TryParse(litID.Text, out id))
             {
-                BandInfo band = get
-                txtTitle.Text = tag.TagName;
-                txtTagId.Value = tag.TagId.ToString();
+                HyperLink litBandName = ri.FindControl("litBandName") as HyperLink;
+                txtBandId.Value = litID.Text;
+                txtBandName.Text = litBandName.Text;
                 btnAdd.Text = "更新";
                 addPanel.Visible = true;
             }
         }
-         * */
+         
     }
     protected void btnDelete_Click(object sender, EventArgs e)
     {
@@ -153,7 +163,7 @@ protected int PageIndex
             int id = 0;
             if (int.TryParse(litID.Text, out id))
             {
-                
+                 
                 BindList();
             }
         }
@@ -168,8 +178,10 @@ protected int PageIndex
         {
             Literal litId = e.Item.FindControl("litId") as Literal;
             litId.Text = t.BandId.ToString();
-            Literal litBandName = e.Item.FindControl("litBandName") as Literal;
+            HyperLink litBandName = e.Item.FindControl("litBandName") as HyperLink;
             litBandName.Text = t.BandName;
+            litBandName.NavigateUrl = "BandProfile.aspx?id=" + t.BandId.ToString()
+                +"&name="+HttpUtility.UrlEncode(t.BandName);
         }
     }
 
@@ -181,11 +193,16 @@ protected int PageIndex
         int.TryParse(txtBandId.Value, out id);
         item.BandId = id;
         item.BandName = txtBandName.Text;
-        item.Info1 = txtInfo1.Text; 
-        item.Info2 = txtInfo2.Text;
-        item.Info3 = txtInfo3.Text;
-        item.Remark = txtRemark.Text;
-        
+       // item.Info1 = txtInfo1.Text; 
+        //item.Info2 = txtInfo2.Text;
+        //item.Info3 = txtInfo3.Text;
+        //item.Remark = txtRemark.Text;
+
+
+         item.Info1 = string.Empty;
+         item.Info2 = string.Empty;
+         item.Info3 = string.Empty;
+         item.Remark = string.Empty;
         int result = D4DGateway.BandInfoProvider.SetBandInfo(item);
         addPanel.Visible = false;
 
@@ -197,9 +214,9 @@ protected int PageIndex
 
         txtBandId.Value = "";
         txtBandName.Text = "";
-        txtInfo1.Text = "";
-        txtInfo3.Text = "";
-        txtInfo2.Text = "";
+        //txtInfo1.Text = "";
+        //txtInfo3.Text = "";
+        //txtInfo2.Text = "";
         addPanel.Visible = true;
         btnAdd.Text = "添加";
     }
