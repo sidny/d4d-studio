@@ -37,12 +37,12 @@
 <style type="text/css">
 body{ padding:0; margin:0; font-size:12px; overflow:hidden;}
 .top{height: 64px; background:url(/static/images/admin/top.png) bottom repeat-x;}
-.top-nav{  float:left; width:760px; padding-top:41px;}
-.top-nav span{ padding:10px; font-weight:bold; color:white;}
+.top-nav{  float:left; width:760px;padding-top:28px; *padding-top:30px; }
+.top-nav span{ padding:10px; font-weight:bold; color:white;display:inline-block}
 .top-nav span.on{background:white; color:black}
 .top-nav span a{ color:#FCC; text-decoration:none}
 .left-nav{ float:left; width:240px; height:500px; background:#4f4f4f;}
-.left-nav p{ border-bottom: 1px solid #616161; color:white; padding-left:60px; height:23px;}
+.left-nav p{ border-bottom: 1px solid #616161; color:white;padding:6px 0 6px 60px; margin:0;height:23px; line-height:23px; }
 .left-nav p a{ color:white; text-decoration:none}
 .content{ height:500px; width:760px; float:left; border-left:1px solid #ccc; }
 
