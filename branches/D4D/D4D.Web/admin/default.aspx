@@ -8,7 +8,6 @@
     window.currentPermission = <%=PermissionStr %>;
     $(document).ready(function() {
         $(window).bind("resize",function(){
-            console.log($(".left-nav").height());
             $(".left-nav").css({height:$(window).height()-64});
             $(".content").css({height:$(window).height()-64,width:$(window).width()-250});
             });
