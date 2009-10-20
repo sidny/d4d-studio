@@ -145,6 +145,7 @@ protected int PageIndex
                 HyperLink litBandName = ri.FindControl("litBandName") as HyperLink;
                 txtBandId.Value = litID.Text;
                 txtBandName.Text = litBandName.Text;
+                
                 btnAdd.Text = "更新";
                 addPanel.Visible = true;
             }
@@ -163,7 +164,18 @@ protected int PageIndex
             int id = 0;
             if (int.TryParse(litID.Text, out id))
             {
-                 
+                HyperLink litBandName = ri.FindControl("litBandName") as HyperLink;
+                BandInfo item = new BandInfo();            
+                item.BandId = id;
+                item.BandName = litBandName.Text;   
+                item.Info1 = string.Empty;
+                item.Info2 = string.Empty;
+                item.Info3 = string.Empty;
+                item.Remark = string.Empty;
+                item.DeleteFlag = 1;
+                int result = D4DGateway.BandInfoProvider.SetBandInfo(item);
+                addPanel.Visible = false;
+
                 BindList();
             }
         }
@@ -203,6 +215,7 @@ protected int PageIndex
          item.Info2 = string.Empty;
          item.Info3 = string.Empty;
          item.Remark = string.Empty;
+         item.DeleteFlag = 0;
         int result = D4DGateway.BandInfoProvider.SetBandInfo(item);
         addPanel.Visible = false;
 

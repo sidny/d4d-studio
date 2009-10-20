@@ -7,7 +7,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentBody" runat="server">
 <form id="form1" runat="server">
-     <div><h1><asp:Literal ID="litBandName" runat="server"></asp:Literal></h1></div>
+     <div><h1><asp:Literal ID="litBandName" runat="server"></asp:Literal>
+     <asp:Button ID="btnSave" runat="server" Text="保存" OnClick="btnSave_Click" />    <a href="BandInfo.aspx">返回</a></h1>
+     </div>
      <asp:Literal ID="litId" runat="server" Visible="false"></asp:Literal>
        <table cellspacing="1" cellpadding="4" rules="all"  align="center" width="100%" class="grid">
          <tr >
@@ -71,6 +73,29 @@
         {
            litBandName.Text = Request.QueryString["name"];
            litId.Text = Request.QueryString["id"];
+            
+            //bindList
+           txtProfile.Text = D4DGateway.BandInfoProvider.ReadProfileContent(Id, 0);
+           txtCourse.Text = D4DGateway.BandInfoProvider.ReadProfileContent(Id, 1);
+           txtAward.Text = D4DGateway.BandInfoProvider.ReadProfileContent(Id, 2);
+           txtVideo.Text = D4DGateway.BandInfoProvider.ReadProfileContent(Id, 3);
         }
+    }
+
+    protected void btnSave_Click(object sender, EventArgs e)
+    {
+        if (!string.IsNullOrEmpty(txtProfile.Text))
+            D4DGateway.BandInfoProvider.SetProfileContent(Id, 0, txtProfile.Text);
+      
+        if (!string.IsNullOrEmpty(txtCourse.Text))
+            D4DGateway.BandInfoProvider.SetProfileContent(Id, 1, txtCourse.Text);
+
+        if (!string.IsNullOrEmpty(txtAward.Text))
+            D4DGateway.BandInfoProvider.SetProfileContent(Id, 2, txtAward.Text);
+
+        if (!string.IsNullOrEmpty(txtVideo.Text))
+            D4DGateway.BandInfoProvider.SetProfileContent(Id, 3, txtVideo.Text);
+
+        Response.Redirect("BandInfo.aspx");
     }
 </script>
