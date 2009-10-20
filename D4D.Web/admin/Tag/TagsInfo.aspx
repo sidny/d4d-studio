@@ -8,7 +8,7 @@
 <asp:Content ContentPlaceHolderID="ContentBody" runat="server">
     <form id="form1" runat="server">
     <asp:Panel runat="server" ID="addPanel">
-            <div>Tag编辑</div>
+            <div><h1>Tag编辑</h1></div>
             <div>
              <table cellspacing="1" cellpadding="4" rules="all"  align="center" width="100%" class="grid">
                     <tr>
@@ -27,7 +27,7 @@
             </asp:Panel>
             <asp:Panel runat="server" ID="listPanel">
             <div>
-             <div>Tag列表</div>
+             <div><h1>Tag列表</h1></div>
             
             <asp:Repeater ID="repList" runat="server" 
                     onitemdatabound="repList_ItemDataBound">
@@ -57,7 +57,7 @@
                 <FooterTemplate>
                      <tr align="right" style="font-size: medium; white-space: nowrap;">
                       <td colspan="6" valign="middle" class="pagestyle" id="pager"></td>
-                      <td><asp:Button ID="btnAddShow" runat="server" OnClick="btnAdd_Show" Text="新增" /></td>
+                      <td><asp:Button ID="btnAddShow" runat="server" OnClick="btnAdd_Show" Text="新增" /> </td>
                     </tr>
                     </table>
                 </FooterTemplate>        
