@@ -595,8 +595,6 @@
     <None Include="admin\Accounts\images\skin2\Thumbs.db" />
     <None Include="admin\Accounts\images\skin2\vssver2.scc" />
     <None Include="admin\Images\MenuImg\Thumbs.db" />
-    <None Include="admin\Images\skin2\Thumbs.db" />
-    <None Include="admin\Images\skin2\vssver2.scc" />
     <None Include="admin\Images\Thumbs.db" />
     <Content Include="admin\Album\Album.aspx" />
     <Content Include="admin\Band\BandInfo.aspx" />
@@ -684,8 +682,6 @@
     <Content Include="admin\Images\lan1.gif" />
     <Content Include="admin\Images\lan12.gif" />
     <Content Include="admin\Images\navspacer.gif" />
-    <Content Include="admin\Images\skin2\downbg.gif" />
-    <Content Include="admin\Images\skin2\topbar_01.jpg" />
     <Content Include="admin\Images\topbg.gif" />
     <Content Include="Control\top.ascx" />
     <Content Include="Control\ValidateCode.ashx" />
