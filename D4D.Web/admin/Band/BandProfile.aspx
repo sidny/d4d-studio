@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true"MasterPageFile="~/admin/Admin.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true"MasterPageFile="~/admin/Admin.Master" ValidateRequest="false" %>
 <%@ Import Namespace="D4D.Platform"%>
 <%@ Import Namespace="D4D.Platform.Domain" %>
 <%@ Import Namespace="LTP.Accounts.Bus"%>

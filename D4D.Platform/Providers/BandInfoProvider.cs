@@ -5,6 +5,7 @@ using System.Text;
 using D4D.Platform.Domain;
 using D4D.Platform.Persistence;
 using System.Configuration;
+using System.Web;
 using System.IO;
 namespace D4D.Platform.Providers
 {
@@ -62,7 +63,9 @@ namespace D4D.Platform.Providers
             string path = GetProfileContentFilePath(bandid, extType);
              using (StreamWriter sw = File.CreateText(path)) 
             {
-                sw.Write(content);
+                
+
+                sw.Write(HttpUtility.HtmlEncode(content));
             }    
         }
 
@@ -83,7 +86,7 @@ namespace D4D.Platform.Providers
             string path = GetProfileContentFilePath(bandid, extType);
             if (File.Exists(path))
             {
-                return File.ReadAllText(path);
+                return HttpUtility.HtmlDecode( File.ReadAllText(path));
             }
             else
                 return string.Empty;

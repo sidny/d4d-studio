@@ -2,6 +2,7 @@
 <%@ Import Namespace="D4D.Platform"%>
 <%@ Import Namespace="D4D.Platform.Domain" %>
 <%@ Import Namespace="LTP.Accounts.Bus"%>
+<%@ Register src="../Controls/FileUpload.ascx" tagname="FileUpload" tagprefix="uc1" %>
 <asp:Content ContentPlaceHolderID="head" runat="server">
     <title>艺人编辑</title>
 </asp:Content>
@@ -58,13 +59,12 @@
                       <asp:HiddenField ID="txtBandId" runat="server" Value="0" ></asp:HiddenField></td>
                       </tr>
                       <tr>
-                     <!--
-                     <th width="100">Info1</th>
-                      <td><asp:TextBox ID="txtInfo1" runat="server" Width="500px"></asp:TextBox></td>
+                     <th width="100">小图</th>
+                      <td><uc1:FileUpload ID="txtInfo1" runat="server" /></td>
                     </tr>
                      <tr>
-                     <th align="center" width="100">Info2</th>
-                      <td><asp:TextBox ID="txtInfo2" runat="server" Width="500px"></asp:TextBox></td>
+                     <th align="center" width="100">大图</th>
+                      <td><uc1:FileUpload ID="txtInfo2" runat="server" /></td>
                     </tr>
                      <tr>
                      <th align="center" width="100">Info3</th>
@@ -75,7 +75,6 @@
                       <td><asp:TextBox ID="txtRemark" runat="server" Width="500px"></asp:TextBox></td>
                     </tr>
                     <tr>
-                    -->
                     <th align="center" width="100">&nbsp;</th>
                       <td><asp:Button ID="btnAdd" runat="server" Text="新增" onclick="btnAdd_Click" /></td>
                     </tr>
@@ -119,12 +118,14 @@ protected int PageIndex
         }
     }
 
-   
+    private static System.Collections.Generic.IList<BandInfo> bandList;
+       
     private void BindList()
     {
         System.Collections.Generic.IList<BandInfo> list = D4DGateway.BandInfoProvider.GetBandInfoList(false);
         repList.DataSource = list;
         repList.DataBind();
+        bandList = list;
 
     }
 
@@ -142,10 +143,22 @@ protected int PageIndex
             int id = 0;
             if (int.TryParse(litID.Text, out id))
             {
+                BandInfo band = new BandInfo();
+                foreach (var i in bandList) 
+                {
+                    if (id == i.BandId)
+                    {
+                        band = i;
+                        break;
+                    }
+                }
                 HyperLink litBandName = ri.FindControl("litBandName") as HyperLink;
-                txtBandId.Value = litID.Text;
-                txtBandName.Text = litBandName.Text;
-                
+                txtBandId.Value = band.BandId.ToString();
+                txtBandName.Text = band.BandName;
+                txtInfo1.UploadResult = band.Info1;
+                txtInfo2.UploadResult = band.Info2;
+                txtInfo3.Text = band.Info3;
+                txtRemark.Text = band.Remark;
                 btnAdd.Text = "更新";
                 addPanel.Visible = true;
             }
@@ -205,16 +218,10 @@ protected int PageIndex
         int.TryParse(txtBandId.Value, out id);
         item.BandId = id;
         item.BandName = txtBandName.Text;
-       // item.Info1 = txtInfo1.Text; 
-        //item.Info2 = txtInfo2.Text;
-        //item.Info3 = txtInfo3.Text;
-        //item.Remark = txtRemark.Text;
-
-
-         item.Info1 = string.Empty;
-         item.Info2 = string.Empty;
-         item.Info3 = string.Empty;
-         item.Remark = string.Empty;
+        item.Info1 = txtInfo1.UploadResult;
+        item.Info2 = txtInfo2.UploadResult;
+        item.Info3 = txtInfo3.Text;
+        item.Remark = txtRemark.Text;
          item.DeleteFlag = 0;
         int result = D4DGateway.BandInfoProvider.SetBandInfo(item);
         addPanel.Visible = false;
@@ -227,9 +234,9 @@ protected int PageIndex
 
         txtBandId.Value = "";
         txtBandName.Text = "";
-        //txtInfo1.Text = "";
-        //txtInfo3.Text = "";
-        //txtInfo2.Text = "";
+        txtInfo1.UploadResult = "";
+        txtInfo3.Text = "";
+        txtInfo2.UploadResult = "";
         addPanel.Visible = true;
         btnAdd.Text = "添加";
     }
