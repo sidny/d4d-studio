@@ -612,6 +612,7 @@
     <Content Include="channel\music\songs.aspx" />
     <Content Include="channel\photo\slider.aspx" />
     <Content Include="channel\photo\photo.aspx" />
+    <Content Include="channel\singer\index.aspx" />
     <Content Include="channel\singer\singer.aspx" />
     <Content Include="channel\sitemap\index.aspx" />
     <Content Include="channel\video\index.aspx" />
