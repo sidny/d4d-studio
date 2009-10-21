@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using D4D.Platform.Domain;
+using D4D.Platform;
 
 namespace D4D.Web.Helper
 {
@@ -22,6 +23,17 @@ namespace D4D.Web.Helper
                     HttpContext.Current.Session["BandList"] = list;
                 }
                 return list;
+
+            }
+        }
+        public static IDictionary<int,BandInfo> BandColl
+        {
+            get
+            {
+                IDictionary<int, BandInfo> coll = new Dictionary<int, BandInfo>();
+                foreach (var i in BandList)
+                    coll.Add(i.BandId, i);
+                return coll;
 
             }
         }
