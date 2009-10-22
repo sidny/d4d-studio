@@ -256,6 +256,8 @@ protected int PageIndex
         int id = 0;
         int.TryParse(txtShowId.Value, out id);
         item.ShowId = id;
+        int.TryParse(txtBandId.SelectedValue, out id);
+        item.BandId = id;
         item.Body = txtBody.Text;
         DateTime date = DateTime.MinValue;    
         DateTime.TryParse(txtShowDate.Text, out date);

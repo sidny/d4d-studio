@@ -28,10 +28,10 @@ div.header{ height:86px; text-align:center; position:relative; padding-top:10px;
 .sub-title{ height:58px; line-height:58px; border-bottom:1px solid #7f7f7f; margin-bottom:10px;}
 .sub-title .title{ float:left; width:300px; font-size:24px; font-weight:bold; padding-left:10px; font-family:"微软雅黑","黑体"}
 .sub-title .nav-link{ float:right; width:300px; text-align:right; padding-right:15px;}
-.sub-nav { width:240px; float:left;}
+.sub-nav { width:240px; float:left; padding-bottom:30px;}
 .sub-nav li{height:30px; line-height:30px; font-size:14px; font-weight:bold; background:#fafafa; border-bottom:1px solid #e5e5e5; padding-left:15px;}
 
-.main {width:690px;float:left; clear:right; margin-left:25px; margin-bottom:10px;}
+.main {width:690px;float:left; clear:right; margin-left:25px; margin-bottom:30px;}
 .channel{ height:30px; border-bottom:1px solid #cbcbcb;font-family:'微软雅黑','simhei';line-height:30px; }
 .channel h1{ font-size:20px; padding:0;  margin:0;}
 .news-top li { padding:20px 0; border-bottom:1px solid #cbcbcb; clear:both; line-height:21px; _height:63px; min-height:63px;}
