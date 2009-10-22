@@ -32,6 +32,7 @@
 .sub-nav li.sub td a:hover{
     color:Red; background:white;
 }
+.calander td{ line-height:18px;}
 </style>
 <div class="sub-nav">
   <ul>
@@ -71,7 +72,7 @@
         <tr class="date<%#((Show)Container.DataItem).ShowDate.ToString("yyyyMMdd")%>">
           <td width="56" align="center" valign="middle"><img src="<%#BandInfo(((Show)Container.DataItem).BandId).Info1%>" width="56" height="56" /><br />
 			<%#BandInfo(((Show)Container.DataItem).BandId).BandName%>	</td>
-          <td width="110" align="center" valign="middle"><%#((Show)Container.DataItem).ShowDate.ToLongDateString() %></td>
+          <td width="110" align="center" valign="middle"><%#((Show)Container.DataItem).ShowDate.ToLongDateString() %><%#GetExpireString(Container.DataItem)%></td>
           <td width="110" align="center" valign="middle"><%#((Show)Container.DataItem).ShowPlace%></td>
           <td width="136" align="center" valign="middle"><%#((Show)Container.DataItem).Title%></td>
           <td width="278" valign="middle"><%#((Show)Container.DataItem).Body%></td>
@@ -158,7 +159,9 @@
         this.html(str);
         return this;
         function getMonthString(date){
-            return date.getFullYear() + ("0"+(date.getMonth()+1)).substr(-2,2);
+	    var month = "0"+(date.getMonth()+1) + "";
+		month = month.substring(month.length-2,month.length);
+            return date.getFullYear() + month;
         }
     }
         $("#calender").drawCalender({year:<%=sDate.Year %>,
@@ -302,11 +305,17 @@ protected int PageIndex
         DateList = new List<DateTime>(dict.Values);
 
     }
-    protected string GetBandInfo(int bandId)
+	protected string GetExpireString(Object o)
     {
-        return string.Empty;
+        if (DateTime.Now > ((Show)o).EndDate)
+        {
+            return "<br/><font style=\"color:#bbb\">已过期</font>";
+        }
+        else
+        {
+            return string.Empty;
+        }
     }
-
     protected BandInfo BandInfo(int Id)
     {
         BandInfo band = new BandInfo();
