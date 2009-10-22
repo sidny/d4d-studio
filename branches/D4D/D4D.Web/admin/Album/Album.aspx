@@ -63,7 +63,7 @@
                      <th width="100">歌手</th>
                       <td><asp:DropDownList ID="txtBandId" runat="server"></asp:DropDownList></td>
                     </tr>
-                      <tr>
+                      <tr style="display:none">
                      <th width="100">日期</th>
                       <td><asp:TextBox ID="txtPublishDate" runat="server"></asp:TextBox></td>
                     </tr>
