@@ -1,16 +1,43 @@
-<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage/Channel.Master" %>
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage/Main.Master" %>
 <%@ Import Namespace="D4D.Platform.Domain" %>
+<%@ Import Namespace="System.Collections.Generic" %>
+<%@ Import Namespace="System.Linq" %>
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader">
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentMain" runat="server">
-
+<div class="sub-title">
+  <p class="title">星程</p>
+  <p class="nav-link">您的位置：首页 > 星程 > <%=BandInfo.BandName %>星程</p>
+</div>
+<div class="sub-nav">
+  <ul>
+    <%
+	List<int> list = new List<int>(BandColl.Keys.ToArray());
+	list.Sort();
+	for (int n =0;n<list.Count;n++)
+      {
+		  var i = BandColl[list[n]];
+          if (i.BandId == BandId)
+          {
+           %>
+            <li>》<font color="red"><%=i.BandName%>星程</font></li>
+            <li class="calender">
+                
+            </li>
+    
+    <%} else
+          {%>
+     <li>》<a href="/calender/b<%=i.BandId %>/d<%=DateStr%>.html"><%=i.BandName%></a></li>
+    <%}
+      } %>
+  </ul>
+</div>
 <div class="main">
   <asp:Repeater ID="repList" runat="server">
   <HeaderTemplate>
   <table width="690" border="0" cellspacing="0" cellpadding="0" class="calander">
     <tr>
-      <th colspan="5"><img src="/static/images/calendar_nav.png" width="690" height="38" /></td>
+      <th colspan="5"><img src="/static/images/calendar_nav.png" width="690" height="38" /></th>
       </tr>
       </HeaderTemplate>
       <ItemTemplate>
@@ -33,20 +60,24 @@
     $(document).ready(function() {
         var cur = parseInt("<%=PageIndex %>");
         var total = parseInt("<%=PageTotalCount %>");
-        var pageSize = parseInt("<%=PageSize %>");
-        var href = location.href;
-        if (href.match(/page=\d+/gi)) href = href.replace(/page=\d+/ig, "page=__id__");
-        else href += "?page=__id__";
+        var pageSize = 10;
+		window.$rows = $(".calander").find("tr:gt(0)");
+		$rows.filter("tr:gt(10)").hide();
         $("#pager").pagination(
           total,
                 {
                     items_per_page: pageSize,
                     num_display_entries: 10,
                     current_page: cur - 1,
-                    link_to: href,
                     prev_text: "上一页",
                     next_text: "下一页",
-                    callback: function() { return true; }
+                    callback: function(page) { 
+						$rows.hide();
+						for(var i = 0;i<10 ;i++){
+							if((i+page*10) == $rows.length) break;
+							$rows.eq(i+page*10).show();	
+						}
+					}
                 });
     });
 </script>
@@ -69,7 +100,7 @@ protected int PageIndex
             return page;
         }
     }
-    protected int PageSize = 10;
+    protected int PageSize = 1000;
     private int totalCount;
     protected int PageTotalCount
     {
@@ -91,6 +122,20 @@ protected int PageIndex
             return id;
         }
     }
+	public static IDictionary<int,BandInfo> BandColl
+        {
+            get
+            {
+                IDictionary<int, BandInfo> coll = D4D.Web.Helper.Helper.BandColl;
+					
+				BandInfo band = new BandInfo();
+				band.BandId = 0;
+				band.BandName = "公司";
+				coll.Add(band.BandId,band);
+                return coll;
+
+            }
+        }
     protected void Page_Load(object sender, EventArgs e)
     {
         string url = "/calender";
@@ -131,8 +176,6 @@ protected int PageIndex
                            System.Globalization.DateTimeStyles.None, out sDate);
             eDate = sDate;
         }
-
-        
         PagingContext pager = new PagingContext();
         pager.RecordsPerPage = PageSize;
         pager.CurrentPageNumber = PageIndex;
@@ -145,5 +188,20 @@ protected int PageIndex
     }
     protected string GetBandInfo(int bandId){
         return string.Empty;
+    }
+	
+	private BandInfo band;
+    protected BandInfo BandInfo
+    {
+        get
+        {
+            if (band == null)
+            {
+                band = new BandInfo();			
+                BandColl.TryGetValue(BandId, out band);
+            }
+
+            return band;
+        }
     }
 </script>
