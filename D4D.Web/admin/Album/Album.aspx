@@ -68,10 +68,10 @@
                       <td><asp:TextBox ID="txtPublishDate" runat="server"></asp:TextBox></td>
                     </tr>
                       <tr>
-                     <th width="100">小图</th>
+                     <th width="100">小图 (150 * 100)</th>
                       <td><uc1:FileUpload ID="txtSImage" runat="server" /></td>
                     </tr>
-                      <tr>
+                      <tr style="display:none">
                      <th width="100">大图</th>
                       <td><uc1:FileUpload ID="txtLImage" runat="server" /></td>
                     </tr>
