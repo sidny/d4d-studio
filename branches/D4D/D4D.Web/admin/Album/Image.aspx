@@ -68,11 +68,11 @@
                       <asp:HiddenField ID="txtImageId" runat="server" Value="0" ></asp:HiddenField></td>
                       </tr>
                        <tr>
-                     <th width="100">小图</th>
+                     <th width="100">小图 (150 * 100)</th>
                       <td> <uc1:FileUpload ID="txtSImageFile" runat="server" /></td>
                     </tr>
                       <tr>
-                     <th width="100">图片地址</th>
+                     <th width="100">图片地址 ( 宽度大于 800px )</th>
                       <td> <uc1:FileUpload ID="txtLImageFile" runat="server" /></td>
                     </tr>
                      
