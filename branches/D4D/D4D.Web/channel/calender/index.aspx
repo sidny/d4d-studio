@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage/Channel.Master" %>
+<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage/Channel.Master" %>
 
 <%@ Import Namespace="D4D.Platform.Domain" %>
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader">
@@ -16,7 +16,7 @@
       <ItemTemplate>
         <tr>
           <td width="56" align="center" valign="middle"><img src="/static/images/pic_s.png" width="56" height="56" /><br />
-            张靓影</td>
+			张靓颖	</td>
           <td width="110" align="center" valign="middle"><%#((Show)Container.DataItem).ShowDate.ToLongDateString() %></td>
           <td width="110" align="center" valign="middle"><%#((Show)Container.DataItem).ShowPlace%></td>
           <td width="136" align="center" valign="middle"><%#((Show)Container.DataItem).Title%></td>
@@ -78,24 +78,72 @@ protected int PageIndex
             return totalCount;
         }
     }
+    protected int BandId{
+        get
+        {
+            string queryId = Request.QueryString["id"];
+            if (string.IsNullOrEmpty(queryId)) return 0;
+
+            int id = 0;
+
+            int.TryParse(queryId, out id);
+
+            return id;
+        }
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+        string url = "/calender";
+        if(BandId > 0) url+= "/b"+BandId.ToString();
+        if(string.IsNullOrEmpty(DateStr)){
+            url += string.Format("/d{0}.html",DateTime.Now.ToString("yyyyMM"));
+            Response.Redirect(url,false);
+        }else if (!IsPostBack)
         {
             BindList();
         }
     }
+    
+    protected string DateStr {
+        get
+        {
+            if(string.IsNullOrEmpty(Request["date"])){
+                return string.Empty;
+            }else{
+                return Request["date"]; 
+            }
+        }
+    }
+    
 
-   
     private void BindList()
     {
+    	System.Globalization.CultureInfo zhCN = new System.Globalization.CultureInfo("zh-CN"); 
+        DateTime sDate = DateTime.MinValue;
+        DateTime eDate = DateTime.MinValue;
+        if(DateStr.Length == 6){
+            DateTime.TryParseExact(DateStr, "yyyyMM", zhCN, 
+                           System.Globalization.DateTimeStyles.None, out sDate);
+            eDate = sDate.AddMonths(1);
+            eDate = eDate.AddDays(-1);
+        }else if(DateStr.Length == 8){
+            DateTime.TryParseExact(DateStr, "yyyyMMdd", zhCN, 
+                           System.Globalization.DateTimeStyles.None, out sDate);
+            eDate = sDate;
+        }
+
+        
         PagingContext pager = new PagingContext();
         pager.RecordsPerPage = PageSize;
         pager.CurrentPageNumber = PageIndex;
-        System.Collections.Generic.IList<Show> list = D4D.Platform.D4DGateway.ShowProvider.GetPagedShow(pager,PublishStatus.ALL);
+        
+        System.Collections.Generic.IList<Show> list = D4D.Platform.D4DGateway.ShowProvider.GetPagedShowByShowDate(pager,sDate,eDate,  PublishStatus.ALL);
         repList.DataSource = list;
         totalCount = pager.TotalRecordCount;
         repList.DataBind();
 
+    }
+    protected string GetBandInfo(int bandId){
+        return string.Empty;
     }
 </script>
