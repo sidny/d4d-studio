@@ -19,7 +19,7 @@
 }
 </style>
 
-<div class="sub-nav">
+<div class="sub-nav clearfix">
   <ul>
     <%foreach (BandInfo i in Helper.BandColl.Values)
       {
