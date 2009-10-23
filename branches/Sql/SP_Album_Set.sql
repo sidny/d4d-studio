@@ -60,7 +60,7 @@ BEGIN
     UPDATE albums
     SET  Title = @Title,BandId=@BandId,PublishDate= @PublishDate,
     PublishYear=@PublishYear,PublishMonth=@PublishMonth,AddUserId=@AddUserId,
-    AddDate=GETDATE(),[Status]=@Status,TotalCount=@TotalCount,
+    AddDate=GETDATE(),[Status]=@Status,
    SImage=@SImage,  LImage=@LImage
     WHERE AlbumId =  @AlbumId
    END
