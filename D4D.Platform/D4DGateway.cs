@@ -72,6 +72,15 @@ namespace D4D.Platform
                 return BandInfoProvider.Instance;
             }
         }
+
+        public static SearchProvider SearchProvider
+        {
+            get
+            {
+                return SearchProvider.Instance;
+            }
+        }
+       
        
     }
 }
