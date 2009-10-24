@@ -182,7 +182,7 @@
 
     private void BindList()
     {
-        System.Collections.Generic.IList<D4D.Platform.Domain.Image> list  =  D4DGateway.AlbumProvider.GetImagesByMusicId(AlbumId,PublishStatus.ALL);
+        System.Collections.Generic.IList<D4D.Platform.Domain.Image> list  =  D4DGateway.AlbumProvider.GetImagesByAlbumId(AlbumId,PublishStatus.ALL);
         repList.DataSource = list;
         repList.DataBind();
 

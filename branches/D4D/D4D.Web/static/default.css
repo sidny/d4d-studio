@@ -55,7 +55,8 @@ div.header{ height:86px; text-align:center; position:relative; padding-top:10px;
 
 .album ul,.album_list ul{padding:20px 0;}
 .album li{ float:left; width:150px; text-align:center; line-height:20px; margin-right:20px;}
-.album li img {background: url(images/album/album_bg.gif); padding:9px 6px 6px 5px;}
+.album li p.bg{ width:162px; height:116px;background: url(images/album/album_bg.gif); }
+.album li img { margin-top:9px;  max-width:150px; max-height:100px; _width:150px; _height:100px;}
 .album_list li {width:33%; float:left; text-align:center;line-height:20px; }
 .album_detail{width:830px;margin:0 auto;padding-bottom:20px;}
 .album_detail .channel {position:relative; border:none;}
