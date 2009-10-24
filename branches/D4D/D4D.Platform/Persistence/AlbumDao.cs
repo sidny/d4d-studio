@@ -357,7 +357,7 @@ namespace D4D.Platform.Persistence
 
             list.Add(m);
         }
-        internal static List<Image> GetImagesByMusicId(int albumId, int publishStatus)
+        internal static List<Image> GetImagesByAlbumId(int albumId, int publishStatus)
         {
             List<Image> list = new List<Image>();
             if (albumId > 0)
