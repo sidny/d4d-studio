@@ -108,9 +108,9 @@ namespace D4D.Platform.Providers
         {
             return AlbumDao.GetImage(imageId);
         }
-        public List<Image> GetImagesByMusicId(int albumId, PublishStatus publishStatus)
+        public List<Image> GetImagesByAlbumId(int albumId, PublishStatus publishStatus)
         {
-            return AlbumDao.GetImagesByMusicId(albumId, (int)publishStatus);
+            return AlbumDao.GetImagesByAlbumId(albumId, (int)publishStatus);
         }
 
         public List<Image> GetPagedImagesByAlbumId(PagingContext pager, int albumId, PublishStatus publishStatus)
