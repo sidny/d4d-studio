@@ -615,6 +615,7 @@
     <Content Include="channel\singer\index.aspx" />
     <Content Include="channel\singer\singer.aspx" />
     <Content Include="channel\sitemap\index.aspx" />
+    <Content Include="channel\user\login.aspx" />
     <Content Include="channel\user\regist.aspx" />
     <Content Include="channel\video\index.aspx" />
     <Content Include="channel\calender\menu.ascx" />
@@ -643,10 +644,14 @@
     <Content Include="static\images\user\3.gif" />
     <Content Include="static\images\user\4.gif" />
     <Content Include="static\images\user\reg.jpg" />
+    <Content Include="static\images\user\success.jpg" />
     <Content Include="static\jquery.ad-gallery.css" />
     <Content Include="static\js\jquery.ad-gallery.js" />
     <Content Include="static\js\jquery.ad-gallery.pack.js" />
+    <Content Include="static\js\jquery.blockui.js" />
     <Content Include="static\js\jquery.datepicker.js" />
+    <Content Include="static\js\jquery.form.js" />
+    <Content Include="static\js\jquery.json.js" />
     <Content Include="static\js\jquery.musiccontrol.js" />
     <Content Include="static\js\ui.core.js" />
     <Content Include="static\js\ui.slider.js" />
