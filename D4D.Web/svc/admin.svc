@@ -16,7 +16,7 @@ namespace D4D.Web.svc
 {
     [ServiceContract(Namespace = "")]
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
-    public class admin :IRequiresSessionState
+    public class admin
     {
         // Add [WebGet] attribute to use HTTP GET
         [OperationContract]

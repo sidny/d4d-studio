@@ -26,7 +26,7 @@ div.header{ height:86px; text-align:center; position:relative; padding-top:10px;
 .nav .search{ background:url(images/search_input.png) left no-repeat; width:206px; margin-right:10px; height:20px; float:right; margin-top:18px;}
 .nav .search input.text{ border:0; padding:0; margin-left:10px; line-height:20px; height:20px; background:transparent;}
 .sub-title{ height:58px; line-height:58px; border-bottom:1px solid #7f7f7f; margin-bottom:10px;}
-.sub-title .title{ float:left; width:300px; font-size:24px; font-weight:bold; padding-left:10px; font-family:"微软雅黑","黑体"}
+.sub-title .title{ float:left; width:300px; font-size:24px;padding-left:10px; font-family:"微软雅黑","黑体"}
 .sub-title .nav-link{ float:right; width:300px; text-align:right; padding-right:15px;}
 .sub-nav { width:240px; float:left; padding-bottom:30px;}
 .sub-nav li{height:30px; line-height:30px; font-size:14px; font-weight:bold; background:#fafafa; border-bottom:1px solid #e5e5e5; padding-left:15px;}
