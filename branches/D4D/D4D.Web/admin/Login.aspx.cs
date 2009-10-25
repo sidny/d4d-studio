@@ -122,6 +122,12 @@ namespace Maticsoft.Web.Admin
                         Session["PassErrorCountAdmin"] = 1;
                     }
                 }
+                else if (currentUser.UserType.Trim() != ((int)UserType.Type.Admin).ToString())
+                {
+                    //Response.Write(currentUser.UserType);
+                    this.lblMsg.Text = "您没有权限登陆";
+                    return;
+                }
                 else
                 {
                     //保存当前用户对象信息

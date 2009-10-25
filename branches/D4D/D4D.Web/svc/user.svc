@@ -1,0 +1,78 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="D4D.Web.svc.news" %>
+using System;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.ServiceModel.Activation;
+using System.ServiceModel.Web;
+using System.Collections.Generic;
+using System.Web;
+using LTP.Accounts.Bus;
+using System.Runtime.Remoting.Contexts;
+namespace D4D.Web.svc
+{
+    [ServiceContract(Namespace = "")]
+    [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
+    public class User 
+    {
+        // Add [WebGet] attribute to use HTTP GET
+        [OperationContract]
+        public void DoWork()
+        {
+            // Add your operation implementation here
+            return;
+        }
+
+        [OperationContract]
+        [WebGet(RequestFormat=WebMessageFormat.Json,BodyStyle=WebMessageBodyStyle.WrappedRequest,ResponseFormat=WebMessageFormat.Json)]
+        public bool CheckUserName(string username)
+        {
+            LTP.Accounts.Bus.User user = new LTP.Accounts.Bus.User();
+            return user.HasUser(username);
+        }
+
+        [OperationContract]
+        [WebGet(RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
+        public bool Login(string username,string password)
+        {
+            AccountsPrincipal newUser = AccountsPrincipal.ValidateLogin(username, password);
+            if (newUser == null) return false;
+            else
+            {
+                LTP.Accounts.Bus.User currentUser = new LTP.Accounts.Bus.User(newUser);
+                HttpContext.Current.Session["UserInfo"] = currentUser;
+                HttpContext.Current.Session["Style"] = currentUser.Style;
+                return true;
+            }
+        }
+
+        [OperationContract]
+        [WebGet(RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
+        public bool Regist(string username, string password,string email)
+        {
+            int userid = 0;
+            try
+            {
+                LTP.Accounts.Bus.User newUser = new LTP.Accounts.Bus.User();
+                newUser.UserName = username;
+                //newUser.Password=AccountsPrincipal.EncryptPassword(txtPassword.Text);
+                newUser.NonEncryptPasswordPassword = password;
+                newUser.TrueName = username;
+                newUser.Email = email;
+                newUser.EmployeeID = 0;
+                //newUser.DepartmentID=this.Dropdepart.SelectedValue;
+                newUser.Activity = true;
+                newUser.UserType = ((int)UserType.Type.Admin).ToString();
+                newUser.Style = 1;
+                userid = newUser.Create();
+            }
+            catch (Exception e)
+            {
+
+            }
+            return (userid > 0);
+        }
+        // Add more operations here and mark them with [OperationContract]
+
+    }
+}
