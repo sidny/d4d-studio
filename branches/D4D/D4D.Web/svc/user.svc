@@ -1,20 +1,25 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="D4D.Web.svc.news" %>
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="D4D.Web.svc.user"  %>
 using System;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
-using System.Collections.Generic;
-using System.Web;
 using LTP.Accounts.Bus;
-using System.Runtime.Remoting.Contexts;
+using System.Web;
+using System.Net;
+
 namespace D4D.Web.svc
 {
-    [ServiceContract(Namespace = "")]
+    [ServiceContract(Namespace = "",SessionMode=SessionMode.Allowed)]
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
-    public class User 
+    [ServiceBehavior(IncludeExceptionDetailInFaults=true)]
+    public class user
     {
+       
+        public user(){
+          
+        }
         // Add [WebGet] attribute to use HTTP GET
         [OperationContract]
         public void DoWork()
@@ -24,7 +29,7 @@ namespace D4D.Web.svc
         }
 
         [OperationContract]
-        [WebGet(RequestFormat=WebMessageFormat.Json,BodyStyle=WebMessageBodyStyle.WrappedRequest,ResponseFormat=WebMessageFormat.Json)]
+        [WebGet(RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
         public bool CheckUserName(string username)
         {
             LTP.Accounts.Bus.User user = new LTP.Accounts.Bus.User();
@@ -33,23 +38,26 @@ namespace D4D.Web.svc
 
         [OperationContract]
         [WebGet(RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
-        public bool Login(string username,string password)
+        public LoginInfo Login(string username, string password)
         {
             AccountsPrincipal newUser = AccountsPrincipal.ValidateLogin(username, password);
-            if (newUser == null) return false;
+            if (newUser == null) return new LoginInfo() { UserId=0,UserName="" };
             else
             {
                 LTP.Accounts.Bus.User currentUser = new LTP.Accounts.Bus.User(newUser);
                 HttpContext.Current.Session["UserInfo"] = currentUser;
                 HttpContext.Current.Session["Style"] = currentUser.Style;
-                return true;
+                System.Web.Security.FormsAuthentication.SetAuthCookie(currentUser.UserName, false);
+                return new LoginInfo() { UserId = currentUser.UserID, UserName = currentUser.UserName };
             }
         }
-
+       
         [OperationContract]
-        [WebGet(RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
-        public bool Regist(string username, string password,string email)
+        [WebInvoke(BodyStyle=WebMessageBodyStyle.WrappedRequest,Method="POST",ResponseFormat=WebMessageFormat.Json,RequestFormat=WebMessageFormat.Json)]
+        public bool Regist(string username, string password, string email)
         {
+            System.Net.CookieContainer cc = new System.Net.CookieContainer();
+            
             int userid = 0;
             try
             {
@@ -62,17 +70,21 @@ namespace D4D.Web.svc
                 newUser.EmployeeID = 0;
                 //newUser.DepartmentID=this.Dropdepart.SelectedValue;
                 newUser.Activity = true;
-                newUser.UserType = ((int)UserType.Type.Admin).ToString();
+                newUser.UserType = ((int)UserType.Type.Guest).ToString();
                 newUser.Style = 1;
                 userid = newUser.Create();
             }
             catch (Exception e)
             {
-
+                log4net.LogManager.GetLogger("d4d").Error(e);
             }
             return (userid > 0);
         }
         // Add more operations here and mark them with [OperationContract]
-
+        
+        public struct LoginInfo{
+            public int UserId;
+            public string UserName;   
+        }
     }
 }
