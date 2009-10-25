@@ -59,7 +59,7 @@
           </asp:Panel>
     
     <asp:Panel runat="server" ID="addPanel">
-            <div><h1>专辑歌曲</h1></div>
+            <div><h1>添加图片</h1></div>
             <div>
              <table cellspacing="1" cellpadding="4" rules="all"  align="center" width="100%" class="grid">
                     <tr>
