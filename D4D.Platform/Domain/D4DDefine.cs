@@ -40,7 +40,8 @@ namespace D4D.Platform.Domain
 
     public enum BandType : int
     {
-        Company = 0,
+        Company = -1,
+        All = 0,
         ZLY =1,
         WZL=2
     }
