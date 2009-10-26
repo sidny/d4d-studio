@@ -39,6 +39,7 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -67,6 +68,7 @@
     <Compile Include="Domain\TagRelation.cs" />
     <Compile Include="Domain\UploadInfo.cs" />
     <Compile Include="Domain\UserLogin.cs" />
+    <Compile Include="Helper\ImageHelper.cs" />
     <Compile Include="Persistence\AlbumDao.cs" />
     <Compile Include="Persistence\CommentDao.cs" />
     <Compile Include="Persistence\BandInfoDao.cs" />
@@ -86,9 +88,6 @@
     <Compile Include="Providers\ShowProvider.cs" />
     <Compile Include="Providers\TagsProvider.cs" />
     <Compile Include="Providers\UserProvider.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Helper\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -87,7 +87,7 @@
                     </tr>
                       <tr>
                      <th width="100">小图</th>
-                      <td><uc1:FileUpload ID="txtSImage" runat="server" /></td>
+                      <td><uc1:FileUpload ID="txtSImage" runat="server" AutoCreateThumbnailImage="false"/></td>
                     </tr>
                       <tr>
                      <th width="100">大图</th>
@@ -281,7 +281,12 @@
         DateTime date = DateTime.MinValue;
         DateTime.TryParse(txtPublishDate.Text, out date);
         item.PublishDate = date;
-        item.LImage = txtLImage.UploadResult;
+        
+        if (string.IsNullOrEmpty(txtSImage.UploadResult) && !string.IsNullOrEmpty(txtLImage.ThumbnailImage))
+            item.SImage = txtLImage.ThumbnailImage;
+        else
+            item.SImage = txtSImage.UploadResult;
+        
         item.SImage = txtSImage.UploadResult;
         item.NewsType = Convert.ToInt32(txtBandId.SelectedValue);
         item.Hits = Convert.ToInt32(txtHits.Value);

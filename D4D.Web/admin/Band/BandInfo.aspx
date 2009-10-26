@@ -60,7 +60,7 @@
                       </tr>
                       <tr>
                      <th width="100">小图</th>
-                      <td><uc1:FileUpload ID="txtInfo1" runat="server" /></td>
+                      <td><uc1:FileUpload ID="txtInfo1" runat="server" AutoCreateThumbnailImage="false"/></td>
                     </tr>
                      <tr>
                      <th align="center" width="100">大图</th>
@@ -218,7 +218,13 @@ protected int PageIndex
         int.TryParse(txtBandId.Value, out id);
         item.BandId = id;
         item.BandName = txtBandName.Text;
-        item.Info1 = txtInfo1.UploadResult;
+
+        if (string.IsNullOrEmpty(txtInfo1.UploadResult) && !string.IsNullOrEmpty(txtInfo2.ThumbnailImage))
+            item.Info1 = txtInfo2.ThumbnailImage;
+        else
+            item.Info1 = txtInfo1.UploadResult;
+        
+       // item.Info1 = txtInfo1.UploadResult;
         item.Info2 = txtInfo2.UploadResult;
         item.Info3 = txtInfo3.Text;
         item.Remark = txtRemark.Text;
