@@ -47,5 +47,11 @@ namespace D4D.Platform.Domain
             get;
             set;
         }
+
+         public DateTime PublishDate
+         {
+             get;
+             set;
+         }
     }
 }
