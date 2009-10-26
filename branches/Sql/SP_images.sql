@@ -1,7 +1,7 @@
 USE [d4d]
 GO
 
-/****** Object:  Table [dbo].[images]    Script Date: 10/26/2009 17:49:46 ******/
+/****** Object:  Table [dbo].[images]    Script Date: 10/26/2009 18:08:38 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -18,6 +18,7 @@ CREATE TABLE [dbo].[images](
 	[Status] [int] NULL,
 	[SImageFile] [nvarchar](1000) NULL,
 	[PublishDate] [datetime] NULL,
+	[BandId] [int] NULL,
  CONSTRAINT [PK_images] PRIMARY KEY CLUSTERED 
 (
 	[ImageId] ASC

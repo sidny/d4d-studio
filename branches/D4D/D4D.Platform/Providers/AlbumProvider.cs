@@ -91,6 +91,13 @@ namespace D4D.Platform.Providers
         #region Image
         public int SetImage(Image image)
         {
+            if (image.PublishDate == null)
+            {
+                if (image.AddDate != null)
+                    image.PublishDate = image.AddDate;
+                else
+                    image.PublishDate = DateTime.Now;
+            }
             return AlbumDao.SetImage(image);
         }
 
@@ -120,10 +127,10 @@ namespace D4D.Platform.Providers
 
 
         public List<Image> GetPagedImagesByBandAndPublishYearMonth(PagingContext pager, PublishStatus publishStatus,
-    int bandId, int pulishYear, int publishMonth)
+    int bandId, DateTime sTime, DateTime eTime)
         {
             return AlbumDao.GetPagedImagesByBandAndPublishYearMonth(pager, (int)publishStatus,
-                bandId, pulishYear, publishMonth);
+                bandId, sTime, eTime);
         }
 
         public List<Image> GetPagedImagesByBandId(PagingContext pager, PublishStatus publishStatus, int bandId)
@@ -133,10 +140,10 @@ namespace D4D.Platform.Providers
         }
 
         public List<Image> GetPagedImagesByPublishYearMonth(PagingContext pager, PublishStatus publishStatus
-            , int pulishYear, int publishMonth)
+            , DateTime sTime, DateTime eTime)
         {
             return AlbumDao.GetPagedImagesByPublishYearMonth(pager, (int)publishStatus,
-                pulishYear, publishMonth);
+                sTime, eTime);
         }
 
         public List<Image> GetPagedImagesByTag(PagingContext pager, PublishStatus publishStatus, int tagId)

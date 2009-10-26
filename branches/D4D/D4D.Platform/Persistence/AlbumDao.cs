@@ -354,7 +354,7 @@ namespace D4D.Platform.Persistence
             m.AddDate = record.GetDateTime(5);
             m.Status = (PublishStatus)(record.GetInt32OrDefault(6, 0));
             m.SImageFile = record.GetStringOrEmpty(7);
-
+            m.PublishDate = record.GetDateTimeOrEmpty(8);
             list.Add(m);
         }
         internal static List<Image> GetImagesByAlbumId(int albumId, int publishStatus)
@@ -403,7 +403,7 @@ namespace D4D.Platform.Persistence
 
 
         internal static List<Image> GetPagedImagesByBandAndPublishYearMonth(PagingContext pager, int publishStatus,
-            int bandId, int pulishYear, int publishMonth)
+            int bandId, DateTime sTime,DateTime eTime)
         {
             List<Image> list = new List<Image>(pager.RecordsPerPage);
 
@@ -412,8 +412,8 @@ namespace D4D.Platform.Persistence
                delegate(IParameterSet parameters)
                {
                    parameters.AddWithValue("@BandId", bandId);
-                   parameters.AddWithValue("@PublishYear", pulishYear);
-                   parameters.AddWithValue("@PublishMonth", publishMonth);
+                   parameters.AddWithValue("@STime", sTime);
+                   parameters.AddWithValue("@ETime", eTime);
                    parameters.AddWithValue("@PublishStatus", publishStatus);
                    parameters.AddWithValue("@PageIndex", pager.CurrentPageNumber);
                    parameters.AddWithValue("@PageSize", pager.RecordsPerPage);
@@ -460,7 +460,7 @@ namespace D4D.Platform.Persistence
         }
 
         internal static List<Image> GetPagedImagesByPublishYearMonth(PagingContext pager, int publishStatus
-            , int pulishYear, int publishMonth)
+            , DateTime sTime, DateTime eTime)
         {
             List<Image> list = new List<Image>(pager.RecordsPerPage);
 
@@ -468,8 +468,8 @@ namespace D4D.Platform.Persistence
                "dbo.Image_GetPagedByPublishYearMonth",
                delegate(IParameterSet parameters)
                {
-                   parameters.AddWithValue("@PublishYear", pulishYear);
-                   parameters.AddWithValue("@PublishMonth", publishMonth);
+                   parameters.AddWithValue("@STime", sTime);
+                   parameters.AddWithValue("@ETime", eTime);
                    parameters.AddWithValue("@PublishStatus", publishStatus);
                    parameters.AddWithValue("@PageIndex", pager.CurrentPageNumber);
                    parameters.AddWithValue("@PageSize", pager.RecordsPerPage);
