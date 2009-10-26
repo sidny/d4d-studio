@@ -241,13 +241,6 @@
     <Compile Include="admin\Upload\UploadTest.aspx.designer.cs">
       <DependentUpon>UploadTest.aspx</DependentUpon>
     </Compile>
-    <Compile Include="channel\news\news.aspx.cs">
-      <DependentUpon>news.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="channel\news\news.aspx.designer.cs">
-      <DependentUpon>news.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Classes\Helper\AdminHelper.cs">
     </Compile>
     <Compile Include="Classes\Helper\Helper.cs" />
