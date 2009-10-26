@@ -118,6 +118,39 @@ namespace D4D.Platform.Providers
             return AlbumDao.GetPagedImagesByAlbumId(pager, albumId, (int)publishStatus);
         }
 
+
+        public List<Image> GetPagedImagesByBandAndPublishYearMonth(PagingContext pager, PublishStatus publishStatus,
+    int bandId, int pulishYear, int publishMonth)
+        {
+            return AlbumDao.GetPagedImagesByBandAndPublishYearMonth(pager, (int)publishStatus,
+                bandId, pulishYear, publishMonth);
+        }
+
+        public List<Image> GetPagedImagesByBandId(PagingContext pager, PublishStatus publishStatus, int bandId)
+        {
+            return AlbumDao.GetPagedImagesByBandId(pager, (int)publishStatus,
+               bandId);
+        }
+
+        public List<Image> GetPagedImagesByPublishYearMonth(PagingContext pager, PublishStatus publishStatus
+            , int pulishYear, int publishMonth)
+        {
+            return AlbumDao.GetPagedImagesByPublishYearMonth(pager, (int)publishStatus,
+                pulishYear, publishMonth);
+        }
+
+        public List<Image> GetPagedImagesByTag(PagingContext pager, PublishStatus publishStatus, int tagId)
+        {
+            return AlbumDao.GetPagedImagesByTag(pager, (int)publishStatus,
+               tagId);
+        }
+
+        public List<Image> GetPagedImagesByTagAndBand(PagingContext pager, PublishStatus publishStatus, int tagId, int bandId)
+        {
+            return AlbumDao.GetPagedImagesByTagAndBand(pager, (int)publishStatus,
+              tagId, bandId);
+        }
+
         #endregion
     }
 }
