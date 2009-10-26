@@ -10,7 +10,7 @@ using LTP.Accounts.Data;
 using LTP.Accounts.Bus;
 using System.Data;
 using System.Collections.Generic;
-using System.Web.SessionState;
+using System.Web;
 
 namespace D4D.Web.svc
 {
@@ -45,7 +45,17 @@ namespace D4D.Web.svc
             }
             return plist;
         }
-        
+        [OperationContract]
+        [WebGet(RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
+        public IList<D4D.Platform.Domain.Tag> GetTag()
+        {
+            D4D.Platform.Domain.PagingContext pager = new D4D.Platform.Domain.PagingContext();
+            pager.CurrentPageNumber = 1;
+            pager.RecordsPerPage = 100;
+            IList<D4D.Platform.Domain.Tag> list = D4D.Platform.D4DGateway.TagsProvider.GetPagedTags(pager);
+
+            return list;
+        }
         
        
         
@@ -58,5 +68,6 @@ namespace D4D.Web.svc
         public String Desc;
         public String Url;
     }
+   
 }
 
