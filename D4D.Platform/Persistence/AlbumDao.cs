@@ -283,6 +283,7 @@ namespace D4D.Platform.Persistence
                  parameters.AddWithValue("@ImageFile", image.ImageFile);
                  parameters.AddWithValue("@SImageFile", image.SImageFile);
                  parameters.AddWithValue("@AddUserId", image.AddUserID);
+                 parameters.AddWithValue("@PublishDate", image.PublishDate);
                  parameters.AddWithValue("@Status",(int)(image.Status));              
                  parameters.AddWithValue("@RetVal", DBNull.Value, ParameterDirectionWrap.ReturnValue);
 
