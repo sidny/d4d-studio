@@ -401,6 +401,149 @@ namespace D4D.Platform.Persistence
             return list;
         }
 
+
+        internal static List<Image> GetPagedImagesByBandAndPublishYearMonth(PagingContext pager, int publishStatus,
+            int bandId, int pulishYear, int publishMonth)
+        {
+            List<Image> list = new List<Image>(pager.RecordsPerPage);
+
+            SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+               "dbo.Image_GetPagedByBandAndPublishYearMonth",
+               delegate(IParameterSet parameters)
+               {
+                   parameters.AddWithValue("@BandId", bandId);
+                   parameters.AddWithValue("@PublishYear", pulishYear);
+                   parameters.AddWithValue("@PublishMonth", publishMonth);
+                   parameters.AddWithValue("@PublishStatus", publishStatus);
+                   parameters.AddWithValue("@PageIndex", pager.CurrentPageNumber);
+                   parameters.AddWithValue("@PageSize", pager.RecordsPerPage);
+                   parameters.AddWithValue("@NumberOfCount", 0, ParameterDirectionWrap.Output);
+               },
+               delegate(IRecord record)
+               {
+                   MapImageList(record, list);
+               },
+               delegate(IParameterSet outputParameters)
+               {
+                   pager.TotalRecordCount = outputParameters.GetValue("@NumberOfCount") == DBNull.Value ? 0 : (int)outputParameters.GetValue("@NumberOfCount");
+               }
+           );
+
+            return list;
+        }
+
+        internal static List<Image> GetPagedImagesByBandId(PagingContext pager, int publishStatus, int bandId)
+        {
+            List<Image> list = new List<Image>(pager.RecordsPerPage);
+
+            SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+               "dbo.Image_GetPagedByBandId",
+               delegate(IParameterSet parameters)
+               {
+                   parameters.AddWithValue("@BandId", bandId);
+                   parameters.AddWithValue("@PublishStatus", publishStatus);
+                   parameters.AddWithValue("@PageIndex", pager.CurrentPageNumber);
+                   parameters.AddWithValue("@PageSize", pager.RecordsPerPage);
+                   parameters.AddWithValue("@NumberOfCount", 0, ParameterDirectionWrap.Output);
+               },
+               delegate(IRecord record)
+               {
+                   MapImageList(record, list);
+               },
+               delegate(IParameterSet outputParameters)
+               {
+                   pager.TotalRecordCount = outputParameters.GetValue("@NumberOfCount") == DBNull.Value ? 0 : (int)outputParameters.GetValue("@NumberOfCount");
+               }
+           );
+
+            return list;
+        }
+
+        internal static List<Image> GetPagedImagesByPublishYearMonth(PagingContext pager, int publishStatus
+            , int pulishYear, int publishMonth)
+        {
+            List<Image> list = new List<Image>(pager.RecordsPerPage);
+
+            SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+               "dbo.Image_GetPagedByPublishYearMonth",
+               delegate(IParameterSet parameters)
+               {
+                   parameters.AddWithValue("@PublishYear", pulishYear);
+                   parameters.AddWithValue("@PublishMonth", publishMonth);
+                   parameters.AddWithValue("@PublishStatus", publishStatus);
+                   parameters.AddWithValue("@PageIndex", pager.CurrentPageNumber);
+                   parameters.AddWithValue("@PageSize", pager.RecordsPerPage);
+                   parameters.AddWithValue("@NumberOfCount", 0, ParameterDirectionWrap.Output);
+               },
+               delegate(IRecord record)
+               {
+                   MapImageList(record, list);
+               },
+               delegate(IParameterSet outputParameters)
+               {
+                   pager.TotalRecordCount = outputParameters.GetValue("@NumberOfCount") == DBNull.Value ? 0 : (int)outputParameters.GetValue("@NumberOfCount");
+               }
+           );
+
+            return list;
+        }
+
+        internal static List<Image> GetPagedImagesByTag(PagingContext pager, int publishStatus, int tagId)
+        {
+            List<Image> list = new List<Image>(pager.RecordsPerPage);
+
+            SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+               "dbo.Image_GetPagedByTag",
+               delegate(IParameterSet parameters)
+               {
+                   parameters.AddWithValue("@TagId", tagId);
+                   parameters.AddWithValue("@PublishStatus", publishStatus);
+                   parameters.AddWithValue("@PageIndex", pager.CurrentPageNumber);
+                   parameters.AddWithValue("@PageSize", pager.RecordsPerPage);
+                   parameters.AddWithValue("@NumberOfCount", 0, ParameterDirectionWrap.Output);
+               },
+               delegate(IRecord record)
+               {
+                   MapImageList(record, list);
+               },
+               delegate(IParameterSet outputParameters)
+               {
+                   pager.TotalRecordCount = outputParameters.GetValue("@NumberOfCount") == DBNull.Value ? 0 : (int)outputParameters.GetValue("@NumberOfCount");
+               }
+           );
+
+            return list;
+        }
+
+
+        internal static List<Image> GetPagedImagesByTagAndBand(PagingContext pager, int publishStatus, int tagId, int bandId)
+        {
+            List<Image> list = new List<Image>(pager.RecordsPerPage);
+
+            SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+               "dbo.Image_GetPagedByTagANDBand",
+               delegate(IParameterSet parameters)
+               {
+                   parameters.AddWithValue("@BandId", bandId);
+                   parameters.AddWithValue("@TagId", tagId);
+                   parameters.AddWithValue("@PublishStatus", publishStatus);
+                   parameters.AddWithValue("@PageIndex", pager.CurrentPageNumber);
+                   parameters.AddWithValue("@PageSize", pager.RecordsPerPage);
+                   parameters.AddWithValue("@NumberOfCount", 0, ParameterDirectionWrap.Output);
+               },
+               delegate(IRecord record)
+               {
+                   MapImageList(record, list);
+               },
+               delegate(IParameterSet outputParameters)
+               {
+                   pager.TotalRecordCount = outputParameters.GetValue("@NumberOfCount") == DBNull.Value ? 0 : (int)outputParameters.GetValue("@NumberOfCount");
+               }
+           );
+
+            return list;
+        }
+
         #endregion
     }
 }
