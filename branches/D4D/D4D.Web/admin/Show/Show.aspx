@@ -63,7 +63,7 @@
                     </tr>
                      <tr>
                      <th align="center" width="100">SImage</th>
-                      <td><uc1:FileUpload ID="txtSImage" runat="server" /></td>
+                      <td><uc1:FileUpload ID="txtSImage" runat="server" AutoCreateThumbnailImage="false"/></td>
                     </tr>
                      <tr>
                      <th align="center" width="100">LImage</th>
@@ -265,7 +265,10 @@ protected int PageIndex
         DateTime.TryParse(txtEndDate.Text, out date);
         item.EndDate = date;
         item.LImage = txtLImage.UploadResult ;
-         item.SImage =txtSImage.UploadResult;
+        if (string.IsNullOrEmpty(txtSImage.UploadResult) && !string.IsNullOrEmpty(txtLImage.ThumbnailImage))
+            item.SImage = txtLImage.ThumbnailImage;
+        else
+            item.SImage = txtSImage.UploadResult;
         item.ShowPlace = txtShowPlace.Text;
         if(txtStatus.Checked) item.Status = PublishStatus.Publish;
          item.Title = txtTitle.Text ;

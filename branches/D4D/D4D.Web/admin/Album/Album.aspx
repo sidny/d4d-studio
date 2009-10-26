@@ -69,7 +69,7 @@
                     </tr>
                       <tr>
                      <th width="100">小图 (150 * 100)</th>
-                      <td><uc1:FileUpload ID="txtSImage" runat="server" /></td>
+                      <td><uc1:FileUpload ID="txtSImage" runat="server" AutoCreateThumbnailImage="false"/></td>
                     </tr>
                       <tr style="display:none">
                      <th width="100">大图</th>
@@ -159,6 +159,8 @@
             BindBandList();
         }
     }
+    
+    
 
    
     private void BindList()
@@ -256,7 +258,11 @@
         DateTime.TryParse(txtPublishDate.Text, out date);
         item.PublishDate = date;
         item.LImage = txtLImage.UploadResult;
-        item.SImage = txtSImage.UploadResult;
+
+        if (string.IsNullOrEmpty(txtSImage.UploadResult) && !string.IsNullOrEmpty(txtLImage.ThumbnailImage))
+            item.SImage = txtLImage.ThumbnailImage;
+        else
+            item.SImage = txtSImage.UploadResult;
         if (txtStatus.Checked) item.Status = PublishStatus.Publish;
         item.Title = txtTitle.Text;
         item.AddDate = DateTime.Now;

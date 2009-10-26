@@ -7,12 +7,55 @@ using System.Web.UI.WebControls;
 using System.IO;
 using log4net;
 using D4D.Platform.Domain;
+using D4D.Platform.Helper;
 
 namespace D4D.Web.admin.Controls
 {
     public partial class FileUpload : System.Web.UI.UserControl
     {
         private static readonly ILog log = LogManager.GetLogger("d4d");
+
+        private bool autoCreateThumbnailImage = true;
+        /// <summary>
+        /// 是否自动生成缩略图
+        /// </summary>
+        public bool AutoCreateThumbnailImage
+        {
+            get
+            {
+                return autoCreateThumbnailImage;
+            }
+            set
+            {
+                autoCreateThumbnailImage = value;
+            }
+        }
+
+        private int maxWidth = 150;
+        public int MaxWidth
+        {
+            get
+            {
+                return maxWidth;
+            }
+            set
+            {
+                maxWidth = value;
+            }
+        }
+
+        private int maxHeight=100;
+        public int MaxHeight
+        {
+            get
+            {
+                return maxHeight;
+            }
+            set
+            {
+                maxHeight = value;
+            }
+        }
 
         public string UploadResult
         {
@@ -28,6 +71,15 @@ namespace D4D.Web.admin.Controls
                 btnShowResult.Text = "通过选择上传";
             }
         }
+
+        public string ThumbnailImage
+        {
+            get
+            {
+                return hiddenThumbnailImage.Text;
+            }
+        }
+        
 
         
        
@@ -47,10 +99,22 @@ namespace D4D.Web.admin.Controls
                     {
                         UploadInfo uinfo = new UploadInfo(Guid.NewGuid());
                         uinfo.FileExtension = info.Extension;
-                        fileUpload.SaveAs(uinfo.FileServerPath);
+                        fileUpload.SaveAs(uinfo.FileServerPath);                     
+
                         fileUpload.Visible = false;
                         txtUploadResult.Visible = true;
                         txtUploadResult.Text = uinfo.FileHttpPath;
+
+                        if (autoCreateThumbnailImage)
+                        {
+
+                             UploadInfo uThumbnailinfo = new UploadInfo(Guid.NewGuid());
+                            uThumbnailinfo.FileExtension = info.Extension;
+                            ImageHelper.MakeThumbnailImage(uinfo.FileServerPath, uThumbnailinfo.FileServerPath,
+                                 maxWidth,maxHeight  );
+
+                            hiddenThumbnailImage.Text = uThumbnailinfo.FileHttpPath;
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -66,6 +130,7 @@ namespace D4D.Web.admin.Controls
         protected void btnShowResult_Click(object sender, EventArgs e)
         {
             txtUploadResult.Text = string.Empty;
+            hiddenThumbnailImage.Text = string.Empty;
             if (fileUpload.Visible)
             {
                 fileUpload.Visible = false;

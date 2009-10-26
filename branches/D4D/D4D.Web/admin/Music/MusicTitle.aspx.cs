@@ -155,8 +155,11 @@ namespace D4D.Web.admin.Music
             m.Body = txtBody.Text;
             //m.SImage = txtSImage.Text;
             //m.LImage = txtLImage.Text;
-
-            m.SImage = fuSImage.UploadResult;
+            if (string.IsNullOrEmpty(fuSImage.UploadResult) && !string.IsNullOrEmpty(fuLImage.ThumbnailImage))
+                m.SImage = fuLImage.ThumbnailImage;
+            else
+                m.SImage = fuSImage.UploadResult;
+           
             m.LImage = fuLImage.UploadResult;
             int musicId = 0;
             int.TryParse(txtMusicId.Value, out musicId);
