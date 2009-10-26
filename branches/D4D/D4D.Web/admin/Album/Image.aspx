@@ -69,7 +69,7 @@
                       </tr>
                        <tr>
                      <th width="100">小图 (150 * 100)</th>
-                      <td> <uc1:FileUpload ID="txtSImageFile" runat="server" /></td>
+                      <td> <uc1:FileUpload ID="txtSImageFile" runat="server" AutoCreateThumbnailImage="false"/></td>
                     </tr>
                       <tr>
                      <th width="100">图片地址 ( 宽度大于 800px )</th>
@@ -257,7 +257,10 @@
         int.TryParse(txtImageId.Value, out id);
         item.ImageId = id;
         item.ImageFile = txtLImageFile.UploadResult;
-        item.SImageFile = txtSImageFile.UploadResult;
+        if (string.IsNullOrEmpty(txtSImageFile.UploadResult) && !string.IsNullOrEmpty(txtLImageFile.ThumbnailImage))
+            item.SImageFile = txtLImageFile.ThumbnailImage;
+        else
+            item.SImageFile = txtSImageFile.UploadResult;
         item.ImageName = txtImageName.Text;
         item.AddDate = DateTime.Now;
         item.AlbumId = AlbumId;
