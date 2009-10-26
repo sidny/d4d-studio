@@ -75,7 +75,9 @@
                      <th width="100">图片地址 ( 宽度大于 800px )</th>
                       <td> <uc1:FileUpload ID="txtLImageFile" runat="server" /></td>
                     </tr>
-                     
+                     <th width="100">发布时</th>
+                      <td> <asp:TextBox ID="txtPublishDate" runat="server" CssClass="has-datepicker"></asp:TextBox></td>
+                    </tr>
                      <tr>
                      <th align="center" width="100">发布状态</th>
                       <td><asp:CheckBox ID="txtStatus" runat="server"></asp:CheckBox></td>
@@ -263,6 +265,7 @@
             item.SImageFile = txtSImageFile.UploadResult;
         item.ImageName = txtImageName.Text;
         item.AddDate = DateTime.Now;
+		item.PublishDate = DateTime.Parse(txtPublishDate.Text);
         item.AlbumId = AlbumId;
         User currentUser = Session["UserInfo"] as User;
         item.AddUserID = currentUser.UserID;
@@ -291,6 +294,7 @@
         txtSImageFile.UploadResult = item.SImageFile;
         txtStatus.Checked = (item.Status == PublishStatus.Publish);
         txtImageName.Text = item.ImageName;
+		txtPublishDate.Text = item.PublishDate.ToString("yyyy-MM-dd");
     }
 
     </script>

@@ -641,6 +641,7 @@
     <Content Include="static\jquery.ad-gallery.css" />
     <Content Include="static\js\jquery.ad-gallery.js" />
     <Content Include="static\js\jquery.ad-gallery.pack.js" />
+    <Content Include="static\js\jquery.autocomplete.js" />
     <Content Include="static\js\jquery.blockui.js" />
     <Content Include="static\js\jquery.datepicker.js" />
     <Content Include="static\js\jquery.form.js" />
