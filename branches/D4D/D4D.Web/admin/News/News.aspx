@@ -8,6 +8,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentBody" runat="server">
+<script type="text/javascript" src="/static/js/jquery.autocomplete.js"></script>
 <script language="javascript">
     function ConfirmDelete() {
         if (window.confirm("您确认删除么？"))
@@ -140,6 +141,25 @@
                     callback: function(id) {
                         return true;
                     }
+                });
+
+                $.getJSON("/svc/admin.svc/GetTag", function(response) {
+                    $("#<%=txtTags.ClientID %>").autocomplete(response.d, {
+                        minChars: 0,
+                        width: 310,
+                        formatItem: function(row, i, max) {
+                            return row;
+                        },
+                        formatMatch: function(row, i, max) {
+                            return row.TagName;
+                        }
+                    }).result(function(event, item) {
+                        $("<span><input type=\"hidden\" value=\"" + item.TagId + "\">" + item.TagName + " </span>")
+                        .click(function() {
+                            $(this).remove();
+                        }).insertAfter(this);
+                    });
+
                 });
             });
 </script>
@@ -299,6 +319,19 @@
         if (cbIsVideo.Checked)
             item.Remark = "video";
         int result = D4DGateway.NewsProvider.SetNews(item);
+        if (!String.IsNullOrEmpty(txtTags.Text.Trim()))
+        {
+            foreach(string tagId in Request["tags"].Split(',')){
+                if (!string.IsNullOrEmpty(tagId))
+                {
+                    TagRelation tagr = new TagRelation();
+                    tagr.ObjectId = result;
+                    tagr.ObjectType = ObjectTypeDefine.News;
+                    tagr.TagId = Convert.ToInt32(tagId);
+                    D4DGateway.TagsProvider.SetTagRelation(tagr);
+                }
+            }
+        }
         addPanel.Visible = false;
 
         BindList();
