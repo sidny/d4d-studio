@@ -283,6 +283,22 @@ namespace D4D.Platform.Persistence
 
             return list;
         }
+
+        internal static List<Show> GetShowTagRelation(int currentId, int maxCount)
+        {
+            List<Show> list = new List<Show>(maxCount);
+
+            SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+               "dbo.Show_GetTagRelation",
+               delegate(IRecord record)
+               {
+                   MapList(record, list);
+
+               }, currentId, maxCount
+           );
+
+            return list;
+        }
         #endregion
     }
 }
