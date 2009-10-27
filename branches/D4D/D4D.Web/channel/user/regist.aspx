@@ -32,7 +32,7 @@
   </tr>
   <tr>
     <td height="40" align="right">再次输入密码：</td>
-    <td><input type="password" class="text" name="repass" id="repass" /></td>
+    <td><input type="password" class="text" name="repass" id="repass"  /><span></span></td>
   </tr>
   <tr>
     <td height="40" align="right">邮箱：   </td>
@@ -59,8 +59,13 @@
 </table>
 <script type="text/javascript">
     $(document).ready(function() {
-        $("#form1").bind("submit",function() {
-            
+        window.result = {};
+        $("#form1").bind("submit", function() {
+
+        });
+        $("#repass").blur(function() {
+            if (this.value == $("#password").val()) $(this).next().html("");
+            else $(this).next().html("<font color='#009900'>两次输入的密码不相同</font>");
         });
     });
         var PasswordStrength ={
@@ -106,7 +111,8 @@
 			  case "极佳": showmsg+=" <img src='/static/images/user/4.gif' width='88' height='11' />";break;
 		   }
 		   document.getElementById('showmsg').innerHTML = showmsg;
-		}
+	}
+	
 		function htmlEncode(source, display, tabs)
 		{
 			function special(source)

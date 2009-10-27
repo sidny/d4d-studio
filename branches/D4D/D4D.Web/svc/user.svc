@@ -51,7 +51,15 @@ namespace D4D.Web.svc
                 return new LoginInfo() { UserId = currentUser.UserID, UserName = currentUser.UserName };
             }
         }
-       
+        [OperationContract]
+        [WebGet(RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
+        public Boolean LoginOut()
+        {
+                HttpContext.Current.Session["UserInfo"] = null;
+                System.Web.Security.FormsAuthentication.SignOut();
+                return true;
+              
+        }
         [OperationContract]
         [WebInvoke(BodyStyle=WebMessageBodyStyle.WrappedRequest,Method="POST",ResponseFormat=WebMessageFormat.Json,RequestFormat=WebMessageFormat.Json)]
         public bool Regist(string username, string password, string email)
