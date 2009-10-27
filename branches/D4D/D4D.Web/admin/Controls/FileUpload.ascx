@@ -5,7 +5,7 @@
     runat="server" Text="上传" onclick="btnUpload_Click" />&nbsp;<asp:Button 
     ID="btnShowResult" runat="server" Text="直接输入地址" onclick="btnShowResult_Click" />
 <%if (AutoCreateThumbnailImage){ %>
-自动生成缩略图地址：<lable><asp:Literal ID="hiddenThumbnailImage" runat="server" ></asp:Literal></label>
+自动生成缩略图地址：<label><asp:Literal ID="hiddenThumbnailImage" runat="server" ></asp:Literal></label>
 <%} %>
 <asp:Label ID="labInfo" runat="server" BackColor="Red"></asp:Label>
 
