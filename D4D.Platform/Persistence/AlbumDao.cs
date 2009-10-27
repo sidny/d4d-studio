@@ -337,6 +337,7 @@ namespace D4D.Platform.Persistence
                          m.AddDate = record.GetDateTime(5);
                          m.Status = (PublishStatus)(record.GetInt32OrDefault(6, 0));
                          m.SImageFile = record.GetStringOrEmpty(7);
+                         m.PublishDate = record.GetDateTime(8);
                      },
                      imageId);
             }
