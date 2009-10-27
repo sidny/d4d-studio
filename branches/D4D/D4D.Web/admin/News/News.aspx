@@ -1,174 +1,283 @@
-Ôªø<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/admin/Admin.Master" %>
-<%@ Import Namespace="D4D.Platform"%>
+<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/admin/Admin.Master" %>
+
+<%@ Import Namespace="System.Linq" %>
+<%@ Import Namespace="D4D.Platform" %>
 <%@ Import Namespace="D4D.Platform.Domain" %>
-<%@ Import Namespace="LTP.Accounts.Bus"%>
-<%@ Register src="../Controls/FileUpload.ascx" tagname="FileUpload" tagprefix="uc1" %>
+<%@ Import Namespace="LTP.Accounts.Bus" %>
+<%@ Register Src="../Controls/FileUpload.ascx" TagName="FileUpload" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-  <title>Êñ∞ÈóªÁºñËæë</title>
+    <title>–¬Œ≈±‡º≠</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentBody" runat="server">
-  <script type="text/javascript" src="/static/js/jquery.autocomplete.js"></script>
-  <script language="javascript">
-    function ConfirmDelete() {
-        if (window.confirm("ÊÇ®Á°ÆËÆ§Âà†Èô§‰πàÔºü"))
-            return true;
-        else
-            return false;
-    }
-</script>
-  
-  <form id="form1" runat="server">
-    <asp:Panel ID="listPanel" runat="server">
-      <div>
-        <div>
-          <h1>Êñ∞ÈóªÂàóË°®</h1>
-        </div>
-        <asp:Repeater Id="repList" OnItemDataBound="repList_ItemDataBound" runat="server">
-          <headertemplate>
-            <table cellspacing="1" cellpadding="4" rules="all"  align="center" width="100%" class="grid">
-            <tr align="center">
-              <th align="center" style="width: 30px;">ÁºñÂè∑</th>
-              <th>Ê†áÈ¢ò</th>
-              <th>Á±ªÂûã</th>
-              <th>ÂèëÂ∏ÉÁä∂ÊÄÅ</th>
-              <th>Êñ∞ÈóªÊó•Êúü</th>
-              <th>Ê∑ªÂä†Êó•Êúü</th>
-              <th style="width: 30px;">‰øÆÊîπ</th>
-              <th style="width: 30px;">Âà†Èô§</th>
-            </tr>
-          </headertemplate>
-          <itemtemplate>
-            <tr align="center">
-              <td align="center" style="width: 30px;"><asp:Literal ID="litID" runat="server"></asp:Literal></td>
-              <td><asp:HyperLink ID="litTitle" runat="server"></asp:HyperLink></td>
-              <td><asp:Literal ID="litNewsType" runat="server"></asp:Literal></td>
-              <td><asp:CheckBox ID="litStatus" runat="server"></asp:CheckBox></td>
-              <td><asp:Literal ID="litPublishDate" runat="server"></asp:Literal></td>
-              <td><asp:Literal ID="litAddDate" runat="server"></asp:Literal></td>
-              <td style="width: 30px;"><asp:Button ID="btnUpdate" runat="server" OnClick="btnUpdate_Click" Text="‰øÆÊîπ" /></td>
-              <td style="width: 30px;"><asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click"  Text="Âà†Èô§" OnClientClick="return  ConfirmDelete()" /></td>
-            </tr>
-          </ItemTemplate>
-          <FooterTemplate>
-            <tr align="right" style="font-size: medium; white-space: nowrap;">
-              <td colspan="7" valign="middle" class="pagestyle" id="pager"></td>
-              <td class="pagestyle"><asp:Button ID="btnAddShow" runat="server" OnClick="btnAdd_Show" Text="Êñ∞Â¢û" /></td>
-            </tr>
-            </table>
-          </FooterTemplate>
-        </asp:Repeater>
-      </div>
-      </asp:Panel>
-    <asp:Panel ID="addPanel" runat="server">
-      <div>
-        <h1>ÁºñËæëÊñ∞Èóª</h1>
-      </div>
-      <div>
-        <table cellspacing="1" cellpadding="4" rules="all"  align="center" width="100%" class="grid">
-          <tr>
-            <th align="center" width="100">Ê†áÈ¢ò</th>
-            <td><asp:TextBox ID="txtTitle" runat="server" Width="500px"></asp:TextBox>
-              <asp:HiddenField ID="txtNewsId" runat="server" Value="0" ></asp:HiddenField>
-              <asp:HiddenField ID="txtHits" runat="server" Value="0" ></asp:HiddenField></td>
-          </tr>
-          <tr>
-            <th width="100">ÊëòË¶Å</th>
-            <td><asp:TextBox ID="txtPreview" runat="server" Width="500px" TextMode="MultiLine" 
-                              Height="150px"></asp:TextBox></td>
-          </tr>
-          <tr>
-            <th width="100">Ê≠£Êñá</th>
-            <td><asp:TextBox ID="txtBody" runat="server" Width="500px" TextMode="MultiLine" 
-                              Height="400px"></asp:TextBox></td>
-          </tr>
-          <tr>
-            <th width="100">Ê≠åÊâã</th>
-            <td><asp:DropDownList ID="txtBandId" runat="server"></asp:DropDownList></td>
-          </tr>
-          <tr>
-            <th width="100">Êó•Êúü</th>
-            <td><asp:TextBox ID="txtPublishDate" runat="server" CssClass="has-datepicker"></asp:TextBox></td>
-          </tr>
-          <tr>
-            <th width="100">Â∞èÂõæ</th>
-            <td><uc1:FileUpload ID="txtSImage" runat="server" AutoCreateThumbnailImage="false"/></td>
-          </tr>
-          <tr>
-            <th width="100">Â§ßÂõæ</th>
-            <td><uc1:FileUpload ID="txtLImage" runat="server" /></td>
-          </tr>
-          <tr>
-            <th align="center" width="100">TagÊ†áÁ≠æ</th>
-            <td><asp:TextBox ID="txtTags" Width="100px" runat="server" CssClass="has-autocomplete"></asp:TextBox> <label style=" text-decoration:underline"></label></td>
-          </tr>
-          <tr>
-            <th align="center" width="100">ÂèëÂ∏ÉÁä∂ÊÄÅ</th>
-            <td><asp:CheckBox ID="txtStatus" runat="server"></asp:CheckBox></td>
-          </tr>
-    	      <tr>
-            <th align="center" width="100">ËßÜÈ¢ëÊñ∞Èóª</th>
-            <td><asp:CheckBox ID="cbIsVideo" runat="server"></asp:CheckBox></td>
-          </tr>
-          <tr>
-            <th align="center" width="100">&nbsp;</th>
-            <td><asp:Button ID="btnAdd" runat="server" Text="Êñ∞Â¢û" onclick="btnAdd_Click" /></td>
-          </tr>
-        </table>
-      </div>
-      
-      <script type="text/javascript">
-	  	
-		$(document).ready(function(){	  
-                $.getJSON("/svc/admin.svc/GetTag", function(response) {
-					window.tags = response.d;
-					$(".has-autocomplete").autocomplete(tags, {
-							 minChars: 1,
-							 width: 380,
-							// matchContains: "word,number",
-							 autoFill: false,
-							formatItem: function(row, i, max) {
-								return row.Text;
-							},
 
-        formatMatch: function(row, i, max) {
+    <script type="text/javascript" src="/static/js/jquery.autocomplete.js"></script>
 
-            return row.Id + " " + row.Text;
-
-        },
-
-        formatResult: function(row) {
-
-
-            return row.Text;
-
+    <script language="javascript">
+        function ConfirmDelete() {
+            if (window.confirm("ƒ˙»∑»œ…æ≥˝√¥£ø"))
+                return true;
+            else
+                return false;
         }
+</script>
 
-    }).result(function(event, item) {
-		var str =  "„ÄÄ<span style='padding:5px;'><input type=\"hidden\" value=\""+item.Id+"\"/><u>"+item.Text + "</u></span>„ÄÄ";
-       	$(str).click(function(){$(this).remove()}).insertAfter($(this).next());
+    <form id="form1" runat="server">
+    <asp:Panel ID="listPanel" runat="server">
+        <div>
+            <div>
+                <h1>
+                    –¬Œ≈¡–±Ì</h1>
+            </div>
+            <asp:Repeater ID="repList" OnItemDataBound="repList_ItemDataBound" runat="server">
+                <HeaderTemplate>
+                    <table cellspacing="1" cellpadding="4" rules="all" align="center" width="100%" class="grid">
+                        <tr align="center">
+                            <th align="center" style="width: 30px;">
+                                ±‡∫≈
+                            </th>
+                            <th>
+                                ±ÍÃ‚
+                            </th>
+                            <th>
+                                ¿‡–Õ
+                            </th>
+                            <th>
+                                ∑¢≤º◊¥Ã¨
+                            </th>
+                            <th>
+                                –¬Œ≈»’∆⁄
+                            </th>
+                            <th>
+                                ÃÌº”»’∆⁄
+                            </th>
+                            <th style="width: 30px;">
+                                –ﬁ∏ƒ
+                            </th>
+                            <th style="width: 30px;">
+                                …æ≥˝
+                            </th>
+                        </tr>
+                </HeaderTemplate>
+                <ItemTemplate>
+                    <tr align="center">
+                        <td align="center" style="width: 30px;">
+                            <asp:Literal ID="litID" runat="server"></asp:Literal>
+                        </td>
+                        <td>
+                            <asp:HyperLink ID="litTitle" runat="server"></asp:HyperLink>
+                        </td>
+                        <td>
+                            <asp:Literal ID="litNewsType" runat="server"></asp:Literal>
+                        </td>
+                        <td>
+                            <asp:CheckBox ID="litStatus" runat="server"></asp:CheckBox>
+                        </td>
+                        <td>
+                            <asp:Literal ID="litPublishDate" runat="server"></asp:Literal>
+                        </td>
+                        <td>
+                            <asp:Literal ID="litAddDate" runat="server"></asp:Literal>
+                        </td>
+                        <td style="width: 30px;">
+                            <asp:Button ID="btnUpdate" runat="server" OnClick="btnUpdate_Click" Text="–ﬁ∏ƒ" />
+                        </td>
+                        <td style="width: 30px;">
+                            <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="…æ≥˝" OnClientClick="return  ConfirmDelete()" />
+                        </td>
+                    </tr>
+                </ItemTemplate>
+                <FooterTemplate>
+                    <tr align="right" style="font-size: medium; white-space: nowrap;">
+                        <td colspan="7" valign="middle" class="pagestyle" id="pager">
+                        </td>
+                        <td class="pagestyle">
+                            <asp:Button ID="btnAddShow" runat="server" OnClick="btnAdd_Show" Text="–¬‘ˆ" />
+                        </td>
+                    </tr>
+                    </table>
+                </FooterTemplate>
+            </asp:Repeater>
+        </div>
+    </asp:Panel>
+    <asp:Panel ID="addPanel" runat="server">
+        <div>
+            <h1>
+                ±‡º≠–¬Œ≈</h1>
+        </div>
+        <div>
+            <table cellspacing="1" cellpadding="4" rules="all" align="center" width="100%" class="grid">
+                <tr>
+                    <th align="center" width="100">
+                        ±ÍÃ‚
+                    </th>
+                    <td>
+                        <asp:TextBox ID="txtTitle" runat="server" Width="500px"></asp:TextBox>
+                        <asp:HiddenField ID="txtNewsId" runat="server" Value="0"></asp:HiddenField>
+                        <asp:HiddenField ID="txtHits" runat="server" Value="0"></asp:HiddenField>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="100">
+                        ’™“™
+                    </th>
+                    <td>
+                        <asp:TextBox ID="txtPreview" runat="server" Width="500px" TextMode="MultiLine" Height="150px"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="100">
+                        ’˝Œƒ
+                    </th>
+                    <td>
+                        <asp:TextBox ID="txtBody" runat="server" Width="500px" TextMode="MultiLine" Height="400px"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="100">
+                        ∏Ë ÷
+                    </th>
+                    <td>
+                        <asp:DropDownList ID="txtBandId" runat="server">
+                        </asp:DropDownList>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="100">
+                        »’∆⁄
+                    </th>
+                    <td>
+                        <asp:TextBox ID="txtPublishDate" runat="server" CssClass="has-datepicker"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="100">
+                        –°Õº
+                    </th>
+                    <td>
+                        <uc1:FileUpload ID="txtSImage" runat="server" AutoCreateThumbnailImage="false" />
+                    </td>
+                </tr>
+                <tr>
+                    <th width="100">
+                        ¥ÛÕº
+                    </th>
+                    <td>
+                        <uc1:FileUpload ID="txtLImage" runat="server" />
+                    </td>
+                </tr>
+                <tr>
+                    <th align="center" width="100">
+                        Tag±Í«©
+                    </th>
+                    <td>
+                        <asp:TextBox ID="txtTags" runat="server"></asp:TextBox>
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <th align="center" width="100">
+                        ∑¢≤º◊¥Ã¨
+                    </th>
+                    <td>
+                        <asp:CheckBox ID="txtStatus" runat="server"></asp:CheckBox>
+                    </td>
+                </tr>
+                <tr>
+                    <th align="center" width="100">
+                         ”∆µ–¬Œ≈
+                    </th>
+                    <td>
+                        <asp:CheckBox ID="cbIsVideo" runat="server"></asp:CheckBox>
+                    </td>
+                </tr>
+                <tr>
+                    <th align="center" width="100">
+                        &nbsp;
+                    </th>
+                    <td>
+                        <asp:Button ID="btnAdd" runat="server" Text="–¬‘ˆ" OnClick="btnAdd_Click" />
+                    </td>
+                </tr>
+            </table>
+        </div>
 
-    });
-                });
-				});
-				</script>
-      
-      </asp:Panel>
-    <script type="text/javascript">
+        <script type="text/javascript">
+
             $(document).ready(function() {
-                var cur = parseInt("<%=PageIndex %>");
-                var total = parseInt("<%=PageTotalCount %>");
-                var pageSize = parseInt("<%=PageSize %>");
-                var href = location.pathname;
-                if (location.search) {
-                    if (!location.search.match(/page=\d+/ig)) {
-                        href += location.search + "&page=__id__";
-                    } else {
-                        href += location.search;
+                window.selectTags = {};
+                $("#<%=txtTags.ClientID %>").after("<input class=\"has-autocomplete\" /><div id='tagsArea' style=\"line-height:21px;padding-top:5px;\"/>")
+                $($("#<%=txtTags.ClientID %>").attr("readonly", "readonly").hide().val().split(",")).each(function() {
+                    selectTags[this] = this;
+                });
+                $.getJSON("/svc/admin.svc/GetTag", function(response) {
+                    window.tags = response.d;
+                    $(tags).each(function() {
+                        if (selectTags[this.Id]) {
+                            delete selectTags[this.Id];
+                            addItem(this);
+                        }
+                    });
+                    $(".has-autocomplete").autocomplete(tags, {
+                        minChars: 1,
+                        width: 100,
+                        // matchContains: "word,number",
+                        autoFill: false,
+                        formatItem: function(row, i, max) {
+                            return row.Text;
+                        },
+                        formatMatch: function(row, i, max) {
+                            return row.Text;
+                        },
+                        formatResult: function(row) {
+                            return "";
+                        }
+                    }).result(function(event, item) {
+                        addItem(item);
+                        return false;
+                    });
+                    function addItem(item) {
+                        if (!selectTags[item.Id]) {
+                            selectTags[item.Id] = item;
+                            var str = "<span style='padding:5px;' tagid=\"" + item.Id + "\"><u>" + item.Text + "</u></span>";
+                            $("#tagsArea").append(
+                            $(str).click(function() {
+                                delete selectTags[$(this).attr("tagid")];
+                                $(this).remove();
+                                fillValue();
+                            })
+                            );
+                            fillValue();
+                        }
                     }
+                    function fillValue() {
+                        var a = [];
+                        for (var i in selectTags) {
+                            a.push(i);
+                        }
+                        $("#<%=txtTags.ClientID %>").val(a.join(","));
+                    }
+                });
+            });
+				</script>
+
+    </asp:Panel>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var cur = parseInt("<%=PageIndex %>");
+            var total = parseInt("<%=PageTotalCount %>");
+            var pageSize = parseInt("<%=PageSize %>");
+            var href = location.pathname;
+            if (location.search) {
+                if (!location.search.match(/page=\d+/ig)) {
+                    href += location.search + "&page=__id__";
                 } else {
-                    href += "?page=__id__";
+                    href += location.search;
                 }
-                $("#pager").pagination(
+            } else {
+                href += "?page=__id__";
+            }
+            $("#pager").pagination(
           total,
                 {
                     items_per_page: pageSize,
@@ -176,19 +285,21 @@
                     current_page: cur - 1,
                     num_edge_entries: 0,
                     link_to: href.replace(/page=\d+/ig, "page=__id__"),
-                    prev_text: "‰∏ä‰∏ÄÈ°µ",
-                    next_text: "‰∏ã‰∏ÄÈ°µ",
+                    prev_text: "…œ“ª“≥",
+                    next_text: "œ¬“ª“≥",
                     callback: function(id) {
                         return true;
                     }
                 });
 
-				
-            });
+
+        });
 </script>
-  </form>
+
+    </form>
 </asp:Content>
-    <script runat="server">
+
+<script runat="server">
     protected int PageIndex
     {
         get
@@ -218,13 +329,11 @@
     {
         if (!IsPostBack)
         {
-           addPanel.Visible = false;
+            addPanel.Visible = false;
             BindList();
             BindBandList();
         }
     }
-
-  
     private void BindList()
     {
         PagingContext pager = new PagingContext();
@@ -259,9 +368,10 @@
             int id = 0;
             if (int.TryParse(litID.Text, out id))
             {
-                 News m = D4DGateway.NewsProvider.GetNews(id);
-                 DrawAddPanel(m);
-                btnAdd.Text = "Êõ¥Êñ∞";
+                News m = D4DGateway.NewsProvider.GetNews(id);
+                System.Collections.Generic.List<TagRelation> list = D4DGateway.TagsProvider.GetTagRelationByObject(id, ObjectTypeDefine.News);
+                DrawAddPanel(m, list);
+                btnAdd.Text = "∏¸–¬";
                 addPanel.Visible = true;
             }
         }
@@ -279,14 +389,15 @@
             if (int.TryParse(litID.Text, out id))
             {
                 D4DGateway.NewsProvider.DeleteNews(id);
+                D4DGateway.TagsProvider.DeleteTagRelationByObject(id, ObjectTypeDefine.News);
                 BindList();
             }
         }
 
     }
 
-    private const string NormalNews = "ÊôÆÈÄöÊñ∞Èóª";
-    private const string VideoNews = "ËßÜÈ¢ëÊñ∞Èóª";
+    private const string NormalNews = "∆’Õ®–¬Œ≈";
+    private const string VideoNews = " ”∆µ–¬Œ≈";
     protected void repList_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
         News m = e.Item.DataItem as News;
@@ -296,7 +407,7 @@
             Literal litId = e.Item.FindControl("litID") as Literal;
             HyperLink litTitle = e.Item.FindControl("litTitle") as HyperLink;
             Literal litNewsType = e.Item.FindControl("litNewsType") as Literal;
-             CheckBox litStatus = e.Item.FindControl("litStatus") as CheckBox;          
+            CheckBox litStatus = e.Item.FindControl("litStatus") as CheckBox;
             Literal litPublishDate = e.Item.FindControl("litPublishDate") as Literal;
             Literal litAddDate = e.Item.FindControl("litAddDate") as Literal;
 
@@ -323,12 +434,12 @@
         DateTime date = DateTime.MinValue;
         DateTime.TryParse(txtPublishDate.Text, out date);
         item.PublishDate = date;
-        
+
         if (string.IsNullOrEmpty(txtSImage.UploadResult) && !string.IsNullOrEmpty(txtLImage.ThumbnailImage))
             item.SImage = txtLImage.ThumbnailImage;
         else
             item.SImage = txtSImage.UploadResult;
-        
+
         item.SImage = txtSImage.UploadResult;
         item.NewsType = Convert.ToInt32(txtBandId.SelectedValue);
         item.Hits = Convert.ToInt32(txtHits.Value);
@@ -341,16 +452,24 @@
         if (cbIsVideo.Checked)
             item.Remark = "video";
         int result = D4DGateway.NewsProvider.SetNews(item);
-        if (!String.IsNullOrEmpty(txtTags.Text.Trim()))
+        D4DGateway.TagsProvider.DeleteTagRelationByObject(result, ObjectTypeDefine.News);
+        if (txtTags.Text.Length > 0)
         {
-            foreach(string tagId in Request["tags"].Split(',')){
-                if (!string.IsNullOrEmpty(tagId))
+            string[] tags = txtTags.Text.Split(',');
+            foreach (string s in tags)
+            {
+                int i = 0;
+                int.TryParse(s, out i);
+                if (i > 0)
                 {
-                    TagRelation tagr = new TagRelation();
-                    tagr.ObjectId = result;
-                    tagr.ObjectType = ObjectTypeDefine.News;
-                    tagr.TagId = Convert.ToInt32(tagId);
-                    D4DGateway.TagsProvider.SetTagRelation(tagr);
+                    D4DGateway.TagsProvider.SetTagRelation(new TagRelation()
+                    {
+                        TagId = i,
+                        AddDate = DateTime.Now,
+                        AddUserID = D4D.Web.Helper.AdminHelper.CurrentUser.UserID,
+                        ObjectId = result,
+                        ObjectType = ObjectTypeDefine.News
+                    });
                 }
             }
         }
@@ -363,17 +482,21 @@
     {
         DrawAddPanel(null);
         addPanel.Visible = true;
-        btnAdd.Text = "Ê∑ªÂä†";
+        btnAdd.Text = "ÃÌº”";
     }
 
     private void DrawAddPanel(News item)
     {
+        DrawAddPanel(item, new System.Collections.Generic.List<TagRelation>());
+    }
+    private void DrawAddPanel(News item, System.Collections.Generic.List<TagRelation> list)
+    {
         if (item == null) item = new News();
-        txtNewsId.Value = item.NewsId.ToString(); 
-      
+        txtNewsId.Value = item.NewsId.ToString();
+
         txtBandId.SelectedValue = item.NewsType.ToString();
         txtHits.Value = item.Hits.ToString();
-        
+
         txtPublishDate.Text = (item.PublishDate == DateTime.MinValue) ? DateTime.Now.ToLongDateString() : item.PublishDate.ToLongDateString();
         txtLImage.UploadResult = item.LImage;
         txtSImage.UploadResult = item.SImage;
@@ -381,15 +504,18 @@
         txtTitle.Text = item.Title;
         txtPreview.Text = item.Preview;
         txtBody.Text = item.Body;
+        txtTags.Text = String.Join(",", (from i in list
+                                         select i.TagId.ToString()).ToArray());
 
         if (item.Remark == "video")
             cbIsVideo.Checked = true;
         else
             cbIsVideo.Checked = false;
-        
-        
-        
-        
+
+
+
+
     }
 
     </script>
+

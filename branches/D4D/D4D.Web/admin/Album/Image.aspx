@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/admin/Admin.Master" %>
+<%@ Import Namespace="System.Linq"%>
 <%@ Import Namespace="D4D.Platform"%>
 <%@ Import Namespace="D4D.Platform.Domain" %>
 <%@ Import Namespace="LTP.Accounts.Bus"%>
@@ -29,7 +30,7 @@
                       <th>图片名称</th>
                       <th>小图</th>
                       <th>发布状态</th>
-                      <th>发布时间</th>
+                      <th>上传时间</th>
                       <th style="width: 30px;">修改</th>
                       <th style="width: 30px;">删除</th>
                     </tr>
@@ -59,6 +60,7 @@
           </asp:Panel>
     
     <asp:Panel runat="server" ID="addPanel">
+    <script type="text/javascript" src="/static/js/jquery.autocomplete.js"></script>
             <div><h1>添加图片</h1></div>
             <div>
              <table cellspacing="1" cellpadding="4" rules="all"  align="center" width="100%" class="grid">
@@ -75,8 +77,13 @@
                      <th width="100">图片地址 ( 宽度大于 800px )</th>
                       <td> <uc1:FileUpload ID="txtLImageFile" runat="server" /></td>
                     </tr>
+                    <tr>
                      <th width="100">发布时</th>
                       <td> <asp:TextBox ID="txtPublishDate" runat="server" CssClass="has-datepicker"></asp:TextBox></td>
+                    </tr>
+                    <tr>
+                     <th width="100">Tag标签</th>
+                      <td> <asp:TextBox ID="txtTags" runat="server"></asp:TextBox></td>
                     </tr>
                      <tr>
                      <th align="center" width="100">发布状态</th>
@@ -88,6 +95,64 @@
                     </tr>
                     </table>
            </div>
+           <script type="text/javascript">
+
+               $(document).ready(function() {
+                   window.selectTags = {};
+                   $("#<%=txtTags.ClientID %>").after("<input class=\"has-autocomplete\" /><div id='tagsArea' style=\"line-height:21px;padding-top:5px;\"/>")
+                   $($("#<%=txtTags.ClientID %>").attr("readonly", "readonly").hide().val().split(",")).each(function() {
+                       selectTags[this] = this;
+                   });
+                   $.getJSON("/svc/admin.svc/GetTag", function(response) {
+                       window.tags = response.d;
+                       $(tags).each(function() {
+                           if (selectTags[this.Id]) {
+                               delete selectTags[this.Id];
+                               addItem(this);
+                           }
+                       });
+                       $(".has-autocomplete").autocomplete(tags, {
+                           minChars: 1,
+                           width: 100,
+                           // matchContains: "word,number",
+                           autoFill: false,
+                           formatItem: function(row, i, max) {
+                               return row.Text;
+                           },
+                           formatMatch: function(row, i, max) {
+                               return row.Text;
+                           },
+                           formatResult: function(row) {
+                               return "";
+                           }
+                       }).result(function(event, item) {
+                           addItem(item);
+                           return false;
+                       });
+                       function addItem(item) {
+                           if (!selectTags[item.Id]) {
+                               selectTags[item.Id] = item;
+                               var str = "<span style='padding:5px;' tagid=\"" + item.Id + "\"><u>" + item.Text + "</u></span>";
+                               $("#tagsArea").append(
+                            $(str).click(function() {
+                                delete selectTags[$(this).attr("tagid")];
+                                $(this).remove();
+                                fillValue();
+                            })
+                            );
+                               fillValue();
+                           }
+                       }
+                       function fillValue() {
+                           var a = [];
+                           for (var i in selectTags) {
+                               a.push(i);
+                           }
+                           $("#<%=txtTags.ClientID %>").val(a.join(","));
+                       }
+                   });
+               });
+				</script>
             </asp:Panel>
 
 </form>
@@ -205,7 +270,8 @@
             if (int.TryParse(litID.Text, out id))
             {
                 D4D.Platform.Domain.Image item = D4DGateway.AlbumProvider.GetImage(id);
-                DrawAddPanel(item);
+                System.Collections.Generic.List<TagRelation> list = D4DGateway.TagsProvider.GetTagRelationByObject(id, ObjectTypeDefine.News);
+                DrawAddPanel(item, list);
                 addPanel.Visible = true;
                 btnAdd.Text = "更新";
             }
@@ -224,6 +290,8 @@
             if (int.TryParse(litID.Text, out id))
             {
                 D4DGateway.AlbumProvider.DeleteImage(id);
+
+                D4DGateway.TagsProvider.DeleteTagRelationByObject(id, ObjectTypeDefine.Image);
                 BindList();
             }
         }
@@ -285,16 +353,22 @@
         addPanel.Visible = true;
         btnAdd.Text = "添加";
     }
-
     private void DrawAddPanel(D4D.Platform.Domain.Image item)
+    {
+        DrawAddPanel(item, new System.Collections.Generic.List<TagRelation>());
+    }
+    private void DrawAddPanel(D4D.Platform.Domain.Image item, System.Collections.Generic.List<TagRelation> list)
     {
         if (item == null) item = new D4D.Platform.Domain.Image();
         txtImageId.Value = item.ImageId.ToString();
         txtLImageFile.UploadResult = item.ImageFile;
         txtSImageFile.UploadResult = item.SImageFile;
+        txtPublishDate.Text = (item.PublishDate > DateTime.MinValue) ? item.PublishDate.ToString("yyyy/MM/DD") : DateTime.Now.ToString("yyyy/MM/dd");
         txtStatus.Checked = (item.Status == PublishStatus.Publish);
         txtImageName.Text = item.ImageName;
 		txtPublishDate.Text = item.PublishDate.ToString("yyyy-MM-dd");
+        txtTags.Text = String.Join(",", (from i in list
+                                         select i.TagId.ToString()).ToArray());
     }
 
     </script>
