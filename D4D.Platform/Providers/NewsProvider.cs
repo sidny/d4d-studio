@@ -76,5 +76,15 @@ namespace D4D.Platform.Providers
         {
             return NewsDao.GetNewsPreviousNext(currentNewsId);
         }
+        /// <summary>
+        /// 获取相关新闻
+        /// </summary>
+        /// <param name="currentId">当前新闻id</param>
+        /// <param name="maxCount">最大数量</param>
+        /// <returns></returns>
+        public List<News> GetNewsTagRelation(int currentId, int maxCount)
+        {
+            return NewsDao.GetNewsTagRelation(currentId, maxCount);
+        }
     }
 }

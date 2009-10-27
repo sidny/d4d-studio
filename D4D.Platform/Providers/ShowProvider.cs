@@ -72,5 +72,10 @@ namespace D4D.Platform.Providers
        {
            return ShowDao.GetShowPreviousNext(currentId);
        }
+
+       public List<Show> GetShowTagRelation(int currentId, int maxCount)
+       {
+           return ShowDao.GetShowTagRelation(currentId, maxCount);
+       }
     }
 }

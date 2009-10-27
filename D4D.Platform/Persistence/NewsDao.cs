@@ -288,6 +288,22 @@ namespace D4D.Platform.Persistence
 
             return list;
         }
+
+        internal static List<News> GetNewsTagRelation(int currentId,int maxCount)
+        {
+            List<News> list = new List<News>(maxCount);
+
+            SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+               "dbo.News_GetTagRelation",
+               delegate(IRecord record)
+               {
+                   MapList(record, list);
+
+               }, currentId,maxCount
+           );
+
+            return list;
+        }
         #endregion
     }
 }
