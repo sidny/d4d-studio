@@ -47,14 +47,17 @@ namespace D4D.Web.svc
         }
         [OperationContract]
         [WebGet(RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
-        public IList<D4D.Platform.Domain.Tag> GetTag()
+        public IList<JSONTag> GetTag()
         {
             D4D.Platform.Domain.PagingContext pager = new D4D.Platform.Domain.PagingContext();
             pager.CurrentPageNumber = 1;
             pager.RecordsPerPage = 100;
             IList<D4D.Platform.Domain.Tag> list = D4D.Platform.D4DGateway.TagsProvider.GetPagedTags(pager);
-
-            return list;
+			
+            return (from item in list
+					select new JSONTag(){
+						Id = item.TagId,Text = item.TagName
+					}).ToList();
         }
         
        
@@ -67,6 +70,11 @@ namespace D4D.Web.svc
         public int Id;
         public String Desc;
         public String Url;
+    }
+	public struct JSONTag
+    {
+        public int Id;
+        public String Text;
     }
    
 }
