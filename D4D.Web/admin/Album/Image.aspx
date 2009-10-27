@@ -270,7 +270,7 @@
             if (int.TryParse(litID.Text, out id))
             {
                 D4D.Platform.Domain.Image item = D4DGateway.AlbumProvider.GetImage(id);
-                System.Collections.Generic.List<TagRelation> list = D4DGateway.TagsProvider.GetTagRelationByObject(id, ObjectTypeDefine.News);
+                System.Collections.Generic.List<TagRelation> list = D4DGateway.TagsProvider.GetTagRelationByObject(id, ObjectTypeDefine.Image);
                 DrawAddPanel(item, list);
                 addPanel.Visible = true;
                 btnAdd.Text = "更新";
@@ -340,8 +340,27 @@
         if (txtStatus.Checked)
             item.Status = PublishStatus.Publish;
         int result = D4DGateway.AlbumProvider.SetImage(item);
-        
-        
+
+        if (txtTags.Text.Length > 0)
+        {
+            string[] tags = txtTags.Text.Split(',');
+            foreach (string s in tags)
+            {
+                int i = 0;
+                int.TryParse(s, out i);
+                if (i > 0)
+                {
+                    D4DGateway.TagsProvider.SetTagRelation(new TagRelation()
+                    {
+                        TagId = i,
+                        AddDate = DateTime.Now,
+                        AddUserID = D4D.Web.Helper.AdminHelper.CurrentUser.UserID,
+                        ObjectId = result,
+                        ObjectType = ObjectTypeDefine.Image
+                    });
+                }
+            }
+        }
         addPanel.Visible = false;
         
         BindList();
@@ -367,6 +386,7 @@
         txtStatus.Checked = (item.Status == PublishStatus.Publish);
         txtImageName.Text = item.ImageName;
 		txtPublishDate.Text = item.PublishDate.ToString("yyyy-MM-dd");
+        txtTags.Text = "";
         txtTags.Text = String.Join(",", (from i in list
                                          select i.TagId.ToString()).ToArray());
     }
