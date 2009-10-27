@@ -89,7 +89,7 @@ $.Autocompleter = function(input, options) {
 	});
 	
 	// only opera doesn't trigger keydown multiple times while pressed, others don't work with keypress at all
-	$input.bind(($.browser.opera ? "keypress" : "keyup") + ".autocomplete", function(event) {
+	$input.bind(($.browser.opera ? "keypress" : "keydown") + ".autocomplete", function(event) {
 		// track last key pressed
 		lastKeyPressCode = event.keyCode;
 		switch(event.keyCode) {
@@ -195,7 +195,10 @@ $.Autocompleter = function(input, options) {
 		select.unbind();
 		$input.unbind();
 		$(input.form).unbind(".autocomplete");
-	});
+	}).bind("input", function() { 
+    // @hack by liqt:support for inputing  chinese characters  in firefox 
+    onChange(0, true); 
+    });;
 	
 	
 	function selectCurrent() {
