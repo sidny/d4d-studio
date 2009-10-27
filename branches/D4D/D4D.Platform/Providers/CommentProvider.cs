@@ -44,5 +44,16 @@ namespace D4D.Platform.Providers
         {
             return CommentDao.GetPagedComments(pager, (int)publishStatus, objectId, (int)objectType);
         }
+
+        /// <summary>
+        /// 获取指定objectid的comment数量
+        /// </summary>
+        /// <param name="oIds"></param>
+        /// <param name="objectType"></param>
+        /// <returns></returns>
+        public Dictionary<int, int> GetComments20(List<int> oIds, ObjectTypeDefine objectType)
+        {
+            return CommentDao.GetComments20(oIds, (int)objectType);
+        }
     }
 }

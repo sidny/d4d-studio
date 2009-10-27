@@ -124,6 +124,39 @@ namespace D4D.Platform.Persistence
             return list;
         }
 
+        internal static Dictionary<int, int> GetComments20(List<int> oIds,int objectType)
+        {
+
+            Dictionary<int, int> dic = new Dictionary<int, int>();
+
+            if (oIds != null && oIds.Count > 0)
+            {
+                SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+               "dbo.Comment_GetCmments20",
+               delegate(IParameterSet parameters)
+               {
+                   parameters.AddWithValue("@ObjectType", objectType);
+                   int maxCount = oIds.Count > 20 ? 20 : oIds.Count;
+                   for (int i = 0; i < maxCount; i++)
+                   {
+                       parameters.AddWithValue("@id" + (i + 1).ToString(), oIds[i]);
+                   }
+               },
+               delegate(IRecord record)
+               {
+                   int commentCount = record.GetInt32OrDefault(0, 0);
+                   int objectId = record.GetInt32OrDefault(1, 0);
+
+
+                   if (!dic.ContainsKey(objectId))
+                       dic.Add(objectId, commentCount);
+               }
+           );
+            }
+
+            return dic;
+        }
+
 
     }
 }
