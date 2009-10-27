@@ -63,5 +63,14 @@ namespace D4D.Platform.Providers
        {
            return ShowDao.GetPagedShowByTagAndBand(pager, (int)publishStatus, tagId, bandId);
        }
+       /// <summary>
+       /// 获取星程上一条下一条
+       /// </summary>
+       /// <param name="currentId"></param>
+       /// <returns></returns>
+       public List<Show> GetShowPreviousNext(int currentId)
+       {
+           return ShowDao.GetShowPreviousNext(currentId);
+       }
     }
 }

@@ -67,5 +67,14 @@ namespace D4D.Platform.Providers
         {
             return NewsDao.GetPagedNewsByTagAndNewsType(pager, (int)publishStatus, tagId, (int)newsType);
         }
+        /// <summary>
+        /// 获取新闻上一条下一条
+        /// </summary>
+        /// <param name="currentNewsId"></param>
+        /// <returns></returns>
+        public List<News> GetNewsPreviousNext(int currentNewsId)
+        {
+            return NewsDao.GetNewsPreviousNext(currentNewsId);
+        }
     }
 }

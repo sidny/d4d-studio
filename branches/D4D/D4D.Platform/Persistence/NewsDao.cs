@@ -271,6 +271,23 @@ namespace D4D.Platform.Persistence
 
             return list;
         }
+
+
+        internal static List<News> GetNewsPreviousNext(int currentNewsId)
+        {
+            List<News> list = new List<News>(2);
+
+            SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+               "dbo.News_GetPreviousNext",              
+               delegate(IRecord record)
+               {
+                   MapList(record, list);
+
+               }, currentNewsId        
+           );
+
+            return list;
+        }
         #endregion
     }
 }
