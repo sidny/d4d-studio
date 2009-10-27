@@ -4,12 +4,11 @@
 <%@ Import Namespace="LTP.Accounts.Bus"%>
 <%@ Register src="../Controls/FileUpload.ascx" tagname="FileUpload" tagprefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title>新闻编辑</title>
+  <title>新闻编辑</title>
 </asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentBody" runat="server">
-<script type="text/javascript" src="/static/js/jquery.autocomplete.js"></script>
-<script language="javascript">
+  <script type="text/javascript" src="/static/js/jquery.autocomplete.js"></script>
+  <script language="javascript">
     function ConfirmDelete() {
         if (window.confirm("您确认删除么？"))
             return true;
@@ -17,103 +16,144 @@
             return false;
     }
 </script>
-<form id="form1" runat="server">
-       <asp:Panel ID="listPanel" runat="server">
+  
+  <form id="form1" runat="server">
+    <asp:Panel ID="listPanel" runat="server">
+      <div>
         <div>
-             <div><h1>新闻列表</h1></div>
-               <asp:Repeater Id="repList" OnItemDataBound="repList_ItemDataBound" runat="server">
-             	<headertemplate>
-                <table cellspacing="1" cellpadding="4" rules="all"  align="center" width="100%" class="grid">
-                    <tr align="center">
-                      <th align="center" style="width: 30px;">编号</th>
-                      <th>标题</th>
-                      <th>类型</th>
-                      <th>发布状态</th>                      
-                      <th>新闻日期</th>
-                      <th>添加日期</th>
-                      <th style="width: 30px;">修改</th>
-                      <th style="width: 30px;">删除</th>
-                    </tr>
-                    </headertemplate>
-                    <itemtemplate>
-                    <tr align="center">
-                      <td align="center" style="width: 30px;"><asp:Literal ID="litID" runat="server"></asp:Literal></td>
-                      <td><asp:HyperLink ID="litTitle" runat="server"></asp:HyperLink></td>
-                      <td><asp:Literal ID="litNewsType" runat="server"></asp:Literal></td>
-                      <td><asp:CheckBox ID="litStatus" runat="server"></asp:CheckBox></td>
-                      <td><asp:Literal ID="litPublishDate" runat="server"></asp:Literal></td>
-                      <td><asp:Literal ID="litAddDate" runat="server"></asp:Literal></td>               
-                      <td style="width: 30px;"><asp:Button ID="btnUpdate" runat="server" OnClick="btnUpdate_Click" Text="修改" /></td>
-                      <td style="width: 30px;"><asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click"  Text="删除" OnClientClick="return  ConfirmDelete()" /> </td>
-                    </tr>
-                </ItemTemplate>
-                <FooterTemplate>
-                     <tr align="right" style="font-size: medium; white-space: nowrap;">
-                      <td colspan="7" valign="middle" class="pagestyle" id="pager"></td>
-                      <td class="pagestyle"><asp:Button ID="btnAddShow" runat="server" OnClick="btnAdd_Show" Text="新增" /></td>
-                    </tr>
-                    </table>
-                </FooterTemplate>        
-                </asp:Repeater>
+          <h1>新闻列表</h1>
         </div>
-       </asp:Panel>
-        <asp:Panel ID="addPanel" runat="server">
-             <div><h1>编辑新闻</h1></div>
-            <div>
-             <table cellspacing="1" cellpadding="4" rules="all"  align="center" width="100%" class="grid">
-                    <tr>
-                      <th align="center" width="100">标题</th>
-                      <td><asp:TextBox ID="txtTitle" runat="server" Width="500px"></asp:TextBox>
-                      <asp:HiddenField ID="txtNewsId" runat="server" Value="0" ></asp:HiddenField>
-                      <asp:HiddenField ID="txtHits" runat="server" Value="0" ></asp:HiddenField>
-                      </td>
-                      </tr>
-                      <tr>
-                     <th width="100">摘要</th>
-                      <td><asp:TextBox ID="txtPreview" runat="server" Width="500px" TextMode="MultiLine" 
+        <asp:Repeater Id="repList" OnItemDataBound="repList_ItemDataBound" runat="server">
+          <headertemplate>
+            <table cellspacing="1" cellpadding="4" rules="all"  align="center" width="100%" class="grid">
+            <tr align="center">
+              <th align="center" style="width: 30px;">编号</th>
+              <th>标题</th>
+              <th>类型</th>
+              <th>发布状态</th>
+              <th>新闻日期</th>
+              <th>添加日期</th>
+              <th style="width: 30px;">修改</th>
+              <th style="width: 30px;">删除</th>
+            </tr>
+          </headertemplate>
+          <itemtemplate>
+            <tr align="center">
+              <td align="center" style="width: 30px;"><asp:Literal ID="litID" runat="server"></asp:Literal></td>
+              <td><asp:HyperLink ID="litTitle" runat="server"></asp:HyperLink></td>
+              <td><asp:Literal ID="litNewsType" runat="server"></asp:Literal></td>
+              <td><asp:CheckBox ID="litStatus" runat="server"></asp:CheckBox></td>
+              <td><asp:Literal ID="litPublishDate" runat="server"></asp:Literal></td>
+              <td><asp:Literal ID="litAddDate" runat="server"></asp:Literal></td>
+              <td style="width: 30px;"><asp:Button ID="btnUpdate" runat="server" OnClick="btnUpdate_Click" Text="修改" /></td>
+              <td style="width: 30px;"><asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click"  Text="删除" OnClientClick="return  ConfirmDelete()" /></td>
+            </tr>
+          </ItemTemplate>
+          <FooterTemplate>
+            <tr align="right" style="font-size: medium; white-space: nowrap;">
+              <td colspan="7" valign="middle" class="pagestyle" id="pager"></td>
+              <td class="pagestyle"><asp:Button ID="btnAddShow" runat="server" OnClick="btnAdd_Show" Text="新增" /></td>
+            </tr>
+            </table>
+          </FooterTemplate>
+        </asp:Repeater>
+      </div>
+      </asp:Panel>
+    <asp:Panel ID="addPanel" runat="server">
+      <div>
+        <h1>编辑新闻</h1>
+      </div>
+      <div>
+        <table cellspacing="1" cellpadding="4" rules="all"  align="center" width="100%" class="grid">
+          <tr>
+            <th align="center" width="100">标题</th>
+            <td><asp:TextBox ID="txtTitle" runat="server" Width="500px"></asp:TextBox>
+              <asp:HiddenField ID="txtNewsId" runat="server" Value="0" ></asp:HiddenField>
+              <asp:HiddenField ID="txtHits" runat="server" Value="0" ></asp:HiddenField></td>
+          </tr>
+          <tr>
+            <th width="100">摘要</th>
+            <td><asp:TextBox ID="txtPreview" runat="server" Width="500px" TextMode="MultiLine" 
                               Height="150px"></asp:TextBox></td>
-                    </tr>
-                    <tr>
-                    <th width="100">正文</th>
-                      <td><asp:TextBox ID="txtBody" runat="server" Width="500px" TextMode="MultiLine" 
+          </tr>
+          <tr>
+            <th width="100">正文</th>
+            <td><asp:TextBox ID="txtBody" runat="server" Width="500px" TextMode="MultiLine" 
                               Height="400px"></asp:TextBox></td>
-                    </tr>
-                      <tr>
-                     <th width="100">歌手</th>
-                      <td><asp:DropDownList ID="txtBandId" runat="server"></asp:DropDownList></td>
-                    </tr>
-                      <tr>
-                     <th width="100">日期</th>
-                      <td><asp:TextBox ID="txtPublishDate" runat="server" CssClass="has-datepicker"></asp:TextBox></td>
-                    </tr>
-                      <tr>
-                     <th width="100">小图</th>
-                      <td><uc1:FileUpload ID="txtSImage" runat="server" AutoCreateThumbnailImage="false"/></td>
-                    </tr>
-                      <tr>
-                     <th width="100">大图</th>
-                      <td><uc1:FileUpload ID="txtLImage" runat="server" /></td>
-                    </tr>
-                     <tr>
-                     <th align="center" width="100">Tag标签</th>
-                      <td><asp:TextBox ID="txtTags" Width="500px" runat="server"></asp:TextBox></td>
-                    </tr>
-                     <tr>
-                     <th align="center" width="100">发布状态</th>
-                      <td><asp:CheckBox ID="txtStatus" runat="server"></asp:CheckBox></td>
-                    </tr>     
-                    <tr>   
-                      <th align="center" width="100">视频新闻</th>
-                      <td><asp:CheckBox ID="cbIsVideo" runat="server"></asp:CheckBox></td>
-                    </tr>                 
-                    <tr>
-                    <th align="center" width="100">&nbsp;</th>
-                      <td><asp:Button ID="btnAdd" runat="server" Text="新增" onclick="btnAdd_Click" /></td>
-                    </tr>
-                    </table>
-           </div>
-        </asp:Panel>
-        <script type="text/javascript">
+          </tr>
+          <tr>
+            <th width="100">歌手</th>
+            <td><asp:DropDownList ID="txtBandId" runat="server"></asp:DropDownList></td>
+          </tr>
+          <tr>
+            <th width="100">日期</th>
+            <td><asp:TextBox ID="txtPublishDate" runat="server" CssClass="has-datepicker"></asp:TextBox></td>
+          </tr>
+          <tr>
+            <th width="100">小图</th>
+            <td><uc1:FileUpload ID="txtSImage" runat="server" AutoCreateThumbnailImage="false"/></td>
+          </tr>
+          <tr>
+            <th width="100">大图</th>
+            <td><uc1:FileUpload ID="txtLImage" runat="server" /></td>
+          </tr>
+          <tr>
+            <th align="center" width="100">Tag标签</th>
+            <td><asp:TextBox ID="txtTags" Width="100px" runat="server" CssClass="has-autocomplete"></asp:TextBox> <label style=" text-decoration:underline"></label></td>
+          </tr>
+          <tr>
+            <th align="center" width="100">发布状态</th>
+            <td><asp:CheckBox ID="txtStatus" runat="server"></asp:CheckBox></td>
+          </tr>
+    	      <tr>
+            <th align="center" width="100">视频新闻</th>
+            <td><asp:CheckBox ID="cbIsVideo" runat="server"></asp:CheckBox></td>
+          </tr>
+          <tr>
+            <th align="center" width="100">&nbsp;</th>
+            <td><asp:Button ID="btnAdd" runat="server" Text="新增" onclick="btnAdd_Click" /></td>
+          </tr>
+        </table>
+      </div>
+      
+      <script type="text/javascript">
+	  	
+		$(document).ready(function(){	  
+                $.getJSON("/svc/admin.svc/GetTag", function(response) {
+					window.tags = response.d;
+					$(".has-autocomplete").autocomplete(tags, {
+							 minChars: 1,
+							 width: 380,
+							// matchContains: "word,number",
+							 autoFill: false,
+							formatItem: function(row, i, max) {
+								return row.Text;
+							},
+
+        formatMatch: function(row, i, max) {
+
+            return row.Id + " " + row.Text;
+
+        },
+
+        formatResult: function(row) {
+
+
+            return row.Text;
+
+        }
+
+    }).result(function(event, item) {
+		var str =  "　<span style='padding:5px;'><input type=\"hidden\" value=\""+item.Id+"\"/><u>"+item.Text + "</u></span>　";
+       	$(str).click(function(){$(this).remove()}).insertAfter($(this).next());
+
+    });
+                });
+				});
+				</script>
+      
+      </asp:Panel>
+    <script type="text/javascript">
             $(document).ready(function() {
                 var cur = parseInt("<%=PageIndex %>");
                 var total = parseInt("<%=PageTotalCount %>");
@@ -143,30 +183,12 @@
                     }
                 });
 
-                $.getJSON("/svc/admin.svc/GetTag", function(response) {
-                    $("#<%=txtTags.ClientID %>").autocomplete(response.d, {
-                        minChars: 0,
-                        width: 310,
-                        formatItem: function(row, i, max) {
-                            return row;
-                        },
-                        formatMatch: function(row, i, max) {
-                            return row.TagName;
-                        }
-                    }).result(function(event, item) {
-                        $("<span><input type=\"hidden\" value=\"" + item.TagId + "\">" + item.TagName + " </span>")
-                        .click(function() {
-                            $(this).remove();
-                        }).insertAfter(this);
-                    });
-
-                });
+				
             });
 </script>
-</form>
+  </form>
 </asp:Content>
-
-<script runat="server">
+    <script runat="server">
     protected int PageIndex
     {
         get
