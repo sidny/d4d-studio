@@ -185,7 +185,7 @@ namespace D4D.Platform.Persistence
             return list;
         }
 
-        internal static List<News> GetPagedShowByShowDate(PagingContext pager, DateTime sTime,
+        internal static List<News> GetPagedNewsByPublishDate(PagingContext pager, DateTime sTime,
         DateTime eTime, int publishStatus)
         {
             List<News> list = new List<News>(pager.RecordsPerPage);
