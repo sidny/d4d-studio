@@ -501,7 +501,157 @@ namespace D4D.Platform.Persistence
             return list;
         }
 
-        
+
+        #region GetTopImage
+       
+        internal static List<News> GetGetTopImageNews( int maxCount, int newsRemarkType)
+        {
+            List<News> list = new List<News>(maxCount);
+         
+               SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+              "dbo.News_GetTopImageNews",
+              delegate(IParameterSet parameters)
+              {
+                  parameters.AddWithValue("@RemarkType", newsRemarkType);
+                  parameters.AddWithValue("@MaxCount", maxCount);               
+            
+              },
+              delegate(IRecord record)
+              {
+                  MapList(record, list);
+
+              }             
+          );          
+
+          return list;
+        }
+
+        internal static List<News> GetTopImageNewsByNewsType(int newsType, int maxCount, int newsRemarkType)
+        {
+            List<News> list = new List<News>(maxCount);
+
+            SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+           "dbo.News_GetTopImageNewsByNewsType",
+           delegate(IParameterSet parameters)
+           {
+               parameters.AddWithValue("@RemarkType", newsRemarkType);
+               parameters.AddWithValue("@MaxCount", maxCount);
+               parameters.AddWithValue("@NewsType", newsType);
+
+           },
+           delegate(IRecord record)
+           {
+               MapList(record, list);
+
+           }
+       );
+
+            return list;
+        }
+
+
+        internal static List<News> GetTopImageNewsByNewsTypeANDPublishDate(int newsType, 
+            DateTime sTime,DateTime eTime, int maxCount, int newsRemarkType)
+        {
+            List<News> list = new List<News>(maxCount);
+
+            SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+           "dbo.News_GetTopImageNewsByNewsTypeANDPublishDate",
+           delegate(IParameterSet parameters)
+           {
+               parameters.AddWithValue("@RemarkType", newsRemarkType);
+               parameters.AddWithValue("@MaxCount", maxCount);
+               parameters.AddWithValue("@NewsType", newsType);
+               parameters.AddWithValue("@STime", sTime);
+               parameters.AddWithValue("@ETime", eTime);
+
+           },
+           delegate(IRecord record)
+           {
+               MapList(record, list);
+
+           }
+       );
+
+            return list;
+        }
+
+        internal static List<News> GetTopImageNewsByPublishDate(
+           DateTime sTime, DateTime eTime, int maxCount, int newsRemarkType)
+        {
+            List<News> list = new List<News>(maxCount);
+
+            SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+           "dbo.News_GetTopImageNewsByPublishDate",
+           delegate(IParameterSet parameters)
+           {
+               parameters.AddWithValue("@RemarkType", newsRemarkType);
+               parameters.AddWithValue("@MaxCount", maxCount);      
+               parameters.AddWithValue("@STime", sTime);
+               parameters.AddWithValue("@ETime", eTime);
+
+           },
+           delegate(IRecord record)
+           {
+               MapList(record, list);
+
+           }
+       );
+
+            return list;
+        }
+
+        internal static List<News> GetTopImageNewsByTag(
+           int tagId, int maxCount, int newsRemarkType)
+        {
+            List<News> list = new List<News>(maxCount);
+
+            SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+           "dbo.News_GetTopImageNewsByTag",
+           delegate(IParameterSet parameters)
+           {
+               parameters.AddWithValue("@RemarkType", newsRemarkType);
+               parameters.AddWithValue("@MaxCount", maxCount);
+               parameters.AddWithValue("@TagId", tagId);           
+
+           },
+           delegate(IRecord record)
+           {
+               MapList(record, list);
+
+           }
+       );
+
+            return list;
+        }
+
+        internal static List<News> GetTopImageNewsByTagANDNewsType(
+           int tagId,int newsType, int maxCount, int newsRemarkType)
+        {
+            List<News> list = new List<News>(maxCount);
+
+            SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+           "dbo.News_GetTopImageNewsByTagANDNewsType",
+           delegate(IParameterSet parameters)
+           {
+               parameters.AddWithValue("@RemarkType", newsRemarkType);
+               parameters.AddWithValue("@MaxCount", maxCount);
+               parameters.AddWithValue("@TagId", tagId);
+               parameters.AddWithValue("@NewsType", newsType);
+
+           },
+           delegate(IRecord record)
+           {
+               MapList(record, list);
+
+           }
+       );
+
+            return list;
+        }
+
+        #endregion
+
         #endregion
     }
 }
