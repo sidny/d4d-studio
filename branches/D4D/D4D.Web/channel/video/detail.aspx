@@ -53,7 +53,7 @@
                 }
                 $.ajax({
                     contentType: "application/json",
-                    url: "http://localhost/svc/comments.svc/create",
+                    url: "/svc/comments.svc/create",
                     data: JSON2.stringify({ content: str, id: <%=CurrentNews.NewsId %>, type: <%=(int)ObjectTypeDefine.News %> }),
                     type: "POST", processData: false,
                     dataType:"json",
