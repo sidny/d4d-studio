@@ -100,14 +100,42 @@ namespace D4D.Platform.Persistence
             list.Add(m);
         }
 
-        internal static List<News> GetPagedNews(PagingContext pager, int publishStatus)
+        internal static List<News> GetPagedNews(PagingContext pager, int publishStatus,
+            int newsRemarkType)
         {
             List<News> list = new List<News>(pager.RecordsPerPage);
 
-            SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
-               "dbo.News_GetPaged",
+           
+            if (newsRemarkType == -1)
+            {
+
+                SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+                   "dbo.News_GetPaged",
+                   delegate(IParameterSet parameters)
+                   {                      
+                       parameters.AddWithValue("@PublishStatus", publishStatus);
+                       parameters.AddWithValue("@PageIndex", pager.CurrentPageNumber);
+                       parameters.AddWithValue("@PageSize", pager.RecordsPerPage);
+                       parameters.AddWithValue("@NumberOfCount", 0, ParameterDirectionWrap.Output);
+                   },
+                   delegate(IRecord record)
+                   {
+                       MapList(record, list);
+
+                   },
+                   delegate(IParameterSet outputParameters)
+                   {
+                       pager.TotalRecordCount = outputParameters.GetValue("@NumberOfCount") == DBNull.Value ? 0 : (int)outputParameters.GetValue("@NumberOfCount");
+                   }
+               );
+            }
+            else
+            {
+                SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+               "dbo.News_GetPagedV2",
                delegate(IParameterSet parameters)
                {
+                   parameters.AddWithValue("@RemarkType", newsRemarkType);
                    parameters.AddWithValue("@PublishStatus", publishStatus);
                    parameters.AddWithValue("@PageIndex", pager.CurrentPageNumber);
                    parameters.AddWithValue("@PageSize", pager.RecordsPerPage);
@@ -122,170 +150,339 @@ namespace D4D.Platform.Persistence
                {
                    pager.TotalRecordCount = outputParameters.GetValue("@NumberOfCount") == DBNull.Value ? 0 : (int)outputParameters.GetValue("@NumberOfCount");
                }
-           );
-
+             );
+            }
             return list;
         }
 
-        internal static List<News> GetPagedNewsByNewsType(PagingContext pager, int newsType, int publishStatus)
+        internal static List<News> GetPagedNewsByNewsType(PagingContext pager, int newsType, 
+            int publishStatus, int newsRemarkType)
         {
             List<News> list = new List<News>(pager.RecordsPerPage);
 
-            SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
-               "dbo.News_GetPagedByNewsType",
-               delegate(IParameterSet parameters)
-               {
-                   parameters.AddWithValue("@NewsType", newsType);
-                   parameters.AddWithValue("@PublishStatus", publishStatus);
-                   parameters.AddWithValue("@PageIndex", pager.CurrentPageNumber);
-                   parameters.AddWithValue("@PageSize", pager.RecordsPerPage);
-                   parameters.AddWithValue("@NumberOfCount", 0, ParameterDirectionWrap.Output);
-               },
-               delegate(IRecord record)
-               {
-                   MapList(record, list);
-               },
-               delegate(IParameterSet outputParameters)
-               {
-                   pager.TotalRecordCount = outputParameters.GetValue("@NumberOfCount") == DBNull.Value ? 0 : (int)outputParameters.GetValue("@NumberOfCount");
-               }
-           );
+            if (newsRemarkType == -1)
+            {
+                SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+              "dbo.News_GetPagedByNewsType",
+              delegate(IParameterSet parameters)
+              {                 
+                  parameters.AddWithValue("@NewsType", newsType);
+                  parameters.AddWithValue("@PublishStatus", publishStatus);
+                  parameters.AddWithValue("@PageIndex", pager.CurrentPageNumber);
+                  parameters.AddWithValue("@PageSize", pager.RecordsPerPage);
+                  parameters.AddWithValue("@NumberOfCount", 0, ParameterDirectionWrap.Output);
+              },
+              delegate(IRecord record)
+              {
+                  MapList(record, list);
+              },
+              delegate(IParameterSet outputParameters)
+              {
+                  pager.TotalRecordCount = outputParameters.GetValue("@NumberOfCount") == DBNull.Value ? 0 : (int)outputParameters.GetValue("@NumberOfCount");
+              }
+          );
+            }
+            else
+            {
+                SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+              "dbo.News_GetPagedByNewsTypeV2",
+              delegate(IParameterSet parameters)
+              {
+                  parameters.AddWithValue("@RemarkType", newsRemarkType);
+                  parameters.AddWithValue("@NewsType", newsType);
+                  parameters.AddWithValue("@PublishStatus", publishStatus);
+                  parameters.AddWithValue("@PageIndex", pager.CurrentPageNumber);
+                  parameters.AddWithValue("@PageSize", pager.RecordsPerPage);
+                  parameters.AddWithValue("@NumberOfCount", 0, ParameterDirectionWrap.Output);
+              },
+              delegate(IRecord record)
+              {
+                  MapList(record, list);
+              },
+              delegate(IParameterSet outputParameters)
+              {
+                  pager.TotalRecordCount = outputParameters.GetValue("@NumberOfCount") == DBNull.Value ? 0 : (int)outputParameters.GetValue("@NumberOfCount");
+              }
+          );
+            }
+           
 
             return list;
         }
 
         internal static List<News> GetPagedNewsByTypeANDPublishDate(PagingContext pager, int newsType, DateTime sTime,
-            DateTime eTime, int publishStatus)
+            DateTime eTime, int publishStatus, int newsRemarkType)
         {
             List<News> list = new List<News>(pager.RecordsPerPage);
 
-            SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
-               "dbo.News_GetPagedByNewsTypeAndPublishDate",
-               delegate(IParameterSet parameters)
-               {
-
-                   parameters.AddWithValue("@NewsType", newsType);
-                   parameters.AddWithValue("@STime", sTime);
-                   parameters.AddWithValue("@ETime", eTime);
-                   parameters.AddWithValue("@PublishStatus", publishStatus);
-                   parameters.AddWithValue("@PageIndex", pager.CurrentPageNumber);
-                   parameters.AddWithValue("@PageSize", pager.RecordsPerPage);
-                   parameters.AddWithValue("@NumberOfCount", 0, ParameterDirectionWrap.Output);
-               },
-               delegate(IRecord record)
-               {
-                   MapList(record, list);
-               },
-               delegate(IParameterSet outputParameters)
-               {
-                   pager.TotalRecordCount = outputParameters.GetValue("@NumberOfCount") == DBNull.Value ? 0 : (int)outputParameters.GetValue("@NumberOfCount");
-               }
-           );
+            if (newsRemarkType == -1)
+            {
+                SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+              "dbo.News_GetPagedByNewsTypeAndPublishDate",
+              delegate(IParameterSet parameters)
+              {                 
+                  parameters.AddWithValue("@NewsType", newsType);
+                  parameters.AddWithValue("@STime", sTime);
+                  parameters.AddWithValue("@ETime", eTime);
+                  parameters.AddWithValue("@PublishStatus", publishStatus);
+                  parameters.AddWithValue("@PageIndex", pager.CurrentPageNumber);
+                  parameters.AddWithValue("@PageSize", pager.RecordsPerPage);
+                  parameters.AddWithValue("@NumberOfCount", 0, ParameterDirectionWrap.Output);
+              },
+              delegate(IRecord record)
+              {
+                  MapList(record, list);
+              },
+              delegate(IParameterSet outputParameters)
+              {
+                  pager.TotalRecordCount = outputParameters.GetValue("@NumberOfCount") == DBNull.Value ? 0 : (int)outputParameters.GetValue("@NumberOfCount");
+              }
+          );
+            }
+            else
+            {
+                SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+              "dbo.News_GetPagedByNewsTypeAndPublishDateV2",
+              delegate(IParameterSet parameters)
+              {
+                  parameters.AddWithValue("@RemarkType", newsRemarkType);
+                  parameters.AddWithValue("@NewsType", newsType);
+                  parameters.AddWithValue("@STime", sTime);
+                  parameters.AddWithValue("@ETime", eTime);
+                  parameters.AddWithValue("@PublishStatus", publishStatus);
+                  parameters.AddWithValue("@PageIndex", pager.CurrentPageNumber);
+                  parameters.AddWithValue("@PageSize", pager.RecordsPerPage);
+                  parameters.AddWithValue("@NumberOfCount", 0, ParameterDirectionWrap.Output);
+              },
+              delegate(IRecord record)
+              {
+                  MapList(record, list);
+              },
+              delegate(IParameterSet outputParameters)
+              {
+                  pager.TotalRecordCount = outputParameters.GetValue("@NumberOfCount") == DBNull.Value ? 0 : (int)outputParameters.GetValue("@NumberOfCount");
+              }
+          );
+            }
+           
 
             return list;
         }
 
         internal static List<News> GetPagedNewsByPublishDate(PagingContext pager, DateTime sTime,
-        DateTime eTime, int publishStatus)
+        DateTime eTime, int publishStatus, int newsRemarkType)
         {
             List<News> list = new List<News>(pager.RecordsPerPage);
-
-            SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
-               "dbo.News_GetPagedByPublishDate",
-               delegate(IParameterSet parameters)
-               {
-                   parameters.AddWithValue("@STime", sTime);
-                   parameters.AddWithValue("@ETime", eTime);
-                   parameters.AddWithValue("@PublishStatus", publishStatus);
-                   parameters.AddWithValue("@PageIndex", pager.CurrentPageNumber);
-                   parameters.AddWithValue("@PageSize", pager.RecordsPerPage);
-                   parameters.AddWithValue("@NumberOfCount", 0, ParameterDirectionWrap.Output);
-               },
-               delegate(IRecord record)
-               {
-                   MapList(record, list);
-               },
-               delegate(IParameterSet outputParameters)
-               {
-                   pager.TotalRecordCount = outputParameters.GetValue("@NumberOfCount") == DBNull.Value ? 0 : (int)outputParameters.GetValue("@NumberOfCount");
-               }
-           );
+            if (newsRemarkType == -1)
+            {
+                SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+              "dbo.News_GetPagedByPublishDate",
+              delegate(IParameterSet parameters)
+              {                 
+                  parameters.AddWithValue("@STime", sTime);
+                  parameters.AddWithValue("@ETime", eTime);
+                  parameters.AddWithValue("@PublishStatus", publishStatus);
+                  parameters.AddWithValue("@PageIndex", pager.CurrentPageNumber);
+                  parameters.AddWithValue("@PageSize", pager.RecordsPerPage);
+                  parameters.AddWithValue("@NumberOfCount", 0, ParameterDirectionWrap.Output);
+              },
+              delegate(IRecord record)
+              {
+                  MapList(record, list);
+              },
+              delegate(IParameterSet outputParameters)
+              {
+                  pager.TotalRecordCount = outputParameters.GetValue("@NumberOfCount") == DBNull.Value ? 0 : (int)outputParameters.GetValue("@NumberOfCount");
+              }
+          );
+            }
+            else
+            {
+                SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+              "dbo.News_GetPagedByPublishDateV2",
+              delegate(IParameterSet parameters)
+              {
+                  parameters.AddWithValue("@RemarkType", newsRemarkType);
+                  parameters.AddWithValue("@STime", sTime);
+                  parameters.AddWithValue("@ETime", eTime);
+                  parameters.AddWithValue("@PublishStatus", publishStatus);
+                  parameters.AddWithValue("@PageIndex", pager.CurrentPageNumber);
+                  parameters.AddWithValue("@PageSize", pager.RecordsPerPage);
+                  parameters.AddWithValue("@NumberOfCount", 0, ParameterDirectionWrap.Output);
+              },
+              delegate(IRecord record)
+              {
+                  MapList(record, list);
+              },
+              delegate(IParameterSet outputParameters)
+              {
+                  pager.TotalRecordCount = outputParameters.GetValue("@NumberOfCount") == DBNull.Value ? 0 : (int)outputParameters.GetValue("@NumberOfCount");
+              }
+          );
+            }
+           
 
             return list;
         }
 
 
-        internal static List<News> GetPagedNewsByTag(PagingContext pager, int publishStatus, int tagId)
+        internal static List<News> GetPagedNewsByTag(PagingContext pager, int publishStatus,
+            int tagId, int newsRemarkType)
         {
             List<News> list = new List<News>(pager.RecordsPerPage);
+            if (newsRemarkType == -1)
+            {
+                SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+              "dbo.News_GetPagedByTag",
+              delegate(IParameterSet parameters)
+              {
+                  //parameters.AddWithValue("@RemarkType", newsRemarkType);
+                  parameters.AddWithValue("@TagId", tagId);
+                  parameters.AddWithValue("@PublishStatus", publishStatus);
+                  parameters.AddWithValue("@PageIndex", pager.CurrentPageNumber);
+                  parameters.AddWithValue("@PageSize", pager.RecordsPerPage);
+                  parameters.AddWithValue("@NumberOfCount", 0, ParameterDirectionWrap.Output);
+              },
+              delegate(IRecord record)
+              {
+                  MapList(record, list);
 
-            SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
-               "dbo.News_GetPagedByTag",
-               delegate(IParameterSet parameters)
-               {
-                   parameters.AddWithValue("@TagId", tagId);
-                   parameters.AddWithValue("@PublishStatus", publishStatus);
-                   parameters.AddWithValue("@PageIndex", pager.CurrentPageNumber);
-                   parameters.AddWithValue("@PageSize", pager.RecordsPerPage);
-                   parameters.AddWithValue("@NumberOfCount", 0, ParameterDirectionWrap.Output);
-               },
-               delegate(IRecord record)
-               {
-                   MapList(record, list);
+              },
+              delegate(IParameterSet outputParameters)
+              {
+                  pager.TotalRecordCount = outputParameters.GetValue("@NumberOfCount") == DBNull.Value ? 0 : (int)outputParameters.GetValue("@NumberOfCount");
+              }
+          );
+            }
+            else
+            {
+                SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+              "dbo.News_GetPagedByTagV2",
+              delegate(IParameterSet parameters)
+              {
+                  parameters.AddWithValue("@RemarkType", newsRemarkType);
+                  parameters.AddWithValue("@TagId", tagId);
+                  parameters.AddWithValue("@PublishStatus", publishStatus);
+                  parameters.AddWithValue("@PageIndex", pager.CurrentPageNumber);
+                  parameters.AddWithValue("@PageSize", pager.RecordsPerPage);
+                  parameters.AddWithValue("@NumberOfCount", 0, ParameterDirectionWrap.Output);
+              },
+              delegate(IRecord record)
+              {
+                  MapList(record, list);
 
-               },
-               delegate(IParameterSet outputParameters)
-               {
-                   pager.TotalRecordCount = outputParameters.GetValue("@NumberOfCount") == DBNull.Value ? 0 : (int)outputParameters.GetValue("@NumberOfCount");
-               }
-           );
+              },
+              delegate(IParameterSet outputParameters)
+              {
+                  pager.TotalRecordCount = outputParameters.GetValue("@NumberOfCount") == DBNull.Value ? 0 : (int)outputParameters.GetValue("@NumberOfCount");
+              }
+          );
+            }
+           
 
             return list;
         }
 
-        internal static List<News> GetPagedNewsByTagAndNewsType(PagingContext pager, int publishStatus, int tagId, int newsType)
+        internal static List<News> GetPagedNewsByTagAndNewsType(PagingContext pager, int publishStatus, int tagId,
+            int newsType, int newsRemarkType)
         {
             List<News> list = new List<News>(pager.RecordsPerPage);
+            if (newsRemarkType == -1)
+            {
+                SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+              "dbo.News_GetPagedByTagAndNewsType",
+              delegate(IParameterSet parameters)
+              {
+                  //parameters.AddWithValue("@RemarkType", newsRemarkType);
+                  parameters.AddWithValue("@NewsType", newsType);
+                  parameters.AddWithValue("@TagId", tagId);
+                  parameters.AddWithValue("@PublishStatus", publishStatus);
+                  parameters.AddWithValue("@PageIndex", pager.CurrentPageNumber);
+                  parameters.AddWithValue("@PageSize", pager.RecordsPerPage);
+                  parameters.AddWithValue("@NumberOfCount", 0, ParameterDirectionWrap.Output);
+              },
+              delegate(IRecord record)
+              {
+                  MapList(record, list);
 
-            SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
-               "dbo.News_GetPagedByTagAndNewsType",
-               delegate(IParameterSet parameters)
-               {
-                   parameters.AddWithValue("@NewsType", newsType);
-                   parameters.AddWithValue("@TagId", tagId);
-                   parameters.AddWithValue("@PublishStatus", publishStatus);
-                   parameters.AddWithValue("@PageIndex", pager.CurrentPageNumber);
-                   parameters.AddWithValue("@PageSize", pager.RecordsPerPage);
-                   parameters.AddWithValue("@NumberOfCount", 0, ParameterDirectionWrap.Output);
-               },
-               delegate(IRecord record)
-               {
-                   MapList(record, list);
+              },
+              delegate(IParameterSet outputParameters)
+              {
+                  pager.TotalRecordCount = outputParameters.GetValue("@NumberOfCount") == DBNull.Value ? 0 : (int)outputParameters.GetValue("@NumberOfCount");
+              }
+          );
+            }
+            else
+            {
+                SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+              "dbo.News_GetPagedByTagAndNewsTypeV2",
+              delegate(IParameterSet parameters)
+              {
+                  parameters.AddWithValue("@RemarkType", newsRemarkType);
+                  parameters.AddWithValue("@NewsType", newsType);
+                  parameters.AddWithValue("@TagId", tagId);
+                  parameters.AddWithValue("@PublishStatus", publishStatus);
+                  parameters.AddWithValue("@PageIndex", pager.CurrentPageNumber);
+                  parameters.AddWithValue("@PageSize", pager.RecordsPerPage);
+                  parameters.AddWithValue("@NumberOfCount", 0, ParameterDirectionWrap.Output);
+              },
+              delegate(IRecord record)
+              {
+                  MapList(record, list);
 
-               },
-               delegate(IParameterSet outputParameters)
-               {
-                   pager.TotalRecordCount = outputParameters.GetValue("@NumberOfCount") == DBNull.Value ? 0 : (int)outputParameters.GetValue("@NumberOfCount");
-               }
-           );
+              },
+              delegate(IParameterSet outputParameters)
+              {
+                  pager.TotalRecordCount = outputParameters.GetValue("@NumberOfCount") == DBNull.Value ? 0 : (int)outputParameters.GetValue("@NumberOfCount");
+              }
+          );
+            }
+           
 
             return list;
         }
 
 
-        internal static List<News> GetNewsPreviousNext(int currentNewsId)
+        internal static List<News> GetNewsPreviousNext(int currentNewsId, 
+            int newsRemarkType)
         {
             List<News> list = new List<News>(2);
 
-            SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
-               "dbo.News_GetPreviousNext",              
-               delegate(IRecord record)
-               {
-                   MapList(record, list);
+            if (newsRemarkType == -1)
+            {
+                SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+              "dbo.News_GetPreviousNextV3",
+              delegate(IRecord record)
+              {
+                  MapList(record, list);
 
-               }, currentNewsId        
-           );
+              }, currentNewsId);
 
+            }
+            else if (newsRemarkType == 0)
+            {
+                SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+              "dbo.News_GetPreviousNext",
+              delegate(IRecord record)
+              {
+                  MapList(record, list);
+
+              }, currentNewsId);
+
+            }
+            else //only video
+            {
+                SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+             "dbo.News_GetPreviousNextV2",
+             delegate(IRecord record)
+             {
+                 MapList(record, list);
+
+             }, currentNewsId, newsRemarkType
+         );
+            }
+
+           
             return list;
         }
 
@@ -304,6 +501,8 @@ namespace D4D.Platform.Persistence
 
             return list;
         }
+
+        
         #endregion
     }
 }

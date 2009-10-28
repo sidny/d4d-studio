@@ -48,7 +48,9 @@ namespace D4D.Platform.Domain
             get;
             set;
         }
-
+       /// <summary>
+       /// bandid or company
+       /// </summary>
         public int NewsType
         {
             get;

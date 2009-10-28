@@ -11,9 +11,11 @@ namespace D4D.Platform.Domain
         public const string DEFAULT_PROFILEPATH = @"d:\sitefiles\profile\";
         public const string DEFAULT_UPLOADROOTPATH = @"d:\sitefiles\upload\";
         public const string DEFAULT_UPLOADROOTHTTPPATH = "http://www.showcitytimes.net/upload/";
+        public const string NEWS_VIDEO_REMARK = "video";
     }
-    public enum NewsType : int
+    public enum NewsRemarkType : int
     {
+        All = -1,
         Normal = 0,
         Video = 1
     }
