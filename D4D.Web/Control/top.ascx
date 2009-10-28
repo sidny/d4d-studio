@@ -22,9 +22,9 @@
 </div>
 <div class="nav">
     <div class="search">
-        <form action="/search/" method="get">
+        <form action="/search.html" method="get">
         <input type="image" src="/static/images/search_go.gif" align="absmiddle" style="float: right" />
-        <input type="text" class="text" /></form>
+        <input name="s" type="text" class="text" /></form>
     </div>
     <div><a href="/"><img src="/static/images/nav_<%=GetMenu("/") %>03.png" alt="" /></a><a href="/news.html"><img src="/static/images/nav_<%=GetMenu("news") %>04.png" alt="" /></a><a href="/calender.html"><img src="/static/images/nav_<%=GetMenu("calender") %>05.png" alt="" /></a><a href="/singer.html"><img src="/static/images/nav_<%=GetMenu("singer") %>06.png" alt="" /></a><a href="/music.html"><img src="/static/images/nav_<%=GetMenu("music") %>07.png"  alt="" /></a><a href="/video.html"><img src="/static/images/nav_<%=GetMenu("video") %>08.png" alt="" /></a><a href="/photo.html"><img src="/static/images/nav_<%=GetMenu("photo") %>09.png" alt="" /></a></div>
 </div>

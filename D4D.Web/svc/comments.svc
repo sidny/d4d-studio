@@ -50,10 +50,10 @@ namespace D4D.Web.svc
         }
         [OperationContract]
         [WebInvoke(RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
-        public string Create(string content,int id, int type )
+        public int Create(string content,int id, int type )
         {
-            if (Helper.AdminHelper.CurrentUser == null) return "-1";
-            if (string.IsNullOrEmpty(content) || id == null || type == null) return "0";
+            if (Helper.AdminHelper.CurrentUser == null) return -1;
+            if (string.IsNullOrEmpty(content) || id == null || type == null) return 0;
             try
             {
                 return D4DGateway.CommentProvider.InsertComment(new Comment()
@@ -66,11 +66,28 @@ namespace D4D.Web.svc
                     AddUserID = Helper.AdminHelper.CurrentUser.UserID,
                     UserName = Helper.AdminHelper.CurrentUser.UserName,
                     Status = PublishStatus.Publish
-                }).ToString();
+                });
             }
             catch (Exception e)
             {
-                return e.ToString();
+                return 0;
+            }
+        }
+        [OperationContract]
+        [WebGet(RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
+        public int Delete(int id)
+        {
+            if (Helper.AdminHelper.CurrentUser == null || Helper.AdminHelper.CurrentUser.UserType.Trim() != ((int)UserType.Type.Admin).ToString()) return -1;
+            if (id == null) return 0;
+            try
+            {
+                 D4DGateway.CommentProvider.DeleteComment(id);
+                 return 1;
+                
+            }
+            catch (Exception e)
+            {
+                return 0;
             }
         }
         public struct comment
