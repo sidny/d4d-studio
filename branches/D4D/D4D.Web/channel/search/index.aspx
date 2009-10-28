@@ -4,7 +4,15 @@
 <%@ Import Namespace="System.Collections.Generic" %>
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader"></asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentMain" runat="server">
-
+<script type="text/javascript" src="/static/js/jquery.highlight.js"></script>
+<style type="text/css">
+    .highlight {  color:Red }
+</style>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".search-list").highlight("张靓颖");
+    });
+</script>
 <div class="sub-title">
   <p class="title">搜索结果</p>
   <p class="nav-link">您的位置：首页 > 搜索</p>
