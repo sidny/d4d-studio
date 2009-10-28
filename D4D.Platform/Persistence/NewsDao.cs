@@ -51,8 +51,11 @@ namespace D4D.Platform.Persistence
              newsId);
             }
         }
-
         internal static News GetNews(int newsId)
+        {
+            return GetNews(newsId, 0);
+        }
+        internal static News GetNews(int newsId ,int hits)
         {
             News m = new News(newsId);
             if (newsId > 0)
@@ -75,7 +78,7 @@ namespace D4D.Platform.Persistence
                          m.Status = (PublishStatus)(record.GetInt32OrDefault(11, 0));
                          m.Remark = record.GetStringOrEmpty(12);
                      },
-                     newsId);
+                     newsId,hits);
             }
             return m;
         }
