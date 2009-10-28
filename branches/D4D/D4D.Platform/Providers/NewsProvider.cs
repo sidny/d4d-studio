@@ -34,47 +34,91 @@ namespace D4D.Platform.Providers
         {
             return NewsDao.GetNews(newsId);
         }
-
         public List<News> GetPagedNews(PagingContext pager, PublishStatus publishStatus)
         {
-            return NewsDao.GetPagedNews(pager, (int)publishStatus);
+            return GetPagedNews(pager, publishStatus, NewsRemarkType.Normal);
+        }
+        public List<News> GetPagedNews(PagingContext pager, PublishStatus publishStatus
+            ,NewsRemarkType newsRemarkType)
+        {
+            return NewsDao.GetPagedNews(pager, (int)publishStatus, (int)newsRemarkType);
         }
 
-        public List<News> GetPagedNewsByNewsType(PagingContext pager, BandType newsType, PublishStatus publishStatus)
+        public List<News> GetPagedNewsByNewsType(PagingContext pager, BandType newsType,
+            PublishStatus publishStatus)
         {
-            return NewsDao.GetPagedNewsByNewsType(pager, (int)newsType, (int)publishStatus);
+            return GetPagedNewsByNewsType(pager, newsType, publishStatus, NewsRemarkType.Normal);
+        }
+
+        public List<News> GetPagedNewsByNewsType(PagingContext pager, BandType newsType,
+            PublishStatus publishStatus, NewsRemarkType newsRemarkType)
+        {
+            return NewsDao.GetPagedNewsByNewsType(pager, (int)newsType, (int)publishStatus, (int)newsRemarkType);
         }
 
         public List<News> GetPagedNewsByTypeANDPublishDate(PagingContext pager, BandType newsType, DateTime sTime,
             DateTime eTime, PublishStatus publishStatus)
         {
-            return NewsDao.GetPagedNewsByTypeANDPublishDate(pager, (int)newsType, sTime,eTime,(int)publishStatus);
+            return GetPagedNewsByTypeANDPublishDate(pager, newsType, sTime, eTime, publishStatus, 
+                NewsRemarkType.Normal);
+        }
+
+        public List<News> GetPagedNewsByTypeANDPublishDate(PagingContext pager, BandType newsType, DateTime sTime,
+            DateTime eTime, PublishStatus publishStatus, NewsRemarkType newsRemarkType)
+        {
+            return NewsDao.GetPagedNewsByTypeANDPublishDate(pager, (int)newsType, sTime,eTime,(int)publishStatus
+                , (int)newsRemarkType);
         }
 
         public List<News> GetPagedNewsByPublishDate(PagingContext pager, DateTime sTime,
-            DateTime eTime, PublishStatus publishStatus)
+           DateTime eTime, PublishStatus publishStatus)
         {
-            return NewsDao.GetPagedNewsByPublishDate(pager,  sTime, eTime, (int)publishStatus);
+            return GetPagedNewsByPublishDate(pager, sTime, eTime, publishStatus, NewsRemarkType.Normal);
+        }
+
+        public List<News> GetPagedNewsByPublishDate(PagingContext pager, DateTime sTime,
+            DateTime eTime, PublishStatus publishStatus, NewsRemarkType newsRemarkType)
+        {
+            return NewsDao.GetPagedNewsByPublishDate(pager,  sTime, eTime, (int)publishStatus
+                , (int)newsRemarkType);
         }
 
         public List<News> GetPagedNewsByTag(PagingContext pager, PublishStatus publishStatus, int tagId)
         {
-            return NewsDao.GetPagedNewsByTag(pager, (int)publishStatus, tagId);
+            return GetPagedNewsByTag(pager, publishStatus, tagId, NewsRemarkType.Normal);
+        }
+
+        public List<News> GetPagedNewsByTag(PagingContext pager, PublishStatus publishStatus,
+            int tagId, NewsRemarkType newsRemarkType)
+        {
+            return NewsDao.GetPagedNewsByTag(pager, (int)publishStatus, tagId, (int)newsRemarkType);
         }
 
         public List<News> GetPagedNewsByTagAndNewsType(PagingContext pager, PublishStatus publishStatus, int tagId,
-            BandType newsType)
+          BandType newsType)
         {
-            return NewsDao.GetPagedNewsByTagAndNewsType(pager, (int)publishStatus, tagId, (int)newsType);
+            return GetPagedNewsByTagAndNewsType(pager, publishStatus, tagId, newsType, NewsRemarkType.Normal);
+        }
+
+        public List<News> GetPagedNewsByTagAndNewsType(PagingContext pager, PublishStatus publishStatus, int tagId,
+            BandType newsType, NewsRemarkType newsRemarkType)
+        {
+            return NewsDao.GetPagedNewsByTagAndNewsType(pager, (int)publishStatus, tagId, (int)newsType
+                , (int)newsRemarkType);
+        }
+
+        public List<News> GetNewsPreviousNext(int currentNewsId)
+        {
+            return GetNewsPreviousNext(currentNewsId, NewsRemarkType.Normal);
         }
         /// <summary>
         /// 获取新闻上一条下一条
         /// </summary>
         /// <param name="currentNewsId"></param>
         /// <returns></returns>
-        public List<News> GetNewsPreviousNext(int currentNewsId)
+        public List<News> GetNewsPreviousNext(int currentNewsId, NewsRemarkType newsRemarkType)
         {
-            return NewsDao.GetNewsPreviousNext(currentNewsId);
+            return NewsDao.GetNewsPreviousNext(currentNewsId, (int)newsRemarkType);
         }
         /// <summary>
         /// 获取相关新闻
