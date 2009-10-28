@@ -26,7 +26,13 @@
         <div>
             <div>
                 <h1>
-                    新闻列表</h1>
+                    新闻列表   <asp:DropDownList ID="ddlNewsRemarkTypes" runat="server" 
+                        onselectedindexchanged="ddlNewsRemarkTypes_SelectedIndexChanged" 
+                        AutoPostBack="True">
+                        <asp:ListItem Value="-1">全部</asp:ListItem>
+                        <asp:ListItem Value="0">普通新闻</asp:ListItem>
+                        <asp:ListItem Value="1">视频新闻</asp:ListItem>
+                        </asp:DropDownList></h1>
             </div>
             <asp:Repeater ID="repList" OnItemDataBound="repList_ItemDataBound" runat="server">
                 <HeaderTemplate>
@@ -339,7 +345,16 @@
         PagingContext pager = new PagingContext();
         pager.CurrentPageNumber = PageIndex;
         pager.RecordsPerPage = PageSize;
-        System.Collections.Generic.IList<News> list = D4DGateway.NewsProvider.GetPagedNews(pager, PublishStatus.ALL);
+        
+        int iNewsRemarkType;
+        int.TryParse(ddlNewsRemarkTypes.SelectedValue, out iNewsRemarkType);
+        
+        
+      
+        
+        System.Collections.Generic.IList<News> list =
+            D4DGateway.NewsProvider.GetPagedNews(pager, PublishStatus.ALL,
+            (NewsRemarkType)iNewsRemarkType);
         repList.DataSource = list;
         repList.DataBind();
         totalCount = pager.TotalRecordCount;
@@ -522,5 +537,9 @@
 
     }
 
-    </script>
+    protected void ddlNewsRemarkTypes_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        BindList();
+    }
+</script>
 

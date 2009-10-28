@@ -478,8 +478,7 @@ namespace D4D.Platform.Persistence
              {
                  MapList(record, list);
 
-             }, currentNewsId, newsRemarkType
-         );
+             }, currentNewsId );
             }
 
            
