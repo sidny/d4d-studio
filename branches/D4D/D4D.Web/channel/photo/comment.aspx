@@ -7,7 +7,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentMain" runat="server">
 <div class="main">
 <div class="channel">
-  <h1>评论: <a href="/video/d/<%=CurrentNews.NewsId%>.html"><%=CurrentNews.Title%></a></h1>
+  <h1>评论: <a href="/photo/album/<%=Current.AlbumId%>/slider.html"><%=Current.Title%></a></h1>
 </div>
 
 <ul class="comments">
@@ -70,7 +70,7 @@
           total,
                 {
                     items_per_page: pageSize,
-                    num_display_entries: 10,
+                    num_display_entries: pageSize,
                     current_page: cur - 1,
                     num_edge_entries: 0,
                     link_to: href.replace(/page=\d+/ig, "page=__id__"),
@@ -88,7 +88,7 @@
     {
         if (!IsPostBack)
         {
-            BindNews();
+            Bind();
             BindComments();
         }
 
@@ -106,7 +106,7 @@
             return id;
         }
     }
-    protected int NewsId
+    protected int Id
     {
         get
         {
@@ -145,19 +145,19 @@
         }
     }
     protected int PageSize = 10;
-    protected static News CurrentNews;
-    private void BindNews()
+    protected static Album Current;
+    private void Bind()
     {
-        CurrentNews = D4DGateway.NewsProvider.GetNewsAddHits(NewsId);
+        Current = D4DGateway.AlbumProvider.GetAlbum(Id);
 
     }
-    protected static List<Comment> CommentList;
+    protected  List<Comment> CommentList;
     private void BindComments()
     {
         PagingContext pager = new PagingContext();
         pager.RecordsPerPage = PageSize;
         pager.CurrentPageNumber = PageIndex;
-        CommentList = D4DGateway.CommentProvider.GetPagedComments(pager, PublishStatus.Publish, NewsId, ObjectTypeDefine.Video);
+        CommentList = D4DGateway.CommentProvider.GetPagedComments(pager, PublishStatus.Publish, Id, ObjectTypeDefine.Album);
         totalCount = pager.TotalRecordCount;
         
     }

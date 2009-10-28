@@ -58,16 +58,59 @@
                 </div>
             </div>
         </div>
-        <div class="comments-area">
-            <div class="comments">
-                <a href="#">我也要说两句</a> <a href="#">评论（20）</a>
+       <div class="comments-area">
+            <div class="clearfix">
+            <div style="float:left; width:40%;"></div>
+            <div class="comments" style="width:50%; float:right">
+                <a href="#" id="btnComments">我也要说两句</a> <a href="/photo/c/<%=CurrentAlbum.AlbumId%>.html">评论（<%=CommentsCount%>）</a>
             </div>
-            <div class="input-area">
+            </div>
+           <div class="input-area clearfix" style="display:none">
                 <textarea></textarea>
                 <button>
                     发表</button>
             </div>
         </div>
+    
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#btnComments").click(function() {
+                if ($("#btnLogin").length > 0) {
+                    $("#btnLogin").click();
+                    return false;
+                } else {
+                   $(".input-area").show();
+                   return false;
+                }
+            });
+            $(".input-area button").click(function() {
+                var str = $(".input-area textarea").val();
+                if(str.length < 10) {
+                    alert("评论内容过短");
+                    return;
+                }
+                $.ajax({
+                    contentType: "application/json",
+                    url: "/svc/comments.svc/create",
+                    data: JSON2.stringify({ content: str, id: <%=CurrentAlbum.AlbumId %>, type: <%=(int)ObjectTypeDefine.Album %> }),
+                    type: "POST", processData: false,
+                    dataType:"json",
+                    success:function(response){
+                        if(response.d>0){
+                            alert("发送成功");
+                            $(".input-area textarea").val("");
+                        }else if(response.d==-1){
+                            alert("请先登录");
+                        }else if(response.d==0){
+                            alert("发送失败，请联系管理员");
+                        }else{
+                            alert(JSON2.stringify(response));
+                        }
+                    }
+                })
+            });
+        });
+    </script>
     </div>
 
     <script type="text/javascript">
@@ -79,7 +122,7 @@
 </asp:Content>
 
 <script runat="server">
-    protected int AlbumId
+    protected  int AlbumId
     {
         get
         {
@@ -123,16 +166,30 @@
             return D4D.Web.Helper.Helper.BandColl[CurrentAlbum.BandId];
         }
     }
-    private Album currentAlbum;
     protected Album CurrentAlbum
     {
         get
         {
-            if (currentAlbum == null) currentAlbum = D4D.Platform.D4DGateway.AlbumProvider.GetAlbum(AlbumId);
-            return currentAlbum;
+            return D4D.Platform.D4DGateway.AlbumProvider.GetAlbum(AlbumId);
         }
     }
-    
+    private int? count;
+    protected int CommentsCount
+    {
+        get
+        {
+            if (!count.HasValue)
+            {
+                int i = 0;
+                List<int> list = new List<int>();
+                list.Add(AlbumId);
+                IDictionary<int, int> idict = D4D.Platform.D4DGateway.CommentProvider.GetComments20(list, ObjectTypeDefine.Album);
+                idict.TryGetValue(AlbumId, out i);
+                count = i;
+            }
+            return count.Value;
+        }
+    }
 
 </script>
 
