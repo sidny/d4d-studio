@@ -28,7 +28,7 @@
             <div class="clearfix">
             <div style="float:left; width:40%;"><%=GetTagHtml(CurrentNews.NewsId)%></div>
             <div class="comments" style="width:50%; float:right">
-                <a href="#" id="btnComments">我也要说两句</a> <a href="#">评论（<%=CommentsCount%>）</a>
+                <a href="#" id="btnComments">我也要说两句</a> <a href="/news/c/<%=CurrentNews.NewsId%>.html">评论（<%=CommentsCount%>）</a>
             </div>
             </div>
            <div class="input-area clearfix" style="display:none">
