@@ -1,34 +1,30 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage/Channel.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage/Main.Master" %>
 <%@ Import Namespace="D4D.Platform.Domain" %>
 <%@ Import Namespace="D4D.Platform" %>
 <%@ Import Namespace="System.Collections.Generic" %>
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader"></asp:Content>
 <asp:Content ContentPlaceHolderID="ContentMain" runat="server">
-<div class="main">
-<div class="channel">
-  <h1><asp:Literal ID="litTitle" runat="server"></asp:Literal></h1>
-</div>
-<div class="news-detail">
-    <p class="title"><b><%=CurrentNews.Title%></b></p>
-    <p><em>标签：<%=GetTagHtml(CurrentNews.NewsId)%></em> <label> <%=CurrentNews.PublishDate.ToString("yyyy-MM-dd")%></label></p>
-	<p><%=CurrentNews.Body%></p>
-	<%if (!string.IsNullOrEmpty(CurrentNews.LImage))
-   { %>
-	<p><img src="<%=CurrentNews.LImage%>" alt="" /></p>
-	<%} %>
-        
-</div>
-<div>
-<%for(int i=0;i<NextPrev.Count;i++){
-      News news = NextPrev[i];%>
-    <p><%if( news.NewsId > CurrentNews.NewsId){%>上一条<%}else{ %>下一条<%} %> ：<a href="/news/d/<%= news.NewsId%>.html"><%= news.Title%></a> </p>
-    <%} %>
-</div>
+<div class="sub-title">
+        <p class="title">
+            视频</p>
+        <p class="nav-link">
+            您的位置：首页 > 视频</p>
+    </div>
+<div class="album_detail">
+        <div class="channel">
+            <h1>
+                全部视频 / <%=CurrentNews.Title%></h1>
+            <div class="return">
+                <a href="/video.html" style="color: red">返回视频首页</a></div>
+        </div>
+    <div style="text-align:center; padding:20px 0;">
+    <%=CurrentNews.Body%>
+	</div>
     <div class="comments-area">
             <div class="clearfix">
             <div style="float:left; width:40%;"><%=GetTagHtml(CurrentNews.NewsId)%></div>
             <div class="comments" style="width:50%; float:right">
-                <a href="#" id="btnComments">我也要说两句</a> <a href="#">评论（<%=CommentsCount%>）</a>
+                <a href="#" id="btnComments">我也要说两句</a> <a href="#">评论（<%=CommentsCount %>）</a>
             </div>
             </div>
            <div class="input-area clearfix" style="display:none">
@@ -37,13 +33,13 @@
                     发表</button>
             </div>
         </div>
+    </div>
     
     <script type="text/javascript">
         $(document).ready(function() {
             $("#btnComments").click(function() {
                 if ($("#btnLogin").length > 0) {
                     $("#btnLogin").click();
-                    return false;
                 } else {
                    $(".input-area").show();
                    return false;
@@ -65,6 +61,7 @@
                         if(response.d>0){
                             alert("发送成功");
                             $(".input-area textarea").val("");
+                            location.reload();
                         }else if(response.d==-1){
                             alert("请先登录");
                         }else if(response.d==0){
@@ -77,19 +74,6 @@
             });
         });
     </script>
-<asp:Repeater ID="repList" OnItemDataBound="repList_ItemDataBound" runat="server">
-     <HeaderTemplate>
-     <ul class="news-list">
-     </HeaderTemplate>
-         <ItemTemplate>
-            <li> + <a href="/news/<%#((News)Container.DataItem).NewsId %>.html" target="_blank"><%#((News)Container.DataItem).Title %></a> <asp:Literal ID="litListTag" runat="server"></asp:Literal>  <label> <%#((News)Container.DataItem).PublishDate.ToString("yyyy-MM-dd")%></label></li>  
-         </ItemTemplate>
-      <FooterTemplate>
-      	</ul>
-      </FooterTemplate>   
-</asp:Repeater>
-    
-</div>
 </asp:Content>
 
 <script runat="server">
@@ -141,14 +125,16 @@
     protected static int CommentsCount
     {
         get
-        {   int count = 0;
+        {
+            int count = 0;
             List<int> list = new List<int>();
             list.Add(CurrentNews.NewsId);
-            IDictionary<int,int> idict = D4DGateway.CommentProvider.GetComments20(list, ObjectTypeDefine.News);
-            idict.TryGetValue(CurrentNews.NewsId,out count);
+            IDictionary<int, int> idict = D4DGateway.CommentProvider.GetComments20(list, ObjectTypeDefine.News);
+            idict.TryGetValue(CurrentNews.NewsId, out count);
             return count;
         }
     }
+
 
     public string TagName
     {
@@ -227,7 +213,6 @@
     {
         if (!IsPostBack)
         {
-            SetTitle();
             BindNews();
         }
         
@@ -235,36 +220,11 @@
     
     private const string TitleFormat = "{0}新闻";
     private const string TitleTagFormat = "/<font color=\"red\">{0}</font>";
-    private void SetTitle()
-    {
-        //check bandName
-        BandInfo info;
-        if (BandColl.TryGetValue(BandId, out info))
-        {
-            litTitle.Text = string.Format(TitleFormat,info.BandName);
-        }
-
-        if (!string.IsNullOrEmpty(TagName))
-        {
-            litTitle.Text += string.Format(TitleTagFormat, TagName);            
-        }
-
-        if (!string.IsNullOrEmpty(TagTime))
-        {
-            litTitle.Text += string.Format(TitleTagFormat, TagTime); 
-        }
-        
-    }
+   
     protected static News CurrentNews;
     private void BindNews()
     {
-
         CurrentNews = D4DGateway.NewsProvider.GetNewsAddHits(NewsId);
-        
-        List<News> list = D4DGateway.NewsProvider.GetNewsTagRelation(NewsId,5);
-        repList.DataSource = list;
-        repList.DataBind();
-        NextPrev = D4DGateway.NewsProvider.GetNewsPreviousNext(NewsId);
        
     }
     protected List<News> NextPrev = new List<News>(2);
@@ -307,18 +267,9 @@
         return result;
     }
     
-    private const string TagEmFormat = "<em>标签：{0}</em>";
+    
+    private const string TagEmFormat = "标签：{0}";
     private const string AFormat = "<a href=\"{0}\">{1}</a>";
     private const string TagLinkFormat = "/channel/news/news.aspx?id={0}&tagid={1}&tag={2}";
-    protected void repList_ItemDataBound(object sender, RepeaterItemEventArgs e)
-    {
-        News m = e.Item.DataItem as News;
-
-        if (m != null)
-        {
-
-            Literal litListTag = e.Item.FindControl("litListTag") as Literal;
-            litListTag.Text = GetTagHtml(m.NewsId);
-        }
-    }
+   
 </script>

@@ -34,6 +34,10 @@ namespace D4D.Platform.Providers
         {
             return NewsDao.GetNews(newsId);
         }
+        public News GetNewsAddHits(int newsId)
+        {
+            return NewsDao.GetNews(newsId,1);
+        }
         public List<News> GetPagedNews(PagingContext pager, PublishStatus publishStatus)
         {
             return GetPagedNews(pager, publishStatus, NewsRemarkType.Normal);
