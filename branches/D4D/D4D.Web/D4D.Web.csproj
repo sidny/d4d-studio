@@ -606,6 +606,7 @@
     <Content Include="channel\music\songs.aspx" />
     <Content Include="channel\photo\slider.aspx" />
     <Content Include="channel\photo\photo.aspx" />
+    <Content Include="channel\search\index.aspx" />
     <Content Include="channel\singer\index.aspx" />
     <Content Include="channel\singer\singer.aspx" />
     <Content Include="channel\sitemap\index.aspx" />
@@ -629,6 +630,12 @@
     <Content Include="static\images\admin\row.png" />
     <Content Include="static\images\album\loader.gif" />
     <Content Include="static\images\album\opa75.png" />
+    <Content Include="static\images\link\jane.jpg" />
+    <Content Include="static\images\link\kaixin.jpg" />
+    <Content Include="static\images\link\myspace.jpg" />
+    <Content Include="static\images\link\sina.jpg" />
+    <Content Include="static\images\link\universal.jpg" />
+    <Content Include="static\images\link\youku.jpg" />
     <Content Include="static\images\music\control_pause_blue.png" />
     <Content Include="static\images\music\control_play_blue.png" />
     <Content Include="static\images\music\control_stop_blue.png" />
