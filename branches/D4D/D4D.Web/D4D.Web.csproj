@@ -655,6 +655,7 @@
     <Content Include="static\js\jquery.blockui.js" />
     <Content Include="static\js\jquery.datepicker.js" />
     <Content Include="static\js\jquery.form.js" />
+    <Content Include="static\js\jquery.highlight.js" />
     <Content Include="static\js\jquery.json.js" />
     <Content Include="static\js\jquery.musiccontrol.js" />
     <Content Include="static\js\json2.min.js" />
