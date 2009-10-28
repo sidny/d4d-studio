@@ -48,7 +48,7 @@ namespace D4D.Web.svc
                 HttpContext.Current.Session["UserInfo"] = currentUser;
                 HttpContext.Current.Session["Style"] = currentUser.Style;
                 System.Web.Security.FormsAuthentication.SetAuthCookie(currentUser.UserName, false);
-                return new LoginInfo() { UserId = currentUser.UserID, UserName = currentUser.UserName };
+                return new LoginInfo() { UserId = currentUser.UserID, UserName = currentUser.UserName }; 
             }
         }
         [OperationContract]

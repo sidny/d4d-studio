@@ -611,6 +611,8 @@
     <Content Include="channel\sitemap\index.aspx" />
     <Content Include="channel\user\login.aspx" />
     <Content Include="channel\user\regist.aspx" />
+    <Content Include="channel\video\comment.aspx" />
+    <Content Include="channel\video\detail.aspx" />
     <Content Include="channel\video\index.aspx" />
     <Content Include="channel\calender\menu.ascx" />
     <Content Include="channel\singer\menu.ascx" />
@@ -648,6 +650,7 @@
     <Content Include="static\js\jquery.form.js" />
     <Content Include="static\js\jquery.json.js" />
     <Content Include="static\js\jquery.musiccontrol.js" />
+    <Content Include="static\js\json2.min.js" />
     <Content Include="static\js\ui.core.js" />
     <Content Include="static\js\ui.slider.js" />
     <Content Include="static\musiccontrol.css" />
@@ -669,6 +672,7 @@
     <Content Include="static\themes\base\ui.core.css" />
     <Content Include="static\themes\base\ui.datepicker.css" />
     <Content Include="static\themes\base\ui.theme.css" />
+    <Content Include="svc\comments.svc" />
     <Content Include="svc\user.svc" />
     <Content Include="urlrewrite.config" />
     <Content Include="admin\Music\MusicTitle.aspx" />
