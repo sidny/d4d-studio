@@ -16,13 +16,13 @@
          <ItemTemplate>
              <asp:Literal ID="litTopLi" runat="server"></asp:Literal>
 	            <asp:Literal ID="litTopImage" runat="server"></asp:Literal>
-	            <p><a href="/news/<%#((News)Container.DataItem).NewsId %>.html"><b><%#((News)Container.DataItem).Title %></b></a>  <asp:Literal ID="litTopTag" runat="server"></asp:Literal> <label> <%#((News)Container.DataItem).PublishDate.ToString("yyyy-MM-dd")%></label></p>
-	            <p><%#((News)Container.DataItem).Body %></p>
+	            <p><a href="/news/d/<%#((News)Container.DataItem).NewsId %>.html"><b><%#((News)Container.DataItem).Title %></b></a>  <asp:Literal ID="litTopTag" runat="server"></asp:Literal> <label> <%#((News)Container.DataItem).PublishDate.ToString("yyyy-MM-dd")%></label></p>
+	            <p><%#((News)Container.DataItem).Preview %></p>
               </li>
          </ItemTemplate>
-         <HeaderTemplate>
-            </ul>
-         </HeaderTemplate>
+        <FooterTemplate>
+        </ul>
+        </FooterTemplate>
  </asp:Repeater> 
 
 <asp:Repeater ID="repList" OnItemDataBound="repList_ItemDataBound" runat="server">
@@ -30,7 +30,7 @@
      <ul class="news-list">
      </HeaderTemplate>
          <ItemTemplate>
-            <li> + <a href="/news/<%#((News)Container.DataItem).NewsId %>.html" target="_blank"><%#((News)Container.DataItem).Title %></a> <asp:Literal ID="litListTag" runat="server"></asp:Literal>  <label> <%#((News)Container.DataItem).PublishDate.ToString("yyyy-MM-dd")%></label></li>  
+            <li> + <a href="/news/d/<%#((News)Container.DataItem).NewsId %>.html" target="_blank"><%#((News)Container.DataItem).Title %></a> <asp:Literal ID="litListTag" runat="server"></asp:Literal>  <label> <%#((News)Container.DataItem).PublishDate.ToString("yyyy-MM-dd")%></label></li>  
          </ItemTemplate>
       <FooterTemplate>
       	</ul>
@@ -269,7 +269,7 @@
         //band
         if (resultList != null && resultList.Count > 0)
         {
-            if (pageIndex > 0)
+            if (pageIndex > 1)
             {
                 repList.DataSource = resultList;
                 repList.DataBind();
@@ -280,7 +280,7 @@
                 {
                     repTop.DataSource = resultList.GetRange(0, 3);
                     repTop.DataBind();
-                    repList.DataSource = resultList.GetRange(3, resultList.Count); ;
+                    repList.DataSource = resultList; ;
                     repList.DataBind();
                 }
                 else
@@ -311,7 +311,7 @@
               {
                   Literal litTopImage = e.Item.FindControl("litTopImage") as Literal;
                   litTopImage.Text = string.Format(SImageFormat,
-                      "/news/" + m.NewsId.ToString() + ".html", m.SImage);                  
+                      "/news/d/" + m.NewsId.ToString() + ".html", m.SImage);                  
               }
               
           }

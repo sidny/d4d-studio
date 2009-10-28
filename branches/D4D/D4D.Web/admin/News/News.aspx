@@ -1,4 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/admin/Admin.Master" %>
+<%@ Page Language="C#" AutoEventWireup="true" ValidateRequest="false" MasterPageFile="~/admin/Admin.Master" %>
 
 <%@ Import Namespace="System.Linq" %>
 <%@ Import Namespace="D4D.Platform" %>
@@ -413,7 +413,8 @@
 
             litId.Text = m.NewsId.ToString();
             litTitle.Text = m.Title;
-            litTitle.NavigateUrl = "#";
+            litTitle.NavigateUrl = "/channel/news/detail.aspx?id="+m.NewsId.ToString();
+            litTitle.Target = "_blank";
             if (m.Remark == "video")
                 litNewsType.Text = VideoNews;
             else
@@ -451,6 +452,10 @@
         item.AddUserID = D4D.Web.Helper.AdminHelper.CurrentUser.UserID;
         if (cbIsVideo.Checked)
             item.Remark = "video";
+        else
+        {
+            item.Remark = "";
+        }
         int result = D4DGateway.NewsProvider.SetNews(item);
         D4DGateway.TagsProvider.DeleteTagRelationByObject(result, ObjectTypeDefine.News);
         if (txtTags.Text.Length > 0)
