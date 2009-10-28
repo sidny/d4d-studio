@@ -130,5 +130,48 @@ namespace D4D.Platform.Providers
         {
             return NewsDao.GetNewsTagRelation(currentId, maxCount);
         }
+
+
+        #region GetTopImage
+        public List<News> GetGetTopImageNews(int maxCount, NewsRemarkType newsRemarkType)
+        {
+            return NewsDao.GetGetTopImageNews(maxCount, (int)newsRemarkType);
+        }
+
+        public List<News> GetTopImageNewsByNewsType(BandType newsType, int maxCount, NewsRemarkType newsRemarkType)
+        {
+            return NewsDao.GetTopImageNewsByNewsType((int)newsType, maxCount, (int)newsRemarkType);
+
+        }
+
+        public List<News> GetTopImageNewsByNewsTypeANDPublishDate(BandType newsType,
+            DateTime sTime, DateTime eTime, int maxCount, NewsRemarkType newsRemarkType)
+        {
+            return NewsDao.GetTopImageNewsByNewsTypeANDPublishDate((int)newsType,sTime,
+                eTime,maxCount, (int)newsRemarkType);
+
+      
+        }
+
+        public List<News> GetTopImageNewsByPublishDate(
+           DateTime sTime, DateTime eTime, int maxCount, NewsRemarkType newsRemarkType)
+        {
+            return NewsDao.GetTopImageNewsByPublishDate(sTime, eTime, maxCount, (int)newsRemarkType);
+        }
+
+        public List<News> GetTopImageNewsByTag(
+           int tagId, int maxCount, NewsRemarkType newsRemarkType)
+        {
+            return NewsDao.GetTopImageNewsByTag(tagId, maxCount, (int)newsRemarkType);
+     
+        }
+
+        public List<News> GetTopImageNewsByTagANDNewsType(
+           int tagId, BandType newsType, int maxCount, NewsRemarkType newsRemarkType)
+        {
+            return NewsDao.GetTopImageNewsByTagANDNewsType(tagId, (int)newsType,
+                maxCount, (int)newsRemarkType);
+        }
+        #endregion
     }
 }
