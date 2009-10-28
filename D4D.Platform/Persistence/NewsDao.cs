@@ -504,7 +504,7 @@ namespace D4D.Platform.Persistence
 
         #region GetTopImage
        
-        internal static List<News> GetGetTopImageNews( int maxCount, int newsRemarkType)
+        internal static List<News> GetTopImageNews( int maxCount, int newsRemarkType)
         {
             List<News> list = new List<News>(maxCount);
          

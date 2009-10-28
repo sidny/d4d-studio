@@ -133,9 +133,9 @@ namespace D4D.Platform.Providers
 
 
         #region GetTopImage
-        public List<News> GetGetTopImageNews(int maxCount, NewsRemarkType newsRemarkType)
+        public List<News> GetTopImageNews(int maxCount, NewsRemarkType newsRemarkType)
         {
-            return NewsDao.GetGetTopImageNews(maxCount, (int)newsRemarkType);
+            return NewsDao.GetTopImageNews(maxCount, (int)newsRemarkType);
         }
 
         public List<News> GetTopImageNewsByNewsType(BandType newsType, int maxCount, NewsRemarkType newsRemarkType)

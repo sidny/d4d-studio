@@ -235,40 +235,69 @@
         }
         
     }
-
+    private const int MaxTopCount = 3;
     private void BindNews(int pageIndex)
     {
         D4D.Platform.Domain.PagingContext pager = new D4D.Platform.Domain.PagingContext();
         pager.RecordsPerPage = PageSize;
         pager.CurrentPageNumber = pageIndex;
-        List<News> resultList;
+        List<News> resultList=null;
+        List<News> topResultList=null;
         if (BandId < 0)
         {
             resultList = D4DGateway.NewsProvider.GetPagedNews(pager, PublishStatus.Publish);
+            if (pageIndex <= 1)
+            {
+                topResultList = D4DGateway.NewsProvider.GetTopImageNews(MaxTopCount,
+                     NewsRemarkType.Normal);
+            }
         }
         else
         {
             if (TagId > 0)
             {
-                resultList = D4DGateway.NewsProvider.GetPagedNewsByTagAndNewsType(pager, PublishStatus.Publish, TagId, (BandType)BandId);
+                resultList = D4DGateway.NewsProvider.GetPagedNewsByTagAndNewsType(pager, 
+                    PublishStatus.Publish, TagId, (BandType)BandId);
+                if (pageIndex <= 1)
+                {
+                    topResultList = D4DGateway.NewsProvider.GetTopImageNewsByTagANDNewsType(TagId,
+                       (BandType)BandId, MaxTopCount,NewsRemarkType.Normal);
+                }
             }
             else if (TagYear >= 1900 && TagMonth > 0 && TagMonth <= 12)
             {
                 DateTime sTime = new DateTime(TagYear, TagMonth, 1);
                 DateTime eTime = sTime.AddMonths(1).AddDays(-1);
 
-                resultList = D4DGateway.NewsProvider.GetPagedNewsByTypeANDPublishDate(pager, (BandType)BandId, sTime, eTime,
+                resultList = D4DGateway.NewsProvider.GetPagedNewsByTypeANDPublishDate(pager, 
+                    (BandType)BandId, sTime, eTime,
                    PublishStatus.Publish);
+                 if (pageIndex <= 1)
+                {
+                    topResultList = D4DGateway.NewsProvider.GetTopImageNewsByNewsTypeANDPublishDate((BandType)BandId,
+                        sTime,eTime,MaxTopCount, NewsRemarkType.Normal);
+                        
+                 }
             }
             else
             {    
                 resultList = D4DGateway.NewsProvider.GetPagedNewsByNewsType(pager, (BandType)BandId,
                     PublishStatus.Publish);
+                 if (pageIndex <= 1)
+                {
+                    topResultList = D4DGateway.NewsProvider.GetTopImageNewsByNewsType((BandType)BandId,
+                        MaxTopCount, NewsRemarkType.Normal);
+                }    
             }              
         }
         //band
         if (resultList != null && resultList.Count > 0)
         {
+            repList.DataSource = resultList;
+            repList.DataBind();
+            
+            
+            /*
             if (pageIndex > 1)
             {
                 repList.DataSource = resultList;
@@ -289,6 +318,13 @@
                     repTop.DataBind();
                 }
             }
+             */
+        }
+
+        if (pageIndex <= 1 && topResultList != null)//gettop
+        {
+            repTop.DataSource = topResultList;
+            repTop.DataBind();
         }
     }
     private const string SImageFormat = "<p class=\"pic\"><a href=\"{0}\"><img width=\"70\" height=\"60\" src=\"{1}\" /></a></p>";
