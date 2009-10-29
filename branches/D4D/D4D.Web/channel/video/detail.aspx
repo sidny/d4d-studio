@@ -54,7 +54,7 @@
                 $.ajax({
                     contentType: "application/json",
                     url: "/svc/comments.svc/create",
-                    data: JSON2.stringify({ content: str, id: <%=CurrentNews.NewsId %>, type: <%=(int)ObjectTypeDefine.News %> }),
+                    data: JSON2.stringify({ content: str, id: <%=CurrentNews.NewsId %>, type: <%=(int)ObjectTypeDefine.Video %> }),
                     type: "POST", processData: false,
                     dataType:"json",
                     success:function(response){
@@ -129,7 +129,7 @@
             int count = 0;
             List<int> list = new List<int>();
             list.Add(CurrentNews.NewsId);
-            IDictionary<int, int> idict = D4DGateway.CommentProvider.GetComments20(list, ObjectTypeDefine.News);
+            IDictionary<int, int> idict = D4DGateway.CommentProvider.GetComments20(list, ObjectTypeDefine.Video);
             idict.TryGetValue(CurrentNews.NewsId, out count);
             return count;
         }

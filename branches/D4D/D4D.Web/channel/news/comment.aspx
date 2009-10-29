@@ -20,7 +20,7 @@
     	    <%=item.UserName%> 发表于<label> <%=item.AddDate.ToString("yyyy-MM-dd HH:mm:ss")%></label>
     	    <%if(isAdmin){ %><del cid="<%=item.CommentId%>">删除</del><%} %>
     	</p>
-    	<p><%=item.Body%></p>
+    	<p><%=HttpUtility.HtmlEncode(item.Body)%></p>
     </li>
     <%} %>
 </ul>

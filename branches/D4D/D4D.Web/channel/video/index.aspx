@@ -16,7 +16,7 @@
      </HeaderTemplate>
          <ItemTemplate>
             <li>
-            <p class="image"><a href="/video/d/<%#((News)Container.DataItem).NewsId %>.html"><img src="<%#((News)Container.DataItem).SImage %>" height="120" width="180" alt="<%#((News)Container.DataItem).Title %>" /></a></p>
+            <p class="image"><a href="/video/d/<%#((News)Container.DataItem).NewsId %>.html"><img src="<%#((News)Container.DataItem).SImage %>" height="120" width="180" alt="<%#HttpUtility.HtmlEncode(((News)Container.DataItem).Title) %>" /></a></p>
             <p><a href="/news/d/<%#((News)Container.DataItem).NewsId %>.html" target="_blank"><%#((News)Container.DataItem).Title %></a></p>
             <p><asp:Literal ID="litListTag" runat="server"></asp:Literal> | <%#((News)Container.DataItem).Hits %>次</p>
             <p><font color="red"> <%#((News)Container.DataItem).PublishDate.ToString("yyyy-MM-dd")%></font></p>
