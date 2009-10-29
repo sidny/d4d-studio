@@ -277,9 +277,10 @@
                         m.ObjectId.ToString() + ".html",
                       m.Title);
                     //litBody.Text = m.Body;
+					litBody.Visible = false;
                     break;
             }
-            
+            litBody.Text+="...";
         }
     }
     
