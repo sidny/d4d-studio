@@ -36,5 +36,17 @@ namespace D4D.Platform.Domain
             get;
             set;
         }
+
+        public int BandId
+        {
+            get;
+            set;
+        }
+
+        public DateTime PublishDate
+        {
+            get;
+            set;
+        }
     }
 }
