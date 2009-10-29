@@ -1,5 +1,5 @@
 <%@ Page Language="C#" AutoEventWireup="true" ValidateRequest="false" MasterPageFile="~/admin/Admin.Master" %>
-
+<%@ Register Assembly="FredCK.FCKeditorV2" Namespace="FredCK.FCKeditorV2" TagPrefix="FCKeditorV2" %>
 <%@ Import Namespace="System.Linq" %>
 <%@ Import Namespace="D4D.Platform" %>
 <%@ Import Namespace="D4D.Platform.Domain" %>
@@ -127,7 +127,7 @@
                         ÕªÒª
                     </th>
                     <td>
-                        <asp:TextBox ID="txtPreview" runat="server" Width="500px" TextMode="MultiLine" Height="150px"></asp:TextBox>
+                        <asp:TextBox ID="txtPreview" runat="server" Width="500px" TextMode="MultiLine" Height="50px"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
@@ -135,7 +135,8 @@
                         ÕýÎÄ
                     </th>
                     <td>
-                        <asp:TextBox ID="txtBody" runat="server" Width="500px" TextMode="MultiLine" Height="400px"></asp:TextBox>
+                    <FCKeditorV2:FCKeditor ID="txtBody" runat="server" />
+			
                     </td>
                 </tr>
                 <tr>
@@ -338,6 +339,7 @@
             addPanel.Visible = false;
             BindList();
             BindBandList();
+            txtBody.ToolbarSet = "ShowCity";
         }
     }
     private void BindList()
@@ -462,7 +464,7 @@
         if (txtStatus.Checked) item.Status = PublishStatus.Publish;
         item.Title = txtTitle.Text;
         item.Preview = txtPreview.Text;
-        item.Body = txtBody.Text;
+        item.Body = txtBody.Value ;
         item.AddDate = DateTime.Now;
         item.AddUserID = D4D.Web.Helper.AdminHelper.CurrentUser.UserID;
         if (cbIsVideo.Checked)
@@ -523,7 +525,7 @@
         txtStatus.Checked = (item.Status == PublishStatus.Publish);
         txtTitle.Text = item.Title;
         txtPreview.Text = item.Preview;
-        txtBody.Text = item.Body;
+        txtBody.Value = item.Body;
         txtTags.Text = String.Join(",", (from i in list
                                          select i.TagId.ToString()).ToArray());
 
