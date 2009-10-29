@@ -7,7 +7,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentMain" runat="server">
   <%if (false)
   { %>
-   <script type="text/javascript" src="~/static/js/jquery-1.3.2.js"></script>
+   <script type="text/javascript" src="../../static/js/jquery-1.3.2.js"></script>
 <%} %>
 <style type="text/css">
 .album-desc{border:1px solid #d3d3d3; width:580px; padding:15px;}
@@ -17,7 +17,10 @@
 .music-list{ border:1px solid #d3d3d3; color:#6e6e6e;  border-top:none; width:610px;}
 .music-list td{ border-bottom:1px solid #d3d3d3; height:30px; vertical-align:middle; position:relative;}
 .music-list td span{ z-index:100; display:inline-block; position:relative;}
-.music-list .processbar{ background:#ffc18e; height:20px; position:absolute; top:5px; left:0;}
+.music-list .processbar{ background:#ff7e33; height:20px; width:0;top:5px; left:0; margin-top:-17px;}
+.music-list span.control{ background:url(/static/images/album/player.gif) no-repeat left; border:0; height:11px; width:11px; cursor:pointer}
+.music-list span.on{ background-position:right;}
+.slider{ float:right;}
  </style>
 <div class="sub-title">
   <p class="title">音乐</p>
@@ -28,18 +31,37 @@
         <p class="title">全部音乐 / <%=Music.Title%>(<%=PageTotalCount%>)</p>
         <p class="nav-link"><a href="/music.html">返回音乐首页</a></p>
     </div>
-    <div class="album-desc">
+    <div class="slider">
+    <asp:Repeater ID="repMusicTitle" runat="server">
+        <HeaderTemplate>
+            <ul>
+        </HeaderTemplate>
+        <ItemTemplate>
+            <li>            
+            <p class="pic"><a href="<%#(((MusicTitle)Container.DataItem).MusicId) %>.html"><img src="<%#((MusicTitle)Container.DataItem).SImage %>" width="75" height="65" /></a></p>
+            <p class="text"><a href="<%#(((MusicTitle)Container.DataItem).MusicId) %>.html">
+            <%#((MusicTitle)Container.DataItem).Title %></a></p>
+            </li>
+        </ItemTemplate>
+        <FooterTemplate>
+            </ul>
+        </FooterTemplate>
+    </asp:Repeater>
+    
+    </div>
+    <div class="album-desc clearfix">
         <p class="img"><img src="<%=musicTitle.LImage%>" width="170" height="170" /> </p>
         <p class="title"><%=musicTitle.Title%></p>
         <p>歌手：<%=BandInfo(musicTitle.BandId).BandName%></p>
         <p>出版时间：<%=musicTitle.PublishDate.ToString("yyyy年M月d日")%></p>
         <p><%=musicTitle.Body%></p>
     </div>
+    
     <div class="music-list">
     <asp:Repeater ID="repList" runat="server">
         <HeaderTemplate>
-     <table border="0" cellpadding="0" cellspacing="0" width="100%">
-        <tr><td colspan="4">全部播放</td></tr>
+     <table border="0" cellpadding="2" cellspacing="0" width="100%">
+        <tr><td colspan="4" style="padding-left:40px;"><span id="btn-play-all" href="#全部播放"><img src="/static/images/album/playall.gif" alt="全部播放" /></span></td></tr>
         <tr bgcolor="#d3d3d3">
         <th width="50" height="20"></th>
         <th width="400" align="left">歌曲名</th>
@@ -50,47 +72,125 @@
         
         <ItemTemplate>
         <tr>
-        <td><%#((MusicSongList)Container.DataItem).ListId %></td>
-        <td><div class="processbar"></div><span><%#((MusicSongList)Container.DataItem).SongName %><%#((MusicSongList)Container.DataItem).SongFile %></span>
+        <td align="right"><span class="control" index="<%#Container.ItemIndex %>" songId="<%#((MusicSongList)Container.DataItem).ListId %>"></span></td>
+        <td><a href="<%#((MusicSongList)Container.DataItem).SongFile %>" onclick="return false"><%#((MusicSongList)Container.DataItem).SongName %></a><div class="processbar"></div>
             
         </td>
          <td><%=BandInfo(musicTitle.BandId).BandName%></td> 
-         <td>&nbsp;<%#((MusicSongList)Container.DataItem).SongTime %>&nbsp;</td>
+         <td class="song-time" align="center">&nbsp;<%#((MusicSongList)Container.DataItem).SongTime %>&nbsp;</td>
          </tr>
         </ItemTemplate>
         <FooterTemplate>
-            </table>
+         </table>
         </FooterTemplate>
     </asp:Repeater>
     </div>
-    <div class="slider">
-    <asp:Repeater ID="repMusicTitle" runat="server">
-        <HeaderTemplate>
-            <ul>
-        </HeaderTemplate>
-        <ItemTemplate>
-            <li>            
-            <p class="pic"><a href="<%#(((MusicTitle)Container.DataItem).MusicId) %>"><img src="<%#((MusicTitle)Container.DataItem).SImage %>" width="75" height="65" /></a></p>
-            <p class="text"><a href="<%#(((MusicTitle)Container.DataItem).MusicId) %>">
-            <%#((MusicTitle)Container.DataItem).Title %></a> 
-               <br />
-               歌手：<%#((MusicTitle)Container.DataItem).BandId %>
-               发行：<%#GetDate(((MusicTitle)Container.DataItem).PublishDate)%>
-            </p>
-            </li>
-            <%#(Container.ItemIndex%2 == 1)?"<li class=\"line\"></li>":"" %>
-        </ItemTemplate>
-        <FooterTemplate>
-            </ul>
-        </FooterTemplate>
-    </asp:Repeater>
     
     </div>
-    </div>
+<div id="player">
+    <object id="mp3player"
+                    classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+                    codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9.0.115"                    
+                    width="0" height="0">
+                <param name="movie" value="/static/images/player.swf" />
+                <param name="allowscriptaccess" value="always" />
+     <embed src="/static/images/player.swf" quality="high" width="0" height="0" align="middle" allowScriptAccess="sameDomain" type="application/x-shockwave-flash"  name="mp3player"></embed>
+     </object>
+</div>
 <script type="text/javascript">
-    $(document).ready(function() {
-        
-    });
+    var player = null;
+    function playerReady(thePlayer) {
+        player = window.document[thePlayer.id];
+        var musicList = $(".music-list a");
+        var buttons = $(".music-list span.control");
+        var processbar = $(".music-list div.processbar");
+        var songtime = $(".music-list .song-time");
+        var current = 1;
+        var init = false;
+        function playerStateChange(obj) {
+            switch (obj.newstate) {
+                case "COMPLETED":
+                    current++;
+                    if (current < buttons.length) {
+                        buttons[current].click();
+                    } else {
+                        buttons.eq(current).removeClass("on");
+                    }
+                    break;
+                case "PLAYING":
+                    buttons.eq(current).addClass("on");
+                    break;
+                case "PAUSED":
+                default:
+                    buttons.eq(current).removeClass("on");
+                    break;
+            }
+        }
+        window.playerStateChange = playerStateChange;
+        function playerTimeChange(obj) {
+            var percentComplete = Math.round(100 * obj.position / obj.duration);
+            processbar.eq(current).css({ width: percentComplete + "%" });
+            songtime.eq(current).text(formatTime(obj.duration));
+        }
+        window.playerTimeChange = playerTimeChange;
+        function formatTime(seconds) {
+            try {
+                var result = "";
+                var remaining = Math.floor(seconds);
+
+                if (seconds > 3600) {
+                    result += pad((Math.floor(remaining / 3600)).toString(), "00") + ":";
+                    remaining = remaining % 3600;
+                }
+
+                result += pad((Math.floor(remaining / 60)).toString(), "00") + ":";
+                remaining = remaining % 60;
+
+                result += pad(remaining.toString(), "00") + "";
+            } catch (e) {
+                console.log(e);
+            }
+            return result;
+        }
+        function pad(s, l) {
+            return (l.substr(0, (l.length - s.length)) + s);
+        }
+        while (!init) {
+            try {
+                player.addModelListener("STATE", "playerStateChange");
+
+                player.addModelListener("TIME", "playerTimeChange");
+                init = true;
+            } catch (e) {
+
+            }
+        }
+
+        buttons.click(function() {
+            var $this = $(this);
+
+            if (player.getConfig()["state"] == "PLAYING" && current.toString() == $this.attr("index")) {
+                player.sendEvent("PLAY", false);
+            } else {
+                if (player.getConfig()["state"] == "PAUSED") {
+                    processbar.not(current).css({ width: 0 });
+                } else {
+                    processbar.css({ width: 0 })
+                }
+                buttons.eq(current).removeClass("on");
+                current = parseInt($(this).attr("index"));
+                player.sendEvent("LOAD", musicList.eq(current).attr("href"));
+                player.sendEvent("PLAY", true);
+            }
+        });
+        $("#btn-play-all").css({cursor:"pointer"}).click(function() {
+            current = 0;
+            player.sendEvent("LOAD", musicList.eq(current).attr("href"));
+            player.sendEvent("PLAY", true);
+        });
+
+    }
+
 </script>
 </asp:Content>
 
