@@ -85,9 +85,9 @@ div.header{ height:86px; text-align:center; position:relative; padding-top:10px;
 .music li p.text a{ color:#e20000;}
 .music li.line{ height:1px; padding:0; width:690px; background:#cbcbcb; clear:both}
 
-.video {float:left; clear:right; margin-left:25px; margin-bottom:30px; overflow-x:hidden; width:700px}
+.video {float:left; clear:right; margin-left:25px; margin-bottom:30px; overflow-x:hidden; width:705px}
 .video-list { margin:10px 0 ;}
-.video-list li{ border:1px solid #d8d8d8; height:120px; width:320px; padding:10px; float:left; line-height:20px;margin-right:10px;}
+.video-list li{ border:1px solid #d8d8d8; height:120px; width:320px; padding:10px; float:left; line-height:20px;margin:5px 10px 5px 0;}
 .video-list li p.image{ float:left; padding-right:10px;}
 .search-nav{border-bottom:1px solid #cbcbcb;height:26px;padding-left:10px;}
 .search-nav p{float:left;width:50px;height:26px;background:url(/static/images/search/nav.gif);line-height:26px;text-align:center;cursor:pointer;margin-right:10px;}
