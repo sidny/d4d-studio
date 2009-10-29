@@ -1121,6 +1121,7 @@
     <Content Include="static\images\admin\row.png" />
     <Content Include="static\images\album\loader.gif" />
     <Content Include="static\images\album\opa75.png" />
+    <Content Include="static\images\album\player.gif" />
     <Content Include="static\images\link\jane.jpg" />
     <Content Include="static\images\link\kaixin.jpg" />
     <Content Include="static\images\link\myspace.jpg" />
