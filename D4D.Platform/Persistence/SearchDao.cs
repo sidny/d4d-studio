@@ -16,7 +16,9 @@ namespace D4D.Platform.Persistence
             m.ObjectId = record.GetInt32OrDefault(0, 0);
             m.Title = record.GetStringOrEmpty(1);
             m.Body = record.GetStringOrEmpty(2);
-            m.SImage = record.GetStringOrEmpty(3);           
+            m.SImage = record.GetStringOrEmpty(3);
+            m.BandId = record.GetInt32OrDefault(4, 0);
+            m.PublishDate = record.GetDateTimeOrEmpty(5);
 
             list.Add(m);
         }
