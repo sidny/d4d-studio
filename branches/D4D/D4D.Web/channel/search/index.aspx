@@ -276,7 +276,7 @@
                     litTitle.Text = string.Format(AFormat, "/video/d/" + 
                         m.ObjectId.ToString() + ".html",
                       m.Title);
-                    litBody.Text = m.Body;
+                    //litBody.Text = m.Body;
                     break;
             }
             
