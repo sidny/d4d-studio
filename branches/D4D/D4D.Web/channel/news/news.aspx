@@ -30,7 +30,7 @@
      <ul class="news-list">
      </HeaderTemplate>
          <ItemTemplate>
-            <li> + <a href="/news/d/<%#((News)Container.DataItem).NewsId %>.html" target="_blank"><%#((News)Container.DataItem).Title %></a> <asp:Literal ID="litListTag" runat="server"></asp:Literal>  <label> <%#((News)Container.DataItem).PublishDate.ToString("yyyy-MM-dd")%></label></li>  
+            <li> + <a href="/news/d/<%#((News)Container.DataItem).NewsId %>.html"><%#((News)Container.DataItem).Title %></a> <asp:Literal ID="litListTag" runat="server"></asp:Literal>  <label> <%#((News)Container.DataItem).PublishDate.ToString("yyyy-MM-dd")%></label></li>  
          </ItemTemplate>
       <FooterTemplate>
       	</ul>

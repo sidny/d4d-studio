@@ -59,20 +59,22 @@
                       <asp:HiddenField ID="txtBandId" runat="server" Value="0" ></asp:HiddenField></td>
                       </tr>
                       <tr>
-                     <th width="100">小图</th>
+                     <th width="100">小图(56x56)</th>
                       <td><uc1:FileUpload ID="txtInfo1" runat="server" AutoCreateThumbnailImage="false"/></td>
                     </tr>
                      <tr>
-                     <th align="center" width="100">大图</th>
+                     <th align="center" width="100">大图(680x300)</th>
                       <td><uc1:FileUpload ID="txtInfo2" runat="server" /></td>
                     </tr>
                      <tr>
-                     <th align="center" width="100">Info3</th>
-                      <td><asp:TextBox ID="txtInfo3" runat="server" Width="500px"></asp:TextBox></td>
+                     <th align="center" width="100">艺人首页图(180x180)</th>
+                      <td><uc1:FileUpload ID="txtInfo3" runat="server" /></td>
                     </tr>
                      <tr>
-                     <th align="center" width="100">Remark</th>
-                      <td><asp:TextBox ID="txtRemark" runat="server" Width="500px"></asp:TextBox></td>
+                     <th align="center" width="100">艺人首页文字(300字)</th>
+                      <td>
+                      <asp:TextBox ID="txtRemark" MaxLength="300" TextMode="MultiLine" runat="server" Width="600px" 
+                    Height="200px"></asp:TextBox></td>
                     </tr>
                     <tr>
                     <th align="center" width="100">&nbsp;</th>
@@ -157,7 +159,7 @@ protected int PageIndex
                 txtBandName.Text = band.BandName;
                 txtInfo1.UploadResult = band.Info1;
                 txtInfo2.UploadResult = band.Info2;
-                txtInfo3.Text = band.Info3;
+                txtInfo3.UploadResult = band.Info3;
                 txtRemark.Text = band.Remark;
                 btnAdd.Text = "更新";
                 addPanel.Visible = true;
@@ -226,7 +228,7 @@ protected int PageIndex
         
        // item.Info1 = txtInfo1.UploadResult;
         item.Info2 = txtInfo2.UploadResult;
-        item.Info3 = txtInfo3.Text;
+        item.Info3 = txtInfo3.UploadResult;
         item.Remark = txtRemark.Text;
          item.DeleteFlag = 0;
         int result = D4DGateway.BandInfoProvider.SetBandInfo(item);
@@ -241,7 +243,7 @@ protected int PageIndex
         txtBandId.Value = "";
         txtBandName.Text = "";
         txtInfo1.UploadResult = "";
-        txtInfo3.Text = "";
+        txtInfo3.UploadResult = "";
         txtInfo2.UploadResult = "";
         addPanel.Visible = true;
         btnAdd.Text = "添加";

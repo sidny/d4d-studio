@@ -1,66 +1,179 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage/Channel.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage/Main.Master" %>
 
 <%@ Import Namespace="D4D.Platform.Domain" %>
+<%@ Import Namespace="D4D.Web.Helper" %>
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader">
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentMain" runat="server">
-<script type="text/javascript" src="/static/SpryAssets/SpryTabbedPanels.js"></script>
- <div class="main">
-    <div class="channel">
-      <h1><font color="red">王铮亮</font>/个人档案</h1>
-    </div>
+<div class="sub-title">
+  <p class="title">艺人</p>
+  <p class="nav-link">您的位置：首页 > 艺人 > <%=BandInfo.BandName %></p>
+</div>
+ 
+<style title="text/css"> 
+.sub-nav li.sub {
+    background:none; height:auto; line-height:21px; font-weight:normal; padding:5px 30px; 
+}
+.sub-nav li.sub a {
+    display:block; font-size:12px;
+}
+</style>
+
+<div class="sub-nav clearfix">
+  <ul>
+    <%
+        System.Collections.Generic.List<BandInfo> list = new System.Collections.Generic.List<BandInfo>();
+        list.Add(new BandInfo()
+        {
+            BandId = 0,
+            BandName = "全部艺人"
+        });
+        list.AddRange(Helper.BandColl.Values);
+        foreach (BandInfo i in list)
+      {
+          if (i.BandId == BandId)
+          {
+           %>
+            <li>》<font color="red"><%=i.BandName%></font></li>
+            <%if (i.BandId > 0)
+              { %>
+            <li class="sub">
+                <a href="#profile">&gt; <font color="red">个人档案</font></a>
+                <a href="/calender/b<%=i.BandId %>/d<%=DateTime.Now.ToString("yyyyMM") %>.html">&gt; 星程</a>
+                <a href="/photo/<%=i.BandId %>.html">&gt; 图片</a>
+                <a href="/video.html?id=<%=i.BandId %>">&gt; 视频</a>
+            </li>
     
-    <div class="singer">
-      <div class="clearfix"><img src="/static/images/pic2.jpg" vspace="20" /></div>
-      <div class="content">
-        <div id="TabbedPanels1" class="TabbedPanels">
-          <ul class="TabbedPanelsTabGroup">
-            <li class="TabbedPanelsTab" tabindex="0">档案 </li>
-            <li class="TabbedPanelsTab" tabindex="0">历程</li>
-            <li class="TabbedPanelsTab" tabindex="0">奖项</li>
-            <li class="TabbedPanelsTab" tabindex="0">专辑</li>
-          </ul>
-          <div class="TabbedPanelsContentGroup">
-            <div class="TabbedPanelsContent">
-              <p>中文名：王铮亮 <br />
-                英文名：Reno Wang<br />
-                昵称：小亮 <br />
-                籍贯：四川·成都 <br />
-                身高：175cm<br />
-                体重：67kg<br />
-                生日：1977年11月30日 <br />
-                生肖：蛇<br />
-                血型：O型<br />
-                星座：射手座 <br />
-                性格：幽默，开朗 <br />
-                学历：四川音乐学院手风琴专业 <br />
-                特长：唱歌，键盘乐器，CS ，音乐创作 <br />
-                座右铭：努力实现音乐梦想 <br />
-                最欣赏自己的地方：对音乐的理解、宽容 <br />
-                最喜欢的颜色：蓝色 <br />
-                最崇拜的人：父母 <br />
-                最喜欢的艺人：王力宏 <br />
-                艺人最大愿望：开一场大型演唱会 </p>
-              <p></p>
-            </div>
-            <div class="TabbedPanelsContent">1、1998年首次于PUB演出。 <br />
-              2、成都市“爱浪杯”歌唱比赛亚军。 <br />
-              3、全国大学生“统一冰红茶”歌手大赛成都赛区第一名。 <br />
-              4、2004年全国大学生“统一冰红茶”歌手大赛全国总决赛冠军、“京都念慈庵”PUB歌手大赛全国总冠军,但是没有和华纳唱片签约。 <br />
-              5、2005年参加湖南卫视大众歌手选拔赛 超级女声,超级女声成都分唱区亚军。 <br />
-            6、专辑/单曲:2005年7月25日发表首支单曲“Open up your dream”。</div>
-            <div class="TabbedPanelsContent">1995年波罗的海国际手风琴大奖赛（圣彼得堡）青年组第一名 <br />
-              2005年全国PUB歌手大赛冠军 <br />
-              2007年快乐男声第十名 <br />
-              4月10日 王铮亮参加海选 三首歌和三个问题成就的辉煌 <br />
-            </div>
-            <div class="TabbedPanelsContent">Content 4</div>
-          </div>
-        </div>
-      </div>
+    <%}
+          }
+          else
+          {%>
+     <li>》<a href="/singer/<%=i.BandId %>.html"><%=i.BandName%></a></li>
+    <%}
+      } %>
+   
+  </ul>
+</div>
+<asp:Panel runat="server" ID="bandAll">
+    <div class="band-all">
+        <ul>
+        <%  foreach (BandInfo i in Helper.BandColl.Values)
+            { %>
+            <li class="clearfix">
+            	<p class="img"><img src="<%=i.Info3 %>" height="180" width="180" /></p>
+                <p style="color:#f00; font-size:14px;"><%=i.BandName %></p>
+                <br/>
+                <p><%=i.Remark %></p>
+                <p class="links"><br/><a href="/singer/<%=i.BandId %>.html">档案</a>
+                <a href="/calender/b<%=i.BandId %>/d<%=DateTime.Now.ToString("yyyyMM") %>.html">星程</a>
+                <a href="/photo/<%=i.BandId %>.html">图片</a>
+                <a href="/music/<%=i.BandId %>.html">音乐</a>
+                <a href="/video.html?id=<%=i.BandId %>">视频</a></p>
+            </li>
+            <%} %>
+        </ul>
     </div>
-  </div>
-  <script type="text/javascript">
-	var TP1 = new Spry.Widget.TabbedPanels("TabbedPanels1");
-</script> 
+</asp:Panel>
+<asp:Panel runat="server" ID="bandPanel" Visible="false">
+    <script type="text/javascript" src="/static/SpryAssets/SpryTabbedPanels.js"></script>
+
+    <div class="main">
+        <div class="channel">
+            <h1>
+                <font color="red">
+                    <%=BandInfo.BandName%></font>/个人档案</h1>
+        </div>
+        <div class="singer">
+            <div class="clearfix">
+                <%if (!string.IsNullOrEmpty(BandInfo.Info2))
+                  { %>
+                <img src="<%=BandInfo.Info2 %>" vspace="20" />
+                <%} %>
+            </div>
+            <div class="content">
+            <a name="profile"></a>
+                <div id="TabbedPanels1" class="TabbedPanels">
+                    <ul class="TabbedPanelsTabGroup">
+                        <li class="TabbedPanelsTab" tabindex="0">档案 </li>
+                        <li class="TabbedPanelsTab" tabindex="0">历程</li>
+                        <li class="TabbedPanelsTab" tabindex="0">奖项</li>
+                        <li class="TabbedPanelsTab" tabindex="0">专辑</li>
+                    </ul>
+                    <div class="TabbedPanelsContentGroup">
+                        <div class="TabbedPanelsContent">
+                            <%=GetProfile(0)%>
+                        </div>
+                        <div class="TabbedPanelsContent">
+                            <%=GetProfile(1)%>
+                        </div>
+                        <div class="TabbedPanelsContent">
+                            <%=GetProfile(2)%>
+                        </div>
+                        <div class="TabbedPanelsContent">
+                            <%=GetProfile(3)%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var TP1 = new Spry.Widget.TabbedPanels("TabbedPanels1");
+    </script>
+</asp:Panel>
 </asp:Content>
+
+<script runat="server">
+    private BandInfo band;
+    protected BandInfo BandInfo
+    {
+        get
+        {
+            if (band == null)
+            {
+                band = new BandInfo();
+                band.BandId = 0;
+                band.BandName = "全部";
+                if(BandId>0)
+                Helper.BandColl.TryGetValue(BandId, out band);
+            }
+
+            return band;
+        }
+    }
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        
+            if (BandId > 0)
+            {
+                bandPanel.Visible = true;
+                bandAll.Visible = false;
+            }
+    }
+    protected string GetProfile(int type)
+    {
+        if (BandId > 0)
+        {
+            return D4D.Platform.D4DGateway.BandInfoProvider.ReadProfileContent(BandId, type);
+        }
+        return string.Empty;
+    }
+    protected int BandId
+    {
+        get
+        {
+            if (String.IsNullOrEmpty(Request["id"]))
+            {
+                return 0;
+            }
+            else
+            {
+                return int.Parse(Request["id"]);
+            }
+        }
+    }    
+    
+</script>
+
