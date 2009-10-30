@@ -11,15 +11,15 @@
         </HeaderTemplate>
         <ItemTemplate>
             <li>            
-            <p class="pic"><a href="<%#GetUrl(((MusicTitle)Container.DataItem).MusicId,2) %>"><img src="<%#((MusicTitle)Container.DataItem).SImage %>" width="75" height="65" /></a></p>
+            <p class="pic"><a href="<%#GetUrl(((MusicTitle)Container.DataItem).MusicId,2) %>"><img src="<%#((MusicTitle)Container.DataItem).LImage %>" width="60" height="60" /></a></p>
             <p class="text"><a href="<%#GetUrl(((MusicTitle)Container.DataItem).MusicId,2) %>">
             <%#((MusicTitle)Container.DataItem).Title %></a> 
                <br />
-               歌手：<%#((MusicTitle)Container.DataItem).BandId %>
+               歌手：<%#GetBandName(((MusicTitle)Container.DataItem).BandId)%>
                发行：<%#GetDate(((MusicTitle)Container.DataItem).PublishDate)%>
             </p>
             </li>
-            <%#(Container.ItemIndex%2 == 1)?"<li class=\"line\"></li>":"" %>
+            <%#(Container.ItemIndex%2 == 1)?"<li class=\"line\">&nbsp;</li>":"" %>
         </ItemTemplate>
         <FooterTemplate>
             </ul>
@@ -38,7 +38,7 @@
         $("#pager").pagination(
           total,
                 {
-                    items_per_page: 1,
+                    items_per_page: 10,
                     num_display_entries: 10,
                     current_page: cur - 1,
                     link_to: href,
@@ -142,6 +142,15 @@
             bool.TryParse(key, out result);
             return result;
         }
+    }
+    protected string GetBandName(int id)
+    {
+        string s = string.Empty; 
+            BandInfo band ;
+            D4D.Web.Helper.Helper.BandColl.TryGetValue(id, out band);
+            if(band!=null)
+                 s = band.BandName;
+            return s;
     }
 </script>
 

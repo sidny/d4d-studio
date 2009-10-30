@@ -1131,6 +1131,7 @@
     <Content Include="static\images\music\control_pause_blue.png" />
     <Content Include="static\images\music\control_play_blue.png" />
     <Content Include="static\images\music\control_stop_blue.png" />
+    <Content Include="static\images\music\cd.gif" />
     <Content Include="static\images\player.swf" />
     <Content Include="static\images\music\sound_mute.png" />
     <Content Include="static\images\music\sound_none.png" />
@@ -1141,6 +1142,7 @@
     <Content Include="static\images\user\reg.jpg" />
     <Content Include="static\images\user\success.jpg" />
     <Content Include="static\jquery.ad-gallery.css" />
+    <Content Include="static\js\AC_OETags.js" />
     <Content Include="static\js\jquery.ad-gallery.js" />
     <Content Include="static\js\jquery.ad-gallery.pack.js" />
     <Content Include="static\js\jquery.autocomplete.js" />
@@ -1151,6 +1153,7 @@
     <Content Include="static\js\jquery.json.js" />
     <Content Include="static\js\jquery.musiccontrol.js" />
     <Content Include="static\js\json2.min.js" />
+    <Content Include="static\js\swfobject.js" />
     <Content Include="static\js\ui.core.js" />
     <Content Include="static\js\ui.slider.js" />
     <Content Include="static\musiccontrol.css" />

@@ -14,7 +14,7 @@
          <label><%=D4D.Web.Helper.AdminHelper.CurrentUser.UserName %></label>
          <a id="logout" href="/regist.html">×¢Ïú</a>
   <%} %></div>
-     <div id="loginForm" style="width:">
+     <div id="loginForm" style=" display:none">
      	<table width="400" border="0" cellspacing="0" cellpadding="5">
     		<form action="/svc/user.svc/Login">
      	  <tr>

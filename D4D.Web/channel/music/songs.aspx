@@ -17,18 +17,20 @@
 .music-list{ border:1px solid #d3d3d3; color:#6e6e6e;  border-top:none; width:610px;}
 .music-list td{ border-bottom:1px solid #d3d3d3; height:30px; vertical-align:middle; position:relative;}
 .music-list td span{ z-index:100; display:inline-block; position:relative;}
-.music-list .processbar{ background:#ff7e33; height:20px; width:0;top:5px; left:0; margin-top:-17px;}
-.music-list span.control{ background:url(/static/images/album/player.gif) no-repeat left; border:0; height:11px; width:11px; cursor:pointer}
+.music-list .processbar{ background:#ff7e33; height:20px; width:0; left:0; position:absolute; top:8px;}
+.music-list span {margin-top:6px;  padding-top:5px;}
+.music-list span.control{ padding-top:2px; background:url(/static/images/album/player.gif) no-repeat left; border:0; height:20px; width:11px; cursor:pointer; }
 .music-list span.on{ background-position:right;}
 .slider{ float:right;}
  </style>
+ <script src="/static/js/AC_OETags.js" type="text/javascript"></script>
 <div class="sub-title">
   <p class="title">音乐</p>
   <p class="nav-link">您的位置：首页 > 音乐 ><%=Music.Title %></p>
 </div>
-    <div style="margin:20px auto; width:780px">
+    <div style="margin:20px auto; width:780px; _height:600px; min-height:600px;">
     <div class="sub-title">
-        <p class="title">全部音乐 / <%=Music.Title%>(<%=PageTotalCount%>)</p>
+        <p class="title" style="width:50%">全部音乐 / <%=Music.Title%></p>
         <p class="nav-link"><a href="/music.html">返回音乐首页</a></p>
     </div>
     <div class="slider">
@@ -49,19 +51,21 @@
     </asp:Repeater>
     
     </div>
-    <div class="album-desc clearfix">
+    <div>
+    <div class="album-desc">
         <p class="img"><img src="<%=musicTitle.LImage%>" width="170" height="170" /> </p>
         <p class="title"><%=musicTitle.Title%></p>
         <p>歌手：<%=BandInfo(musicTitle.BandId).BandName%></p>
         <p>出版时间：<%=musicTitle.PublishDate.ToString("yyyy年M月d日")%></p>
         <p><%=musicTitle.Body%></p>
+        <p class="clearfix"></p>
     </div>
     
     <div class="music-list">
     <asp:Repeater ID="repList" runat="server">
         <HeaderTemplate>
      <table border="0" cellpadding="2" cellspacing="0" width="100%">
-        <tr><td colspan="4" style="padding-left:40px;"><span id="btn-play-all" href="#全部播放"><img src="/static/images/album/playall.gif" alt="全部播放" /></span></td></tr>
+        <tr><td colspan="4" valign="middle" style="padding-left:40px;"><span id="btn-play-all" href="#全部播放"><img src="/static/images/album/playall.gif" alt="全部播放" /></span></td></tr>
         <tr bgcolor="#d3d3d3">
         <th width="50" height="20"></th>
         <th width="400" align="left">歌曲名</th>
@@ -72,11 +76,11 @@
         
         <ItemTemplate>
         <tr>
-        <td align="right"><span class="control" index="<%#Container.ItemIndex %>" songId="<%#((MusicSongList)Container.DataItem).ListId %>"></span></td>
-        <td><a href="<%#((MusicSongList)Container.DataItem).SongFile %>" onclick="return false"><%#((MusicSongList)Container.DataItem).SongName %></a><div class="processbar"></div>
+        <td align="right" valign="middle"><span class="control"  href="<%#((MusicSongList)Container.DataItem).SongFile %>" index="<%#Container.ItemIndex %>" songId="<%#((MusicSongList)Container.DataItem).ListId %>"></span></td>
+        <td><span><%#((MusicSongList)Container.DataItem).SongName %></span><div class="processbar"></div>
             
         </td>
-         <td><%=BandInfo(musicTitle.BandId).BandName%></td> 
+         <td><span><%=BandInfo(musicTitle.BandId).BandName%></span></td> 
          <td class="song-time" align="center">&nbsp;<%#((MusicSongList)Container.DataItem).SongTime %>&nbsp;</td>
          </tr>
         </ItemTemplate>
@@ -85,23 +89,36 @@
         </FooterTemplate>
     </asp:Repeater>
     </div>
-    
-    </div>
-<div id="player">
-    <object id="mp3player"
-                    classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
-                    codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9.0.115"                    
-                    width="0" height="0">
-                <param name="movie" value="/static/images/player.swf" />
-                <param name="allowscriptaccess" value="always" />
-     <embed src="/static/images/player.swf" quality="high" width="0" height="0" align="middle" allowScriptAccess="sameDomain" type="application/x-shockwave-flash"  name="mp3player"></embed>
-     </object>
+    <div id="player">
+<script type="text/javascript"> 
+	if(DetectFlashVer(10,0,3)){
+		AC_FL_RunContent(
+		"src", "/static/images/player",
+		"width", "0",
+		"height", "0",
+		"align", "middle",
+		"id", "mp3player",
+		"quality", "high",
+		"bgcolor", "#3A6EA5",
+		"name", "mp3player",
+		"allowScriptAccess","always",
+		"type", "application/x-shockwave-flash",
+		"pluginspage", "http://www.adobe.com/go/getflashplayer"
+	);
+	}else{
+		if(confirm("您还没有安装最新的Flash Player,是否进行安装")){
+			window.open("http://get.adobe.com/flashplayer/");
+		}
+	}
+</script>  
 </div>
+    </div>
+    </div>
+
 <script type="text/javascript">
     var player = null;
     function playerReady(thePlayer) {
         player = window.document[thePlayer.id];
-        var musicList = $(".music-list a");
         var buttons = $(".music-list span.control");
         var processbar = $(".music-list div.processbar");
         var songtime = $(".music-list .song-time");
@@ -179,13 +196,13 @@
                 }
                 buttons.eq(current).removeClass("on");
                 current = parseInt($(this).attr("index"));
-                player.sendEvent("LOAD", musicList.eq(current).attr("href"));
+                player.sendEvent("LOAD", buttons.eq(current).attr("href"));
                 player.sendEvent("PLAY", true);
             }
         });
         $("#btn-play-all").css({cursor:"pointer"}).click(function() {
             current = 0;
-            player.sendEvent("LOAD", musicList.eq(current).attr("href"));
+            player.sendEvent("LOAD", buttons.eq(current).attr("href"));
             player.sendEvent("PLAY", true);
         });
 
