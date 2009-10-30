@@ -10,10 +10,10 @@
    <script type="text/javascript" src="../../static/js/jquery-1.3.2.js"></script>
 <%} %>
 <style type="text/css">
-.album-desc{border:1px solid #d3d3d3; width:580px; padding:15px;}
-.album-desc p{ line-height:20px;}
-.album-desc p.img{float:left; padding-right:15px;}
-.album-desc p.title{ font-size:24px; color:#666666; font-family:微软雅黑,黑体; line-height:normal; height:36px}
+.album-desc{border:1px solid #d3d3d3;_height:170px; min-height:170px; width:580px; padding:15px;}
+.album-desc p{ padding-left:185px;line-height:20px;}
+.album-desc p.img{float:left; padding-right:15px; padding-left:0;}
+.album-desc p.title{ font-size:24px; color:#666666; font-family:微软雅黑,黑体; padding:0; line-height:normal; height:36px}
 .music-list{ border:1px solid #d3d3d3; color:#6e6e6e;  border-top:none; width:610px;}
 .music-list td{ border-bottom:1px solid #d3d3d3; height:30px; vertical-align:middle; position:relative;}
 .music-list td span{ z-index:100; display:inline-block; position:relative;}
@@ -21,19 +21,25 @@
 .music-list span {margin-top:6px;  padding-top:5px;}
 .music-list span.control{ padding-top:2px; background:url(/static/images/album/player.gif) no-repeat left; border:0; height:20px; width:11px; cursor:pointer; }
 .music-list span.on{ background-position:right;}
-.slider{ float:right;}
+.slider{ float:right; height:520px;}
+.slider .jCarouselLite{ width:131px; height:440px; padding-top:5px;}
+.slider ul{width:131px; height:440px; overflow:hidden; text-align:center; line-height:26px;}
+.slider ul li img{ background:url(/static/images/music/cd.gif); padding:1px 8px 2px 6px; width:60px; height:60px;}
  </style>
  <script src="/static/js/AC_OETags.js" type="text/javascript"></script>
+<script src="/static/js/jcarousellite_1.0.1.pack.js" type="text/javascript"></script>
 <div class="sub-title">
   <p class="title">音乐</p>
   <p class="nav-link">您的位置：首页 > 音乐 ><%=Music.Title %></p>
 </div>
     <div style="margin:20px auto; width:780px; _height:600px; min-height:600px;">
-    <div class="sub-title">
+    <div class="sub-title" style="border:none">
         <p class="title" style="width:50%">全部音乐 / <%=Music.Title%></p>
         <p class="nav-link"><a href="/music.html">返回音乐首页</a></p>
     </div>
     <div class="slider">
+    <div class="prev"><input type="image" src="/static/images/music/prev.gif" /></div>
+    <div class="jCarouselLite">
     <asp:Repeater ID="repMusicTitle" runat="server">
         <HeaderTemplate>
             <ul>
@@ -49,7 +55,8 @@
             </ul>
         </FooterTemplate>
     </asp:Repeater>
-    
+    </div>
+    <div class="next"><input type="image" src="/static/images/music/next.gif" /></div>
     </div>
     <div>
     <div class="album-desc">
@@ -58,7 +65,6 @@
         <p>歌手：<%=BandInfo(musicTitle.BandId).BandName%></p>
         <p>出版时间：<%=musicTitle.PublishDate.ToString("yyyy年M月d日")%></p>
         <p><%=musicTitle.Body%></p>
-        <p class="clearfix"></p>
     </div>
     
     <div class="music-list">
@@ -113,9 +119,72 @@
 </script>  
 </div>
     </div>
+    <div class="comments-area">
+            <div class="clearfix">
+            <div style="float:left; width:40%;"></div>
+            <div class="comments" style="width:50%; float:right">
+                <a href="#" id="btnComments">我也要说两句</a> <a href="/music/b<%=Music.BandId %>/c/<%=MusicId%>.html">评论（<%=CommentsCount%>）</a>
+            </div>
+            </div>
+           <div class="input-area clearfix" style="display:none">
+                <textarea></textarea>
+                <button>
+                    发表</button>
+            </div>
+        </div>
+    
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#btnComments").click(function() {
+                if ($("#btnLogin").length > 0) {
+                    $("#btnLogin").click();
+                    return false;
+                } else {
+                   $(".input-area").show();
+                   return false;
+                }
+            });
+            $(".input-area button").click(function() {
+                var str = $(".input-area textarea").val();
+                if(str.length < 10) {
+                    alert("评论内容过短");
+                    return;
+                }
+                $.ajax({
+                    contentType: "application/json",
+                    url: "/svc/comments.svc/create",
+                    data: JSON2.stringify({ content: str, id: <%=MusicId %>, type: <%=(int)ObjectTypeDefine.MusicTitle %> }),
+                    type: "POST", processData: false,
+                    dataType:"json",
+                    success:function(response){
+                        if(response.d>0){
+                            alert("发送成功");
+                            $(".input-area textarea").val("");
+                        }else if(response.d==-1){
+                            alert("请先登录");
+                        }else if(response.d==0){
+                            alert("发送失败，请联系管理员");
+                        }else{
+                            alert(JSON2.stringify(response));
+                        }
+                    }
+                })
+            });
+        });
+    </script>
     </div>
 
 <script type="text/javascript">
+    $(function() {
+        $(".slider .jCarouselLite").jCarouselLite({
+            btnNext: ".slider .next",
+            btnPrev: ".slider .prev",
+            speed: 500,
+			vertical:true,
+			circular: false,
+			visible: 4
+        });
+    });
     var player = null;
     function playerReady(thePlayer) {
         player = window.document[thePlayer.id];
@@ -264,7 +333,7 @@
         pager.RecordsPerPage = 10000;
         pager.CurrentPageNumber = 1;
 		int BandId = Music.BandId;
-        repMusicTitle.DataSource = D4D.Platform.D4DGateway.MusicProvider.GetPagedMusicTitles(pager,
+        repMusicTitle.DataSource = D4D.Platform.D4DGateway.MusicProvider.GetPagedMusicTitlesByBandId(pager,Music.BandId,
                            D4D.Platform.Domain.PublishStatus.Publish);
         
         repMusicTitle.DataBind();
@@ -294,6 +363,23 @@
     {
         return date.ToString("yyyy年M月d日");
     }
-	
+    private int? count;
+    protected int CommentsCount
+    {
+        get
+        {
+            if (!count.HasValue)
+            {
+                int i = 0;
+                List<int> list = new List<int>();
+                list.Add(MusicId);
+                IDictionary<int, int> idict = D4D.Platform.D4DGateway.CommentProvider.GetComments20(list, ObjectTypeDefine.MusicTitle);
+                idict.TryGetValue(MusicId, out i);
+                count = i;
+            }
+            return count.Value;
+        }
+    }
+
     
 </script>
