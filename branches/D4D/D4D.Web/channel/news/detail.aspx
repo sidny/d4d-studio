@@ -10,7 +10,7 @@
 </div>
 <div class="news-detail">
     <p class="title"><b><%=CurrentNews.Title%></b></p>
-    <p class="tag"><%=GetTagHtml(CurrentNews.NewsId)%> <%=CurrentNews.PublishDate.ToString("yyyy-MM-dd")%></p>
+    <p class="tag"><%=GetTagHtml(CurrentNews.NewsId)%><label><%=CurrentNews.PublishDate.ToString("yyyy-MM-dd")%></label></p>
 	<p class="body"><%=CurrentNews.Body%></p>
 	<%if (!string.IsNullOrEmpty(CurrentNews.LImage))
    { %>
@@ -74,11 +74,11 @@
     </script>
 <asp:Repeater ID="repList" OnItemDataBound="repList_ItemDataBound" runat="server">
      <HeaderTemplate>
-     相关星闻
      <ul class="news-list">
+        <li style="border-bottom:1px solid #cbcbcb; font-weight:bold; line-height:30px; margin-bottom:10px;">相关星闻</li>
      </HeaderTemplate>
          <ItemTemplate>
-            <li> + <a href="/news/<%#((News)Container.DataItem).NewsId %>.html" target="_blank"><%#((News)Container.DataItem).Title %></a> <asp:Literal ID="litListTag" runat="server"></asp:Literal>  <label> <%#((News)Container.DataItem).PublishDate.ToString("yyyy-MM-dd")%></label></li>  
+            <li style=" padding-left:20px;"> + <a href="/news/d/<%#((News)Container.DataItem).NewsId %>.html" target="_blank"><%#((News)Container.DataItem).Title %></a> <asp:Literal ID="litListTag" runat="server"></asp:Literal><label><%#((News)Container.DataItem).PublishDate.ToString("yyyy-MM-dd")%></label></li>  
          </ItemTemplate>
       <FooterTemplate>
       	</ul>
@@ -113,7 +113,7 @@
     {
         get
         {
-            string queryid = Request.QueryString["id"];
+            string queryid = Request.QueryString["nid"];
             if (string.IsNullOrEmpty(queryid)) return -1;
 
             int id = 0;

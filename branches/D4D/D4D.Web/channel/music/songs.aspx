@@ -253,6 +253,8 @@
         }
 
         buttons.click(function() {
+			if($("#btnLogin").length>0)$("#btnLogin").click();
+			else{
             var $this = $(this);
 
             if (player.getConfig()["state"] == "PLAYING" && current.toString() == $this.attr("index")) {
@@ -268,11 +270,15 @@
                 player.sendEvent("LOAD", buttons.eq(current).attr("href"));
                 player.sendEvent("PLAY", true);
             }
+			}
         });
         $("#btn-play-all").css({cursor:"pointer"}).click(function() {
+			if($("#btnLogin").length>0)$("#btnLogin").click();
+			else{
             current = 0;
             player.sendEvent("LOAD", buttons.eq(current).attr("href"));
             player.sendEvent("PLAY", true);
+			}
         });
 
     }

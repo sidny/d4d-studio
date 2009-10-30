@@ -67,7 +67,7 @@
                 <p class="links"><br/><a href="/singer/<%=i.BandId %>.html">档案</a>
                 <a href="/calender/b<%=i.BandId %>/d<%=DateTime.Now.ToString("yyyyMM") %>.html">星程</a>
                 <a href="/photo/<%=i.BandId %>.html">图片</a>
-                <a href="/music/<%=i.BandId %>.html">音乐</a>
+                <a href="/music/b<%=i.BandId %>.html">音乐</a>
                 <a href="/video.html?id=<%=i.BandId %>">视频</a></p>
             </li>
             <%} %>

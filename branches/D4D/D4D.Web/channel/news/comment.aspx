@@ -110,7 +110,7 @@
     {
         get
         {
-            string queryid = Request.QueryString["id"];
+            string queryid = Request.QueryString["nid"];
             if (string.IsNullOrEmpty(queryid)) return -1;
 
             int id = 0;
