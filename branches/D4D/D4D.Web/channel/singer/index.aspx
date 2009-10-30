@@ -79,9 +79,8 @@
 
     <div class="main">
         <div class="channel">
-            <h1>
-                <font color="red">
-                    <%=BandInfo.BandName%></font>/个人档案</h1>
+            <h1><%=BandInfo.BandName%> /
+                <font color="red">个人档案</font></h1>
         </div>
         <div class="singer">
             <div class="clearfix">

@@ -11,7 +11,7 @@
 <div class="news-detail">
     <p class="title"><b><%=CurrentNews.Title%></b></p>
     <p class="tag"><%=GetTagHtml(CurrentNews.NewsId)%> <%=CurrentNews.PublishDate.ToString("yyyy-MM-dd")%></p>
-	<p><%=CurrentNews.Body%></p>
+	<p class="body"><%=CurrentNews.Body%></p>
 	<%if (!string.IsNullOrEmpty(CurrentNews.LImage))
    { %>
 	<p align="center"><img src="<%=CurrentNews.LImage%>" alt="" /></p>

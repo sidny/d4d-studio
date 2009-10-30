@@ -16,7 +16,7 @@
             <%#((MusicTitle)Container.DataItem).Title %></a> 
                <br />
                歌手：<%#GetBandName(((MusicTitle)Container.DataItem).BandId)%>
-               发行：<%#GetDate(((MusicTitle)Container.DataItem).PublishDate)%>
+               &nbsp;&nbsp;发行：<%#GetDate(((MusicTitle)Container.DataItem).PublishDate)%>
             </p>
             </li>
             <%#(Container.ItemIndex%2 == 1)?"<li class=\"line\">&nbsp;</li>":"" %>
@@ -131,7 +131,7 @@
     }
     protected string GetDate(DateTime date)
     {
-        return date.ToString("yyyy年M月d日");
+        return date.ToString("yyyy-MM-d");
     }
     private static bool IsRewrite
     {

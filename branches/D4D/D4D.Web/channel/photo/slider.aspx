@@ -23,7 +23,7 @@
     <div class="album_detail">
         <div class="channel">
             <h1>
-                全部照片/<%=Band.BandName%></h1>
+                全部照片 / <font color="red"><%=CurrentAlbum.Title%></font></h1>
             <div class="return">
                 <a href="/photo.html" style="color: red">返回图片首页</a></div>
         </div>
@@ -49,7 +49,7 @@
                                    }
                  %>
                             <li><a href="<%=item.ImageFile%>">
-                                <img src="<%=item.SImageFile%>" title="<%=item.ImageName%>" longdesc="<%=item.ImageName%>"
+                                <img src="<%=item.SImageFile%>" title="<%=item.ImageName%>" longdesc="<%=item.AddDate.ToLongDateString()%>"
                                     class="image<%=i+1 %>">
                             </a></li>
                             <%} %>

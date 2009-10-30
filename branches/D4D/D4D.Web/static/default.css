@@ -23,7 +23,7 @@ div.header{ height:86px; text-align:center; position:relative; padding-top:10px;
 .header .login{ text-align:right; position:absolute; right:0; top:70px; width:300px;}
 .header .login a{color:#f00}
 .nav{ background:url(images/nav.png) bottom no-repeat;}
-.nav .search{ background:url(images/search_input.png) left no-repeat; width:206px; margin-right:10px; height:20px; float:right; margin-top:18px;}
+.nav .search{ background:url(images/search_input.png) left no-repeat; width:206px; margin-right:10px; height:20px; float:right; margin-top:17px; padding-top:2px;}
 .nav .search input.text{ border:0; padding:0; margin-left:10px; line-height:20px; height:20px; background:transparent;}
 .sub-title{ height:58px; line-height:58px; border-bottom:1px solid #7f7f7f; margin-bottom:10px;}
 .sub-title .title{ float:left; width:300px; font-size:24px;padding-left:10px; font-family:"微软雅黑","黑体"}
@@ -43,6 +43,7 @@ div.header{ height:86px; text-align:center; position:relative; padding-top:10px;
 .news-list li {height:30px;}
 .news-detail .title{ font-size:26px; padding:20px 0 10px 0; border-bottom:1px solid #cbcbcb ; text-align:center; font-family:"微软雅黑","黑体"}
 .news-detail .tag{ text-align:center; padding:10px 0 20px 0;}
+.news-detail .body {line-height:150%;}
 .news-detail .next-prev{ padding:20px 0}
 .news-detail .next-prev p{line-height:25px; height:25px;}
 .comments li{ line-height:21px; border-bottom:1px solid #f0f0f0; padding:5px;}
@@ -61,13 +62,14 @@ div.header{ height:86px; text-align:center; position:relative; padding-top:10px;
 .band-all li p.img{ height:180px; width:180px; float:left; padding:0;}
 .band-all li p.links a{ background:red; padding:2px 5px; color:white; margin:0 1px; text-decoration:none;}
 .calander td{ padding:15px 0;}
-.calander td.line{ background-color:#cbcbcb; height:1px; font-size:0; line-height:0;}
+.calander td.line{ background-color:#cbcbcb; padding:0; height:1px; font-size:0; line-height:0;}
 
 .album ul,.album_list ul{padding:20px 0;}
-.album li{ float:left; width:150px; text-align:center; line-height:20px; margin-right:20px;}
-.album li p.bg{ width:162px; height:116px;background: url(images/album/album_bg.gif); }
+.album li{ float:left; width:230px; text-align:center; line-height:20px; margin:10px 0;}
+.album li p.bg{ margin:0 auto 5px auto; width:162px; height:116px;background: url(images/album/album_bg.gif); }
 .album li img { margin-top:9px;  max-width:150px; max-height:100px; _width:150px; _height:100px;}
 .album_list li {width:33%; float:left; text-align:center;line-height:20px; }
+.album_list td a{ margin:10px 0; display:block}
 .album_detail{width:830px;margin:0 auto;padding-bottom:20px;}
 .album_detail .channel {position:relative; border:none;}
 .album_detail .channel .pager{ position:absolute;width:100%; margin: 0 auto; text-align:center; top:10px;}
@@ -98,11 +100,13 @@ div.header{ height:86px; text-align:center; position:relative; padding-top:10px;
 
 .video {float:left; clear:right; margin-left:25px; margin-bottom:30px; overflow-x:hidden; width:705px}
 .video-list { margin:10px 0 ;}
-.video-list li{ border:1px solid #d8d8d8; height:120px; width:320px; padding:10px; float:left; line-height:20px;margin:5px 10px 5px 0;}
+.video-list li{ border:1px solid #d8d8d8; height:96px; width:320px; padding:10px; float:left; line-height:20px;margin:5px 10px 5px 0;}
 .video-list li p.image{ float:left; padding-right:10px;}
 .search-nav{border-bottom:1px solid #cbcbcb;height:26px;padding-left:10px;}
-.search-nav p{float:left;width:50px;height:26px;background:url(/static/images/search/nav.gif);line-height:26px;text-align:center;cursor:pointer;margin-right:10px;}
-.search-nav p.on{height:27px;color:red}
+.search-nav p{float:left;width:50px;height:18px;background:url(/static/images/search/nav.gif); padding-top:8px;text-align:center;cursor:pointer;margin-right:10px;}
+.search-nav p.on{height:18px;color:red; }
+.search-nav a:hover{text-decoration:none}
+.search-nav p.on a{ color:red; }
 .search-list ul{padding:20px 10px;}
 .search-list li{line-height:21px;padding-bottom:20px;}
 .search-list li a{text-decoration:underline}
