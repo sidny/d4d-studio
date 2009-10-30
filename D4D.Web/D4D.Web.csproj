@@ -1115,6 +1115,7 @@
     <Content Include="static\images\admin\row.png" />
     <Content Include="static\images\album\loader.gif" />
     <Content Include="static\images\album\opa75.png" />
+    <Content Include="static\images\album\playall.gif" />
     <Content Include="static\images\album\player.gif" />
     <Content Include="static\images\link\jane.jpg" />
     <Content Include="static\images\link\kaixin.jpg" />
@@ -1126,6 +1127,8 @@
     <Content Include="static\images\music\control_play_blue.png" />
     <Content Include="static\images\music\control_stop_blue.png" />
     <Content Include="static\images\music\cd.gif" />
+    <Content Include="static\images\music\next.gif" />
+    <Content Include="static\images\music\prev.gif" />
     <Content Include="static\images\player.swf" />
     <Content Include="static\images\music\sound_mute.png" />
     <Content Include="static\images\music\sound_none.png" />

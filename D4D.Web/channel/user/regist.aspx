@@ -9,7 +9,7 @@
   <p class="nav-link">您的位置：首页 > 会员注册</p>
 </div>
 <style type="text/css">
-	form input.text{ border:1px solid #bababa; width:200px;}
+	#form1 input.text{ border:1px solid #bababa; width:200px;}
 </style>
 <div class="clearfix" style="border:1px solid #e5e5e5; width:870px; padding:20px; margin:20px auto;">
     <div style="font-size:24px; font-family:微软雅黑,黑体; color:red; border-bottom:1px solid #e5e5e5; padding-bottom:10px; padding-left:30px;">
