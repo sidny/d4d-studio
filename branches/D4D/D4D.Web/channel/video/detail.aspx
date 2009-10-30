@@ -13,7 +13,7 @@
 <div class="album_detail">
         <div class="channel">
             <h1>
-                全部视频 / <%=CurrentNews.Title%></h1>
+                全部视频 / <font color="red"><%=CurrentNews.Title%></font></h1>
             <div class="return">
                 <a href="/video.html" style="color: red">返回视频首页</a></div>
         </div>

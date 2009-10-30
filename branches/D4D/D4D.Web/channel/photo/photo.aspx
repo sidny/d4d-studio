@@ -38,13 +38,13 @@
 </div>
     <div class="main">
 <div class="channel">
-  <h1>全部照片 / <%=CurrentAlbum.Title %></h1>
+  <h1>全部照片 / <font color="red"><%=CurrentAlbum.Title %></font></h1>
 </div>
 <div class="album_list">
 	
 	<asp:Repeater runat="server" ID="repList">
 	    <HeaderTemplate>
-	    <table width="100%" cellspacing="10" border="0" cellpadding="10"><tr>
+	    <table width="100%" cellspacing="20" border="0" cellpadding="0"><tr>
 	    </HeaderTemplate>
 	    <ItemTemplate>
 	       <td width="33%" align="center" valign="bottom">
