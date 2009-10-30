@@ -129,8 +129,8 @@
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        channelList["news"] =  "星文";
-        channelList["anews"] = "星文";
+        channelList["news"] =  "星闻";
+        channelList["anews"] = "星闻";
         string[] path = Request.AppRelativeCurrentExecutionFilePath.Split('/');
         if (path.Length >= 3)
         {

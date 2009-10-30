@@ -2,7 +2,7 @@
 <%@ Import Namespace="D4D.Platform.Domain" %>
 <style title="text/css">
 .sub-nav li.sub {
-    background:none; height:auto; line-height:21px; font-weight:normal; padding:5px 30px; 
+    background:none; height:auto; line-height:21px; font-weight:normal; padding:5px 30px; font-size:12px;
 }
 .sub-nav li.sub a {
     display:block;

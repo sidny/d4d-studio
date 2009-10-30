@@ -10,27 +10,22 @@
 </div>
 <div class="news-detail">
     <p class="title"><b><%=CurrentNews.Title%></b></p>
-    <p><em>标签：<%=GetTagHtml(CurrentNews.NewsId)%></em> <label> <%=CurrentNews.PublishDate.ToString("yyyy-MM-dd")%></label></p>
+    <p class="tag"><%=GetTagHtml(CurrentNews.NewsId)%> <%=CurrentNews.PublishDate.ToString("yyyy-MM-dd")%></p>
 	<p><%=CurrentNews.Body%></p>
 	<%if (!string.IsNullOrEmpty(CurrentNews.LImage))
    { %>
-	<p><img src="<%=CurrentNews.LImage%>" alt="" /></p>
+	<p align="center"><img src="<%=CurrentNews.LImage%>" alt="" /></p>
 	<%} %>
-        
-</div>
-<div>
+
+<div class="next-prev">
 <%for(int i=0;i<NextPrev.Count;i++){
       News news = NextPrev[i];%>
-    <p><%if( news.NewsId > CurrentNews.NewsId){%>上一条<%}else{ %>下一条<%} %> ：<a href="/news/d/<%= news.NewsId%>.html"><%= news.Title%></a> </p>
+    <p><%if( news.NewsId > CurrentNews.NewsId){%>上一条<%}else{ %>下一条<%} %> ：<a href="/news/d/<%= news.NewsId%>.html"><%= news.Title%></a> &nbsp;&nbsp; <%= news.PublishDate.ToString("yyyy-MM-dd")%></p>
     <%} %>
 </div>
     <div class="comments-area">
-            <div class="clearfix">
-            <div style="float:left; width:40%;"><%=GetTagHtml(CurrentNews.NewsId)%></div>
             <div class="comments" style="width:50%; float:right">
-                <a href="#" id="btnComments">我也要说两句</a> <a href="/news/c/<%=CurrentNews.NewsId%>.html">评论（<%=CommentsCount%>）</a>
-            </div>
-            </div>
+                <a href="#" id="btnComments">我也要说两句</a> <a href="/news/c/<%=CurrentNews.NewsId%>.html">评论（<%=CommentsCount%>）</a> </div>
            <div class="input-area clearfix" style="display:none">
                 <textarea></textarea>
                 <button>
@@ -79,6 +74,7 @@
     </script>
 <asp:Repeater ID="repList" OnItemDataBound="repList_ItemDataBound" runat="server">
      <HeaderTemplate>
+     相关星闻
      <ul class="news-list">
      </HeaderTemplate>
          <ItemTemplate>
@@ -90,6 +86,7 @@
 </asp:Repeater>
     
 </div>
+</div>  
 </asp:Content>
 
 <script runat="server">
@@ -307,7 +304,7 @@
         return result;
     }
     
-    private const string TagEmFormat = "<em>标签：{0}</em>";
+    private const string TagEmFormat = "标签：{0}";
     private const string AFormat = "<a href=\"{0}\">{1}</a>";
     private const string TagLinkFormat = "/channel/news/news.aspx?id={0}&tagid={1}&tag={2}";
     protected void repList_ItemDataBound(object sender, RepeaterItemEventArgs e)
