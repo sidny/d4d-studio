@@ -75,7 +75,7 @@
                             <%=GetProfile(1)%>
                         </div>
                         <div class="TabbedPanelsContent">
-                            <%=GetProfile(0)%>
+                            <%=GetProfile(2)%>
                         </div>
                         <div class="TabbedPanelsContent">
                             <%=GetProfile(3)%>
