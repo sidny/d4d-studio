@@ -11,10 +11,10 @@ GO
 CREATE TABLE [dbo].[bandinfo](
 	[BandId] [int] IDENTITY(1,1) NOT NULL,
 	[BandName] [nvarchar](50) NULL,
-	[Info1] [nvarchar](1000) NULL,
-	[Info2] [nvarchar](1000) NULL,
-	[Info3] [nvarchar](1000) NULL,
-	[Remark] [nvarchar](200) NULL,
+	[Info1] [nvarchar](100) NULL,
+	[Info2] [nvarchar](100) NULL,
+	[Info3] [nvarchar](100) NULL,
+	[Remark] [nvarchar](300) NULL,
 	[DeleteFlag] [int] NULL)
 
 GO
