@@ -63,7 +63,7 @@
 <div class="main">
   <asp:Repeater ID="repList" runat="server">
   <HeaderTemplate>
-  <table width="690" border="0" cellspacing="0" cellpadding="0" class="calander">
+  <table width="690" border="0" cellspacing="6" cellpadding="0" class="calander">
     <tr>
       <th colspan="5"><img src="/static/images/calendar_nav.png" width="690" height="38" /></th>
       </tr>
@@ -72,11 +72,12 @@
         <tr class="date<%#((Show)Container.DataItem).ShowDate.ToString("yyyyMMdd")%>">
           <td width="56" align="center" valign="middle"><img src="<%#BandInfo(((Show)Container.DataItem).BandId).Info1%>" width="56" height="56" /><br />
 			<%#BandInfo(((Show)Container.DataItem).BandId).BandName%>	</td>
-          <td width="110" align="center" valign="middle"><%#((Show)Container.DataItem).ShowDate.ToLongDateString() %><%#GetExpireString(Container.DataItem)%></td>
+          <td width="110" align="center" valign="middle"><%#((Show)Container.DataItem).ShowDate.ToString("yyyy-MM-dd") %><%#GetExpireString(Container.DataItem)%></td>
           <td width="110" align="center" valign="middle"><%#((Show)Container.DataItem).ShowPlace%></td>
           <td width="136" align="center" valign="middle"><%#((Show)Container.DataItem).Title%></td>
           <td width="278" valign="middle"><%#((Show)Container.DataItem).Body%></td>
         </tr>
+        <tr><td colspan="5" class="line"></td></tr>
     </ItemTemplate>
     <FooterTemplate>
      </table>
