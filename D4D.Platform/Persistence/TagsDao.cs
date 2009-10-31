@@ -56,14 +56,19 @@ namespace D4D.Platform.Persistence
         /// tag 计数+1
         /// </summary>
         /// <param name="tagId"></param>
-        internal static void AddTagHit(int tagId)
+        internal static void AddTagHit(List<int> tagIdList)
         {
-            if (tagId > 0)
+            if (tagIdList!=null && tagIdList.Count > 0)
             {
+                List<string> s = new List<string>();
+                foreach (int i in tagIdList)
+                {
+                    s.Add(i.ToString());
+                }
                 SafeProcedure.ExecuteNonQuery(
              Database.GetDatabase(D4DDefine.DBInstanceName),
              "dbo.Tags_AddTagHits",
-             tagId);
+             string.Join(",",s.ToArray()));
             }
         }
         /// <summary>
