@@ -45,6 +45,12 @@ namespace D4D.Platform.Providers
         /// <param name="tagId"></param>
         public void AddTagHit(int tagId)
         {
+            List<int> list = new List<int>();
+            list.Add(tagId);
+            AddTagHit(list);
+        }
+        public void AddTagHit(List<int> tagId)
+        {
             TagsDao.AddTagHit(tagId);
         }
         /// <summary>
