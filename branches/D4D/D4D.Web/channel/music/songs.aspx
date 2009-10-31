@@ -34,7 +34,7 @@
 </div>
     <div style="margin:20px auto; width:780px; _height:600px; min-height:600px;">
     <div class="sub-title" style="border:none">
-        <p class="title" style="width:50%">全部音乐 / <%=Music.Title%></p>
+        <p class="title" style="width:50%">全部音乐 / <font color="red"><%=Music.Title%></font></p>
         <p class="nav-link"><a href="/music.html">返回音乐首页</a></p>
     </div>
     <div class="slider">

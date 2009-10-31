@@ -14,28 +14,29 @@
          <label><%=D4D.Web.Helper.AdminHelper.CurrentUser.UserName %></label>
          <a id="logout" href="/regist.html">注销</a>
   <%} %></div>
-     <div id="loginForm" style=" display:none">
-     	<table width="400" border="0" cellspacing="0" cellpadding="5">
+     <div id="loginForm" style="width:500px; padding:15px; display:none; text-align:left">
+     	<div style="position:absolute; text-align:right; margin-left:468px; _margin-left:498px; margin-top:-15px;"><a href="javascript:$.unblockUI()"><img src="/static/images/user/close.gif" /></a></div>
+     	<table width="470" border="0" cellspacing="0" cellpadding="5">
     		<form action="/svc/user.svc/Login">
      	  <tr>
-     	    <td style="color:red; font-size:20px; font-family:'微软雅黑','黑体';">会员登陆</td>
-     	    <td>&nbsp;</td>
+     	    <td colspan="3" align="left" style="color:red; font-size:24px; font-weight:bold; font-family:'微软雅黑','黑体';">会员登陆</td>
+     	    </tr>
+     	  <tr>
+     	    <td colspan="3" align="left" style="border-top:1px solid #e5e5e5; border-bottom:1px solid #e5e5e5; color:#666;">登录后可浏览更多，获得更多艺人资讯</td>
    	    </tr>
      	  <tr>
-     	    <td colspan="2" style="border:1px solid #f5f5f5; border:1px 0">登录后可浏览更多，获得更多艺人资讯</td>
+     	    <td width="116" height="50" align="right"><label>用户</label></td>
+     	    <td colspan="2" align="left"><input type="text" class="text" name="username" /></td>
    	    </tr>
      	  <tr>
-     	    <td align="right">用户</td>
-     	    <td><input type="text" name="username" /></td>
+     	    <td align="right"  height="40"><label>密码</label></td>
+     	    <td colspan="2" align="left"><input type="password" class="text" name="password" /></td>
    	    </tr>
      	  <tr>
-     	    <td align="right">密码</td>
-     	    <td><input type="password" name="password" /></td>
-   	    </tr>
-     	  <tr>
-     	    <td>&nbsp;</td>
-     	    <td><input type="submit" value="登录" /></td>
-   	    </tr>
+     	    <td height="50">&nbsp;</td>
+     	    <td width="117" align="left"><input type="image" src="/static/images/user/login.gif" /></td>
+     	    <td width="207" align="left"><a href="/regist.html">立即注册</a> | <a href="/forget.html">忘记密码</a></td>
+   	      </tr>
         </form>
    	  </table>
   </div>
@@ -63,8 +64,13 @@
         }, dataType: "json"
         });
         $('#btnLogin').click(function() {
-            $.blockUI({ message: $('#loginForm'),css: { width: '275px' } });
-            $('.blockOverlay').attr('title', 'Click to unblock').click($.unblockUI);
+            $.blockUI({ message: $('#loginForm'),
+								   css: { 
+								   		width:500,
+								   		left:($(window).width()-500)/2,
+										top: ($(window).height()-$('#loginForm').height())/2,
+										border:"2px solid black" } });
+            $('.blockOverlay').attr('title', '点击取消登陆').click($.unblockUI);
 
         });
         $("#logout").click(function() {

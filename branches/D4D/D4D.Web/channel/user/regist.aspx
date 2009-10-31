@@ -12,12 +12,12 @@
 	#form1 input.text{ border:1px solid #bababa; width:200px;}
 </style>
 <div class="clearfix" style="border:1px solid #e5e5e5; width:870px; padding:20px; margin:20px auto;">
-    <div style="font-size:24px; font-family:微软雅黑,黑体; color:red; border-bottom:1px solid #e5e5e5; padding-bottom:10px; padding-left:30px;">
+    <div style="font-size:24px; font-family:微软雅黑,黑体; color:red; border-bottom:1px solid #e5e5e5; padding-bottom:10px; padding-left:30px; margin-bottom:10px;">
         会员注册
     </div>
-    <asp:Panel runat="server" ID="regPanel">
+    <asp:Panel runat="server" ID="regPanel"><form id="form1" name="form1" method="post">
     <table width="810" border="0" align="center" cellpadding="0" cellspacing="0">
-    <form id="form1" name="form1" method="post">
+   
   <tr>
     <td width="100" height="40" align="right">用户名：</td>
     <td width="704"><input name="username" type="text" id="username" class="text" maxlength="20" size="20"  onblur="checkusername(this.value);" /><span id="checkresult">不超过20个字符</span></td>
@@ -27,7 +27,7 @@
     <td><input name="password" type="password" class="text" id="password" size="20" onkeyup="return loadinputcontext(this);" /><span>不得少于6个字符</span></td>
   </tr>
   <tr>
-    <td height="40" align="right">密码强度：</td>
+    <td height="30" align="right">密码强度：</td>
     <td><strong id="showmsg"></strong></td>
   </tr>
   <tr>
@@ -39,15 +39,17 @@
     <td><input type="text" class="text" name="email" id="email" /></td>
   </tr>
   <tr>
-    <td align="right" valign="top">服务条款：</td>
-    <td>
-      <textarea name="textarea" cols="45" rows="5" disabled="disabled" readonly="readonly" id="textarea"></textarea></td>
+    <td align="right" valign="top" style="padding-top:6px;">服务条款：</td>
+    <td style="padding-top:6px;">
+      <div style="overflow-y:scroll; width:650px; height:150px; padding:5px; line-height:20px; border:1px solid #cbcbcb">
+      <%=D4D.Platform.D4DGateway.CorpInfoProvider.ReadProfileContent("copyright")%>
+      </div></td>
   </tr>
   <tr>
     <td height="40" align="right">&nbsp;</td>
     <td>
       <label>
-        <input type="checkbox" name="eval" id="checkbox" />
+        <input type="checkbox" name="evalcheck" id="checkbox" />
         我已阅读，并同意以上服务条款。</label>
    </td>
   </tr>
@@ -55,16 +57,42 @@
     <td height="40" align="right">&nbsp;</td>
     <td><input type="image" src="/static/images/user/reg.jpg"/></td>
   </tr>
-   </form>
-</table>
+  
+</table> </form>
 <script type="text/javascript">
     $(document).ready(function() {
-        window.result = {};
+        window.result = {
+				username:false,
+				password:false,
+				repass:false,
+				email:false,
+				evalcheck:false
+			};
+		$("#form1 input").bind("blur",function(){
+			if(this.name == "email"){
+				if(this.value.length>0){
+					window.result.email = true;	
+				}else
+					window.result.email = false;
+			}else if(this.name == "evalcheck" && this.checked){
+				window.result.evalcheck = true;
+			}
+			
+		});
         $("#form1").bind("submit", function() {
-
+			for(var i in window.result){
+				if(!window.result[i]) {
+					alert("请正确填写相关内容");
+					return false;
+				}
+			}
         });
         $("#repass").blur(function() {
-            if (this.value == $("#password").val()) $(this).next().html("");
+            if (this.value == $("#password").val()){
+				$(this).next().html("");
+				window.result.password = true;
+				window.result.repass = true;
+			}
             else $(this).next().html("<font color='#009900'>两次输入的密码不相同</font>");
         });
     });
@@ -218,6 +246,7 @@
 			else
 			{
 				resContainer.innerHTML = profile_username_pass;
+				window.result.username = true;
 			}
 		}
 		function checkSetting()
@@ -235,7 +264,7 @@
 </script>
 </asp:Panel>
 <asp:Panel runat="server" ID="sucPanel" Visible="false">
-<div id="success" style=" text-align:center; height:100px; line-height:100px;"><img alt="" align="absmiddle" src="/static/images/user/success.jpg" />注册成功，欢迎您，<%=D4D.Web.Helper.AdminHelper.CurrentUser.UserName %></div>
+<div id="success" style=" text-align:center; height:200px; line-height:200px; font-size:18px; font-family:'微软雅黑','黑体'; color:#666;"><img alt="" align="absmiddle" src="/static/images/user/success.jpg" /> 注册成功，欢迎您，<%=D4D.Web.Helper.AdminHelper.CurrentUser.UserName %></div>
 </asp:Panel>
 </div>
 
