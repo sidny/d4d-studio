@@ -30,7 +30,7 @@
     .content .music dd a.cd img{ border:1px solid #c5c5c5; background:#ebebeb; padding:2px; }
     .content .music dd a.cd-title{ margin-top:10px;}
     .content .photo dd{ float:left; padding-right:7px; padding-bottom:8px; height:58px; width:85px;}
-    .content .photo dd a img{ border:2px solid white; width:81px; height:54px;}
+    .content .photo dd a img{ border:2px solid #c5c5c5; width:81px; height:54px;}
     .content .photo dd a:hover img{ border:2px solid red;}
 	.svw { text-align:center; padding-top:100px;background: #fff; position:relative;} 
 	.svw ul {position: relative; left: -999em;}  /*core classes*/
@@ -56,9 +56,7 @@
 <div style=" height:290px;overflow:hidden;margin-top:5px;">
 <div id="slider" class="svw">
     <ul>
-        <li><a href="/music/b0/song/11.html"><img src="/static/images/ad/manman.jpg" alt="王铮亮-《满满》" /></a></li>
-        <li><a href="/photo/album/4.html"><img src="/static/images/ad/chengdu.jpg" alt="2009成都演唱会" /></a></li>
-        <li><a href="/news/d/7.html"><img src="/static/images/ad/myspace.jpg" alt="入驻聚友网" /></a></li>
+       <%=D4DGateway.CorpInfoProvider.ReadProfileContent("ad") %>
         
     </ul>
 </div>

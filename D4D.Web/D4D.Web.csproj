@@ -258,13 +258,6 @@
     <Compile Include="Control\ValidateCode.ashx.cs">
       <DependentUpon>ValidateCode.ashx</DependentUpon>
     </Compile>
-    <Compile Include="Default.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -640,6 +633,7 @@
     <None Include="fckeditor\fckeditor_php4.php" />
     <None Include="fckeditor\fckeditor_php5.php" />
     <None Include="fckeditor\fckutils.cfm" />
+    <Content Include="admin\Corp\CorpProfile.aspx" />
     <Content Include="channel\music\comment.aspx" />
     <Content Include="fckeditor\web.config" />
     <Content Include="admin\Album\Album.aspx" />
@@ -1107,6 +1101,9 @@
     <Content Include="fckeditor\_upgrade.html" />
     <Content Include="fckeditor\_whatsnew.html" />
     <Content Include="fckeditor\_whatsnew_history.html" />
+    <Content Include="static\images\ad\chengdu.jpg" />
+    <Content Include="static\images\ad\myspace.jpg" />
+    <Content Include="static\images\ad\manman.jpg" />
     <Content Include="static\images\album\ad_next.png" />
     <Content Include="static\images\album\ad_prev.png" />
     <Content Include="static\images\album\ad_scroll_back.png" />
@@ -1117,12 +1114,14 @@
     <Content Include="static\images\album\opa75.png" />
     <Content Include="static\images\album\playall.gif" />
     <Content Include="static\images\album\player.gif" />
+    <Content Include="static\images\dd.gif" />
     <Content Include="static\images\link\jane.jpg" />
     <Content Include="static\images\link\kaixin.jpg" />
     <Content Include="static\images\link\myspace.jpg" />
     <Content Include="static\images\link\sina.jpg" />
     <Content Include="static\images\link\universal.jpg" />
     <Content Include="static\images\link\youku.jpg" />
+    <Content Include="static\images\loading.gif" />
     <Content Include="static\images\music\control_pause_blue.png" />
     <Content Include="static\images\music\control_play_blue.png" />
     <Content Include="static\images\music\control_stop_blue.png" />
@@ -1150,6 +1149,7 @@
     <Content Include="static\js\jquery.highlight.js" />
     <Content Include="static\js\jquery.json.js" />
     <Content Include="static\js\jquery.musiccontrol.js" />
+    <Content Include="static\js\jquery.slideviewer.1.1.js" />
     <Content Include="static\js\json2.min.js" />
     <Content Include="static\js\swfobject.js" />
     <Content Include="static\js\ui.core.js" />
