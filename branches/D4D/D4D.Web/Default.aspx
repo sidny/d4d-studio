@@ -138,7 +138,7 @@
         <dt>图片推介</dt>
         <% foreach (Album item in AlbumList)
            { %>
-            <dd><a href="/singer/<% %>"><img alt="" src="<%=item.SImage %>" /></a></dd>
+            <dd><a href="/photo/album/<%=item.AlbumId %>.html"><img alt="" src="<%=item.SImage %>" /></a></dd>
         <%} %>
     </dl>
     </div>

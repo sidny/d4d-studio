@@ -7,7 +7,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentMain" runat="server">
 <div class="main">
 <div class="channel">
-  <h1>评论: <a href="/music/b<%=Music.BandId %>/song/<%=Music.MusicId%>.html"><%=Music.Title%></a></h1>
+  <h1>评论: <a href="/music/b<%=Music.BandId %>/song/<%=Music.MusicId%>.html"><font color="red"><%=Music.Title%></font></a></h1>
 </div>
 
 <ul class="comments">
@@ -17,7 +17,7 @@
           Comment item = CommentList[i];%>
 	<li>
     	<p>
-    	    <%=item.UserName%> 发表于<label> <%=item.AddDate.ToString("yyyy-MM-dd HH:mm:ss")%></label>
+    	    <font color="red"><%=item.UserName%></font> 发表于<label> <%=item.AddDate.ToString("yyyy-MM-dd HH:mm:ss")%></label>
     	    <%if(isAdmin){ %><del cid="<%=item.CommentId%>">删除</del><%} %>
     	</p>
     	<p><%=HttpUtility.HtmlEncode(item.Body)%></p>

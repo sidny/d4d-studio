@@ -58,7 +58,6 @@
     </div>
     <div class="next"><input type="image" src="/static/images/music/next.gif" /></div>
     </div>
-    <div>
     <div class="album-desc">
         <p class="img"><img src="<%=musicTitle.LImage%>" width="170" height="170" /> </p>
         <p class="title"><%=musicTitle.Title%></p>
@@ -118,15 +117,12 @@
 	}
 </script>  
 </div>
-    </div>
-    <div class="comments-area">
-            <div class="clearfix">
-            <div style="float:left; width:40%;"></div>
-            <div class="comments" style="width:50%; float:right">
+    <div style="padding-top:50px; width:580px;">
+    <div class="comments-area" style="width:580px">
+            <div class="comments-control">
                 <a href="#" id="btnComments">我也要说两句</a> <a href="/music/b<%=Music.BandId %>/c/<%=MusicId%>.html">评论（<%=CommentsCount%>）</a>
             </div>
-            </div>
-           <div class="input-area clearfix" style="display:none">
+           <div class="input-area" style="display:none">
                 <textarea></textarea>
                 <button>
                     发表</button>
@@ -173,7 +169,7 @@
         });
     </script>
     </div>
-
+	</div>
 <script type="text/javascript">
     $(function() {
         $(".slider .jCarouselLite").jCarouselLite({
