@@ -17,7 +17,7 @@
           Comment item = CommentList[i];%>
 	<li>
     	<p>
-    	    <%=item.UserName%> 发表于<label> <%=item.AddDate.ToString("yyyy-MM-dd HH:mm:ss")%></label>
+    	    <font color="red"><%=item.UserName%></font> 发表于<label> <%=item.AddDate.ToString("yyyy-MM-dd HH:mm:ss")%></label>
     	    <%if(isAdmin){ %><del cid="<%=item.CommentId%>">删除</del><%} %>
     	</p>
     	<p><%=HttpUtility.HtmlEncode(item.Body)%></p>

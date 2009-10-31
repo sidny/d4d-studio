@@ -58,20 +58,19 @@
                 </div>
             </div>
         </div>
+        <div class="clearfix" style="padding-top:50px;">
        <div class="comments-area">
-            <div class="clearfix">
-            <div style="float:left; width:40%;"></div>
-            <div class="comments" style="width:50%; float:right">
+            <div class="comments-control">
                 <a href="#" id="btnComments">我也要说两句</a> <a href="/photo/c/<%=CurrentAlbum.AlbumId%>.html">评论（<%=CommentsCount%>）</a>
             </div>
-            </div>
+            
            <div class="input-area clearfix" style="display:none">
                 <textarea></textarea>
                 <button>
                     发表</button>
             </div>
         </div>
-    
+    </div>
     <script type="text/javascript">
         $(document).ready(function() {
             $("#btnComments").click(function() {

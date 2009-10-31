@@ -7,7 +7,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentMain" runat="server">
 <div class="main">
 <div class="channel">
-  <h1>评论: <a href="/video/d/<%=CurrentNews.NewsId%>.html"><%=CurrentNews.Title%></a></h1>
+  <h1>评论: <a href="/video/d/<%=CurrentNews.NewsId%>.html"><font color="red"><%=CurrentNews.Title%></a></font></h1>
 </div>
 
 <ul class="comments">
@@ -17,7 +17,7 @@
           Comment item = CommentList[i];%>
 	<li>
     	<p>
-    	    <%=item.UserName%> 发表于<label> <%=item.AddDate.ToString("yyyy-MM-dd HH:mm:ss")%></label>
+    	    <font color="red"><%=item.UserName%></font> 发表于<label> <%=item.AddDate.ToString("yyyy-MM-dd HH:mm:ss")%></label>
     	    <%if(isAdmin){ %><del cid="<%=item.CommentId%>">删除</del><%} %>
     	</p>
     	<p><%=HttpUtility.HtmlEncode(item.Body)%></p>
@@ -86,11 +86,8 @@
 <script runat="server">
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
-        {
+        
             BindNews();
-            BindComments();
-        }
 
     }
     protected int BandId
@@ -148,17 +145,23 @@
     protected static News CurrentNews;
     private void BindNews()
     {
-        CurrentNews = D4DGateway.NewsProvider.GetNewsAddHits(NewsId);
+        CurrentNews = D4DGateway.NewsProvider.GetNews(NewsId);
 
     }
-    protected static List<Comment> CommentList;
-    private void BindComments()
-    {
-        PagingContext pager = new PagingContext();
-        pager.RecordsPerPage = PageSize;
-        pager.CurrentPageNumber = PageIndex;
-        CommentList = D4DGateway.CommentProvider.GetPagedComments(pager, PublishStatus.Publish, NewsId, ObjectTypeDefine.Video);
-        totalCount = pager.TotalRecordCount;
-        
+    private List<Comment> list;
+    protected List<Comment> CommentList{
+        get
+        {
+            if (list == null)
+            {
+                PagingContext pager = new PagingContext();
+                pager.RecordsPerPage = PageSize;
+                pager.CurrentPageNumber = PageIndex;
+                list = D4DGateway.CommentProvider.GetPagedComments(pager, PublishStatus.Publish, NewsId, ObjectTypeDefine.Video);
+                totalCount = pager.TotalRecordCount;
+            }
+            return list;
+        }
+           
     }
 </script>

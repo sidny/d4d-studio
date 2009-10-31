@@ -10,7 +10,7 @@
 </div>
 <div class="news-detail">
     <p class="title"><b><%=CurrentNews.Title%></b></p>
-    <p class="tag"><%=GetTagHtml(CurrentNews.NewsId)%><label><%=CurrentNews.PublishDate.ToString("yyyy-MM-dd")%></label></p>
+    <p class="tag"><%=GetTagHtml(CurrentNews.NewsId,true)%><label><%=CurrentNews.PublishDate.ToString("yyyy-MM-dd")%></label></p>
 	<p class="body"><%=CurrentNews.Body%></p>
 	<%if (!string.IsNullOrEmpty(CurrentNews.LImage))
    { %>
@@ -24,7 +24,7 @@
     <%} %>
 </div>
     <div class="comments-area">
-            <div class="comments" style="width:50%; float:right">
+            <div class="comments-control">
                 <a href="#" id="btnComments">我也要说两句</a> <a href="/news/c/<%=CurrentNews.NewsId%>.html">评论（<%=CommentsCount%>）</a> </div>
            <div class="input-area clearfix" style="display:none">
                 <textarea></textarea>
@@ -266,8 +266,12 @@
     }
     protected List<News> NextPrev = new List<News>(2);
     private const string SImageFormat = "<p class=\"pic\"><a href=\"{0}\"><img width=\"70\" height=\"60\" src=\"{1}\" /></a></p>";
-  
+
     private string GetTagHtml(int newsId)
+    {
+       return GetTagHtml(newsId, false);
+    }
+    private string GetTagHtml(int newsId, bool addHist)
     {
         string result = string.Empty;
         //get tag
@@ -284,7 +288,10 @@
                 tagids.Add(relationList[i].TagId);
             }
             Dictionary<int, Tag> tagDic = D4DGateway.TagsProvider.GetTags20(tagids);
-
+            if (addHist)
+            {
+                D4DGateway.TagsProvider.AddTagHit(tagids);
+            }
             if (tagDic != null && tagDic.Count > 0)
             {
                 StringBuilder sb = new StringBuilder(1024);
