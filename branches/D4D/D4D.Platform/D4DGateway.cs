@@ -80,6 +80,13 @@ namespace D4D.Platform
                 return SearchProvider.Instance;
             }
         }
+        public static CorpInfoProvider CorpInfoProvider
+        {
+            get
+            {
+                return CorpInfoProvider.Instance;
+            }
+        }
        
        
     }
