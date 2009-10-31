@@ -635,6 +635,7 @@
     <None Include="fckeditor\fckutils.cfm" />
     <Content Include="admin\Corp\CorpProfile.aspx" />
     <Content Include="channel\music\comment.aspx" />
+    <Content Include="channel\user\corp.aspx" />
     <Content Include="fckeditor\web.config" />
     <Content Include="admin\Album\Album.aspx" />
     <Content Include="admin\Band\BandInfo.aspx" />
@@ -658,7 +659,7 @@
     <Content Include="channel\singer\index.aspx" />
     <Content Include="channel\singer\singer.aspx" />
     <Content Include="channel\sitemap\index.aspx" />
-    <Content Include="channel\user\login.aspx" />
+    <Content Include="channel\user\renew.aspx" />
     <Content Include="channel\user\regist.aspx" />
     <Content Include="channel\video\comment.aspx" />
     <Content Include="channel\video\detail.aspx" />
@@ -1135,6 +1136,7 @@
     <Content Include="static\images\user\2.gif" />
     <Content Include="static\images\user\3.gif" />
     <Content Include="static\images\user\4.gif" />
+    <Content Include="static\images\user\login.gif" />
     <Content Include="static\images\user\reg.jpg" />
     <Content Include="static\images\user\success.jpg" />
     <Content Include="static\jquery.ad-gallery.css" />

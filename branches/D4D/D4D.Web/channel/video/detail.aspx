@@ -20,12 +20,12 @@
     <div style="text-align:center; padding:20px 0;">
     <%=CurrentNews.Body%>
 	</div>
+    <div style="width:690px; margin:20px auto;">
+	<%=GetTagHtml(CurrentNews.NewsId)%>
+    </div>
     <div class="comments-area">
-            <div class="clearfix">
-            <div style="float:left; width:40%;"><%=GetTagHtml(CurrentNews.NewsId)%></div>
-            <div class="comments" style="width:50%; float:right">
+            <div class="comments-control">
                 <a href="#" id="btnComments">我也要说两句</a> <a href="/video/c/<%=CurrentNews.NewsId %>.html">评论（<%=CommentsCount %>）</a>
-            </div>
             </div>
            <div class="input-area clearfix" style="display:none">
                 <textarea></textarea>
@@ -34,7 +34,6 @@
             </div>
         </div>
     </div>
-    
     <script type="text/javascript">
         $(document).ready(function() {
             $("#btnComments").click(function() {
@@ -247,7 +246,7 @@
                 tagids.Add(relationList[i].TagId);
             }
             Dictionary<int, Tag> tagDic = D4DGateway.TagsProvider.GetTags20(tagids);
-
+            D4DGateway.TagsProvider.AddTagHit(tagids);
             if (tagDic != null && tagDic.Count > 0)
             {
                 StringBuilder sb = new StringBuilder(1024);
@@ -270,6 +269,6 @@
     
     private const string TagEmFormat = "标签：{0}";
     private const string AFormat = "<a href=\"{0}\">{1}</a>";
-    private const string TagLinkFormat = "/channel/news/news.aspx?id={0}&tagid={1}&tag={2}";
+    private const string TagLinkFormat = "/channel/video/news.aspx?id={0}&tagid={1}&tag={2}";
    
 </script>
