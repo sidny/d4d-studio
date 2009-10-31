@@ -12,8 +12,8 @@
     .content dd.dash{ background-image:url(/static/images/dd.gif); background-position:0 5px; background-repeat:no-repeat;}
     .content label{color:#939393; font-family:Arial; font-size:11px; padding:0 12px;}
     .content .show,.content .singer{width:200px;}
-    .content .news,.content .music{ width:440px; margin-left:20px;}
-    .content .video,.content .photo{ width:280px;margin-left:20px;}
+    .content .news,.content .music{ width:440px; margin-left:25px;}
+    .content .video,.content .photo{ width:280px;margin-left:25px;}
     .content .news dd.dash{ padding-left:12px;}
     .content .news dd.title{ height:72px;}
     .content .news dd.title a{ font-weight:bold; }
@@ -32,11 +32,37 @@
     .content .photo dd{ float:left; padding-right:7px; padding-bottom:8px; height:58px; width:85px;}
     .content .photo dd a img{ border:2px solid white; width:81px; height:54px;}
     .content .photo dd a:hover img{ border:2px solid red;}
+	.svw { text-align:center; padding-top:100px;background: #fff; position:relative;} 
+	.svw ul {position: relative; left: -999em;}  /*core classes*/
+	.stripViewer {  position: relative; overflow: hidden;   margin: 0 0 1px 0; }
+	.stripViewer ul { /* this is your UL of images */ margin: 0; padding: 0; position: relative; left: 0; top: 0; width: 1%; list-style-type: none; } 
+	.stripViewer ul li {  float:left; } 
+	.stripTransmitter { overflow: auto; width: 1%; position:absolute;margin-top:-30px;}
+	.stripTransmitter ul { margin: 0; padding: 0; position: relative; list-style-type: none; float:right;} 
+	.stripTransmitter ul li{ width: 20px; float:left; margin: 0 4px 2px 0; }
+	.stripTransmitter a{ font: bold 14px "微软雅黑",Verdana, Arial; text-align: center; line-height: 22px; background: black; color: #666; text-decoration: none; display: block; }
+	.stripTransmitter a:hover, a.current{ background: #e60012; color: #fff; }  /*tooltips formatting*/ 
+	#tooltip { background: #fff; color: #000; opacity: 0.85; border: 5px solid #dedede; } 
+	#tooltip h3 {  font: normal 10px Verdana;  margin: 0;  padding: 6px 2px;  border: 0; } 
   </style>
+  <script type="text/javascript" src="/static/js/jquery.slideviewer.1.1.js"></script>
+  <script type="text/javascript">
+      $(window).bind("load", function() {
+      $("div#slider").slideView({ easeFunc: "" });
+      });
+  </script> 
 </asp:Content>
 <asp:Content ContentPlaceHolderID="ContentMain" runat="server">
-<div><img src="/static/images/banner.png" width="970" height="290" vspace="5" /></div>
-
+<div style=" height:290px;overflow:hidden;margin-top:5px;">
+<div id="slider" class="svw">
+    <ul>
+        <li><a href="/music/b0/song/11.html"><img src="/static/images/ad/manman.jpg" alt="王铮亮-《满满》" /></a></li>
+        <li><a href="/photo/album/4.html"><img src="/static/images/ad/chengdu.jpg" alt="2009成都演唱会" /></a></li>
+        <li><a href="/news/d/7.html"><img src="/static/images/ad/myspace.jpg" alt="入驻聚友网" /></a></li>
+        
+    </ul>
+</div>
+</div>
 <div class="content">
     <div class="clearfix" style="height:190px;">
     <dl class="show">
