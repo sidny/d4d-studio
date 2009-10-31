@@ -64,7 +64,8 @@ namespace D4D.Web.svc
         [WebInvoke(BodyStyle=WebMessageBodyStyle.WrappedRequest,Method="POST",ResponseFormat=WebMessageFormat.Json,RequestFormat=WebMessageFormat.Json)]
         public bool Regist(string username, string password, string email)
         {
-            System.Net.CookieContainer cc = new System.Net.CookieContainer();
+            if (string.IsNullOrEmpty(username) || username.Length > 3 || password ==null || password.Length<6 || string.IsNullOrEmpty(email))
+                return false;
             
             int userid = 0;
             try

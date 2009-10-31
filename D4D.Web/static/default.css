@@ -25,6 +25,8 @@ div.header{ height:86px; text-align:center; position:relative; padding-top:10px;
 .nav{ background:url(images/nav.png) bottom no-repeat;}
 .nav .search{ background:url(images/search_input.png) left no-repeat; width:206px; margin-right:10px; height:20px; float:right; margin-top:17px; padding-top:2px;}
 .nav .search input.text{ border:0; padding:0; margin-left:10px; line-height:20px; height:20px; background:transparent;}
+#loginForm input.text{ border:1px solid #cbcbcb; height:30px; width:250px; font-size:20px; font-weight:bold;  font-family:"微软雅黑","黑体"}
+#loginForm label{font-size:20px; font-weight:bold; color:#666;  font-family:"微软雅黑","黑体"}
 .sub-title{ height:58px; line-height:58px; border-bottom:1px solid #7f7f7f; margin-bottom:10px;}
 .sub-title .title{ float:left; width:300px; font-size:24px;padding-left:10px; font-family:"微软雅黑","黑体"}
 .sub-title .nav-link{ float:right; width:300px; text-align:right; padding-right:15px;}
