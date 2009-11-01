@@ -107,13 +107,24 @@ namespace D4D.Web.admin.Controls
 
                         if (autoCreateThumbnailImage)
                         {
-
                              UploadInfo uThumbnailinfo = new UploadInfo(Guid.NewGuid());
                             uThumbnailinfo.FileExtension = info.Extension;
                             ImageHelper.MakeThumbnailImage(uinfo.FileServerPath, uThumbnailinfo.FileServerPath,
                                  maxWidth,maxHeight  );
 
                             hiddenThumbnailImage.Text = uThumbnailinfo.FileHttpPath;
+                        }
+                        //addWaterMark
+                        if (cbAddWaterMark.Checked)
+                        {
+
+                            UploadInfo waterremarkInfo = new UploadInfo(Guid.NewGuid());
+                            waterremarkInfo.FileExtension = info.Extension;
+
+                            ImageHelper.AddImageSignPic(System.Drawing.Image.FromFile(uinfo.FileServerPath),
+                                waterremarkInfo.FileServerPath, ImageHelper.GetWaterMarkFilePath(), 9, 100, 90);
+                            txtUploadResult.Text = waterremarkInfo.FileHttpPath;
+
                         }
                     }
                 }
