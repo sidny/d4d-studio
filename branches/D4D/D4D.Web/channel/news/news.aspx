@@ -295,8 +295,7 @@
         {
             repList.DataSource = resultList;
             repList.DataBind();
-            
-            
+            totalCount = pager.TotalRecordCount;            
             /*
             if (pageIndex > 1)
             {
