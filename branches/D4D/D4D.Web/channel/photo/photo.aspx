@@ -1,5 +1,6 @@
 <%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage/Main.Master" %>
 <%@ Import Namespace="D4D.Platform.Domain" %>
+<%@ Import Namespace="D4D.Platform" %>
 <%@ Import Namespace="System.Collections.Generic" %>
 <%@ Import Namespace="System.Linq" %>
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader">
@@ -94,11 +95,7 @@
 </asp:Content>
 
 <script runat="server">
-    protected void Page_Load(object sender, EventArgs e)
-    {
-        BindMusicTitleRep(PageIndex);
-    }
-
+   
     protected int PageIndex
     {
         get
@@ -128,6 +125,9 @@
             return id;
         }
     }
+
+   
+    
     protected int PageSize = 12;
     private int totalCount;
     protected int PageTotalCount
@@ -137,18 +137,131 @@
             return totalCount;
         }
     }
-    private void BindMusicTitleRep(int pageIndex)
+
+    protected int TagId
+    {
+        get
+        {
+            string tid = Request.QueryString["tagid"];
+            if (string.IsNullOrEmpty(tid)) return 0;
+
+            int id = 0;
+
+            int.TryParse(tid, out id);
+            return id;
+        }
+    }
+
+
+    public string TagName
+    {
+        get
+        {
+            string tagName = Request.QueryString["tag"];
+            if (string.IsNullOrEmpty(tagName))
+                return string.Empty;
+            else
+                return tagName;
+        }
+    }
+
+    public int TagYear
+    {
+        get
+        {
+            string yid = Request.QueryString["year"];
+            if (string.IsNullOrEmpty(yid)) return 0;
+
+            int id = 0;
+
+            int.TryParse(yid, out id);
+            return id;
+        }
+    }
+
+    public int TagMonth
+    {
+        get
+        {
+            string mid = Request.QueryString["month"];
+            if (string.IsNullOrEmpty(mid)) return 0;
+
+            int id = 0;
+
+            int.TryParse(mid, out id);
+            return id;
+        }
+    }
+
+    public string TagTime
+    {
+        get
+        {
+            if (TagYear <= 1900) return string.Empty;
+            if (TagMonth > 12 && TagMonth <= 0) return string.Empty;
+
+            return string.Format("{0}Äê{1}ÔÂ", TagYear, TagMonth);
+        }
+    }
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
+            BindPhotoRep(PageIndex);
+        }
+    }
+            
+    private void BindPhotoRep(int pageIndex)
     {
         D4D.Platform.Domain.PagingContext pager = new D4D.Platform.Domain.PagingContext();
         pager.RecordsPerPage = PageSize;
         pager.CurrentPageNumber = pageIndex;
+        List<D4D.Platform.Domain.Image> resultList = new List<D4D.Platform.Domain.Image>();
+
+        if (TagId > 0)
+        {
+            if (AlbumId>0)
+                resultList = D4DGateway.AlbumProvider.GetPagedImagesByTagAndBand(pager,
+            PublishStatus.Publish, TagId,BandId);
+            else
+             resultList = D4DGateway.AlbumProvider.GetPagedImagesByTag(pager,
+                PublishStatus.Publish, TagId);
+
+        }
+        else if (TagYear >= 1900 && TagMonth > 0 && TagMonth <= 12)
+        {
+            DateTime sTime = new DateTime(TagYear, TagMonth, 1);
+            DateTime eTime = sTime.AddMonths(1).AddDays(-1);
+
+            if (AlbumId > 0)                
+             resultList = D4DGateway.AlbumProvider.GetPagedImagesByBandAndPublishYearMonth(pager,PublishStatus.Publish,
+                BandId, sTime, eTime);
+            else
+                resultList = D4DGateway.AlbumProvider.GetPagedImagesByPublishYearMonth(pager, PublishStatus.Publish,
+                 sTime, eTime);
+
+        }
+        else
+        {
+            resultList = D4DGateway.AlbumProvider.GetPagedImagesByAlbumId(pager,
+               AlbumId, PublishStatus.Publish);
+
+        } 
+        /*            
         if (AlbumId > 0)
         {
             repList.DataSource = D4D.Platform.D4DGateway.AlbumProvider.GetPagedImagesByAlbumId(pager,
                AlbumId,D4D.Platform.Domain.PublishStatus.Publish);
         }
-        repList.DataBind();
-        totalCount = pager.TotalRecordCount;
+         */
+        if (resultList != null && resultList.Count > 0)
+        {
+            repList.DataSource = resultList;
+            repList.DataBind();
+            repList.DataBind();
+            totalCount = pager.TotalRecordCount;
+        }
+        
 
     }
 
