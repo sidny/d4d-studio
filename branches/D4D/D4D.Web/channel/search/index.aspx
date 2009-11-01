@@ -261,7 +261,7 @@
                     break;
                 case ObjectTypeDefine.MusicTitle:               
                     litType.Text = string.Format(AFormat, "/music.html", "音乐");
-                    litTitle.Text = string.Format(AFormat, "/music/b"+m.BandId.ToString()
+                    litTitle.Text = string.Format(AFormat, "/music/b"+m.BandId.ToString()+"/song/"+m.ObjectId.ToString()
                         + ".html",
                       m.Title);
                     litBody.Text = (m.Body.Length > MaxBodyCount) ? m.Body.Substring(0, MaxBodyCount)
