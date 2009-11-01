@@ -3,7 +3,8 @@
     runat="server" Visible="false"  Width="500px"></asp:TextBox>
 <asp:Button ID="btnUpload"
     runat="server" Text="上传" onclick="btnUpload_Click" />&nbsp;<asp:Button 
-    ID="btnShowResult" runat="server" Text="直接输入地址" onclick="btnShowResult_Click" /><asp:CheckBox ID="cbAddWaterMark" runat="server" Text="添加水印" Checked />
+    ID="btnShowResult" runat="server" Text="直接输入地址" onclick="btnShowResult_Click" />
+    <%if (AutoShowAddWaterMark){ %><asp:CheckBox ID="cbAddWaterMark" runat="server" Text="添加水印" Checked /><%} %>
 <%if (AutoCreateThumbnailImage){ %>
 <br />
 自动生成缩略图地址：<label><asp:Literal ID="hiddenThumbnailImage" runat="server" ></asp:Literal></label>

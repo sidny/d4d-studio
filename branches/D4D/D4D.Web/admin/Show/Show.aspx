@@ -63,7 +63,7 @@
                     </tr>
                      <tr>
                      <th align="center" width="100">SImage</th>
-                      <td><uc1:FileUpload ID="txtSImage" runat="server" AutoCreateThumbnailImage="false"/></td>
+                      <td><uc1:FileUpload ID="txtSImage" runat="server" AutoCreateThumbnailImage="false" AutoShowAddWaterMark="false"/></td>
                     </tr>
                      <tr>
                      <th align="center" width="100">LImage</th>

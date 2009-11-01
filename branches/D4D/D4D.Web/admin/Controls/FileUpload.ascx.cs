@@ -15,6 +15,34 @@ namespace D4D.Web.admin.Controls
     {
         private static readonly ILog log = LogManager.GetLogger("d4d");
 
+        private bool autoShowAddWaterMark = true;
+        /// <summary>
+        /// 是否自动生成缩略图
+        /// </summary>
+        public bool AutoShowAddWaterMark
+        {
+            get
+            {
+                return autoShowAddWaterMark;
+            }
+            set
+            {
+                autoShowAddWaterMark = value;
+            }
+        }
+
+        public bool AutoAddWaterMark
+        {
+            get
+            {
+                return cbAddWaterMark.Checked;
+            }
+            set
+            {
+                cbAddWaterMark.Checked = value;
+            }
+        }
+
         private bool autoCreateThumbnailImage = true;
         /// <summary>
         /// 是否自动生成缩略图
@@ -115,7 +143,7 @@ namespace D4D.Web.admin.Controls
                             hiddenThumbnailImage.Text = uThumbnailinfo.FileHttpPath;
                         }
                         //addWaterMark
-                        if (cbAddWaterMark.Checked)
+                        if (autoShowAddWaterMark && cbAddWaterMark.Checked)
                         {
 
                             UploadInfo waterremarkInfo = new UploadInfo(Guid.NewGuid());
