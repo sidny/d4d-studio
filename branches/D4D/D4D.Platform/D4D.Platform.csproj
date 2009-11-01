@@ -65,11 +65,13 @@
     <Compile Include="Domain\PagingContext.cs" />
     <Compile Include="Domain\Search.cs" />
     <Compile Include="Domain\Show.cs" />
+    <Compile Include="Domain\SpamKeyword.cs" />
     <Compile Include="Domain\Tag.cs" />
     <Compile Include="Domain\TagRelation.cs" />
     <Compile Include="Domain\UploadInfo.cs" />
     <Compile Include="Domain\UserLogin.cs" />
     <Compile Include="Helper\ImageHelper.cs" />
+    <Compile Include="Helper\SpamKeywordHelper.cs" />
     <Compile Include="Persistence\AlbumDao.cs" />
     <Compile Include="Persistence\CommentDao.cs" />
     <Compile Include="Persistence\BandInfoDao.cs" />
@@ -77,6 +79,7 @@
     <Compile Include="Persistence\NewsDao.cs" />
     <Compile Include="Persistence\SearchDao.cs" />
     <Compile Include="Persistence\ShowDao.cs" />
+    <Compile Include="Persistence\SpamKeywordDao.cs" />
     <Compile Include="Persistence\TagsDao.cs" />
     <Compile Include="Persistence\UserDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -88,6 +91,7 @@
     <Compile Include="Providers\NewsProvider.cs" />
     <Compile Include="Providers\SearchProvider.cs" />
     <Compile Include="Providers\ShowProvider.cs" />
+    <Compile Include="Providers\SpamKeywordProvider.cs" />
     <Compile Include="Providers\TagsProvider.cs" />
     <Compile Include="Providers\UserProvider.cs" />
   </ItemGroup>

@@ -87,6 +87,14 @@ namespace D4D.Platform
                 return CorpInfoProvider.Instance;
             }
         }
+
+        public static SpamKeywordProvider SpamKeywordProvider
+        {
+            get
+            {
+                return SpamKeywordProvider.Instance;
+            }
+        }
        
        
     }
