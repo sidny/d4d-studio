@@ -32,6 +32,11 @@ namespace D4D.Platform.Providers
               SpamKeywordDao.DeleteKeyword(id);
          }
 
+         public List<SpamKeyword> GetPagedSpamKeywords(PagingContext pager)
+         {
+             return SpamKeywordDao.GetPagedSpamKeywords(pager);
+         }
+
          public List<SpamKeyword> GetEntitySpamKeywords()
          {
              return SpamKeywordDao.GetAllSpamKeywords();
