@@ -78,7 +78,7 @@
                       <td> <uc1:FileUpload ID="txtLImageFile" runat="server" /></td>
                     </tr>
                     <tr>
-                     <th width="100">发布时</th>
+                     <th width="100">发布时间</th>
                       <td> <asp:TextBox ID="txtPublishDate" runat="server" CssClass="has-datepicker"></asp:TextBox></td>
                     </tr>
                     <tr>
@@ -382,10 +382,9 @@
         txtImageId.Value = item.ImageId.ToString();
         txtLImageFile.UploadResult = item.ImageFile;
         txtSImageFile.UploadResult = item.SImageFile;
-        txtPublishDate.Text = (item.PublishDate > DateTime.MinValue) ? item.PublishDate.ToString("yyyy/MM/DD") : DateTime.Now.ToString("yyyy/MM/dd");
+        txtPublishDate.Text = (item.ImageId>0) ? item.PublishDate.ToString("yyyy/MM/dd") : DateTime.Now.ToString("yyyy/MM/dd");
         txtStatus.Checked = (item.Status == PublishStatus.Publish);
         txtImageName.Text = item.ImageName;
-		txtPublishDate.Text = item.PublishDate.ToString("yyyy-MM-dd");
         txtTags.Text = "";
         txtTags.Text = String.Join(",", (from i in list
                                          select i.TagId.ToString()).ToArray());
