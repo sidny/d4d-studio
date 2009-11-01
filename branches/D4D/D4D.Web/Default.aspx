@@ -86,7 +86,7 @@
                <%}
                  else
                  { %>
-                <dd class="dash"><a href="/news/d/<%=item.NewsId %>.html"><%=GetSubString(item.Title, 18)%></a><label><%=item.AddDate.ToString("yyyy-MM-dd") %></label></dd>
+                <dd class="dash"><a href="/news/d/<%=item.NewsId %>.html"><%=GetSubString(item.Title, 24)%></a><label><%=item.AddDate.ToString("yyyy-MM-dd") %></label></dd>
                <%} %>
         <%} %>
     </dl>
