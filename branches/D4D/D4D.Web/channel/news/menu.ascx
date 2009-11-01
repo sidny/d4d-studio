@@ -132,7 +132,7 @@
     {
         string link = (BandId>=0)? "/news/"+BandId+".html":"/news.html";
         if (BandId != -1)
-            link += "?id=" + BandId.ToString() + "&tagid=" + t.TagId.ToString() + "&tag=" + HttpUtility.UrlEncode(t.TagName);
+            link += "?tagid=" + t.TagId.ToString() + "&tag=" + HttpUtility.UrlEncode(t.TagName);
         else
             link += "?tagid=" + t.TagId.ToString() + "&tag=" + HttpUtility.UrlEncode(t.TagName);
         int length = tagsSortList.Count-1;
