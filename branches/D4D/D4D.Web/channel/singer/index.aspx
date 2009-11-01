@@ -81,7 +81,7 @@ dt {
     <li>》<font color="red"><%=i.BandName%></font></li>
     <%if (i.BandId > 0)
               { %>
-    <li class="sub"> <a href="#profile">&gt; <font color="red">个人档案</font></a> <a href="/calender/b<%=i.BandId %>/d<%=DateTime.Now.ToString("yyyyMM") %>.html">&gt; 星程</a> <a href="/photo/<%=i.BandId %>.html">&gt; 图片</a> <a href="/video.html?id=<%=i.BandId %>">&gt; 视频</a> </li>
+    <li class="sub"> <a href="#profile">&gt; <font color="red">个人档案</font></a> <a href="/calender/b<%=i.BandId %>/d<%=DateTime.Now.ToString("yyyyMM") %>.html">&gt; 星程</a> <a href="/photo/<%=i.BandId %>.html">&gt; 图片</a> <a href="/video/<%=i.BandId %>.html">&gt; 视频</a> </li>
     <%}
           }
           else
@@ -181,7 +181,7 @@ dt {
         </dl>
       </div>
       <div class="videoList clearfix">
-        <div class="more">>><a href="/video/b<%=BandId%>.html">查看更多视频</a></div>
+        <div class="more">>><a href="/video/<%=BandId%>.html">查看更多视频</a></div>
         <dl>
           <dt>视频</dt>
           <% for (int i = 0; i < VideoList.Count;i++ )

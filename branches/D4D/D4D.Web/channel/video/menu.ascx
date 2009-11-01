@@ -1,15 +1,10 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" %>
+<%@ Import Namespace="System.Linq" %>
 <%@ Import Namespace="System.Collections.Generic" %>
 <%@ Import Namespace="D4D.Platform.Domain" %>
 <%@ Import Namespace="D4D.Platform" %>
  <style type="text/css">
-  .sub-nav .sub{height:auto;font-weight:normal;font-size:12px;clear:both;}
-  .sub-nav .sub a{ font-weight:normal}
-  .sub-nav .sub dl{width:200px;}
-  .sub-nav .sub dt.date{ background:#999999;padding-left:10px;}
-  .subv-nav .sub dt.date a{ color:white; padding: 0 3px;}
-  .sub-nav .sub dd{ margin:0; padding:10px; background:#ccc}
-  .sub-nav .sub dd a{ display:block; width:30px; text-align:center;float:left}
+  .sub-nav .sub{height:auto;font-weight:normal;font-size:12px;clear:both; background:none; padding-bottom:30px;}
   </style>
 <div class="sub-title">
   <p class="title">视频</p>
@@ -17,11 +12,17 @@
 </div>
 <div class="sub-nav">
   <ul><%
+        
         System.Collections.Generic.List<BandInfo> list = new System.Collections.Generic.List<BandInfo>();
         list.Add(new BandInfo()
         {
-            BandId = 0,
+            BandId = -1,
             BandName = "全部"
+        });
+        list.Add(new BandInfo()
+        {
+            BandId = 0,
+            BandName = "公司"
         });
         list.AddRange(D4D.Web.Helper.Helper.BandColl.Values);
         foreach (BandInfo i in list)
@@ -31,30 +32,26 @@
            %>
     <li>》<font color="red"><%=i.BandName%>视频</font></li>
     <li class="sub">
-    <dl class="clearfix">
+    <dl class="dateList clearfix">
      <dt>时间标签</dt>
-    <dt>
+    <dt class="date">
     <%int startYear = (CurrentSelectYear == DateTime.Now.Year) ? CurrentSelectYear : CurrentSelectYear + 1;
       for (int n = startYear; n > startYear-3; n--)
       {
           int month = 12;
           if (CurrentSelectYear == DateTime.Now.Year)
               month = DateTime.Now.Month;
-           %>
-        <a href="?year=<%=n %>&month=<%=month %>" <%=(CurrentSelectYear==n)?"class=\"on\"":"" %>><%=n%></a>
-    <%} %>
+           %><a href="?year=<%=n %>&month=<%=month %>" <%=(CurrentSelectYear==n)?"class=\"on\"":"" %>><%=n%>年</a><%} %>
     </dt>
-    <dd class="clearfix">
-    	<% 
+    <dd><% 
           int length = (CurrentSelectYear == DateTime.Now.Year) ? DateTime.Now.Month : 12;
           for (int n = length; n > 0; n--)
-          {%> 
-        <a href="?year=<%=CurrentSelectYear %>&month=<%=n %>"><%=((n < 10) ? "0" : "") + n.ToString()%></a>
-        <% }%>
+          {%><a href="?year=<%=CurrentSelectYear %>&month=<%=n %>" <%=(n == CurrentSelectMonth)?"class=\"on\"":"" %>>
+          <%=((n < 10) ? "0" : "") + n.ToString()%>月</a><% }%>
     </dd>
     </dl>
-    <dl>
-        <dt>Tag标签</dt>
+    <dl class="tagList">
+        <dt>热门标签</dt>
         <dd>
         <% foreach(Tag tag in ListTags){
                Response.Write(GetTagStr(tag));
@@ -64,8 +61,10 @@
     </li>
     <%}
           else
-          {%>
-    <li>》<a href="/video.html?id=<%=i.BandId %>"><%=i.BandName%></a></li>
+          {
+        string s= (i.BandId>=0)?"/video/"+i.BandId+".html":"/video.html";
+              %>
+    <li>》<a href="<%=s %>"><%=i.BandName%>视频</a></li>
     <%}
       } %>
   </ul>
@@ -78,14 +77,13 @@
     {
         get
         {
-            if (String.IsNullOrEmpty(Request["id"]))
-            {
-                return 0;
-            }
-            else
-            {
-                return int.Parse(Request["id"]);
-            }
+            string queryid = Request.QueryString["id"];
+            if (string.IsNullOrEmpty(queryid)) return -1;
+
+            int id = 0;
+
+            int.TryParse(queryid, out id);
+            return id;
         }
     }
  	protected int CurrentSelectYear
@@ -114,23 +112,35 @@
             return currentSelectMonth;
         }
     }
-    private const string LinkFormat = "<a href=\"{0}\">{1}</a>";
+    
+    private const string LinkFormat = "<a href=\"{0}\" class=\"sort{1}\">{2}</a>";
     protected List<Tag> ListTags = new List<Tag>();
+    protected List<int> tagsSortList;
     protected void Page_Load(object sender, EventArgs e)
     {
         ListTags = D4D.Platform.D4DGateway.TagsProvider.GetTopTags(10);
-           
+        ListTags = (from i in ListTags
+                    orderby i.TagId
+                    select i).ToList();
+        tagsSortList = (from i in ListTags
+                         group i.Hits by i.Hits into p
+                         orderby p.Key descending
+                         select p.Key).ToList();
     }
     
     protected string GetTagStr(Tag t)
     {
-        string link = "/video.html";
+        string link = (BandId>=0)? "/video/"+BandId+".html":"/video.html";
         if (BandId != -1)
             link += "?id=" + BandId.ToString() + "&tagid=" + t.TagId.ToString() + "&tag=" + HttpUtility.UrlEncode(t.TagName);
         else
             link += "?tagid=" + t.TagId.ToString() + "&tag=" + HttpUtility.UrlEncode(t.TagName);
-
-        return string.Format(LinkFormat, link, t.TagName) + " (" + t.Hits.ToString() + ") ";
+        int length = tagsSortList.Count-1;
+        if(length > 6) length = 6;
+        int sort = length - tagsSortList.IndexOf(t.Hits);
+        if (sort < 0) sort = 0;
+        return string.Format(LinkFormat, link,sort, t.TagName);
+        // + " (" + t.Hits.ToString() + ") "
            
     }
 	

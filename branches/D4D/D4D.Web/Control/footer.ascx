@@ -9,5 +9,5 @@
 </div>
 <div class="footer">
     <div class="left"><a href="/about.html">关于我们</a> | <a href="/contact.html">联系我们</a> | <a href="/zhaopin.html">少城招聘</a> | <a href="/copyright.html">使用条款</a></div>
-    <div class="right">Copyright &copy; 2009 Show City Times. All rights reserved.</div>
+    <div class="right">Copyright &copy; 2009 Show City Times. All Rights Reserved.</div>
 </div>

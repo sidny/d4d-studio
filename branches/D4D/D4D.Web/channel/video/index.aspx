@@ -97,7 +97,7 @@
         get
         {
             string queryid = Request.QueryString["id"];
-            if (string.IsNullOrEmpty(queryid)) return 0;
+            if (string.IsNullOrEmpty(queryid)) return -1;
 
             int id = 0;
 
@@ -178,9 +178,15 @@
         {
             System.Collections.Generic.IDictionary<int, BandInfo> coll = D4D.Web.Helper.Helper.BandColl;
 
+            BandInfo band = new BandInfo();
+            band.BandId = 0;
+            band.BandName = "公司";
+
             BandInfo bandCompany = new BandInfo();
-            bandCompany.BandId = 0;
+            bandCompany.BandId = -1;
             bandCompany.BandName = "全部";
+
+            coll.Add(band.BandId, band);
             coll.Add(bandCompany.BandId, bandCompany);
             return coll;
 
