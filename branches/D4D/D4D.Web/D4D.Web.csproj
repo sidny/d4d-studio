@@ -1175,8 +1175,14 @@
     <Content Include="static\themes\base\ui.core.css" />
     <Content Include="static\themes\base\ui.datepicker.css" />
     <Content Include="static\themes\base\ui.theme.css" />
+    <Content Include="static\watermark\sct_logo1.bmp" />
+    <Content Include="static\watermark\sct_logo1.jpg" />
     <Content Include="static\watermark\sct_logo1.png" />
+    <Content Include="static\watermark\sct_logo2.bmp" />
+    <Content Include="static\watermark\sct_logo2.jpg" />
     <Content Include="static\watermark\sct_logo2.png" />
+    <Content Include="static\watermark\sct_logo3.bmp" />
+    <Content Include="static\watermark\sct_logo3.jpg" />
     <Content Include="static\watermark\sct_logo3.png" />
     <Content Include="svc\comments.svc" />
     <Content Include="svc\user.svc" />

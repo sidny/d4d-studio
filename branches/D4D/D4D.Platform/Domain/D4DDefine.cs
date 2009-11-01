@@ -10,6 +10,7 @@ namespace D4D.Platform.Domain
         public const string DBInstanceName = "d4d";
         public const string DEFAULT_PROFILEPATH = @"d:\sitefiles\profile\";
         public const string DEFAULT_UPLOADROOTPATH = @"d:\sitefiles\upload\";
+        public const string DEFAULT_WATERMARKPATH=@"d:\webroot\showcitytimes\static\watermark\sct_logo2.png";
         public const string DEFAULT_UPLOADROOTHTTPPATH = "http://www.showcitytimes.net/upload/";
         public const string NEWS_VIDEO_REMARK = "video";
     }

@@ -50,6 +50,15 @@ namespace D4D.Web.admin.Controls {
         protected global::System.Web.UI.WebControls.Button btnShowResult;
         
         /// <summary>
+        /// cbAddWaterMark control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbAddWaterMark;
+        
+        /// <summary>
         /// hiddenThumbnailImage control.
         /// </summary>
         /// <remarks>
