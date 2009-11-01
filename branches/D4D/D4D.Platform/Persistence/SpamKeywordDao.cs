@@ -66,6 +66,33 @@ namespace D4D.Platform.Persistence
             return list;
         }
 
+        internal static List<SpamKeyword> GetPagedSpamKeywords(PagingContext pager)
+        {
+            List<SpamKeyword> list = new List<SpamKeyword>(pager.RecordsPerPage);
+
+            SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+               "dbo.SpamKeywords_GetPaged",
+               delegate(IParameterSet parameters)
+               {
+                  //parameters.AddWithValue("@PublishStatus", publishStatus);
+                   parameters.AddWithValue("@PageIndex", pager.CurrentPageNumber);
+                   parameters.AddWithValue("@PageSize", pager.RecordsPerPage);
+                   parameters.AddWithValue("@NumberOfCount", 0, ParameterDirectionWrap.Output);
+               },
+               delegate(IRecord record)
+               {
+                   MapList(record, list);
+               },
+               delegate(IParameterSet outputParameters)
+               {
+                   pager.TotalRecordCount = outputParameters.GetValue("@NumberOfCount") == DBNull.Value ? 0 : (int)outputParameters.GetValue("@NumberOfCount");
+               }
+           );
+
+            return list;
+        }
+
+
         internal static void MapList(IRecord record, List<SpamKeyword> list)
         {
             SpamKeyword m = new SpamKeyword();
