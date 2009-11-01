@@ -238,7 +238,7 @@
                 BandId, sTime, eTime);
             else
                 resultList = D4DGateway.AlbumProvider.GetPagedImagesByPublishYearMonth(pager, PublishStatus.Publish,
-                 sTime, eTime);
+                 sTime, eTime); 
 
         }
         else
