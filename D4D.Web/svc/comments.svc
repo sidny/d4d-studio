@@ -60,7 +60,7 @@ namespace D4D.Web.svc
                 {
                     ObjectId = id,
                     ObjectType = (ObjectTypeDefine)type,
-                    Body = content,
+                    Body =  D4D.Platform.Helper.SpamKeywordHelper.FilterContent( content),
                     AddDate = DateTime.Now,
                     UserId = Helper.AdminHelper.CurrentUser.UserID,
                     AddUserID = Helper.AdminHelper.CurrentUser.UserID,
