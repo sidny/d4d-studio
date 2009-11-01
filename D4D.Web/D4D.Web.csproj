@@ -634,6 +634,7 @@
     <None Include="fckeditor\fckeditor_php5.php" />
     <None Include="fckeditor\fckutils.cfm" />
     <Content Include="admin\Corp\CorpProfile.aspx" />
+    <Content Include="admin\Sys\SpamKeyword.aspx" />
     <Content Include="channel\music\comment.aspx" />
     <Content Include="channel\user\corp.aspx" />
     <Content Include="fckeditor\web.config" />
