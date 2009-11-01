@@ -60,7 +60,7 @@
                       </tr>
                       <tr>
                      <th width="100">小图(56x56)</th>
-                      <td><uc1:FileUpload ID="txtInfo1" runat="server" AutoCreateThumbnailImage="false"/></td>
+                      <td><uc1:FileUpload ID="txtInfo1" runat="server" AutoCreateThumbnailImage="false" AutoShowAddWaterMark="false"/></td>
                     </tr>
                      <tr>
                      <th align="center" width="100">大图(680x300)</th>

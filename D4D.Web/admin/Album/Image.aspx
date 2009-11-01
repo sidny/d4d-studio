@@ -71,7 +71,7 @@
                       </tr>
                        <tr>
                      <th width="100">小图 (150 * 100)</th>
-                      <td> <uc1:FileUpload ID="txtSImageFile" runat="server" AutoCreateThumbnailImage="false"/></td>
+                      <td> <uc1:FileUpload ID="txtSImageFile" runat="server" AutoCreateThumbnailImage="false" AutoShowAddWaterMark="false"/></td>
                     </tr>
                       <tr>
                      <th width="100">图片地址 ( 宽度大于 800px )</th>
