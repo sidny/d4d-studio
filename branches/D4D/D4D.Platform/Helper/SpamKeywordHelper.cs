@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Configuration;
 
 namespace D4D.Platform.Helper
 {
@@ -13,7 +14,10 @@ namespace D4D.Platform.Helper
 
        public static string FilterContent(string content)
        {
-           return FilterContent(content,DEFAULT_REPLACESTRING);
+
+           string replaceString = ConfigurationManager.AppSettings["SpamKeyWordReplaceString"];
+           if (string.IsNullOrEmpty(replaceString)) replaceString = DEFAULT_REPLACESTRING;
+           return FilterContent(content, replaceString);
        }
 
        public static string FilterContent(string content, string replaceStr)
