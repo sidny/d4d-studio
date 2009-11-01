@@ -135,7 +135,7 @@
         <%} %>
     </dl>
     <dl class="photo">
-        <dt>图片推介</dt>
+        <dt>图片推荐</dt>
         <% foreach (Album item in AlbumList)
            { %>
             <dd><a href="/photo/album/<%=item.AlbumId %>.html"><img alt="" src="<%=item.SImage %>" /></a></dd>
