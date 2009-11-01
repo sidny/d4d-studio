@@ -41,7 +41,8 @@ dl, dd, dt {
 dt {
 	font-family:"微软雅黑", "黑体"; font-weight:bold; font-size:14px; border-bottom:1px solid #cbcbcb; height:24px; margin-top:10px;
 }
-
+.albumList { height:180px;}
+.videoList { height:180px;}
 .albumList dd{ float:left; width:150px; margin-right:20px; text-align:center}
 .albumList dd a{ display:block; padding-top:10px; line-height:20px;}
 .videoList dd{ float:left; width:150px; margin-right:20px; text-align:center}
@@ -161,9 +162,11 @@ dt {
         </tr>
         <tr><td colspan="5" class="line"></td></tr>
          <%} %>
-     </table>
-     <div align="right">>><a href="/calender/b<%=BandId%>/d<%=DateTime.Now.ToString("yyyyMM")%>.html">查看更多星程</a></div>
+     	</table>
+     	</dd>
       </dl>
+      <div align="right">>><a href="/calender/b<%=BandId%>/d<%=DateTime.Now.ToString("yyyyMM")%>.html">查看更多星程</a></div>
+      </div>
       <div class="albumList clearfix">
         <div class="more">>><a href="/music/b<%=BandId%>.html">查看更多相册</a></div>
         <dl>
