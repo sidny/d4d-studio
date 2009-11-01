@@ -54,7 +54,7 @@
                 </ItemTemplate>
                 <FooterTemplate>
                      <tr align="right" style="font-size: medium; white-space: nowrap;">
-                      <td colspan="7" valign="middle" class="pagestyle" id="pager"></td>
+                      <td colspan="5" valign="middle" class="pagestyle" id="pager"></td>
                       <td><asp:Button ID="btnAddShow" runat="server" OnClick="btnAdd_Show" Text="新增" /></td>
                     </tr>
                     </table>

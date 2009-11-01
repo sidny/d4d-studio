@@ -11,7 +11,10 @@ namespace D4D.Web.admin.Upload
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+            List<string> list =
+            D4D.Platform.D4DGateway.SpamKeywordProvider.GetSpamKeywords();
+
+            Response.Write(list.Count.ToString());
         }
 
         protected void Button1_Click(object sender, EventArgs e)
