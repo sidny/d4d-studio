@@ -1,42 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage/Main.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage/Channel.Master" %>
 <%@ Import Namespace="D4D.Platform.Domain" %>
 <%@ Import Namespace="System.Collections.Generic" %>
 <%@ Import Namespace="System.Linq" %>
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader">
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentMain" runat="server">
-<div class="sub-title">
-        <p class="title">
-            图片</p>
-        <p class="nav-link">
-            您的位置：首页 > 图片</p>
-    </div>
-<div class="sub-nav">
-  <ul>
-    <%
-	List<int> list = new List<int>(BandColl.Keys.ToArray());
-	list.Sort();
-	for (int n =0;n<list.Count;n++)
-      {
-		  var i = BandColl[list[n]];
-          if (i.BandId == BandId)
-          {
-           %>
-            <li>》<font color="red"><%=i.BandName%>相册</font></li>
-            <li class="sub">
-                
-                
-                
-            </li>
-    
-    <%} else
-          {%>
-     <li>》<a href="/photo/<%=i.BandId %>.html"><%=i.BandName%>相册</a></li>
-    <%}
-      } %>
-  </ul>
-</div>
-    <div class="main">
+<div class="main">
         <div class="channel">
             <h1>
                 全部照片</h1>

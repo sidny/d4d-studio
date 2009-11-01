@@ -1,4 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage/Main.Master" %>
+<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage/Channel.Master" %>
 <%@ Import Namespace="D4D.Platform.Domain" %>
 <%@ Import Namespace="D4D.Platform" %>
 <%@ Import Namespace="System.Collections.Generic" %>
@@ -6,40 +6,10 @@
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader">
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentMain" runat="server">
-<div class="sub-title">
-        <p class="title">
-            Í¼Æ¬</p>
-        <p class="nav-link">
-            ÄúµÄÎ»ÖÃ£ºÊ×Ò³ > Í¼Æ¬ > <%=CurrentAlbum.Title %></p>
-    </div>
-<div class="sub-nav">
-  <ul>
-    <%
-	List<int> list = new List<int>(BandColl.Keys.ToArray());
-	list.Sort();
-	for (int n =0;n<list.Count;n++)
-      {
-		  var i = BandColl[list[n]];
-          if (i.BandId == BandId)
-          {
-           %>
-            <li>¡·<font color="red"><%=i.BandName%>Ïà²á</font></li>
-            <li class="sub">
-                
-                
-                
-            </li>
-    
-    <%} else
-          {%>
-     <li>¡·<a href="/photo/<%=i.BandId %>.html"><%=i.BandName%>Ïà²á</a></li>
-    <%}
-      } %>
-  </ul>
-</div>
+
     <div class="main">
 <div class="channel">
-  <h1>È«²¿ÕÕÆ¬ / <font color="red"><%=CurrentAlbum.Title %></font></h1>
+  <h1>È«²¿ÕÕÆ¬ / <font color="red"><asp:Literal ID="litTitle" runat="server"></asp:Literal></font></h1>
 </div>
 <div class="album_list">
 	
@@ -116,7 +86,7 @@
     {
         get
         {
-            string queryid = Request.QueryString["id"];
+            string queryid = Request.QueryString["albumid"];
             if (string.IsNullOrEmpty(queryid)) return 0;
 
             int id = 0;
@@ -208,7 +178,37 @@
         if (!IsPostBack)
         {
             BindPhotoRep(PageIndex);
+            SetTitle();
         }
+    }
+    private const string TitleFormat = "{0}Í¼Æ¬";
+    private void SetTitle()
+    {
+        //check bandName
+        if (CurrentAlbum.AlbumId > 0)
+        {
+            litTitle.Text = CurrentAlbum.Title;
+        }
+        else
+        {
+
+            BandInfo info;
+            if (BandColl.TryGetValue(BandId, out info))
+            {
+                litTitle.Text = string.Format(TitleFormat, info.BandName);
+            }
+
+            if (!string.IsNullOrEmpty(TagName))
+            {
+                litTitle.Text = TagName;
+            }
+
+            if (!string.IsNullOrEmpty(TagTime))
+            {
+                litTitle.Text = TagTime;
+            }
+        }
+
     }
             
     private void BindPhotoRep(int pageIndex)
@@ -292,7 +292,10 @@
     {
         get
         {
-           return CurrentAlbum.BandId;
+            if (String.IsNullOrEmpty(Request["id"]))
+                return CurrentAlbum.BandId;
+            else 
+                return int.Parse(Request["id"]);
         }
     }
     public static IDictionary<int, BandInfo> BandColl

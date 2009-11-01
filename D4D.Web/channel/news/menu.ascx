@@ -1,215 +1,77 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" %>
-<%@ Import Namespace="D4D.Platform" %>
-<%@ Import Namespace="D4D.Platform.Domain" %>
+<%@ Import Namespace="System.Linq" %>
 <%@ Import Namespace="System.Collections.Generic" %>
-<div class="sub-title">
-  <p class="title"><%=Channel %></p>
-  <p class="nav-link">您的位置：首页 > <%=Channel %></p>
-  </div>
-  <style type="text/css">
-  .sub-nav .sub{height:auto;font-weight:normal;font-size:12px;clear:both;}
-  .sub-nav .sub a{ font-weight:normal}
-  .sub-nav .sub dl{width:200px;}
-  .sub-nav .sub dt{ background:#999999;padding-left:10px;}
-  .subv-nav .sub dt a{ color:white; padding: 0 3px;}
-  .sub-nav .sub dd{ margin:0; padding:10px; background:#ccc}
-  .sub-nav .sub dd a{ display:block; width:30px; text-align:center;float:left}
+<%@ Import Namespace="D4D.Platform.Domain" %>
+<%@ Import Namespace="D4D.Platform" %>
+ <style type="text/css">
+  .sub-nav .sub{height:auto;font-weight:normal;font-size:12px;clear:both; background:none; padding-bottom:30px;}
   </style>
-
+<div class="sub-title">
+  <p class="title">星闻</p>
+  <p class="nav-link">您的位置：首页 > 星闻</p>
+</div>
 <div class="sub-nav">
-  <ul>
-  <asp:Repeater ID="repMenu" OnItemDataBound="repMenu_ItemDataBound" runat="server">
-   <ItemTemplate>
-    <li>》<asp:Literal ID="litLink" runat="server"></asp:Literal></li>
-    </ItemTemplate>
-    </asp:Repeater>   
+  <ul><%
+        
+        System.Collections.Generic.List<BandInfo> list = new System.Collections.Generic.List<BandInfo>();
+        list.Add(new BandInfo()
+        {
+            BandId = -1,
+            BandName = "全部"
+        });
+        list.Add(new BandInfo()
+        {
+            BandId = 0,
+            BandName = "公司"
+        });
+        list.AddRange(D4D.Web.Helper.Helper.BandColl.Values);
+        foreach (BandInfo i in list)
+      {
+          if (i.BandId == BandId)
+          {
+           %>
+    <li>》<font color="red"><%=i.BandName%>新闻</font></li>
     <li class="sub">
-    <dl class="clearfix">
-    <dt>
-    <a href="?year=2009">2009</a><a href="?year=2008">2008</a><a href="?year=2007">2007</a></dt>
-    <dd class="clearfix"><a href="?year=2009&month=12">12月</a><a href="?year=2009&month=12">12月</a><a href="?year=2009&month=12">12月</a><a href="?year=2009&month=12">12月</a><a href="?year=2009&month=12">12月</a><a href="?year=2009&month=12">12月</a><a href="?year=2009&month=12">12月</a></dd>
+    <dl class="dateList clearfix">
+     <dt>时间标签</dt>
+    <dt class="date">
+    <%int startYear = (CurrentSelectYear == DateTime.Now.Year) ? CurrentSelectYear : CurrentSelectYear + 1;
+      for (int n = startYear; n > startYear-3; n--)
+      {
+          int month = 12;
+          if (CurrentSelectYear == DateTime.Now.Year)
+              month = DateTime.Now.Month;
+           %><a href="?year=<%=n %>&month=<%=month %>" <%=(CurrentSelectYear==n)?"class=\"on\"":"" %>><%=n%>年</a><%} %>
+    </dt>
+    <dd><% 
+          int length = (CurrentSelectYear == DateTime.Now.Year) ? DateTime.Now.Month : 12;
+          for (int n = length; n > 0; n--)
+          {%><a href="?year=<%=CurrentSelectYear %>&month=<%=n %>" <%=(n == CurrentSelectMonth)?"class=\"on\"":"" %>>
+          <%=((n < 10) ? "0" : "") + n.ToString()%>月</a><% }%>
+    </dd>
     </dl>
-    <script type="text/javascript">
-    $(document).ready(function(){
-            var date = new Date();
-
-            });
-</script>
-</li>
-
+    <dl class="tagList">
+        <dt>热门标签</dt>
+        <dd>
+        <% foreach(Tag tag in ListTags){
+               Response.Write(GetTagStr(tag));
+           }%>
+        </dd>
+    </dl>
+    </li>
+    <%}
+          else
+          {
+              string s = (i.BandId >= 0) ? "/news/" + i.BandId + ".html" : "/news.html";
+              %>
+    <li>》<a href="<%=s %>"><%=i.BandName%>新闻</a></li>
+    <%}
+      } %>
   </ul>
-  <!-- Time tag -->
-   <div id="TabbedPanels1" class="TabbedPanels">
-                    <ul class="TabbedPanelsTabGroup">
-                      <asp:Repeater ID="repYear" OnItemDataBound="repYear_ItemDataBound" runat="server">
-                       <ItemTemplate>
-                        <li class="TabbedPanelsTab">  
-                          <asp:Literal ID="litYearhLink" runat="server"></asp:Literal>
-                        </li>                 
-                        </ItemTemplate>
-                      </asp:Repeater>    
-                          
-                    </ul>
-                    <div class="TabbedPanelsContentGroup">
-                    <asp:Repeater ID="repMonth" OnItemDataBound="repMonth_ItemDataBound" runat="server">
-                       <ItemTemplate>
-                         <div class="TabbedPanelsContent">
-                          <asp:Literal ID="litMonthLink" runat="server"></asp:Literal>
-                        </div>                      
-                        </ItemTemplate>
-                      </asp:Repeater>                            
-                    </div>
-                </div>
-   <!--  tag -->
-   <ul>
-     <asp:Repeater ID="repTags" OnItemDataBound="repTags_ItemDataBound" runat="server">
-   <ItemTemplate>
-    <li><asp:Literal ID="litTagLink" runat="server"></asp:Literal></li>
-    </ItemTemplate>
-  </asp:Repeater>   
-   </ul>
 </div>
 <script  runat="server">
     public string Channel;
     private static Hashtable channelList = new Hashtable();
-    private const int MaxTagsCount = 8;
-    private const string baseLink = "/news.html";
-
-    protected int CurrentSelectYear
-    {
-        get
-        {
-            int currentSelectYear = DateTime.Now.Year;
-            string yid = Request.QueryString["year"];
-            if (!string.IsNullOrEmpty(yid))
-            {
-                int.TryParse(yid, out currentSelectYear);
-            }
-            return currentSelectYear;
-        }
-    }
-
-    protected void repYear_ItemDataBound(object sender, RepeaterItemEventArgs e)
-    {
-        int m = (int)(e.Item.DataItem);
-
-
-        Literal litYearhLink = e.Item.FindControl("litYearhLink") as Literal;
-
-        string link = baseLink;
-
-        int month = 12;
-        string yearName = string.Empty ;
-
-        int currentSelectYear = CurrentSelectYear;
-
-        if (currentSelectYear == m)
-        {
-            month = DateTime.Now.Month;
-            yearName = "<font color=\"red\">" + m.ToString() + "</font>";
-        }
-        else
-        {
-            yearName = m.ToString();
-        }
-
-        if (BandId != -1)
-            link += "?id=" + BandId.ToString() + "&year=" + m.ToString() + "&month=" + month.ToString();
-        else
-            link += "?year=" + m.ToString() + "&month=" + month.ToString();
-
-
-        litYearhLink.Text = string.Format(LinkFormat, link, yearName);
-
-
-
-    }
-
-    
-    protected void repMonth_ItemDataBound(object sender, RepeaterItemEventArgs e)
-    {
-              int m =(int)( e.Item.DataItem);
-
-       
-            Literal litMonthLink = e.Item.FindControl("litMonthLink") as Literal;
-
-            string link = baseLink;
-
-            if (BandId != -1)
-               link += "?id=" +BandId.ToString()+"&year="+CurrentSelectYear.ToString()+"&month="+m.ToString();
-            else
-                link += "?year=" + CurrentSelectYear.ToString() + "&month=" + m.ToString();
-
-            string monthName = string.Empty;
-            if (m < 10)
-                monthName = "0" + m.ToString() + "月";
-            else
-                monthName = m.ToString() + "月";
-            litMonthLink.Text = string.Format(LinkFormat, link, monthName);
-            
-            
-        
-    }
-
-    protected void Page_Load(object sender, EventArgs e)
-    {
-        channelList["news"] =  "星闻";
-        channelList["anews"] = "星闻";
-        string[] path = Request.AppRelativeCurrentExecutionFilePath.Split('/');
-        if (path.Length >= 3)
-        {
-            Channel = channelList[path[2]] as string;
-        }
-
-        if (!IsPostBack)
-        {
-            System.Collections.Generic.IDictionary<int, BandInfo> coll = D4D.Web.Helper.Helper.BandColl;            
-            List<BandInfo> list = new  System.Collections.Generic.List<BandInfo>(coll.Count+2);    
-            BandInfo band = new BandInfo();
-            band.BandId = -1;
-            band.BandName = "全部";
-
-            BandInfo bandCompany = new BandInfo();
-            bandCompany.BandId = 0;
-            bandCompany.BandName = "公司";
-
-            list.Add(band);
-            list.Add(bandCompany);
-
-            list.AddRange(coll.Values);
-            
-            repMenu.DataSource = list;
-            repMenu.DataBind();
-            
-            //bindYear
-            List<int> listYear = new List<int>(3);
-
-            for (int i = 0; i < 3; i++)
-                listYear.Add(CurrentSelectYear - i);
-
-            repYear.DataSource = listYear;
-            repYear.DataBind(); 
-            
-            //bindmonth
-            List<int> listMonth = new List<int>();
-            int endMonth = 12;
-            if (DateTime.Now.Year == CurrentSelectYear)
-                endMonth = DateTime.Now.Month;
-
-            for (int i = 0; i < endMonth; i++)
-                listMonth.Add(endMonth - i);
-        
-            repMonth.DataSource = listMonth;
-            repMonth.DataBind();
-
-            //bindtags
-            List<Tag> listTags = 
-            D4D.Platform.D4DGateway.TagsProvider.GetTopTags(MaxTagsCount);
-            repTags.DataSource = listTags;
-            repTags.DataBind();
-        }      
-           
-    }
 
     protected int BandId
     {
@@ -224,49 +86,63 @@
             return id;
         }
     }
-    private const string LinkFormat = "<a href=\"{0}\">{1}</a>";
-    protected void repMenu_ItemDataBound(object sender, RepeaterItemEventArgs e)
+ 	protected int CurrentSelectYear
     {
-        BandInfo m = e.Item.DataItem as BandInfo;
-
-        if (m != null)
+        get
         {
-            Literal litLink = e.Item.FindControl("litLink") as Literal;
-         
-            string menuName = string.Empty;
-            if (BandId == m.BandId)
-                menuName = "<font color=\"red\">"+m.BandName+"新闻</font>";
-            else
-                menuName = m.BandName+"新闻";
-
-            string link = baseLink;
-            
-            if (m.BandId!=-1)
-                link +="?id="+m.BandId.ToString();
-
-            litLink.Text = string.Format(LinkFormat, link, menuName);
+            int currentSelectYear = DateTime.Now.Year;
+            string yid = Request.QueryString["year"];
+            if (!string.IsNullOrEmpty(yid))
+            {
+                int.TryParse(yid, out currentSelectYear);
+            }
+            return currentSelectYear;
+        }
+    }
+ 	protected int CurrentSelectMonth
+    {
+        get
+        {
+            int currentSelectMonth = DateTime.Now.Month;
+            string yid = Request.QueryString["month"];
+            if (!string.IsNullOrEmpty(yid))
+            {
+                int.TryParse(yid, out currentSelectMonth);
+            }
+            return currentSelectMonth;
         }
     }
     
-    protected void repTags_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    private const string LinkFormat = "<a href=\"{0}\" class=\"sort{1}\">{2}</a>";
+    protected List<Tag> ListTags = new List<Tag>();
+    protected List<int> tagsSortList;
+    protected void Page_Load(object sender, EventArgs e)
     {
-        Tag m = e.Item.DataItem as Tag;
-
-        if (m != null)
-        {
-            Literal litTagLink = e.Item.FindControl("litTagLink") as Literal;
-
-            string link = baseLink;
-
-            if (BandId != -1)
-                link += "?id=" +BandId.ToString()+"&tagid="+m.TagId.ToString()+"&tag="+HttpUtility.UrlEncode(m.TagName);
-            else
-                link += "?tagid=" + m.TagId.ToString() + "&tag=" + HttpUtility.UrlEncode(m.TagName);
-
-            litTagLink.Text = string.Format(LinkFormat, link,m.TagName) + " ("+m.Hits.ToString()+") ";
-            
-            
-        }
+        ListTags = D4D.Platform.D4DGateway.TagsProvider.GetTopTags(10);
+        ListTags = (from i in ListTags
+                    orderby i.TagId
+                    select i).ToList();
+        tagsSortList = (from i in ListTags
+                         group i.Hits by i.Hits into p
+                         orderby p.Key descending
+                         select p.Key).ToList();
     }
-       
+    
+    protected string GetTagStr(Tag t)
+    {
+        string link = (BandId>=0)? "/news/"+BandId+".html":"/news.html";
+        if (BandId != -1)
+            link += "?id=" + BandId.ToString() + "&tagid=" + t.TagId.ToString() + "&tag=" + HttpUtility.UrlEncode(t.TagName);
+        else
+            link += "?tagid=" + t.TagId.ToString() + "&tag=" + HttpUtility.UrlEncode(t.TagName);
+        int length = tagsSortList.Count-1;
+        if(length > 6) length = 6;
+        int sort = length - tagsSortList.IndexOf(t.Hits);
+        if (sort < 0) sort = 0;
+        return string.Format(LinkFormat, link,sort, t.TagName);
+        // + " (" + t.Hits.ToString() + ") "
+           
+    }
+	
+	
 </script>
