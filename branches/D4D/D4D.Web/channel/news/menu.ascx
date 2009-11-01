@@ -5,14 +5,37 @@
 <div class="sub-title">
   <p class="title"><%=Channel %></p>
   <p class="nav-link">您的位置：首页 > <%=Channel %></p>
-</div>
+  </div>
+  <style type="text/css">
+  .sub-nav .sub{height:auto;font-weight:normal;font-size:12px;clear:both;}
+  .sub-nav .sub a{ font-weight:normal}
+  .sub-nav .sub dl{width:200px;}
+  .sub-nav .sub dt{ background:#999999;padding-left:10px;}
+  .subv-nav .sub dt a{ color:white; padding: 0 3px;}
+  .sub-nav .sub dd{ margin:0; padding:10px; background:#ccc}
+  .sub-nav .sub dd a{ display:block; width:30px; text-align:center;float:left}
+  </style>
+
 <div class="sub-nav">
   <ul>
   <asp:Repeater ID="repMenu" OnItemDataBound="repMenu_ItemDataBound" runat="server">
    <ItemTemplate>
     <li>》<asp:Literal ID="litLink" runat="server"></asp:Literal></li>
     </ItemTemplate>
-  </asp:Repeater>   
+    </asp:Repeater>   
+    <li class="sub">
+    <dl class="clearfix">
+    <dt><a href="?year=2009">2009</a><a href="?year=2008">2008</a><a href="?year=2007">2007</a></dt>
+    <dd class="clearfix"><a href="?year=2009&month=12">12月</a><a href="?year=2009&month=12">12月</a><a href="?year=2009&month=12">12月</a><a href="?year=2009&month=12">12月</a><a href="?year=2009&month=12">12月</a><a href="?year=2009&month=12">12月</a><a href="?year=2009&month=12">12月</a></dd>
+    </dl>
+    <script type="text/javascript">
+    $(document).ready(function(){
+            var date = new Date();
+
+            });
+</script>
+</li>
+
   </ul>
   <!-- Time tag -->
    <div id="TabbedPanels1" class="TabbedPanels">
