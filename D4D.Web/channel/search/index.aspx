@@ -189,18 +189,22 @@
             case "news":
                 list = D4DGateway.SearchProvider.GetPagedSearch(pager,
                     SearchText, ObjectTypeDefine.News);
+                totalCount = pager.TotalRecordCount;            
                 break;
             case "show":
                 list = D4DGateway.SearchProvider.GetPagedSearch(pager,
                    SearchText, ObjectTypeDefine.Show);
+                totalCount = pager.TotalRecordCount;            
                 break;
             case "music":
                 list = D4DGateway.SearchProvider.GetPagedSearch(pager,
                    SearchText, ObjectTypeDefine.MusicTitle);
+                totalCount = pager.TotalRecordCount;            
                 break;
             case "video":
                 list = D4DGateway.SearchProvider.GetPagedSearch(pager,
                    SearchText, ObjectTypeDefine.Video);
+                totalCount = pager.TotalRecordCount;            
                 break;
             default:
                 pager.RecordsPerPage = 5;

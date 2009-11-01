@@ -272,8 +272,7 @@
         {
             repList.DataSource = resultList;
             repList.DataBind();
-            
-            
+            totalCount = pager.TotalRecordCount;            
           
         }
     }
