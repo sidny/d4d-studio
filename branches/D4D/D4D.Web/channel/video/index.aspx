@@ -97,7 +97,7 @@
         get
         {
             string queryid = Request.QueryString["id"];
-            if (string.IsNullOrEmpty(queryid)) return -1;
+            if (string.IsNullOrEmpty(queryid)) return 0;
 
             int id = 0;
 
@@ -178,15 +178,9 @@
         {
             System.Collections.Generic.IDictionary<int, BandInfo> coll = D4D.Web.Helper.Helper.BandColl;
 
-            BandInfo band = new BandInfo();
-            band.BandId = 0;
-            band.BandName = "公司";
-
             BandInfo bandCompany = new BandInfo();
-            bandCompany.BandId = -1;
+            bandCompany.BandId = 0;
             bandCompany.BandName = "全部";
-            
-            coll.Add(band.BandId, band);
             coll.Add(bandCompany.BandId, bandCompany);
             return coll;
 
@@ -296,7 +290,7 @@
               {
                   Literal litTopImage = e.Item.FindControl("litTopImage") as Literal;
                   litTopImage.Text = string.Format(SImageFormat,
-                      "/news/d/" + m.NewsId.ToString() + ".html", m.SImage);                  
+                      "/video/d/" + m.NewsId.ToString() + ".html", m.SImage);                  
               }
               
           }
@@ -346,7 +340,7 @@
     
     private const string TagEmFormat = "<em>标签：{0}</em>";
     private const string AFormat = "<a href=\"{0}\">{1}</a>";
-    private const string TagLinkFormat = "/channel/news/news.aspx?id={0}&tagid={1}&tag={2}";
+    private const string TagLinkFormat = "/video.html?id={0}&tagid={1}&tag={2}";
     protected void repList_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
         News m = e.Item.DataItem as News;

@@ -49,18 +49,23 @@
           int length = (CurrentSelectYear == DateTime.Now.Year) ? DateTime.Now.Month : 12;
           for (int n = length; n > 0; n--)
           {%> 
-        <a href=""><%=((n < 10) ? "0" : "") + n.ToString()%></a>
+        <a href="?year=<%=CurrentSelectYear %>&month=<%=n %>"><%=((n < 10) ? "0" : "") + n.ToString()%></a>
         <% }%>
     </dd>
     </dl>
     <dl>
         <dt>Tag标签</dt>
+        <dd>
+        <% foreach(Tag tag in ListTags){
+               Response.Write(GetTagStr(tag));
+           }%>
+        </dd>
     </dl>
     </li>
     <%}
           else
           {%>
-    <li>》<a href="/singer/<%=i.BandId %>.html"><%=i.BandName%></a></li>
+    <li>》<a href="/video.html?id=<%=i.BandId %>"><%=i.BandName%></a></li>
     <%}
       } %>
   </ul>
@@ -109,12 +114,25 @@
             return currentSelectMonth;
         }
     }
-
-	private List<BandInfo> menuList ;
+    private const string LinkFormat = "<a href=\"{0}\">{1}</a>";
+    protected List<Tag> ListTags = new List<Tag>();
     protected void Page_Load(object sender, EventArgs e)
     {
-        
-    }  
+        ListTags = D4D.Platform.D4DGateway.TagsProvider.GetTopTags(10);
+           
+    }
+    
+    protected string GetTagStr(Tag t)
+    {
+        string link = "/video.html";
+        if (BandId != -1)
+            link += "?id=" + BandId.ToString() + "&tagid=" + t.TagId.ToString() + "&tag=" + HttpUtility.UrlEncode(t.TagName);
+        else
+            link += "?tagid=" + t.TagId.ToString() + "&tag=" + HttpUtility.UrlEncode(t.TagName);
+
+        return string.Format(LinkFormat, link, t.TagName) + " (" + t.Hits.ToString() + ") ";
+           
+    }
 	
 	
 </script>
