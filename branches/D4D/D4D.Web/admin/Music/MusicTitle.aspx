@@ -42,7 +42,7 @@
                     <tr>
                     <th align="center" width="100">封面小图</th>
                       <td>
-                          <uc1:FileUpload ID="fuSImage" runat="server" AutoCreateThumbnailImage="false" />
+                          <uc1:FileUpload ID="fuSImage" runat="server" AutoCreateThumbnailImage="false" AutoShowAddWaterMark="false"/>
                         </td>
                     </tr>
                      <tr>

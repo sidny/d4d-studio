@@ -161,7 +161,7 @@
                         Сͼ
                     </th>
                     <td>
-                        <uc1:FileUpload ID="txtSImage" runat="server" AutoCreateThumbnailImage="false" />
+                        <uc1:FileUpload ID="txtSImage" runat="server" AutoCreateThumbnailImage="false" AutoShowAddWaterMark="false"/>
                     </td>
                 </tr>
                 <tr>
