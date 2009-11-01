@@ -418,6 +418,15 @@ namespace D4D.Platform.Helper
             //bmp.Dispose();
             img.Dispose();
         }
+
+        public static string GetWaterMarkFilePath()
+        {
+            string path = System.Configuration.ConfigurationManager.AppSettings["UploadWaterMarkPath"];
+            if (string.IsNullOrEmpty(path))
+                return D4D.Platform.Domain.D4DDefine.DEFAULT_WATERMARKPATH;
+            else
+                return path;
+        }
         #endregion
 
 
