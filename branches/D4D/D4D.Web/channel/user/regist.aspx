@@ -264,7 +264,7 @@
 </script>
 </asp:Panel>
 <asp:Panel runat="server" ID="sucPanel" Visible="false">
-<div id="success" style=" text-align:center; height:200px; line-height:200px; font-size:18px; font-family:'微软雅黑','黑体'; color:#666;"><img alt="" align="absmiddle" src="/static/images/user/success.jpg" /> 注册成功，欢迎您，<%=D4D.Web.Helper.AdminHelper.CurrentUser.UserName %></div>
+<div id="success" style=" text-align:center; padding:100px 0 ; font-size:18px; font-family:'微软雅黑','黑体'; color:#666;"><img alt="" align="absmiddle" src="/static/images/user/success.jpg" /> 注册成功，欢迎您，<%=D4D.Web.Helper.AdminHelper.CurrentUser.UserName %></div>
 </asp:Panel>
 </div>
 
@@ -274,8 +274,8 @@
     protected void Page_Load(object sender, EventArgs e)
         {
             string username = Request["username"];
-            string password = Request["username"];
-            string email = Request["username"];
+            string password = Request["password"];
+            string email = Request["email"];
             int userid = 0;
             try
             {
@@ -300,6 +300,7 @@
                     LTP.Accounts.Bus.User currentUser = new LTP.Accounts.Bus.User(userid);
                     HttpContext.Current.Session["UserInfo"] = currentUser;
                     HttpContext.Current.Session["Style"] = currentUser.Style;
+                    System.Web.Security.FormsAuthentication.SetAuthCookie(currentUser.UserName,false);
                 }
             }
             catch (Exception ex)

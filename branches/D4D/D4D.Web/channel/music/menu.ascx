@@ -57,6 +57,7 @@
         {
             if (Request["id"] == band.BandId.ToString())
             {
+                Channel = string.Format("{0}音乐", band.BandName);
                 return string.Format("<font color=\"red\">{0}音乐</font>", band.BandName);
             }
             else
@@ -66,8 +67,10 @@
         }
         else
         {
+            Channel = "全部音乐";
             if (String.IsNullOrEmpty(Request["id"]))
             {
+                
                 return string.Format("<font color=\"red\">全部音乐</font>");
             }
             else
