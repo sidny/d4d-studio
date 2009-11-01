@@ -49,6 +49,16 @@
   <script type="text/javascript">
       $(window).bind("load", function() {
       $("div#slider").slideView({ easeFunc: "" });
+	  setInterval(function(){
+			var list = $(".stripTransmitter ul a")
+			var i = 0;
+			list.each(function(inx,item){
+				if($(item).hasClass("current")) i = inx;
+			});
+			i++;
+			if(i==list.length) i = 0;
+			list.eq(i).click();
+		},3000);
       });
   </script> 
 </asp:Content>
