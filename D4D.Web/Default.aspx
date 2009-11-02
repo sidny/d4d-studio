@@ -92,7 +92,7 @@
                     <p class="image"><img height="60" width="100" src="<%=item.SImage %>" /></p>
                     <%} %>
                     <p><a href="/news/d/<%=item.NewsId %>.html"><%=GetSubString(item.Title, 18)%></a><label><%=item.AddDate.ToString("yyyy-MM-dd") %></label></p>
-                    <p style="line-height:20px; padding-top:5px;"><%=GetSubString(item.Body, 55)%></p>
+                    <p style="line-height:20px; padding-top:5px;"><%=GetSubString(item.Preview, 50)%></p>
                <%}
                  else
                  { %>

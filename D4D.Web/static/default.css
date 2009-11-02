@@ -64,6 +64,7 @@ div.header{ height:86px; text-align:center; position:relative; padding-top:10px;
 .news-detail .tag{ text-align:center; padding:10px 0 20px 0;}
 .news-detail .tag label{ padding:0 30px;}
 .news-detail .body {line-height:150%; padding:0 20px;}
+.news-detail .body p{ line-height:150%; margin:10px 0;}
 .news-detail .next-prev{ margin:20px 0; padding:0 20px; border-top:1px solid #cbcbcb;}
 .news-detail .next-prev p{line-height:25px; height:25px;}
 .comments li{ line-height:21px; border-bottom:1px solid #f0f0f0; padding:5px;}
