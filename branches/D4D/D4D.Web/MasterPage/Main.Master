@@ -12,10 +12,7 @@
 <script src="/static/js/json2.min.js" type="text/javascript"></script>
 <script src="/static/js/jquery.form.js" type="text/javascript"></script>
 <script src="/static/js/jquery.blockui.js" type="text/javascript"></script>
-
-<asp:ContentPlaceHolder ID="ContentHeader" runat="server">
-
-</asp:ContentPlaceHolder>
+<asp:ContentPlaceHolder ID="ContentHeader" runat="server"></asp:ContentPlaceHolder>
 </head>
 <body>
 <div id="wrap">
