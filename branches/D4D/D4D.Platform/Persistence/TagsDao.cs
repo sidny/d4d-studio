@@ -58,7 +58,7 @@ namespace D4D.Platform.Persistence
         /// <param name="tagId"></param>
         internal static void AddTagHit(List<int> tagIdList)
         {
-            if (tagIdList!=null && tagIdList.Count > 0)
+            if (tagIdList != null && tagIdList.Count > 0)
             {
                 List<string> s = new List<string>();
                 foreach (int i in tagIdList)
@@ -67,8 +67,14 @@ namespace D4D.Platform.Persistence
                 }
                 SafeProcedure.ExecuteNonQuery(
              Database.GetDatabase(D4DDefine.DBInstanceName),
+
              "dbo.Tags_AddTagHits",
-             string.Join(",",s.ToArray()));
+              delegate(IParameterSet parameters)
+              {
+                  parameters.AddWithValue("@TagIDStr", string.Join(",", s.ToArray()));
+
+              }
+            );
             }
         }
         /// <summary>
