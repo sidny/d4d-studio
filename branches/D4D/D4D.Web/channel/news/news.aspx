@@ -364,10 +364,10 @@
          
           
 
-          if (e.Item.ItemIndex == 0)
-              litTopLi.Text = "<li class=\"big\">";
-          else
-          {
+          //if (e.Item.ItemIndex == 0)
+          //    litTopLi.Text = "<li class=\"big\">";
+          //else
+          //{
               litTopLi.Text = "<li>";
               if (!string.IsNullOrEmpty(m.SImage))
               {
@@ -376,7 +376,7 @@
                       "/news/d/" + m.NewsId.ToString() + ".html", m.SImage);                  
               }
               
-          }
+         // }
 
           Literal litTopTag = e.Item.FindControl("litTopTag") as Literal;
           litTopTag.Text = GetTagHtml(m.NewsId);  
