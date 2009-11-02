@@ -1,11 +1,14 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage/Main.Master" %>
+<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage/Main.Master" %>
 
 <%@ Import Namespace="D4D.Platform.Domain" %>
 <%@ Import Namespace="System.Collections.Generic" %>
 <%@ Import Namespace="System.Linq" %>
+<%@ Register src="~/Control/comment.ascx" tagname="comment" tagprefix="uc1" %>
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader">
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentMain" runat="server">
+
+    <form id="form1" runat="server">
 
     <script src="/static/js/jquery.ad-gallery.js" type="text/javascript"></script>
 
@@ -16,16 +19,16 @@
     </style>
     <div class="sub-title">
         <p class="title">
-            图片</p>
+            ͼƬ</p>
         <p class="nav-link">
-            您的位置：首页 > 图片</p>
+            ����λ�ã���ҳ > ͼƬ</p>
     </div>
     <div class="album_detail">
         <div class="channel">
             <h1>
-                全部照片 / <font color="red"><%=CurrentAlbum.Title%></font></h1>
+                ȫ����Ƭ / <font color="red"><%=CurrentAlbum.Title%></font></h1>
             <div class="return">
-                <a href="/photo.html" style="color: red">返回图片首页</a></div>
+                <a href="/photo.html" style="color: red">����ͼƬ��ҳ</a></div>
         </div>
         <div class="ad-gallery"  id="gallery">
             <div class="ad-controls">
@@ -58,58 +61,9 @@
                 </div>
             </div>
         </div>
-        <div class="clearfix" style="padding-top:50px;">
-       <div class="comments-area">
-            <div class="comments-control">
-                <a href="#" id="btnComments">我也要说两句</a> <a href="/photo/c/<%=CurrentAlbum.AlbumId%>.html">评论（<%=CommentsCount%>）</a>
-            </div>
-            
-           <div class="input-area clearfix" style="display:none">
-                <textarea></textarea>
-                <button>
-                    发表</button>
-            </div>
-        </div>
+        <div class="clearfix" style="padding-top:10px; width:690px; margin:0 auto">
+        <uc1:comment ID="comment1"  runat="server" />
     </div>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $("#btnComments").click(function() {
-                if ($("#btnLogin").length > 0) {
-                    $("#btnLogin").click();
-                    return false;
-                } else {
-                   $(".input-area").show();
-                   return false;
-                }
-            });
-            $(".input-area button").click(function() {
-                var str = $(".input-area textarea").val();
-                if(str.length < 10) {
-                    alert("评论内容过短");
-                    return;
-                }
-                $.ajax({
-                    contentType: "application/json",
-                    url: "/svc/comments.svc/create",
-                    data: JSON2.stringify({ content: str, id: <%=CurrentAlbum.AlbumId %>, type: <%=(int)ObjectTypeDefine.Album %> }),
-                    type: "POST", processData: false,
-                    dataType:"json",
-                    success:function(response){
-                        if(response.d>0){
-                            alert("发送成功");
-                            $(".input-area textarea").val("");
-                        }else if(response.d==-1){
-                            alert("请先登录");
-                        }else if(response.d==0){
-                            alert("发送失败，请联系管理员");
-                        }else{
-                            alert(JSON2.stringify(response));
-                        }
-                    }
-                })
-            });
-        });
-    </script>
     </div>
 
     <script type="text/javascript">
@@ -117,6 +71,8 @@
             var galleries = $('.ad-gallery').adGallery({ loader_image: "/static/images/album/loader.gif",start_at_index:<%=startIndex %>});
         });
     </script>
+
+    </form>
 
 </asp:Content>
 
@@ -157,6 +113,11 @@
             ImageList = D4D.Platform.D4DGateway.AlbumProvider.GetImagesByAlbumId(
                AlbumId, D4D.Platform.Domain.PublishStatus.Publish);
         }
+
+        comment1.ObjectId = AlbumId;
+        comment1.ObjectType = (int)ObjectTypeDefine.Album;
+        comment1.CommentsCount = CommentsCount;
+        comment1.CommentUrl = "/photo/c/" + AlbumId + ".html";
     }
     protected BandInfo Band
     {
