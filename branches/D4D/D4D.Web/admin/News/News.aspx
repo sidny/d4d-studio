@@ -324,7 +324,7 @@
         }
     }
     protected int PageSize = 10;
-    private int totalCount;
+    private static int totalCount;
     protected int PageTotalCount
     {
         get
