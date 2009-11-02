@@ -3,7 +3,7 @@
  MasterPageFile="~/MasterPage/Main.Master" Inherits="D4D.Web.MasterPage.Channel" %>
 <%@ Register src="../Control/menu.ascx" tagname="menu" tagprefix="D4D" %>
 <asp:Content runat="server" ContentPlaceHolderID="ContentHeader" ID="ContentHeaderPlace">
-    <asp:ContentPlaceHolder ID="ContentHeader" runat="server"></asp:ContentPlaceHolder>
+<asp:ContentPlaceHolder ID="ContentHeader" runat="server"></asp:ContentPlaceHolder>
 </asp:Content>
 
 <asp:Content runat="server" ContentPlaceHolderID="ContentMain" ID="ContentMainPlace">
