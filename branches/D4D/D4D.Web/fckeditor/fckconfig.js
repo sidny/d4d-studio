@@ -120,8 +120,8 @@ FCKConfig.ToolbarSets["Basic"] = [
 ] ;
 
 FCKConfig.ToolbarSets["ShowCity"] = [
-	['Source','Image','Flash','Table','Rule','Smiley','SpecialChar','PageBreak'],
-	['Bold','Italic','TextColor','BGColor','-','OrderedList','UnorderedList','-','Link','Unlink']
+	['Source', 'Image', 'Flash', 'Table', 'Rule', 'Smiley', 'SpecialChar', 'RemoveFormat'],
+	['Bold', 'Italic', 'TextColor', 'BGColor', '-', 'OrderedList', 'UnorderedList', '-', 'Link', 'Unlink','-','JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyFull']
 ] ;
 
 FCKConfig.EnterMode = 'p' ;			// p | div | br
