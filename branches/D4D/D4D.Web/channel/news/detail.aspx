@@ -2,7 +2,10 @@
 <%@ Import Namespace="D4D.Platform.Domain" %>
 <%@ Import Namespace="D4D.Platform" %>
 <%@ Import Namespace="System.Collections.Generic" %>
-<asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader"></asp:Content>
+<%@ Register src="~/Control/comment.ascx" tagname="comment" tagprefix="uc1" %>
+<asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader">
+
+</asp:Content>
 <asp:Content ContentPlaceHolderID="ContentMain" runat="server">
 <div class="main">
 <div class="channel">
@@ -16,62 +19,14 @@
    { %>
 	<p align="center"><img src="<%=CurrentNews.LImage%>" alt="" /></p>
 	<%} %>
-
+    <p><uc1:comment ID="comment1"  runat="server" /></p>
 <div class="next-prev">
 <%for(int i=0;i<NextPrev.Count;i++){
       News news = NextPrev[i];%>
     <p><%if( news.NewsId > CurrentNews.NewsId){%>上一条<%}else{ %>下一条<%} %> ：<a href="/news/d/<%= news.NewsId%>.html"><%= news.Title%></a> &nbsp;&nbsp; <%= news.PublishDate.ToString("yyyy-MM-dd")%></p>
     <%} %>
 </div>
-    <div class="comments-area">
-            <div class="comments-control">
-                <a href="#" id="btnComments">我也要说两句</a> <a href="/news/c/<%=CurrentNews.NewsId%>.html">评论（<%=CommentsCount%>）</a> </div>
-           <div class="input-area clearfix" style="display:none">
-                <textarea></textarea>
-                <button>
-                    发表</button>
-            </div>
-        </div>
     
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $("#btnComments").click(function() {
-                if ($("#btnLogin").length > 0) {
-                    $("#btnLogin").click();
-                    return false;
-                } else {
-                   $(".input-area").show();
-                   return false;
-                }
-            });
-            $(".input-area button").click(function() {
-                var str = $(".input-area textarea").val();
-                if(str.length < 10) {
-                    alert("评论内容过短");
-                    return;
-                }
-                $.ajax({
-                    contentType: "application/json",
-                    url: "/svc/comments.svc/create",
-                    data: JSON2.stringify({ content: str, id: <%=CurrentNews.NewsId %>, type: <%=(int)ObjectTypeDefine.News %> }),
-                    type: "POST", processData: false,
-                    dataType:"json",
-                    success:function(response){
-                        if(response.d>0){
-                            alert("发送成功");
-                            $(".input-area textarea").val("");
-                        }else if(response.d==-1){
-                            alert("请先登录");
-                        }else if(response.d==0){
-                            alert("发送失败，请联系管理员");
-                        }else{
-                            alert(JSON2.stringify(response));
-                        }
-                    }
-                })
-            });
-        });
-    </script>
 <asp:Repeater ID="repList" OnItemDataBound="repList_ItemDataBound" runat="server">
      <HeaderTemplate>
      <ul class="news-list">
@@ -227,6 +182,10 @@
             SetTitle();
             BindNews();
         }
+        comment1.ObjectId = NewsId;
+        comment1.ObjectType = (int)ObjectTypeDefine.News;
+        comment1.CommentsCount = CommentsCount;
+        comment1.CommentUrl = "/news/c/" + NewsId + ".html";
         
     }
     
