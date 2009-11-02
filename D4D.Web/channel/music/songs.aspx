@@ -2,13 +2,8 @@
 <%@ Import Namespace="D4D.Platform.Domain" %>
 <%@ Import Namespace="System.Collections.Generic" %>
 <%@ Import Namespace="System.Linq" %>
+<%@ Register src="~/Control/comment.ascx" tagname="comment" tagprefix="uc1" %>
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader">
-</asp:Content>
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentMain" runat="server">
-  <%if (false)
-  { %>
-   <script type="text/javascript" src="../../static/js/jquery-1.3.2.js"></script>
-<%} %>
 <style type="text/css">
 .album-desc{border:1px solid #d3d3d3;_height:170px; min-height:170px; width:580px; padding:15px;}
 .album-desc p{ padding-left:185px;line-height:20px;}
@@ -25,9 +20,16 @@
 .slider .jCarouselLite{ width:131px; height:440px; padding-top:5px;}
 .slider ul{width:131px; height:440px; overflow:hidden; text-align:center; line-height:26px;}
 .slider ul li img{ background:url(/static/images/music/cd.gif); padding:1px 8px 2px 6px; width:60px; height:60px;}
+
  </style>
  <script src="/static/js/AC_OETags.js" type="text/javascript"></script>
 <script src="/static/js/jcarousellite_1.0.1.pack.js" type="text/javascript"></script>
+</asp:Content>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentMain" runat="server">
+  <%if (false)
+  { %>
+   <script type="text/javascript" src="../../static/js/jquery-1.3.2.js"></script>
+<%} %>
 <div class="sub-title">
   <p class="title">音乐</p>
   <p class="nav-link">您的位置：首页 > 音乐 ><%=Music.Title %></p>
@@ -117,59 +119,10 @@
 	}
 </script>  
 </div>
-    <div style="padding-top:50px; width:580px;">
-    <div class="comments-area" style="width:580px">
-            <div class="comments-control">
-                <a href="#" id="btnComments">我也要说两句</a> <a href="/music/b<%=Music.BandId %>/c/<%=MusicId%>.html">评论（<%=CommentsCount%>）</a>
-            </div>
-           <div class="input-area" style="display:none">
-                <textarea></textarea>
-                <button>
-                    发表</button>
-            </div>
-        </div>
-    
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $("#btnComments").click(function() {
-                if ($("#btnLogin").length > 0) {
-                    $("#btnLogin").click();
-                    return false;
-                } else {
-                   $(".input-area").show();
-                   return false;
-                }
-            });
-            $(".input-area button").click(function() {
-                var str = $(".input-area textarea").val();
-                if(str.length < 10) {
-                    alert("评论内容过短");
-                    return;
-                }
-                $.ajax({
-                    contentType: "application/json",
-                    url: "/svc/comments.svc/create",
-                    data: JSON2.stringify({ content: str, id: <%=MusicId %>, type: <%=(int)ObjectTypeDefine.MusicTitle %> }),
-                    type: "POST", processData: false,
-                    dataType:"json",
-                    success:function(response){
-                        if(response.d>0){
-                            alert("发送成功");
-                            $(".input-area textarea").val("");
-                        }else if(response.d==-1){
-                            alert("请先登录");
-                        }else if(response.d==0){
-                            alert("发送失败，请联系管理员");
-                        }else{
-                            alert(JSON2.stringify(response));
-                        }
-                    }
-                })
-            });
-        });
-    </script>
+    <div style="width:600px; padding-top:20px;">
+        <uc1:comment ID="comment1"  runat="server" />
     </div>
-	</div>
+</div>
 <script type="text/javascript">
     $(function() {
         $(".slider .jCarouselLite").jCarouselLite({
@@ -288,6 +241,10 @@
     {
         BindSongList();
 		BindMusicTitleRep();
+        comment1.ObjectId = MusicId;
+        comment1.ObjectType = (int)ObjectTypeDefine.MusicTitle;
+        comment1.CommentsCount = CommentsCount;
+        comment1.CommentUrl = "/music/b"+Music.BandId+"/c/"+MusicId+".html";
     }
 
    

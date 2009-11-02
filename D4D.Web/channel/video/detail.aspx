@@ -2,6 +2,7 @@
 <%@ Import Namespace="D4D.Platform.Domain" %>
 <%@ Import Namespace="D4D.Platform" %>
 <%@ Import Namespace="System.Collections.Generic" %>
+<%@ Register src="~/Control/comment.ascx" tagname="comment" tagprefix="uc1" %>
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader"></asp:Content>
 <asp:Content ContentPlaceHolderID="ContentMain" runat="server">
 <div class="sub-title">
@@ -22,57 +23,10 @@
 	</div>
     <div style="width:690px; margin:20px auto;">
 	<%=GetTagHtml(CurrentNews.NewsId)%>
+    <uc1:comment ID="comment1"  runat="server" />
     </div>
-    <div class="comments-area">
-            <div class="comments-control">
-                <a href="#" id="btnComments">我也要说两句</a> <a href="/video/c/<%=CurrentNews.NewsId %>.html">评论（<%=CommentsCount %>）</a>
-            </div>
-           <div class="input-area clearfix" style="display:none">
-                <textarea></textarea>
-                <button>
-                    发表</button>
-            </div>
-        </div>
     </div>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $("#btnComments").click(function() {
-                if ($("#btnLogin").length > 0) {
-                    $("#btnLogin").click();
-                } else {
-                   $(".input-area").show();
-                   return false;
-                }
-            });
-            $(".input-area button").click(function() {
-                var str = $(".input-area textarea").val();
-                if(str.length < 10) {
-                    alert("评论内容过短");
-                    return;
-                }
-                $.ajax({
-                    contentType: "application/json",
-                    url: "/svc/comments.svc/create",
-                    data: JSON2.stringify({ content: str, id: <%=CurrentNews.NewsId %>, type: <%=(int)ObjectTypeDefine.Video %> }),
-                    type: "POST", processData: false,
-                    dataType:"json",
-                    success:function(response){
-                        if(response.d>0){
-                            alert("发送成功");
-                            $(".input-area textarea").val("");
-                            location.reload();
-                        }else if(response.d==-1){
-                            alert("请先登录");
-                        }else if(response.d==0){
-                            alert("发送失败，请联系管理员");
-                        }else{
-                            alert(JSON2.stringify(response));
-                        }
-                    }
-                })
-            });
-        });
-    </script>
+    
 </asp:Content>
 
 <script runat="server">
@@ -214,7 +168,10 @@
         {
             BindNews();
         }
-        
+        comment1.ObjectId = NewsId;
+        comment1.ObjectType = (int)ObjectTypeDefine.Video;
+        comment1.CommentsCount = CommentsCount;
+        comment1.CommentUrl = "/video/c/" + NewsId + ".html";
     }
     
     private const string TitleFormat = "{0}新闻";
