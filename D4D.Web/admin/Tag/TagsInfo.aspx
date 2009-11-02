@@ -148,7 +148,7 @@
         System.Collections.Generic.IList<Tag> list  =  D4DGateway.TagsProvider.GetPagedTags(pager);
         repList.DataSource = list;
         repList.DataBind();
-
+        totalCount = pager.TotalRecordCount;
 
     }
 

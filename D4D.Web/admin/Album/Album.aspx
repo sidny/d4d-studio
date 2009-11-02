@@ -19,7 +19,7 @@
                       <th>相册名称</th>
                       <th>小图</th>
                       <th>发布状态</th>
-                      <th>添加日期</th>
+                      <th>发布日期</th>
                       <th>TotalCount</th>
                       <th style="width: 30px;">修改</th>
                       <th style="width: 30px;">删除</th>
@@ -31,7 +31,7 @@
                       <td><asp:HyperLink ID="litTitle" runat="server"></asp:HyperLink></td>
                       <td><asp:Image ID="litSImage" runat="server"></asp:Image></td>
                       <td><asp:CheckBox ID="litStatus" runat="server"></asp:CheckBox></td>
-                      <td><asp:Literal ID="litAddDate" runat="server"></asp:Literal></td>
+                      <td><asp:Literal ID="litPublishDate" runat="server"></asp:Literal></td>
                       <td><asp:Literal ID="litTotalCount" runat="server"></asp:Literal></td>
                       <td style="width: 30px;"><asp:Button ID="btnUpdate" runat="server" OnClick="btnUpdate_Click" Text="修改" /></td>
                       <td style="width: 30px;"><asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click"  Text="删除" /> </td>
@@ -63,9 +63,9 @@
                      <th width="100">歌手</th>
                       <td><asp:DropDownList ID="txtBandId" runat="server"></asp:DropDownList></td>
                     </tr>
-                      <tr style="display:none">
-                     <th width="100">日期</th>
-                      <td><asp:TextBox ID="txtPublishDate" runat="server"></asp:TextBox></td>
+                      <tr>
+                     <th width="100">发布日期</th>
+                      <td><asp:TextBox ID="txtPublishDate" runat="server" CssClass="has-datepicker"></asp:TextBox></td>
                     </tr>
                       <tr>
                      <th width="100">小图 (150 * 100)</th>
@@ -171,6 +171,7 @@
         System.Collections.Generic.IList<Album> list = D4DGateway.AlbumProvider.GetPagedAlbums(pager, PublishStatus.ALL);
         repList.DataSource = list;
         repList.DataBind();
+        totalCount = pager.TotalRecordCount;
 
 
     }
@@ -234,7 +235,7 @@
             HyperLink litTitle = e.Item.FindControl("litTitle") as HyperLink;
             System.Web.UI.WebControls.Image litSImage = e.Item.FindControl("litSImage") as System.Web.UI.WebControls.Image;
             CheckBox litStatus = e.Item.FindControl("litStatus") as CheckBox;
-            Literal litAddDate = e.Item.FindControl("litAddDate") as Literal;
+            Literal litPublishDate = e.Item.FindControl("litPublishDate") as Literal;
             Literal litTotalCount = e.Item.FindControl("litTotalCount") as Literal;
 
             litId.Text = m.AlbumId.ToString();
@@ -243,7 +244,7 @@
             litSImage.ImageUrl = m.SImage.ToString();
             litStatus.Checked = (m.Status == PublishStatus.Publish);
             litStatus.Enabled = false;
-            litAddDate.Text = m.AddDate.ToLongDateString();
+            litPublishDate.Text = m.PublishDate.ToLongDateString();
             litTotalCount.Text = m.TotalCount.ToString();
         }
     }

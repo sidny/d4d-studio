@@ -30,7 +30,7 @@
                       <th>图片名称</th>
                       <th>小图</th>
                       <th>发布状态</th>
-                      <th>上传时间</th>
+                      <th>发布时间</th>
                       <th style="width: 30px;">修改</th>
                       <th style="width: 30px;">删除</th>
                     </tr>
@@ -41,7 +41,7 @@
                       <td><asp:Literal ID="litImageName" runat="server"></asp:Literal></td>
                       <td><asp:Image ID="litSImageFile" runat="server"></asp:Image></td>
                       <td><asp:CheckBox ID="litStatus" runat="server"></asp:CheckBox></td>
-                      <td><asp:Literal ID="LitAddDate" runat="server"></asp:Literal></td>
+                      <td><asp:Literal ID="LitPublishDate" runat="server"></asp:Literal></td>
                       <td style="width: 30px;"><asp:Button ID="btnUpdate" runat="server" OnClick="btnUpdate_Click" Text="修改" /></td>
                       <td style="width: 30px;"><asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click"  Text="删除" /> </td>
                     </tr>
@@ -252,7 +252,8 @@
         System.Collections.Generic.IList<D4D.Platform.Domain.Image> list  =  D4DGateway.AlbumProvider.GetImagesByAlbumId(AlbumId,PublishStatus.ALL);
         repList.DataSource = list;
         repList.DataBind();
-
+        if (list!=null)
+             totalCount = list.Count;
 
     }
 
@@ -309,14 +310,14 @@
             Literal litImageName = e.Item.FindControl("litImageName") as Literal;
             System.Web.UI.WebControls.Image litSImageFile = e.Item.FindControl("litSImageFile") as System.Web.UI.WebControls.Image;
             CheckBox litStatus = e.Item.FindControl("litStatus") as CheckBox;
-            Literal litAddDate = e.Item.FindControl("litAddDate") as Literal;
+            Literal LitPublishDate = e.Item.FindControl("LitPublishDate") as Literal;
             
             litId.Text = m.ImageId.ToString();
             litImageName.Text = m.ImageName;
             litSImageFile.ImageUrl = m.SImageFile.ToString();
             litStatus.Checked = (m.Status == PublishStatus.Publish);
             litStatus.Enabled = false;
-            litAddDate.Text = m.AddDate.ToLongDateString();
+            LitPublishDate.Text = m.PublishDate.ToLongDateString();
         }
     }
 
