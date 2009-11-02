@@ -53,6 +53,8 @@ namespace D4D.Web.svc
         public int Create(string content,int id, int type )
         {
             if (Helper.AdminHelper.CurrentUser == null) return -1;
+            if (Helper.AdminHelper.CurrentUser.UserType.Trim() ==
+                ((int)UserType.Type.Rejected).ToString()) return -2;
             if (string.IsNullOrEmpty(content) || id == null || type == null) return 0;
             try
             {

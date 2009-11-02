@@ -45,7 +45,8 @@ namespace LTP.Accounts.Bus
         public enum Type
         {
             Admin =1,
-            Guest = 2
+            Guest = 2,
+            Rejected = 3
         }
     }
 }

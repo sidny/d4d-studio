@@ -56,6 +56,7 @@ namespace Maticsoft.Web.Accounts
 					
 
 					this.dropStyle.SelectedIndex=currentUser.Style-1;
+                    this.dropType.SelectedValue = currentUser.UserType.Trim();
 
 					AccountsPrincipal user=new AccountsPrincipal(userid);
 					BindRoles(user);
@@ -131,6 +132,7 @@ namespace Maticsoft.Web.Accounts
 				currentUser.Sex="Ů";
 			currentUser.Phone=this.txtPhone.Text.Trim();
 			currentUser.Email=txtEmail.Text.Trim();
+            currentUser.UserType = dropType.SelectedValue;
             //currentUser.EmployeeID=0;
             //currentUser.DepartmentID=this.Dropdepart.SelectedValue;			          
 			int style=int.Parse(this.dropStyle.SelectedValue);
@@ -142,7 +144,7 @@ namespace Maticsoft.Web.Accounts
 			}
 			else 
 			{
-				Response.Redirect("/Admin/useradmin.aspx");
+				Response.Redirect("/Admin/accounts/useradmin.aspx");
 			}			
 		}
 
