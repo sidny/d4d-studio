@@ -31,7 +31,7 @@
     .content .music dd a{ display:block; margin:0 auto;}
     .content .music dd a.cd img{ border:1px solid #c5c5c5; background:#ebebeb; padding:2px; }
     .content .music dd a.cd-title{ margin-top:10px;}
-    .content .photo dd{ float:left; padding-right:7px; padding-bottom:8px; height:58px; width:85px;}
+    .content .photo dd{ float:left; padding-right:7px; padding-bottom:8px; height:58px; width:85px; overflow:hidden;}
     .content .photo dd a img{ border:2px solid #c5c5c5; width:81px; height:54px;}
     .content .photo dd a:hover img{ border:2px solid red;}
 	.svw { text-align:center; padding-top:100px;background: #fff; position:relative;} 
