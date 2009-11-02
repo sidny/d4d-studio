@@ -3,6 +3,8 @@
 <%@ Import Namespace="D4D.Platform.Domain" %>
 <%@ Import Namespace="D4D.Platform" %>
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server">
+<meta name="Description" content="北京少城时代文化传播有限公司，是一家新晋成立的新锐演艺经纪公司，专业从事艺人经纪、唱片制作、歌手包装、艺人演出、宣传、广告、影视等业务领域" />
+    
   <style type="text/css">
     .content{ height:380px; padding:20px 0;}
     .content dt{ font-size:14px; font-weight:bold; font-family:"微软雅黑","黑体"; height:20px; margin-bottom:10px;}
@@ -148,7 +150,7 @@
         <dt>图片推荐</dt>
         <% foreach (Album item in AlbumList)
            { %>
-            <dd><a href="/photo/album/<%=item.AlbumId %>.html"><img alt="" src="<%=item.SImage %>" /></a></dd>
+            <dd><a href="/photo/album/<%=item.AlbumId %>.html"><img alt="" width="81" height="54" src="<%=item.SImage %>" /></a></dd>
         <%} %>
     </dl>
     </div>
