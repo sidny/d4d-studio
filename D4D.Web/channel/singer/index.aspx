@@ -41,6 +41,7 @@ dl, dd, dt {
 dt {
 	font-family:"微软雅黑", "黑体"; font-weight:bold; font-size:14px; border-bottom:1px solid #cbcbcb; height:24px; margin-top:10px;
 }
+
 .albumList { height:180px;}
 .videoList { height:180px;}
 .albumList dd{ float:left; width:150px; margin-right:20px; text-align:center}
@@ -146,7 +147,7 @@ dt {
       </div>
     </div>
     <div class="showList">
-      <dl>
+      <dl style="clear:both">
         <dt>星程</dt>
         <dd>
         <table width="690" border="0" cellspacing="6" cellpadding="0" class="calander">
