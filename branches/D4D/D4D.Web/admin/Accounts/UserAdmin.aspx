@@ -29,8 +29,9 @@
                                                 &nbsp;&nbsp; 快速查询：<asp:DropDownList ID="DropUserType" runat="server" AutoPostBack="True"
                                                     OnSelectedIndexChanged="DropUserType_SelectedIndexChanged">
                                                     <asp:ListItem Value="" Selected="True">全部用户</asp:ListItem>                                                   
-                                                    <asp:ListItem Value="AA">管理人员</asp:ListItem>
-                                                    <asp:ListItem Value="SC">普通用户</asp:ListItem>
+                                                    <asp:ListItem Value="1">管理人员</asp:ListItem>
+                                                    <asp:ListItem Value="2">普通用户</asp:ListItem>
+                                                    <asp:ListItem Value="3">禁言用户</asp:ListItem>
                                                 </asp:DropDownList>&nbsp;
                                                 <asp:Label ID="Label1" runat="server">用户名关键字：</asp:Label>
                                                 <asp:TextBox ID="TextBox1" runat="server" Width="100px" BorderStyle="Groove"></asp:TextBox>
@@ -90,7 +91,7 @@
                                             </asp:BoundColumn>
                                             <asp:BoundColumn DataField="Phone" ReadOnly="True" HeaderText="联系电话"></asp:BoundColumn>
                                             <asp:BoundColumn DataField="Email" ReadOnly="True" HeaderText="电子邮件"></asp:BoundColumn>
-                                            <asp:BoundColumn DataField="DepartmentID" HeaderText="所属公司"></asp:BoundColumn>
+                                            <asp:BoundColumn DataField="DepartmentID" HeaderText="所属公司" Visible="False"></asp:BoundColumn>
                                             <asp:TemplateColumn HeaderText="修改">
                                                 <HeaderStyle Width="30px"></HeaderStyle>
                                                 <ItemTemplate>

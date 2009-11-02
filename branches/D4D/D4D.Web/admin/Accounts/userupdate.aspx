@@ -67,7 +67,15 @@
 												</td>
 												<td height="22"><asp:textbox id="txtEmail" runat="server" Width="200px"></asp:textbox></td>
 											</tr>
-											
+											<tr>
+												<td style="HEIGHT: 5px" width="150" height="5"><div align="right">用户类型：</div>
+												</td>
+												<td style="HEIGHT: 5px" height="5"><asp:dropdownlist id="dropType" runat="server" Width="200px">
+														<asp:ListItem Value="1">管理员</asp:ListItem>
+														<asp:ListItem Value="2">普通用户</asp:ListItem>
+														<asp:ListItem Value="3">禁言用户</asp:ListItem>
+													</asp:dropdownlist></td>
+											</tr>
 											<tr>
 												<td style="HEIGHT: 5px" width="150" height="5"><div align="right">界面风格：</div>
 												</td>
