@@ -68,6 +68,24 @@ namespace D4D.Web
         }
         protected void Application_BeginRequest(Object sender, EventArgs e)
         {
+             HttpApplication app = (HttpApplication)sender;
+             if (app != null)
+             {
+                 HttpContext context = app.Context;
+                 if (context != null)
+                 {
+                     if (context.Request.Url.ToString().ToLower().IndexOf(".mp3") > 0)
+                     {
+                        bool bFromOtherSite = true;
+                        if (context.Request.UrlReferrer != null &&
+                            context.Request.UrlReferrer.ToString().ToLower().Contains("showcitytimes.net"))
+                            bFromOtherSite = false;
+
+                        if (bFromOtherSite)
+                            context.Response.Redirect("http://www.showcitytimes.net",true);
+                     }
+                 }
+             }
         }
         protected void Application_EndRequest(Object sender, EventArgs e)
         {
