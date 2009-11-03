@@ -241,6 +241,13 @@
     <Compile Include="Classes\Helper\AdminHelper.cs">
     </Compile>
     <Compile Include="Classes\Helper\Helper.cs" />
+    <Compile Include="Control\comment.ascx.cs">
+      <DependentUpon>comment.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Control\comment.ascx.designer.cs">
+      <DependentUpon>comment.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Control\menu.ascx.cs">
       <DependentUpon>menu.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
