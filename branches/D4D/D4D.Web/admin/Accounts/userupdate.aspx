@@ -41,8 +41,7 @@
 													<div align="right">真实姓名：</div>
 												</td>
 												<td height="22"><asp:textbox id="txtTrueName" runat="server" Width="200px"></asp:textbox></td>
-											</tr>
-											<!-- 
+											</tr> 
 											<tr>
 												<td width="150" height="22">
 													<div align="right">新密码：</div>
@@ -50,7 +49,6 @@
 												<td height="22"><asp:textbox id="txtPassword" runat="server" Width="200px" TextMode="Password"></asp:textbox></td>
 											</tr>
 											
-											-->
 											<tr>
 												<td align="right" width="150" height="22">用户性别：
 												</td>
@@ -101,7 +99,7 @@
 								<tr>
 									<td height="22">
 										<div align="center"><asp:button id="btnAdd" runat="server" Text="· 提交 ·" onclick="btnAdd_Click"></asp:button><FONT face="宋体">&nbsp;</FONT>
-											<input type="button" name="button1" value="· 返 回 ·" onclick="history.back()"></div>
+											<input type="button" name="button1" value="· 返 回 ·" onClick="history.back()"></div>
 									</td>
 								</tr>
 							</table>
