@@ -73,6 +73,19 @@
             return page;
         }
     }
+    protected int DateYear
+    {
+        get
+        {
+            string dateid = Request.QueryString["date"];
+            if (string.IsNullOrEmpty(dateid)) return 0;
+
+            int id = 0;
+
+            int.TryParse(dateid, out id);
+            return id;
+        }
+    }
     protected int BandId
     {
         get
@@ -101,13 +114,25 @@
         pager.CurrentPageNumber = pageIndex;
         if (BandId > 0)
         {
-            repMusicTitle.DataSource = D4D.Platform.D4DGateway.MusicProvider.GetPagedMusicTitlesByBandId(pager,
-               BandId, D4D.Platform.Domain.PublishStatus.Publish);
+            if (DateYear <= 1950)
+                repMusicTitle.DataSource = D4D.Platform.D4DGateway.MusicProvider.GetPagedMusicTitlesByBandId(pager,
+                   BandId, D4D.Platform.Domain.PublishStatus.Publish);
+            else
+            {
+                repMusicTitle.DataSource = D4D.Platform.D4DGateway.MusicProvider.GetPagedMusicTitlesByBandIdANDPublishYear(pager,
+                    BandId, DateYear, PublishStatus.Publish);
+            }
         }
         else
         {
-            repMusicTitle.DataSource = D4D.Platform.D4DGateway.MusicProvider.GetPagedMusicTitles(pager,
-                           D4D.Platform.Domain.PublishStatus.Publish);
+            if (DateYear <= 1950)
+                repMusicTitle.DataSource = D4D.Platform.D4DGateway.MusicProvider.GetPagedMusicTitles(pager,
+                               D4D.Platform.Domain.PublishStatus.Publish);
+            else
+            {
+                repMusicTitle.DataSource = D4D.Platform.D4DGateway.MusicProvider.GetPagedMusicTitlesByPublishYear(pager,
+                    DateYear, PublishStatus.Publish);
+            }
         }
         repMusicTitle.DataBind();
         totalCount = pager.TotalRecordCount;
