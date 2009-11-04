@@ -308,7 +308,7 @@ protected int PageIndex
     }
 	protected string GetExpireString(Object o)
     {
-        if (DateTime.Now > ((Show)o).EndDate)
+        if (DateTime.Now > ((Show)o).EndDate.AddDays(1))
         {
             return "<br/><font style=\"color:#bbb\">已过期</font>";
         }

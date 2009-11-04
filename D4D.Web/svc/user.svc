@@ -33,7 +33,7 @@ namespace D4D.Web.svc
         public bool CheckUserName(string username)
         {
             LTP.Accounts.Bus.User user = new LTP.Accounts.Bus.User();
-            return user.HasUser(username);
+            return user.HasUser(username.Trim());
         }
 
         [OperationContract]
