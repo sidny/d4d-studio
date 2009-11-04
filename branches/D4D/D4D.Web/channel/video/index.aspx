@@ -232,15 +232,25 @@
         pager.RecordsPerPage = PageSize;
         pager.CurrentPageNumber = pageIndex;
         List<News> resultList=null;
-        List<News> topResultList=null;
+     
         if (BandId < 0)
         {
-            resultList = D4DGateway.NewsProvider.GetPagedNews(pager, PublishStatus.Publish,NewsRemarkType.Video);
-            if (pageIndex <= 1)
+            if (TagId > 0)
             {
-                topResultList = D4DGateway.NewsProvider.GetTopImageNews(MaxTopCount,
-                     NewsRemarkType.Video);
+                resultList = D4DGateway.NewsProvider.GetPagedNewsByTag(pager, PublishStatus.Publish, TagId,
+                    NewsRemarkType.Video);
             }
+            else if (TagYear >= 1900 && TagMonth > 0 && TagMonth <= 12)
+            {
+                DateTime sTime = new DateTime(TagYear, TagMonth, 1);
+                DateTime eTime = sTime.AddMonths(1).AddDays(-1);
+
+                resultList = D4DGateway.NewsProvider.GetPagedNewsByPublishDate(pager,
+                  sTime, eTime, PublishStatus.Publish, NewsRemarkType.Video);
+            }
+            else
+                resultList = D4DGateway.NewsProvider.GetPagedNews(pager, PublishStatus.Publish,NewsRemarkType.Video);
+           
         }
         else
         {
