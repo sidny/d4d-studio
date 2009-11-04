@@ -34,7 +34,7 @@
             </td>
          </tr>
           <tr >
-            <th align="center" style="width: 30px;">视频</th>
+            <th align="center" style="width: 30px;">艺人演唱会</th>
             <td>
                 <asp:TextBox ID="txtVideo" TextMode="MultiLine" runat="server" Width="100%" 
                     Height="300px"></asp:TextBox>
