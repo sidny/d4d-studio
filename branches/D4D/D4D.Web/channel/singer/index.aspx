@@ -129,6 +129,7 @@ dt {
           <li class="TabbedPanelsTab" tabindex="0">历程</li>
           <li class="TabbedPanelsTab" tabindex="0">奖项</li>
           <li class="TabbedPanelsTab" tabindex="0">专辑</li>
+          <li class="TabbedPanelsTab" tabindex="0">演唱会</li>
         </ul>
         <div class="TabbedPanelsContentGroup">
           <div class="TabbedPanelsContent"><%=GetProfile(0)%></div>
@@ -144,6 +145,7 @@ dt {
             </a>
           </div>
         </div>
+        <div class="TabbedPanelsContent"> <%=GetProfile(3)%> </div>
       </div>
     </div>
     <div class="showList">

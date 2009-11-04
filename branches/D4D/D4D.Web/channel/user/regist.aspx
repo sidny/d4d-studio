@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage/Main.Master" %>
+﻿<%@ Page Language="C#" Debug="true" AutoEventWireup="true" MasterPageFile="~/MasterPage/Main.Master" %>
 
 <%@ Import Namespace="D4D.Platform.Domain" %>
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader">
@@ -277,35 +277,40 @@
             string password = Request["password"];
             string email = Request["email"];
             int userid = 0;
-            try
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+                return;
+            else
             {
-                LTP.Accounts.Bus.User newUser = new LTP.Accounts.Bus.User();
-                newUser.UserName = username;
-                //newUser.Password=AccountsPrincipal.EncryptPassword(txtPassword.Text);
-                newUser.NonEncryptPasswordPassword = password;
-                newUser.TrueName = username;
-                newUser.Email = email;
-                newUser.Sex = "";
-                newUser.Phone = "";
-                newUser.EmployeeID = 0;
-                //newUser.DepartmentID=this.Dropdepart.SelectedValue;
-                newUser.Activity = true;
-                newUser.UserType = ((int)LTP.Accounts.Bus.UserType.Type.Guest).ToString();
-                newUser.Style = 1;
-                userid = newUser.Create();
-                if (userid > 0)
+                try
                 {
-                    sucPanel.Visible = true;
-                    regPanel.Visible = false;
-                    LTP.Accounts.Bus.User currentUser = new LTP.Accounts.Bus.User(userid);
-                    HttpContext.Current.Session["UserInfo"] = currentUser;
-                    HttpContext.Current.Session["Style"] = currentUser.Style;
-                    System.Web.Security.FormsAuthentication.SetAuthCookie(currentUser.UserName,false);
+                    LTP.Accounts.Bus.User newUser = new LTP.Accounts.Bus.User();
+                    newUser.UserName = username.Trim();
+                    //newUser.Password=AccountsPrincipal.EncryptPassword(txtPassword.Text);
+                    newUser.NonEncryptPasswordPassword = password.Trim();
+                    newUser.TrueName = username.Trim();
+                    newUser.Email = email.Trim();
+                    newUser.Sex = "";
+                    newUser.Phone = "";
+                    newUser.EmployeeID = 0;
+                    //newUser.DepartmentID=this.Dropdepart.SelectedValue;
+                    newUser.Activity = true;
+                    newUser.UserType = ((int)LTP.Accounts.Bus.UserType.Type.Guest).ToString();
+                    newUser.Style = 1;
+                    userid = newUser.Create();
+                    if (userid > 0)
+                    {
+                        sucPanel.Visible = true;
+                        regPanel.Visible = false;
+                        LTP.Accounts.Bus.User currentUser = new LTP.Accounts.Bus.User(userid);
+                        HttpContext.Current.Session["UserInfo"] = currentUser;
+                        HttpContext.Current.Session["Style"] = currentUser.Style;
+                        System.Web.Security.FormsAuthentication.SetAuthCookie(currentUser.UserName, false);
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                log4net.LogManager.GetLogger("d4d").Error(ex);
+                catch (Exception ex)
+                {
+                    log4net.LogManager.GetLogger("d4d").Error(ex);
+                }
             }
         }    
 </script>
