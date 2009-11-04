@@ -49,10 +49,11 @@
                                    if (ImageId == item.ImageId)
                                    {
                                        startIndex = i;
+                                       
                                    }
                  %>
                             <li><a href="<%=item.ImageFile%>">
-                                <img src="<%=item.SImageFile%>" title="<%=item.ImageName%>" longdesc="<%=item.AddDate.ToLongDateString()%>"
+                                <img src="<%=item.SImageFile%>" title="<%=HttpUtility.HtmlEncode(item.ImageName)%>" longdesc="<%=CurrentAlbum.PublishDate.ToLongDateString()%>"
                                     class="image<%=i+1 %>">
                             </a></li>
                             <%} %>
