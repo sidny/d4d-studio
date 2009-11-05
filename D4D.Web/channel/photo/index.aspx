@@ -18,7 +18,7 @@
                 <ItemTemplate>
                 <li>
                   <p class="bg"><a href="/photo/album/<%#((Album)Container.DataItem).AlbumId %>.html"><img width="150" height="100" src="<%#((Album)Container.DataItem).SImage%>" alt="" /></a></p>
-                  <p><a href="/photo/album/<%#((Album)Container.DataItem).AlbumId %>.html"><%#((Album)Container.DataItem).Title %></a></p>
+                  <p><%#GetNewImage((Album)Container.DataItem) %><a href="/photo/album/<%#((Album)Container.DataItem).AlbumId %>.html"><%#((Album)Container.DataItem).Title %></a></p>
                   <p><a href="/photo/album/<%#((Album)Container.DataItem).AlbumId %>.html" style="color: red"><%#((Album)Container.DataItem).TotalCount %>张</a> | <%#((Album)Container.DataItem).PublishDate.ToString("yyyy-MM-dd")%></p>
                  </li>
                 </ItemTemplate>
@@ -168,6 +168,13 @@
             return coll;
 
         }
+    }
+    protected string GetNewImage(Album n)
+    {
+        if (DateTime.Now > n.PublishDate.AddDays(7))
+            return "";
+        else
+            return "<img src=\"/static/images/new.gif\"> ";
     }
 </script>
 

@@ -12,7 +12,7 @@
         <ItemTemplate>
             <li>            
             <p class="pic"><a href="<%#GetUrl(((MusicTitle)Container.DataItem).MusicId,2) %>"><img src="<%#((MusicTitle)Container.DataItem).LImage %>" width="60" height="60" /></a></p>
-            <p class="text"><a href="<%#GetUrl(((MusicTitle)Container.DataItem).MusicId,2) %>">
+            <p class="text"><%#GetNewImage((MusicTitle)Container.DataItem)%><a href="<%#GetUrl(((MusicTitle)Container.DataItem).MusicId,2) %>">
             <%#((MusicTitle)Container.DataItem).Title %></a> 
                <br />
                歌手：<%#GetBandName(((MusicTitle)Container.DataItem).BandId)%>
@@ -176,6 +176,13 @@
             if(band!=null)
                  s = band.BandName;
             return s;
+    }
+    protected string GetNewImage(MusicTitle m)
+    {
+        if (DateTime.Now > m.PublishDate.AddDays(7))
+            return "";
+        else
+            return "<img src=\"/static/images/new.gif\" align=\"absmiddle\"> ";
     }
 </script>
 

@@ -1,10 +1,11 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/admin/Admin.Master" %>
+<%@ Import Namespace="System.Linq"%>
 <%@ Import Namespace="D4D.Platform"%>
 <%@ Import Namespace="D4D.Platform.Domain" %>
 <%@ Import Namespace="LTP.Accounts.Bus"%>
 <%@ Register src="../Controls/FileUpload.ascx" tagname="FileUpload" tagprefix="uc1" %>
 <asp:Content ContentPlaceHolderID="head" runat="server">
-    
+    <script type="text/javascript" src="/static/js/jquery.autocomplete.js"></script>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="ContentBody" runat="server">
 <form runat="server" id="form1">
@@ -89,6 +90,64 @@
                     </tr>
                     </table>
            </div>
+           <script type="text/javascript">
+
+               $(document).ready(function() {
+                   window.selectTags = {};
+                   $("#<%=txtTags.ClientID %>").after("<input class=\"has-autocomplete\" /><div id='tagsArea' style=\"line-height:21px;padding-top:5px;\"/>")
+                   $($("#<%=txtTags.ClientID %>").attr("readonly", "readonly").hide().val().split(",")).each(function() {
+                       selectTags[this] = this;
+                   });
+                   $.getJSON("/svc/admin.svc/GetTag", function(response) {
+                       window.tags = response.d;
+                       $(tags).each(function() {
+                           if (selectTags[this.Id]) {
+                               delete selectTags[this.Id];
+                               addItem(this);
+                           }
+                       });
+                       $(".has-autocomplete").autocomplete(tags, {
+                           minChars: 1,
+                           width: 100,
+                           // matchContains: "word,number",
+                           autoFill: false,
+                           formatItem: function(row, i, max) {
+                               return row.Text;
+                           },
+                           formatMatch: function(row, i, max) {
+                               return row.Text;
+                           },
+                           formatResult: function(row) {
+                               return "";
+                           }
+                       }).result(function(event, item) {
+                           addItem(item);
+                           return false;
+                       });
+                       function addItem(item) {
+                           if (!selectTags[item.Id]) {
+                               selectTags[item.Id] = item;
+                               var str = "<span style='padding:5px;' tagid=\"" + item.Id + "\"><u>" + item.Text + "</u></span>";
+                               $("#tagsArea").append(
+                            $(str).click(function() {
+                                delete selectTags[$(this).attr("tagid")];
+                                $(this).remove();
+                                fillValue();
+                            })
+                            );
+                               fillValue();
+                           }
+                       }
+                       function fillValue() {
+                           var a = [];
+                           for (var i in selectTags) {
+                               a.push(i);
+                           }
+                           $("#<%=txtTags.ClientID %>").val(a.join(","));
+                       }
+                   });
+               });
+				</script>
             </asp:Panel>
 </form>
 <script type="text/javascript">
@@ -199,7 +258,8 @@
             if (int.TryParse(litID.Text, out id))
             {
                  Album m = D4DGateway.AlbumProvider.GetAlbum(id);
-                 DrawAddPanel(m);
+                 System.Collections.Generic.List<TagRelation> list = D4DGateway.TagsProvider.GetTagRelationByObject(id, ObjectTypeDefine.Album);
+                 DrawAddPanel(m, list);
                 btnAdd.Text = "更新";
                 addPanel.Visible = true;
             }
@@ -218,6 +278,7 @@
             if (int.TryParse(litID.Text, out id))
             {
                 D4DGateway.AlbumProvider.DeleteAlbum(id);
+                D4DGateway.TagsProvider.DeleteTagRelationByObject(id, ObjectTypeDefine.Album);
                 BindList();
             }
         }
@@ -270,7 +331,28 @@
         item.AddUserID = D4D.Web.Helper.AdminHelper.CurrentUser.UserID;
         item.BandId =Convert.ToInt32( txtBandId.SelectedValue);
         int result = D4DGateway.AlbumProvider.SetAlbum(item);
-     
+
+        D4DGateway.TagsProvider.DeleteTagRelationByObject(result, ObjectTypeDefine.Album);
+        if (txtTags.Text.Length > 0)
+        {
+            string[] tags = txtTags.Text.Split(',');
+            foreach (string s in tags)
+            {
+                int i = 0;
+                int.TryParse(s, out i);
+                if (i > 0)
+                {
+                    D4DGateway.TagsProvider.SetTagRelation(new TagRelation()
+                    {
+                        TagId = i,
+                        AddDate = DateTime.Now,
+                        AddUserID = D4D.Web.Helper.AdminHelper.CurrentUser.UserID,
+                        ObjectId = result,
+                        ObjectType = ObjectTypeDefine.Album
+                    });
+                }
+            }
+        }
         addPanel.Visible = false;
 
         BindList();
@@ -282,8 +364,11 @@
         addPanel.Visible = true;
         btnAdd.Text = "添加";
     }
-
     private void DrawAddPanel(Album item)
+    {
+        DrawAddPanel(item, new System.Collections.Generic.List<TagRelation>());
+    }
+    private void DrawAddPanel(Album item,System.Collections.Generic.List<TagRelation> list)
     {
         if (item == null) item = new Album();
         txtAlbumId.Value = item.AlbumId.ToString(); 
@@ -296,6 +381,11 @@
         txtSImage.UploadResult = item.SImage;
         txtStatus.Checked = (item.Status == PublishStatus.Publish);
         txtTitle.Text = item.Title;
+        txtTags.Text = "";
+        txtTags.Text = String.Join(",", (from i in list
+                                         select i.TagId.ToString()).ToArray());
+        
+        
     }
 
     </script>
