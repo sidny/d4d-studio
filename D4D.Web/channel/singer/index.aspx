@@ -171,7 +171,7 @@ dt {
       <div align="right">>><a href="/calender/b<%=BandId%>/d<%=DateTime.Now.ToString("yyyyMM")%>.html">查看更多星程</a></div>
       </div>
       <div class="albumList clearfix">
-        <div class="more">>><a href="/music/b<%=BandId%>.html">查看更多相册</a></div>
+        <div class="more">>><a href="/photo/<%=BandId%>.html">查看更多相册</a></div>
         <dl>
           <dt>相册</dt>
           <% foreach (Album item in AlbumList)
