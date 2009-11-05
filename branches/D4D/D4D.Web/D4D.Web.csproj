@@ -1138,6 +1138,7 @@
     <Content Include="static\images\music\cd.gif" />
     <Content Include="static\images\music\next.gif" />
     <Content Include="static\images\music\prev.gif" />
+    <Content Include="static\images\new.gif" />
     <Content Include="static\images\player.swf" />
     <Content Include="static\images\music\sound_mute.png" />
     <Content Include="static\images\music\sound_none.png" />
