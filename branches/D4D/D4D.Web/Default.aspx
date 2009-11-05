@@ -75,15 +75,17 @@
 </div>
 <div class="content">
     <div class="clearfix" style="height:190px;">
-    <dl class="show">
-       <dt class="line">最近星程</dt>
+      <dl class="show">
+        <dt class="line">最近星程</dt>
         <% foreach (Show item in ShowList)
            { %>
-            <dd class="dash"><label><%=item.ShowDate.ToString("MM/dd") %></label><a href="/calender/d<%=item.ShowDate.ToString("yyyyMMdd") %>.html"><%=GetSubString(item.Title,11) %></a></dd>
+        <dd class="dash">
+          <label><%=item.ShowDate.ToString("MM/dd") %></label>
+          <a href="/calender/d<%=item.ShowDate.ToString("yyyyMMdd") %>.html"><%=GetSubString(item.Title,11) %></a></dd>
         <%} %>
-    </dl>
-    <dl class="news">
-        <dt class="line">星闻动态</dt>
+      </dl>
+      <dl class="news">
+      <dt class="line">星闻动态</dt>
          <% for (int i = 0 ;i<NewsList.Count;i++)
            { News item  = NewsList[i]; %>
             
@@ -91,7 +93,7 @@
                  { %><dd class="title">
                     <%if (!String.IsNullOrEmpty(item.SImage))
                       {%>
-                    <p class="image"><img height="60" width="100" src="<%=item.SImage %>" /></p>
+                    <p class="image"><img height="60" width="70" src="<%=item.SImage %>" /></p>
                     <%} %>
                     <p><a href="/news/d/<%=item.NewsId %>.html"><%=GetSubString(item.Title, 18)%></a><label><%=item.AddDate.ToString("yyyy-MM-dd") %></label></p>
                     <p style="line-height:20px; padding-top:5px;"><%=GetSubString(item.Preview, 50)%></p>
