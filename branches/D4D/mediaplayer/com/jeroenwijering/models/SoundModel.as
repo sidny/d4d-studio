@@ -11,6 +11,7 @@ import com.jeroenwijering.player.Model;
 import flash.events.*;
 import flash.media.*;
 import flash.net.URLRequest;
+import flash.net.URLRequestMethod;
 import flash.utils.*;
 
 
@@ -79,7 +80,11 @@ public class SoundModel extends AbstractModel {
 		sound = new Sound();
 		sound.addEventListener(IOErrorEvent.IO_ERROR,errorHandler);
 		sound.addEventListener(Event.ID3,id3Handler);
-		sound.load(new URLRequest(item['file']),context);
+		var _request:URLRequest = new URLRequest(item['file']);
+		// fix firefox no referer issue , need mp3 server rewrite post to get;
+		_request.method = URLRequestMethod.POST;
+		_request.data = "from=" + model.config['referer'];
+		sound.load(_request,context);
 		play();
 		if(item['start'] > 0) {
 			seek(item['start']);
