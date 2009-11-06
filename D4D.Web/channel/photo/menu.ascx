@@ -37,12 +37,12 @@
           int month = 12;
           if (CurrentSelectYear == DateTime.Now.Year)
               month = DateTime.Now.Month;
-           %><a href="/photo/album/0.html?id=<%=BandId %>&year=<%=n %>&month=<%=month %>" <%=(CurrentSelectYear==n)?"class=\"on\"":"" %>><%=n%>年</a><%} %>
+           %><a href="/photo/<%=BandId %>.html?year=<%=n %>&month=<%=month %>" <%=(CurrentSelectYear==n)?"class=\"on\"":"" %>><%=n%>年</a><%} %>
     </dt>
     <dd><% 
           int length = (CurrentSelectYear == DateTime.Now.Year) ? DateTime.Now.Month : 12;
           for (int n = length; n > 0; n--)
-          {%><a href="/photo/album/0.html?id=<%=BandId %>&year=<%=CurrentSelectYear %>&month=<%=n %>" <%=(n == CurrentSelectMonth)?"class=\"on\"":"" %>>
+          {%><a href="/photo/<%=BandId %>.html?year=<%=CurrentSelectYear %>&month=<%=n %>" <%=(n == CurrentSelectMonth)?"class=\"on\"":"" %>>
           <%=((n < 10) ? "0" : "") + n.ToString()%>月</a><% }%>
     </dd>
     </dl>
@@ -123,14 +123,17 @@
                          orderby p.Key descending
                          select p.Key).ToList();
     }
-    
+    protected const string AlbumLinkFormat = "/photo/{0}.html{1}";
     protected string GetTagStr(Tag t)
     {
-        string link ="/photo/album/0.html";
+        string link =string.Empty;
         if (BandId != -1)
-            link += "?id=" + BandId.ToString() + "&tagid=" + t.TagId.ToString() + "&tag=" + HttpUtility.UrlEncode(t.TagName);
+            link = string.Format(AlbumLinkFormat,BandId,"?tagid=" + t.TagId.ToString() + "&tag=" + HttpUtility.UrlEncode(t.TagName));
+           // link += "?id=" + BandId.ToString() + "&tagid=" + t.TagId.ToString() + "&tag=" + HttpUtility.UrlEncode(t.TagName);
         else
-            link += "?tagid=" + t.TagId.ToString() + "&tag=" + HttpUtility.UrlEncode(t.TagName);
+            link = string.Format(AlbumLinkFormat, 0, "?tagid=" + t.TagId.ToString() + "&tag=" + HttpUtility.UrlEncode(t.TagName));
+         
+            //link += "?tagid=" + t.TagId.ToString() + "&tag=" + HttpUtility.UrlEncode(t.TagName);
         int length = tagsSortList.Count-1;
         if(length > 6) length = 6;
         int sort = length - tagsSortList.IndexOf(t.Hits);
