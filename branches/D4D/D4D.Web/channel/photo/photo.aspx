@@ -9,7 +9,7 @@
 
     <div class="main">
 <div class="channel">
-  <h1>È«²¿ÕÕÆ¬ / <font color="red"><asp:Literal ID="litTitle" runat="server"></asp:Literal></font></h1>
+  <h1>å…¨éƒ¨ç…§ç‰‡ / <font color="red"><asp:Literal ID="litTitle" runat="server"></asp:Literal></font></h1>
 </div>
 <div class="album_list">
 	
@@ -54,8 +54,8 @@
                     current_page: cur - 1,
                     num_edge_entries: 0,
                     link_to: href.replace(/page=\d+/ig, "page=__id__"),
-                    prev_text: "ÉÏÒ»Ò³",
-                    next_text: "ÏÂÒ»Ò³",
+                    prev_text: "ä¸Šä¸€é¡µ",
+                    next_text: "ä¸‹ä¸€é¡µ",
                     callback: function(id) {
                         return true;
                     }
@@ -170,7 +170,7 @@
             if (TagYear <= 1900) return string.Empty;
             if (TagMonth > 12 && TagMonth <= 0) return string.Empty;
 
-            return string.Format("{0}Äê{1}ÔÂ", TagYear, TagMonth);
+            return string.Format("{0}å¹´{1}æœˆ", TagYear, TagMonth);
         }
     }
     protected void Page_Load(object sender, EventArgs e)
@@ -181,7 +181,7 @@
             SetTitle();
         }
     }
-    private const string TitleFormat = "{0}Í¼Æ¬";
+    private const string TitleFormat = "{0}å›¾ç‰‡";
     private void SetTitle()
     {
         //check bandName
@@ -267,7 +267,7 @@
 
     protected string GetDate(DateTime date)
     {
-        return date.ToString("yyyyÄêMÔÂdÈÕ");
+        return date.ToString("yyyyå¹´Mæœˆdæ—¥");
     }
     private static bool IsRewrite
     {
@@ -306,7 +306,7 @@
 
             BandInfo band = new BandInfo();
             band.BandId = 0;
-            band.BandName = "È«²¿";
+            band.BandName = "å…¨éƒ¨";
             coll.Add(band.BandId, band);
             return coll;
 
