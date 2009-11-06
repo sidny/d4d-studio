@@ -9,7 +9,7 @@
 <asp:Content ContentPlaceHolderID="ContentMain" runat="server">
 <div class="main">
 <div class="channel">
-  <h1><asp:Literal ID="litTitle" runat="server"></asp:Literal></h1>
+  <h1><a href="/news.html"><asp:Literal ID="litTitle" runat="server"></asp:Literal></a></h1>
 </div>
 <div class="news-detail">
     <p class="title"><b><%=CurrentNews.Title%></b></p>

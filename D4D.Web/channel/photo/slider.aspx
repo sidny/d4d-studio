@@ -19,16 +19,16 @@
     </style>
     <div class="sub-title">
         <p class="title">
-            Í¼Æ¬</p>
+            å›¾ç‰‡</p>
         <p class="nav-link">
-            ÄúµÄÎ»ÖÃ£ºÊ×Ò³ > Í¼Æ¬</p>
+            æ‚¨çš„ä½ç½®ï¼šé¦–é¡µ > å›¾ç‰‡</p>
     </div>
     <div class="album_detail">
         <div class="channel">
             <h1>
-                È«²¿ÕÕÆ¬ / <font color="red"><%=CurrentAlbum.Title%></font></h1>
+                <a href="/photo.html">å…¨éƒ¨ç…§ç‰‡</a> / <font color="red"><%=CurrentAlbum.Title%></font></h1>
             <div class="return">
-                <a href="/photo.html" style="color: red">·µ»ØÍ¼Æ¬Ê×Ò³</a></div>
+                <a href="/photo.html" style="color: red">è¿”å›žå›¾ç‰‡é¦–é¡µ</a></div>
         </div>
         <div class="ad-gallery"  id="gallery">
             <div class="ad-controls">
