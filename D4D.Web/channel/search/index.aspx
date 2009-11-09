@@ -133,6 +133,7 @@
     private const string AFormat = "<a href=\"{0}\">{1}</a>";
     private const string tabSelectedForamt = "class=\"on\"";
     private const string baseSearchUrl = "/search.html";
+    private const string ImageFormat = "<img src=\"{0}\" alt=\"\" />";
     protected string GetSearchTab()
     {
         StringBuilder sb = new StringBuilder(1024);
@@ -159,6 +160,10 @@
         sb.AppendFormat(SearchTabPFormat,
            (SearchType == "video" ? tabSelectedForamt : string.Empty),
            string.Format(AFormat, searchUrl + "&t=video", "视频"));
+
+        sb.AppendFormat(SearchTabPFormat,
+         (SearchType == "album" ? tabSelectedForamt : string.Empty),
+         string.Format(AFormat, searchUrl + "&t=album", "图片"));
         
         return sb.ToString();
     }
@@ -206,6 +211,11 @@
                    SearchText, ObjectTypeDefine.Video);
                 totalCount = pager.TotalRecordCount;            
                 break;
+            case "album":
+                list = D4DGateway.SearchProvider.GetPagedSearch(pager,
+                    SearchText, ObjectTypeDefine.Album);
+                totalCount = pager.TotalRecordCount;    
+                break;
             default:
                 pager.RecordsPerPage = 5;
 
@@ -217,6 +227,9 @@
                    SearchText, ObjectTypeDefine.Show);
                 List<SearchResult> listVideo = D4DGateway.SearchProvider.GetPagedSearch(pager,
                    SearchText, ObjectTypeDefine.Video);
+                 List<SearchResult> listAlbum = D4DGateway.SearchProvider.GetPagedSearch(pager,
+                   SearchText, ObjectTypeDefine.Album);
+              
 
                 if (listNews != null && listNews.Count > 0)
                     list.AddRange(listNews);
@@ -226,6 +239,8 @@
                         list.AddRange(listMusic);
                 if (listVideo != null && listVideo.Count > 0)
                     list.AddRange(listVideo);
+                if (listAlbum != null && listAlbum.Count > 0)
+                    list.AddRange(listAlbum);
                 break;
         }
         if (list != null && list.Count > 0)
@@ -258,6 +273,7 @@
                         m.Title);
                     litBody.Text = (m.Body.Length > MaxBodyCount) ? m.Body.Substring(0, MaxBodyCount)
             : m.Body;
+                    litBody.Text += "...";
                     break;
                 case ObjectTypeDefine.MusicTitle:               
                     litType.Text = string.Format(AFormat, "/music.html", "音乐");
@@ -266,6 +282,7 @@
                       m.Title);
                     litBody.Text = (m.Body.Length > MaxBodyCount) ? m.Body.Substring(0, MaxBodyCount)
             : m.Body;
+                    litBody.Text += "...";
                     break;
                 case ObjectTypeDefine.Show:
                     litType.Text = string.Format(AFormat, "/calender.html", "星程");
@@ -274,6 +291,7 @@
                       m.Title);
                     litBody.Text = (m.Body.Length > MaxBodyCount) ? m.Body.Substring(0, MaxBodyCount)
             : m.Body;
+                    litBody.Text += "...";
                     break;                    
                 case ObjectTypeDefine.Video:
                     litType.Text = string.Format(AFormat, "/video.html", "视频");
@@ -283,8 +301,24 @@
                     //litBody.Text = m.Body;
 					litBody.Visible = false;
                     break;
+                case ObjectTypeDefine.Album:
+                    litType.Text = string.Format(AFormat, "/photo.html", "图片");
+                    litTitle.Text = string.Format(AFormat, "/photo/album/" +
+                        m.ObjectId.ToString() + ".html",
+                      m.Title);                 
+                    //litBody.Visible = false;
+                    if (!string.IsNullOrEmpty(m.SImage))
+                    {
+                        litBody.Visible = true;
+                        litBody.Text = string.Format(AFormat, "/photo/album/" +
+                        m.ObjectId.ToString() + ".html",
+                      string.Format(ImageFormat,m.SImage));                 
+                    }
+                    else
+                        litBody.Visible = false;
+                    break;
             }
-            litBody.Text+="...";
+            
         }
     }
     
