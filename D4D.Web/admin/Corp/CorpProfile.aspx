@@ -9,12 +9,12 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentBody" runat="server">
 <form id="form1" runat="server">
      <div><h1><asp:Literal ID="litBandName" runat="server"></asp:Literal>
-     <asp:Button ID="btnSave" runat="server" Text="保存" OnClick="btnSave_Click" /></h1>
+     <asp:Button ID="btnSave" runat="server" Text="保存" OnClick="btnSave_Click" /> <asp:Button ID="Button1" runat="server" Text="首页广告编辑" OnClick="btnGoFlashPage_Click" /></h1>
      </div>
      <asp:Literal ID="litId" runat="server" Visible="false"></asp:Literal>
        <table cellspacing="1" cellpadding="4" rules="all"  align="center" width="100%" class="grid">
          <tr >
-            <th align="center" style="width: 30px;">首页广告</th>
+            <th align="center" style="width: 30px;">首页广告<a href="CorpTopFlash.aspx" ><font color="red" >直接编辑</font></a></th>
             <td>
                 <asp:TextBox ID="txtAd" TextMode="MultiLine" runat="server" Width="100%" 
                     Height="100px"></asp:TextBox>
@@ -80,6 +80,11 @@
            txtCopyright.Value = D4DGateway.CorpInfoProvider.ReadProfileContent("copyright");
         }
     }
+    protected void btnGoFlashPage_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("CorpTopFlash.aspx");
+    }
+    
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
