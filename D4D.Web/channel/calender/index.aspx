@@ -92,9 +92,9 @@
     $(document).ready(function() {
         var cur = parseInt("<%=PageIndex %>");
         var total = parseInt("<%=PageTotalCount %>");
-        var pageSize = 10;
+        var pageSize = 5;
 		window.$rows = $(".calander").find("tr:gt(0)");
-		$rows.filter("tr:gt(10)").hide();
+		$rows.filter("tr:gt(9)").hide();
         $("#pager").pagination(
           total,
                 {
