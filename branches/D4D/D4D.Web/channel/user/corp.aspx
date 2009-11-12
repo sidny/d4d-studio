@@ -31,7 +31,7 @@
                 case "copyright":
                     Channel = "使用条款";
                     break;
-				case "link":
+				case "links":
                     Channel = "友情链接";
                     break;
                 case "about":
