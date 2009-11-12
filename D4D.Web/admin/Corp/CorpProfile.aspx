@@ -44,6 +44,12 @@
                <FCKeditorV2:FCKeditor ID="txtCopyright" ToolbarSet="ShowCity" runat="server" />
             </td>
          </tr>
+         <tr >
+            <th align="center" style="width: 30px;">友情链接</th>
+            <td>
+               <FCKeditorV2:FCKeditor ID="txtLinks" ToolbarSet="ShowCity" runat="server" />
+            </td>
+         </tr>
        </table>
 </form>
 </asp:Content>
@@ -78,6 +84,7 @@
            txtContact.Value = D4DGateway.CorpInfoProvider.ReadProfileContent("contact");
            txtZhaopin.Value = D4DGateway.CorpInfoProvider.ReadProfileContent("zhaopin");
            txtCopyright.Value = D4DGateway.CorpInfoProvider.ReadProfileContent("copyright");
+		   txtLinks.Value = D4DGateway.CorpInfoProvider.ReadProfileContent("links");
         }
     }
     protected void btnGoFlashPage_Click(object sender, EventArgs e)
@@ -102,6 +109,9 @@
 
         if (!string.IsNullOrEmpty(txtCopyright.Value))
             D4DGateway.CorpInfoProvider.SetProfileContent("copyright", txtCopyright.Value);
+		
+		if (!string.IsNullOrEmpty(txtLinks.Value))
+            D4DGateway.CorpInfoProvider.SetProfileContent("links", txtLinks.Value);
 
         Response.Redirect("CorpProfile.aspx");
     }

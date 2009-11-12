@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" %>
 <div class="link">
+<div id="text" style="float:left;line-height:40px"><a href="/links.html">友情链接</a></div>
 	<a href="http://www.sina.com.cn" target="_blank"><img src="/static/images/link/sina.jpg" align="absmiddle"/></a>
 	<a href="http://www.kaixin001.com" target="_blank"><img src="/static/images/link/kaixin.jpg" align="absmiddle"/></a>
     <a href="http://www.youku.com" target="_blank"><img src="/static/images/link/youku.jpg" align="absmiddle"/></a>
