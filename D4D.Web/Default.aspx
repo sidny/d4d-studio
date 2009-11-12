@@ -3,7 +3,7 @@
 <%@ Import Namespace="D4D.Platform.Domain" %>
 <%@ Import Namespace="D4D.Platform" %>
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server">
-<meta name="Description" content="北京少城时代文化传播有限公司，是一家新晋成立的新锐演艺经纪公司，专业从事艺人经纪、唱片制作、歌手包装、艺人演出、宣传、广告、影视等业务领域" />
+<meta name="Description" content="少城时代官方网站，北京少城时代文化传播有限公司，是一家新晋成立的新锐演艺经纪公司，专业从事艺人经纪、唱片制作、歌手包装、艺人演出、宣传、广告、影视等业务" />
     
   <style type="text/css">
     .content{ height:380px; padding:20px 0;}
