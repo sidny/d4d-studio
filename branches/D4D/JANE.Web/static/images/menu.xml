@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<content>
+	<m ps="首页" url="http://www.janezhang.com/01.html" />
+	<m ps="资讯" url="http://www.janezhang.com/02.html" />
+	<m ps="行程" url="http://www.janezhang.com/03.html" />
+	<m ps="档案" url="http://www.janezhang.com/04.html" />
+	<m ps="唱片" url="http://www.janezhang.com/05.html" />
+	<m ps="视频" url="http://www.janezhang.com/06.html" />
+	<m ps="图片" url="http://www.janezhang.com/07.html" />
+	<m ps="论坛" url="http://www.janezhang.com/08.html" />
+	<m ps="商城" url="http://www.janezhang.com/09.html" />
+</content>
