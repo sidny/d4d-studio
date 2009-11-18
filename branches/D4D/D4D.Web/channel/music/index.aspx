@@ -156,7 +156,10 @@
     }
     protected string GetDate(DateTime date)
     {
+		if(date.Year > 2000)
         return date.ToString("yyyy-MM-d");
+		else
+			return "未发行";
     }
     private static bool IsRewrite
     {
