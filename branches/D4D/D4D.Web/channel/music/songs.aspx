@@ -64,7 +64,11 @@
         <p class="img"><img src="<%=musicTitle.LImage%>" width="170" height="170" /> </p>
         <p class="title"><%=musicTitle.Title%></p>
         <p>歌手：<%=BandInfo(musicTitle.BandId).BandName%></p>
-        <p>出版时间：<%=musicTitle.PublishDate.ToString("yyyy年M月d日")%></p>
+        <p>出版时间：
+        <%if(musicTitle.PublishDate.Year < 2000){ %>未出版
+        <%}else{
+              Response.Write(musicTitle.PublishDate.ToString("yyyy年M月d日"));
+          }%></p>
         <p><%=musicTitle.Body%></p>
     </div>
     
