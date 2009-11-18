@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="D4DGateway.cs" />
+    <Compile Include="DiscuzGateway.cs" />
     <Compile Include="Domain\Album.cs" />
     <Compile Include="Domain\BandInfo.cs" />
     <Compile Include="Domain\BaseD4DDomain.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="Providers\CommentProvider.cs" />
     <Compile Include="Providers\BandInfoProvider.cs" />
     <Compile Include="Providers\CorpInfoProvider.cs" />
+    <Compile Include="Providers\DiscuzAccountProvider.cs" />
     <Compile Include="Providers\MusicProvider.cs" />
     <Compile Include="Providers\NewsProvider.cs" />
     <Compile Include="Providers\SearchProvider.cs" />
