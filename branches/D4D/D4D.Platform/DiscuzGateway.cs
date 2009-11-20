@@ -7,7 +7,7 @@ namespace D4D.Platform
 {
     public static class DiscuzGateway
     {
-        public static DiscuzAccountProvider TagsProvider
+        public static DiscuzAccountProvider DiscuzAccountProvider
         {
             get
             {
