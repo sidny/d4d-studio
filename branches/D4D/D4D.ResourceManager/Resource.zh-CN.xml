@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root Culture="zh-CN">
+  <data>
+    <name>hello</name>
+    <value>你好</value>
+  </data>
+  <data>
+    <name>hi</name>
+    <value>孩哦</value>
+  </data>
+  <data>
+    <name>jane</name>
+    <value>张靓颖</value>
+  </data>
+</root>
