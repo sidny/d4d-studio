@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root Culture="en-US">
+  <data>
+    <name>hello</name>
+    <value>hello</value>
+  </data>
+  <data>
+    <name>hi</name>
+    <value>hi</value>
+  </data>
+  <data>
+    <name>jane</name>
+    <value>jane</value>
+  </data>
+</root>
