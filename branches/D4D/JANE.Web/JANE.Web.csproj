@@ -58,6 +58,15 @@
     <Reference Include="System.Data.DataSetExtensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel.Web">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Web.Extensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -715,6 +724,33 @@
   <ItemGroup>
     <None Include="admin\Accounts\images\skin2\vssver2.scc" />
     <Content Include="admin\Admin.Master" />
+    <Content Include="channel\calender\index.aspx" />
+    <Content Include="channel\calender\menu.ascx" />
+    <Content Include="channel\music\comment.aspx" />
+    <Content Include="channel\music\index.aspx" />
+    <Content Include="channel\music\menu.ascx" />
+    <Content Include="channel\music\songs.aspx" />
+    <Content Include="channel\news\comment.aspx" />
+    <Content Include="channel\news\detail.aspx" />
+    <Content Include="channel\news\menu.ascx" />
+    <Content Include="channel\news\news.aspx" />
+    <Content Include="channel\photo\comment.aspx" />
+    <Content Include="channel\photo\index.aspx" />
+    <Content Include="channel\photo\menu.ascx" />
+    <Content Include="channel\photo\photo.aspx" />
+    <Content Include="channel\photo\slider.aspx" />
+    <Content Include="channel\search\index.aspx" />
+    <Content Include="channel\singer\index.aspx" />
+    <Content Include="channel\singer\menu.ascx" />
+    <Content Include="channel\singer\singer.aspx" />
+    <Content Include="channel\sitemap\index.aspx" />
+    <Content Include="channel\user\corp.aspx" />
+    <Content Include="channel\user\regist.aspx" />
+    <Content Include="channel\user\renew.aspx" />
+    <Content Include="channel\video\comment.aspx" />
+    <Content Include="channel\video\detail.aspx" />
+    <Content Include="channel\video\index.aspx" />
+    <Content Include="channel\video\menu.ascx" />
     <Content Include="Controls\footer.ascx" />
     <Content Include="Controls\header.ascx" />
     <Content Include="Control\ValidateCode.ashx" />
@@ -1178,6 +1214,10 @@
     <Content Include="static\watermark\sct_logo3.bmp" />
     <Content Include="static\watermark\sct_logo3.jpg" />
     <Content Include="static\watermark\sct_logo3.png" />
+    <Content Include="svc\admin.svc" />
+    <Content Include="svc\comments.svc" />
+    <Content Include="svc\news.svc" />
+    <Content Include="svc\user.svc" />
     <Content Include="urlrewrite.config" />
     <Content Include="crossdomain.xml" />
     <Content Include="fckeditor\web.config" />
