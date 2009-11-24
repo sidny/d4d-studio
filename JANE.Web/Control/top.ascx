@@ -1,53 +1,23 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="top.ascx.cs" Inherits="D4D.Web.Control.top" %>
-<div class="header">
-    <a href="/">
-        <img src="/static/images/logo.png" alt="少城时代" /></a>
-    <div class="login">
-        欢迎光临少城时代，
-        <%if (D4D.Web.Helper.AdminHelper.CurrentUser == null)
+<div class="head">
+  <div class="head_login">
+   <%if (D4D.Web.Helper.AdminHelper.CurrentUser == null)
           { %>
-        <label>请[<a href="#" id="btnLogin" onclick="return false">登录</a>]或[<a href="/regist.html">注册</a>]</label>
-        <a id="logout" style="display:none" href="/regist.html">注销</a>
-        <%}
+  <a href="#" id="btnLogin">登录</a> | <a href="#">注册</a> <%}
           else
           { %>
-         <label><%=D4D.Web.Helper.AdminHelper.CurrentUser.UserName %></label>
-         <a id="logout" href="/regist.html">注销</a>
-  <%} %></div>
-     <div id="loginForm" style="width:500px; padding:15px; display:none; text-align:left">
-     	<div style="position:absolute; text-align:right; margin-left:468px; _margin-left:498px; margin-top:-15px;"><a href="javascript:$.unblockUI()"><img src="/static/images/user/close.gif" /></a></div>
-     	<table width="470" border="0" cellspacing="0" cellpadding="5">
-    		<form action="/svc/user.svc/Login">
-     	  <tr>
-     	    <td colspan="3" align="left" style="color:red; font-size:24px; font-weight:bold; font-family:'微软雅黑','黑体';">会员登陆</td>
-     	    </tr>
-     	  <tr>
-     	    <td colspan="3" align="left" style="border-top:1px solid #e5e5e5; border-bottom:1px solid #e5e5e5; color:#666;">登录后可浏览更多，获得更多艺人资讯</td>
-   	    </tr>
-     	  <tr>
-     	    <td width="116" height="50" align="right"><label>用户</label></td>
-     	    <td colspan="2" align="left"><input type="text" class="text" name="username" /></td>
-   	    </tr>
-     	  <tr>
-     	    <td align="right"  height="40"><label>密码</label></td>
-     	    <td colspan="2" align="left"><input type="password" class="text" name="password" /></td>
-   	    </tr>
-     	  <tr>
-     	    <td height="50">&nbsp;</td>
-     	    <td width="117" align="left"><input type="image" src="/static/images/user/login.gif" /></td>
-     	    <td width="207" align="left"><a href="/regist.html">立即注册</a> | <a href="/forget.html">忘记密码</a></td>
-   	      </tr>
-        </form>
-   	  </table>
+          <label><%=D4D.Web.Helper.AdminHelper.CurrentUser.UserName %></label> 
+        <%} %>
+| <a href="#">语言选择</a><img src="/static/images/ico_arrow.gif" align="absmiddle" />
   </div>
-</div>
-<div class="nav">
-    <div class="search">
-        <form action="/search.html" method="get">
-        <input type="image" src="/static/images/search_go.gif" align="absmiddle" style="float: right" />
-        <input name="s" type="text" class="text" <%=((String.IsNullOrEmpty(Request["s"]))?"":Request["s"])%> /></form>
-    </div>
-    <div><a href="/"><img src="/static/images/nav_<%=GetMenu("/") %>03.png" alt="" /></a><a href="/news.html"><img src="/static/images/nav_<%=GetMenu("news") %>04.png" alt="" /></a><a href="/calender.html"><img src="/static/images/nav_<%=GetMenu("calender") %>05.png" alt="" /></a><a href="/singer.html"><img src="/static/images/nav_<%=GetMenu("singer") %>06.png" alt="" /></a><a href="/music.html"><img src="/static/images/nav_<%=GetMenu("music") %>07.png"  alt="" /></a><a href="/video.html"><img src="/static/images/nav_<%=GetMenu("video") %>08.png" alt="" /></a><a href="/photo.html"><img src="/static/images/nav_<%=GetMenu("photo") %>09.png" alt="" /></a></div>
+  <div>
+    <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" width="1300" height="40">
+      <param name="movie" value="/static/images/menu.swf" />
+      <param name="quality" value="high" />
+<param name="wmode" value="transparent" />
+      <embed src="/static/images/menu.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="1300" height="40"></embed>
+    </object>
+  </div>
 </div>
 <script type="text/javascript">
     $(document).ready(function() {
