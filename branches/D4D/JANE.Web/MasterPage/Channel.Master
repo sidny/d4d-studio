@@ -1,0 +1,22 @@
+<%@ Master Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage/Main.Master" %>
+<asp:Content runat="server" ContentPlaceHolderID="head">
+<asp:ContentPlaceHolder ID="ContentHeader" runat="server" />
+</asp:Content>
+<asp:Content runat="server" ContentPlaceHolderID="ContentMain">
+<asp:PlaceHolder ID="menuPlace" runat="server"></asp:PlaceHolder>
+<asp:ContentPlaceHolder ID="ContentMain" runat="server"></asp:ContentPlaceHolder>
+</asp:Content>
+<script runat="server">
+    protected override void OnInit(EventArgs e)
+    {
+        base.OnInit(e);
+        string[] path = Request.AppRelativeCurrentExecutionFilePath.Split('/');
+        if (path.Length > 3)
+        {
+            string controlPath = "~/channel/" + path[2] + "/menu.ascx";
+            System.Web.UI.Control uc = Page.LoadControl(controlPath);
+            uc.ID = "uc" + path[2];
+            menuPlace.Controls.Add(uc);
+        }
+    }
+</script>
