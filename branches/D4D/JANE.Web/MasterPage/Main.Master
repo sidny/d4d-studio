@@ -1,0 +1,20 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" %>
+<%@ Register src="~/Control/footer.ascx" tagname="footer" tagprefix="uc1" %>
+<%@ Register src="~/Control/top.ascx" tagname="header" tagprefix="uc1" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/static/jane.css" rel="stylesheet" type="text/css" />
+<asp:ContentPlaceHolder ID="head" runat="server">
+</asp:ContentPlaceHolder>
+</head>
+
+<body>
+<uc1:header ID="header1" runat="server" />
+<div class="main">
+<asp:ContentPlaceHolder ID="ContentMain" runat="server"></asp:ContentPlaceHolder>
+</div>
+<uc1:footer ID="footer1" runat="server" />
+</body>
+</html>
