@@ -68,6 +68,12 @@ namespace D4D.Web
         }
         protected void Application_BeginRequest(Object sender, EventArgs e)
         {
+            String culture = System.Configuration.ConfigurationManager.AppSettings["SiteCulture"];
+            if (String.IsNullOrEmpty(culture))
+            {
+                culture = "zh-CN";
+            }
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(culture);
              HttpApplication app = (HttpApplication)sender;
              if (app != null)
              {
