@@ -806,6 +806,7 @@
     <None Include="fckeditor\fckeditor_php4.php" />
     <None Include="fckeditor\fckeditor_php5.php" />
     <None Include="fckeditor\fckutils.cfm" />
+    <Content Include="MasterPage\Channel.Master" />
     <Content Include="MasterPage\Main.Master" />
     <Content Include="MasterPage\Default.Master" />
     <Content Include="admin\Accounts\add.aspx" />
@@ -1077,6 +1078,8 @@
     <Content Include="Control\footer.ascx" />
     <Content Include="Control\menu.ascx" />
     <Content Include="Control\top.ascx" />
+    <Content Include="Resource.en-US.xml" />
+    <Content Include="Resource.zh-CN.xml" />
     <Content Include="static\default.css" />
     <Content Include="static\images\admin\logo.png" />
     <Content Include="static\images\admin\row.png" />

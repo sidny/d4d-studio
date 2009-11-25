@@ -2,8 +2,10 @@
 <%@ Import Namespace="D4D.Platform.Domain" %>
 <%@ Import Namespace="D4D.Platform" %>
 <%@ Import Namespace="System.Collections.Generic" %>
+<%@ Import Namespace="D4D.ResourceManager" %>
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader"></asp:Content>
 <asp:Content ContentPlaceHolderID="ContentMain" runat="server">
+<%=ResourceManager.Instance.GetResourceValue("hello")%>
 <div class="main">
 <div class="channel">
   <h1><asp:Literal ID="litTitle" runat="server"></asp:Literal></h1>
