@@ -5,7 +5,6 @@
 <%@ Import Namespace="D4D.ResourceManager" %>
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader"></asp:Content>
 <asp:Content ContentPlaceHolderID="ContentMain" runat="server">
-<%=ResourceManager.Instance.GetResourceValue("hello")%>
 <div class="main">
 <div class="channel">
   <h1><asp:Literal ID="litTitle" runat="server"></asp:Literal></h1>
@@ -108,13 +107,7 @@
     {
         get
         {
-            string queryid = Request.QueryString["id"];
-            if (string.IsNullOrEmpty(queryid)) return -1;
-
-            int id = 0;
-
-            int.TryParse(queryid, out id);
-            return id;
+            return D4D.Web.Helper.Helper.BandId;
         }
     }
 
