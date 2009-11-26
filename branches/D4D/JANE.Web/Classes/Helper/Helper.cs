@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using D4D.Platform.Domain;
 using D4D.Platform;
+using System.Globalization;
+using System.Threading;
 
 namespace D4D.Web.Helper
 {
@@ -35,6 +37,19 @@ namespace D4D.Web.Helper
                     coll.Add(i.BandId, i);
                 return coll;
 
+            }
+        }
+
+        public static int BandId
+        {
+            get
+            {
+                foreach (BandInfo band in BandList)
+                {
+                    if (Thread.CurrentThread.CurrentCulture.Name.ToLower() == band.BandName.ToLower())
+                        return band.BandId;
+                }
+                return 0;
             }
         }
     }
