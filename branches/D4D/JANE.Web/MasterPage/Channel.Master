@@ -3,8 +3,10 @@
 <asp:ContentPlaceHolder ID="ContentHeader" runat="server" />
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="ContentMain">
+<div class="cd_body <%=ChannelClass%>">
 <asp:PlaceHolder ID="menuPlace" runat="server"></asp:PlaceHolder>
 <asp:ContentPlaceHolder ID="ContentMain" runat="server"></asp:ContentPlaceHolder>
+</div>
 </asp:Content>
 <script runat="server">
     protected override void OnInit(EventArgs e)
@@ -16,7 +18,18 @@
             string controlPath = "~/channel/" + path[2] + "/menu.ascx";
             System.Web.UI.Control uc = Page.LoadControl(controlPath);
             uc.ID = "uc" + path[2];
+			channel = path[2];
             menuPlace.Controls.Add(uc);
         }
     }
+	private string channel = String.Empty;
+	protected string ChannelClass{
+		get{
+			if(String.IsNullOrEmpty(channel)){
+				return "";
+			}else{
+				return channel + "_bg";
+			}
+		}
+	}
 </script>
