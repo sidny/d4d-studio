@@ -145,7 +145,7 @@
 .ad-gallery .ad-back
 {
     cursor: pointer;
-    left: -20px;
+    left: 0;
     width: 13px;
     display: block;
     background: url(images/album/ad_scroll_back.png) center no-repeat;
@@ -154,14 +154,14 @@
 {
     cursor: pointer;
     display: block;
-    right: -20px;
+    right:0;
     width: 13px;
     background: url(images/album/ad_scroll_forward.png) center no-repeat;
 }
 .ad-gallery .ad-nav .ad-thumbs
 {
     overflow: hidden;
-    width: 100%;
+    margin:0 15px;
 }
 .ad-gallery .ad-thumbs .ad-thumb-list
 {

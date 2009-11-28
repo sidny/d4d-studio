@@ -1,84 +1,90 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage/Main.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage/Channel.Master" %>
 
 <%@ Import Namespace="D4D.Platform.Domain" %>
 <%@ Import Namespace="System.Collections.Generic" %>
 <%@ Import Namespace="System.Linq" %>
-<%@ Register src="~/Control/comment.ascx" tagname="comment" tagprefix="uc1" %>
+<%@ Register Src="~/Control/comment.ascx" TagName="comment" TagPrefix="uc1" %>
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader">
-</asp:Content>
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentMain" runat="server">
-
-    <form id="form1" runat="server">
 
     <script src="/static/js/jquery.ad-gallery.js" type="text/javascript"></script>
 
     <style type="text/css">
         @import "/static/jquery.ad-gallery.css";
-        .ad-controls p.ad-info{ text-align:center; float:none}
-        .ad-controls .ad-slideshow-controls{ display:none;}
+        .ad-controls p.ad-info
+        {
+            text-align: center;
+            float: none;
+        }
+        .ad-controls .ad-slideshow-controls
+        {
+            display: none;
+        }
     </style>
-    <div class="sub-title">
-        <p class="title">
-            图片</p>
-        <p class="nav-link">
-            您的位置：首页 > 图片</p>
-    </div>
-    <div class="album_detail">
-        <div class="channel">
-            <h1>
-                <a href="/photo.html">全部照片</a> / <font color="red"><%=CurrentAlbum.Title%></font></h1>
-            <div class="return">
-                <a href="/photo.html" style="color: red">返回图片首页</a></div>
-        </div>
-        <div class="ad-gallery"  id="gallery">
-            <div class="ad-controls">
-            </div>
-            <div class="ad-image-wrapper">
-            </div>
-            <div class="ad-controls">
-            </div>
-            <div class="album_slider" style="padding: 20px;">
-                <div class="ad-nav">
-                    <div class="ad-thumbs">
-                        <ul class="ad-thumb-list">
-                            <%
-                                int startIndex = 0;
-                                for (int i = 0; i < ImageList.Count; i++)
-                               {
-                                   D4D.Platform.Domain.Image item = ImageList[i] as D4D.Platform.Domain.Image;
-                                   if (ImageId == item.ImageId)
-                                   {
-                                       startIndex = i;
-                                       
-                                   }
-                 %>
-                            <li><a href="<%=item.ImageFile%>">
-                                <img src="<%=item.SImageFile%>" title="<%=HttpUtility.HtmlEncode(item.ImageName)%>" longdesc="<%=CurrentAlbum.PublishDate.ToLongDateString()%>"
-                                    class="image<%=i+1 %>">
-                            </a></li>
-                            <%} %>
-                        </ul>
+</asp:Content>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentMain" runat="server">
+    <div class="right floatleft">
+        <div class="cd_right">
+            <div class="w_562 h_578">
+                <div class="spacer" style="height: 36px">
+                </div>
+                <div class="cd_title pic_title">
+                    <h1 class="font24 floatleft">
+                        -
+                        <%=CurrentAlbum.Title%></h1>
+                    <div class="floatright alginright">
+                        <div class="spacer4">
+                        </div>
+                        <a href="/photo.html">&lt;&lt;返回图片</a>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="clearfix" style="padding-top:10px; width:690px; margin:0 auto">
-        <uc1:comment ID="comment1"  runat="server" />
-    </div>
-    </div>
+                <div class="spacer" style="height: 40px">
+                </div>
+                    <div class="ad-gallery" id="gallery">
+                        <div class="ad-image-wrapper">
+                        </div>
+                        <div class="album_slider" style="padding: 20px;">
+                            <div class="ad-nav">
+                                <div class="ad-thumbs">
+                                    <ul class="ad-thumb-list">
+                                        <%
+                                            int startIndex = 0;
+                                            for (int i = 0; i < ImageList.Count; i++)
+                                            {
+                                                D4D.Platform.Domain.Image item = ImageList[i] as D4D.Platform.Domain.Image;
+                                                if (ImageId == item.ImageId)
+                                                {
+                                                    startIndex = i;
 
-    <script type="text/javascript">
+                                                }
+                 %>
+                                        <li><a href="http://www.showcitytimes.net<%=item.ImageFile%>">
+                                            <img src="http://www.showcitytimes.net<%=item.SImageFile%>" title="<%=HttpUtility.HtmlEncode(item.ImageName)%>"
+                                                longdesc="<%=CurrentAlbum.PublishDate.ToLongDateString()%>" class="image<%=i+1 %>">
+                                        </a></li>
+                                        <%} %>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix" style="padding-top: 10px; width: 690px; margin: 0 auto">
+                            <uc1:comment ID="comment1" runat="server" />
+                        </div>
+                    </div>
+
+                    <script type="text/javascript">
         $(document).ready(function() {
             var galleries = $('.ad-gallery').adGallery({ loader_image: "/static/images/album/loader.gif",start_at_index:<%=startIndex %>});
         });
     </script>
 
-    </form>
-
+                    <div class="clear" />
+            </div>
+        </div>
+    </div>
 </asp:Content>
 
 <script runat="server">
-    protected  int AlbumId
+    protected int AlbumId
     {
         get
         {

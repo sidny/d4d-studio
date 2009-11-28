@@ -1,18 +1,26 @@
-<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage/Channel.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage/Channel.Master" %>
 <%@ Import Namespace="D4D.Platform.Domain" %>
 <%@ Import Namespace="D4D.Platform" %>
 <%@ Import Namespace="System.Collections.Generic" %>
 <%@ Import Namespace="System.Linq" %>
+<%@ Register src="~/Control/pager.ascx" tagname="pager" tagprefix="uc1" %>
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader">
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentMain" runat="server">
-
-    <div class="main">
-<div class="channel">
-  <h1>全部照片 / <font color="red"><asp:Literal ID="litTitle" runat="server"></asp:Literal></font></h1>
-</div>
-<div class="album_list">
-	
+<div class="right floatleft">
+  <div class="cd_right">
+    <div class="w_562 h_578">
+      <div class="spacer" style="height:36px"></div>
+	  
+	  <div class="cd_title pic_title">
+	  	<h1 class="font24 floatleft"><asp:Literal ID="litTitle" runat="server"></asp:Literal></h1> 
+		<div class="floatright alginright">
+			<div class="spacer4"></div>
+			<a href="/photo.html">&lt;&lt;返回图片</a>
+		</div>
+	  </div>
+	  
+	  <div class="spacer" style="height:40px"></div>
 	<asp:Repeater runat="server" ID="repList">
 	    <HeaderTemplate>
 	    <table width="100%" cellspacing="20" border="0" cellpadding="0"><tr>
@@ -28,40 +36,16 @@
        </SeparatorTemplate>
         <FooterTemplate></tr></table></FooterTemplate>
         </asp:Repeater>
-        <div id="pager" class="pagestyle"></div>
+      <div class="spacer"></div>
+	  <div class="spacer"></div>    
+      <uc1:pager ID="pager1" runat="server"  />
+	  <div class="clear"></div>
+
+	  <div class="spacer"></div>  
+	  <div class="spacer"></div>  
 </div>
 </div>
-<script type="text/javascript">
-    $(document).ready(function() {
-        var cur = parseInt("<%=PageIndex %>");
-        var total = parseInt("<%=PageTotalCount %>");
-        var pageSize = parseInt("<%=PageSize %>");
-        var href = location.pathname;
-        if (location.search) {
-            if (!location.search.match(/page=\d+/ig)) {
-                href += location.search + "&page=__id__";
-            } else {
-                href += location.search;
-            }
-        } else {
-            href += "?page=__id__";
-        }
-        $("#pager").pagination(
-          total,
-                {
-                    items_per_page: pageSize,
-                    num_display_entries: 10,
-                    current_page: cur - 1,
-                    num_edge_entries: 0,
-                    link_to: href.replace(/page=\d+/ig, "page=__id__"),
-                    prev_text: "上一页",
-                    next_text: "下一页",
-                    callback: function(id) {
-                        return true;
-                    }
-                });
-    });
-</script>
+</div>
 </asp:Content>
 
 <script runat="server">
@@ -170,7 +154,7 @@
             if (TagYear <= 1900) return string.Empty;
             if (TagMonth > 12 && TagMonth <= 0) return string.Empty;
 
-            return string.Format("{0}年{1}月", TagYear, TagMonth);
+            return string.Format("{0}-{1}", TagYear, TagMonth);
         }
     }
     protected void Page_Load(object sender, EventArgs e)
@@ -178,7 +162,10 @@
         if (!IsPostBack)
         {
             BindPhotoRep(PageIndex);
-            SetTitle();
+            SetTitle(); 
+            pager1.PageIndex = PageIndex;
+            pager1.PageSize = PageSize;
+            pager1.PageTotalCount = PageTotalCount;
         }
     }
     private const string TitleFormat = "{0}图片";
@@ -267,7 +254,7 @@
 
     protected string GetDate(DateTime date)
     {
-        return date.ToString("yyyy年M月d日");
+        return date.ToString("yyyy-M-d");
     }
     private static bool IsRewrite
     {
