@@ -11,13 +11,16 @@
 		<h2 class="black_5757">时间标签</h2>
 	    <div class="video_tag_time_year">
        	<%int startYear = (CurrentSelectYear == DateTime.Now.Year) ? CurrentSelectYear : CurrentSelectYear + 1;
-      		for (int n = startYear; n > startYear-3; n--)
-      			{
-          int month = 12;
+		int month = 12;
           if (CurrentSelectYear == DateTime.Now.Year)
               month = DateTime.Now.Month;
-           %><a  href="?year=<%=n %>&month=<%=month %>" <%=(CurrentSelectYear==n)?"class=\"white\"":"" %>><%=n%>年</a><%} %>		<img src="images/ico_next.gif" />
-			<img src="images/ico_up.gif" />
+      		for (int n = startYear; n > startYear-3; n--)
+      			{
+           %><a  href="?year=<%=n %>&month=<%=month %>" <%=(CurrentSelectYear==n)?"class=\"white\"":"" %>><%=n%>年</a><%}%>
+           <a href="?year=<%=CurrentSelectYear-1 %>&month=<%=month %>"><img src="/static/images/ico_next.gif" /></a>
+           <%if(startYear > CurrentSelectYear){%>
+		   <a href="?year=<%=CurrentSelectYear+1 %>&month=<%=month %>"><img src="/static/images/ico_up.gif" /></a>
+           <%}%>
 		</div>
 	    <div class="spacer"></div>
 	    <div class="video_tag_time_moth">
@@ -33,11 +36,11 @@
 		<h2>热门标签</h2>
 	    <div class="video_tag_hot_key">
 		<% foreach(Tag tag in ListTags){
-               Response.Write(GetTagStr(tag));
+               Response.Write(GetTagStr(tag) + " ");
            }%>
 	  </div>
-	
   </div>
+</div>
 <script  runat="server">
     public string Channel;
     private static Hashtable channelList = new Hashtable();
