@@ -3,89 +3,86 @@
 <%@ Import Namespace="System.Collections.Generic" %>
 <%@ Import Namespace="System.Linq" %>
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader">
+<script src="/static/js/jquery.pagination.js" type="text/javascript"></script>
 </asp:Content>
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentMain" runat="server">
-<div class="sub-title">
-  <p class="title">星程</p>
-  <p class="nav-link">您的位置：首页 > 星程 > <%=BandInfo(BandId).BandName %>星程</p>
-</div>
-<style title="text/css"> 
-.sub-nav li.sub {
-    background:none; height:auto; line-height:28px; text-align:center; font-weight:normal; padding-top:10px; padding-bottom:10px;
-}
-.sub-nav li.sub a {
-    display:block; 
-}
-.sub-nav li.sub td{
-    color:#676767; background:#e2e2e2; width:28px; height:28px;font-size:12px;
-}
-.sub-nav li.sub td.disabled{
-    color:#969696; background:#f4f4f4;
-}
-
-.sub-nav li.sub th{
-    background:#b7b7b7; color:White;font-size:12px;
-}
-.sub-nav li.sub td a{
-    display:block;width:26px; height:26px; border:1px solid red; background:red; color:white; text-decoration:none;
-}
-.sub-nav li.sub td a:hover{
-    color:Red; background:white;
-}
-.calander td{ line-height:18px;}
-</style>
-<div class="sub-nav">
-  <ul>
-    <%
-	List<int> list = new List<int>(BandColl.Keys.ToArray());
-	list.Sort();
-	for (int n =0;n<list.Count;n++)
-      {
-		  var i = BandColl[list[n]];
-          if (i.BandId == BandId)
-          {
-           %>
-            <li>》<font color="red"><%=i.BandName%>星程</font></li>
-            <li class="sub" id="calender">
-                
-                
-                
-            </li>
-    
-    <%} else
-          {%>
-     <li>》<a href="/calender/b<%=i.BandId %>/d<%=DateStr%>.html"><%=i.BandName%>星程</a></li>
-    <%}
-      } %>
-  </ul>
-</div>
-
-<div class="main">
-  <asp:Repeater ID="repList" runat="server">
-  <HeaderTemplate>
-  <table width="690" border="0" cellspacing="6" cellpadding="0" class="calander">
-    <tr>
-      <th colspan="5"><img src="/static/images/calendar_nav.png" width="690" height="38" /></th>
-      </tr>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentMain" runat="server"><div class="cd_body journey_bg">
+  <!--left-->
+  <div class="left floatleft">
+    <div class="spacer" style="height:43px;"></div>
+	
+    <div class="journey_month">
+	  <ul class="journey_month_title">
+	  </ul>
+	  <ul class="journey_week_title">
+	  	<li class="floatleft">日</li>
+		<li class="floatleft">一</li>
+		<li class="floatleft">二</li>
+		<li class="floatleft">三</li>
+		<li class="floatleft">四</li>
+		<li class="floatleft">五</li>
+		<li class="floatleft">六</li>
+	  </ul>
+	  <ul class="journey_month_date">
+	  </ul>
+	</div>
+	
+  </div>
+  <!--left/-->
+  <!--right-->
+  <div class="right floatleft">
+  <div class="cd_right">
+    <div class="w_562 h_578">
+      <div class="spacer" style="height:36px"></div>
+	  <div class="cd_title journey_title">
+	  	<h1 class="font24 floatleft">- <%=sDate.ToString("yyyy年M月") %></h1> 
+	  </div>
+	  <div class="spacer" style="height:20px"></div>
+	  
+	  <asp:Repeater ID="repList" runat="server">
+       <HeaderTemplate>
+        <div class="journey_table">
+	    <div class="journey_table_title">
+	        <div class="wid_90">时间</div>
+		    <div class="wid_93">地点</div>
+		    <div class="wid_130">活动名称</div>
+		    <div class="wid_210">活动说明</div>
+	      </div>
+	    <div id="calender">
       </HeaderTemplate>
       <ItemTemplate>
-        <tr class="date<%#((Show)Container.DataItem).ShowDate.ToString("yyyyMMdd")%>">
-          <td width="56" align="center" valign="middle"><img src="<%#BandInfo(((Show)Container.DataItem).BandId).Info1%>" width="56" height="56" /><br />
-			<%#BandInfo(((Show)Container.DataItem).BandId).BandName%>	</td>
-          <td width="110" align="center" valign="middle"><%#((Show)Container.DataItem).ShowDate.ToString("yyyy-MM-dd") %><%#GetExpireString(Container.DataItem)%></td>
-          <td width="110" align="center" valign="middle"><%#((Show)Container.DataItem).ShowPlace%></td>
-          <td width="136" align="center" valign="middle"><%#((Show)Container.DataItem).Title%></td>
-          <td width="278" valign="middle"><%#((Show)Container.DataItem).Body%></td>
-        </tr>
-        <tr><td colspan="5" class="line"></td></tr>
+      <div class="journey_table_con date<%#((Show)Container.DataItem).ShowDate.ToString("yyyyMMdd")%>">
+	        <div class="wid_90"><%#((Show)Container.DataItem).ShowDate.ToString("yyyy-MM-dd") %><%#GetExpireString(Container.DataItem)%></div>
+	        <div class="wid_93"><%#((Show)Container.DataItem).ShowPlace%></div>
+	        <div class="wid_130"><%#((Show)Container.DataItem).Title%></div>
+	        <div class="wid_210"><%#((Show)Container.DataItem).Body%></div>
+		  <div class="clear"></div>
+	      </div>
     </ItemTemplate>
     <FooterTemplate>
-     </table>
+        </div></div>
   </FooterTemplate>
   </asp:Repeater>
-  <div id="pager" class="pagestyle"></div>
+	  </div>
+	  <div class="spacer" style="height:35px"></div>
+	  
+	  <div id="pager" class="pages_num margincenter">
+			
+		</div>
+	  
+	  
+	  
+	  <div class="spacer" style="height:50px"></div>
+	  
+      
+	  <div class="clear"></div>
+    </div>
+	<div class="clear"></div>
+	</div>
+	<div class="clear"></div>
+  </div>
+  <!--right/-->
+  <div class="clear"></div>
 </div>
-
 <script type="text/javascript">
      
 
@@ -93,8 +90,8 @@
         var cur = parseInt("<%=PageIndex %>");
         var total = parseInt("<%=PageTotalCount %>");
         var pageSize = 5;
-		window.$rows = $(".calander").find("tr:gt(0)");
-		$rows.filter("tr:gt(9)").hide();
+		window.$rows = $("#calender").children();
+		$rows.filter("div:gt("+(pageSize-1)+")").hide();
         $("#pager").pagination(
           total,
                 {
@@ -105,14 +102,16 @@
                     next_text: "下一页",
                     callback: function(page) { 
 						$rows.hide();
-						for(var i = 0;i<10 ;i++){
-							if((i+page*10) == $rows.length) break;
-							$rows.eq(i+page*10).show();	
+						for(var i = 0;i<pageSize ;i++){
+							if((i+page*pageSize) == $rows.length) break;
+							$rows.eq(i+page*pageSize).show();	
 						}
 					}
 	});
-	    function showlist(str){
-            $rows.hide().filter("tr.date"+str).show();
+	    function showlist(str,self){
+            $rows.hide().filter("div.date"+str).show();
+            $(self).parent().find(".white").attr("class","blue");
+            self.className="white";
             $("#pager").hide();
             return false;
         }
@@ -127,19 +126,15 @@
         var lastday = new Date(year, month, 0);
         var firstday = new Date(year, month - 1, 1);
         month = firstday.getMonth() + 1;
-        var t = "<td><a href=\"#\" onclick=\"showlist({1});return false;\">{0}</a></td>";
+        var t = "<li class=\"blue\" onclick=\"showlist({1},this);return false;\">{0}</li>";
         var reg = /{(\d)}/gi;
-        var str = "<table border=\"0\" cellspacing=\"1\" cellpadding=\"0\"><tr>"
-                  +"<th colspan=\"2\"><a href=\"/calender/d"+(getMonthString(lastMonth))+".html\">"+(lastMonth.getMonth()+1)+"月</a></th>"
-                  +"<th colspan=\"3\">" + firstday.getFullYear() + "年" + (firstday.getMonth() + 1) + "月</td>"
-                  +"<th colspan=\"2\"><a href=\"/calender/d"+(getMonthString(nextMonth))+".html\">"+(nextMonth.getMonth()+1)+"月</a></th>"
-                  +"</tr><tr>";
-        
-            str += "<th>日</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th>";
-       
-        str += "<tr>";
+        $(".journey_month_title").html('<li class="floatleft journey_month_up"><a href="/calender/d'+(getMonthString(lastMonth))+'.html">'+(lastMonth.getMonth()+1)+'月</a></li>'
+                  +'<li class="floatleft journey_month_today">'+firstday.getFullYear() + '年'+ (firstday.getMonth() + 1)+ '月'+'</li>'
+                  +'<li class="floatleft journey_month_next"><a href="/calender/d'+(getMonthString(nextMonth))+'.html">'+(nextMonth.getMonth()+1)+'月</a></li>');
+                  
+        var str = "";
         for (var i = 0; i < firstday.getDay(); i++) {
-            str += "<td class=\"disabled\">" + (new Date(year, month, i - firstday.getDay())).getDate() + "</td>";
+            str += '<li class="lightgreen">' + (new Date(year, month, i - firstday.getDay())).getDate() + "</li>";
         }
         for (var i = 1; i <= lastday.getDate(); i++) {
             var day = new Date(year, month - 1, i);
@@ -147,16 +142,12 @@
                 var o = [i,param.date[i]];
                 a = t.replace(reg,function(){return o[arguments[1]]});
              }else{
-                a = "<td>"+ i +"</td>";
+                a = '<li>'+ i +'</li>';
              }
             str += a;
-            if (day.getDay() == 6)
-                str += "</tr><tr>";
-
         }
         for (var i = 1; i <= 6 - lastday.getDay(); i++)
-            str += "<td class=\"disabled\">" + i + "</td>";
-        str += "</tr></table>";
+            str += '<li class="lightgreen">'+ i +'</li>';
         this.html(str);
         return this;
         function getMonthString(date){
@@ -165,7 +156,7 @@
             return date.getFullYear() + month;
         }
     }
-        $("#calender").drawCalender({year:<%=sDate.Year %>,
+        $(".journey_month_date").drawCalender({year:<%=sDate.Year %>,
                                      month:<%=sDate.Month %>,
                                      date:{<%=DateCollJson %>}});
     });
@@ -203,30 +194,9 @@ protected int PageIndex
     protected int BandId{
         get
         {
-            string queryId = Request.QueryString["id"];
-            if (string.IsNullOrEmpty(queryId)) return 0;
-
-            int id = 0;
-
-            int.TryParse(queryId, out id);
-
-            return id;
+            return D4D.Web.Helper.Helper.BandId;
         }
     }
-	public static IDictionary<int,BandInfo> BandColl
-        {
-            get
-            {
-                IDictionary<int, BandInfo> coll = D4D.Web.Helper.Helper.BandColl;
-					
-				BandInfo band = new BandInfo();
-				band.BandId = 0;
-				band.BandName = "公司";
-				coll.Add(band.BandId,band);
-                return coll;
-
-            }
-        }
     protected void Page_Load(object sender, EventArgs e)
     {
         string url = "/calender";
@@ -317,10 +287,5 @@ protected int PageIndex
             return string.Empty;
         }
     }
-    protected BandInfo BandInfo(int Id)
-    {
-        BandInfo band = new BandInfo();
-        BandColl.TryGetValue(Id, out band);
-        return band;
-    }
+   
 </script>

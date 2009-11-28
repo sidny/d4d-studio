@@ -1114,6 +1114,7 @@ a..btn_blue:hover{
 	height:27px;
 	background:#898989;
 }
+.journey_month_title a{ color:White;}
 .journey_month_title li{
 	border-top:1px #F2F2E0 solid;
 	border-left:1px #F2F2E0 solid;

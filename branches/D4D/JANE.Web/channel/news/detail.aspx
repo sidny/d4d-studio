@@ -2,7 +2,6 @@
 <%@ Import Namespace="D4D.Platform.Domain" %>
 <%@ Import Namespace="D4D.Platform" %>
 <%@ Import Namespace="System.Collections.Generic" %>
-<%@ Register src="~/Control/comment.ascx" tagname="comment" tagprefix="uc1" %>
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader">
 
 </asp:Content>
@@ -31,29 +30,7 @@
 	</div>
 	<div class="spacer"></div>
     <p><uc1:comment ID="comment1"  runat="server" /></p>
-<div class="next-prev">
-<%for (int i = 0; i < NextPrev.Count; i++)
-  {
-      News news = NextPrev[i];%>
-    <p><%if (news.NewsId > CurrentNews.NewsId)
-         {%>上一条<%}
-         else
-         { %>下一条<%} %> ：<a href="/news/d/<%= news.NewsId%>.html"><%= news.Title%></a> &nbsp;&nbsp; <%= news.PublishDate.ToString("yyyy-MM-dd")%></p>
-    <%} %>
-</div>
     
-<asp:Repeater ID="repList" OnItemDataBound="repList_ItemDataBound" runat="server">
-     <HeaderTemplate>
-     <ul class="news-list">
-        <li style="border-bottom:1px solid #cbcbcb; font-weight:bold; line-height:30px; margin-bottom:10px;">相关星闻</li>
-     </HeaderTemplate>
-         <ItemTemplate>
-            <li style=" padding-left:20px;"> + <a href="/news/d/<%#((News)Container.DataItem).NewsId %>.html" target="_blank"><%#((News)Container.DataItem).Title%></a> <asp:Literal ID="litListTag" runat="server"></asp:Literal><label><%#((News)Container.DataItem).PublishDate.ToString("yyyy-MM-dd")%></label></li>  
-         </ItemTemplate>
-      <FooterTemplate>
-      	</ul>
-      </FooterTemplate>   
-</asp:Repeater>
     
     </div>
     </div>
