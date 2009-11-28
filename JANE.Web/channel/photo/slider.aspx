@@ -66,9 +66,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="clearfix" style="padding-top: 10px; width: 690px; margin: 0 auto">
-                            <uc1:comment ID="comment1" runat="server" />
-                        </div>
                     </div>
 
                     <script type="text/javascript">
@@ -76,7 +73,17 @@
             var galleries = $('.ad-gallery').adGallery({ loader_image: "/static/images/album/loader.gif",start_at_index:<%=startIndex %>});
         });
     </script>
-
+            <div class="spacer" style="height:35px"></div>
+	  
+	  <div class="video_play_bar">
+	    <div class="video_play_bar_commend floatright">
+		
+		<a href="/photo/c/<%=AlbumId %>.html" class="btn_gray floatleft"><span>发表评论</span></a>
+		<div class="vspacer"></div>
+		<a href="/photo/c/<%=AlbumId %>.html" class="btn_gray floatleft"><span>评论（<%=CommentsCount %>条）</span></a>
+		</div>
+	  </div>
+	  <div class="spacer" style="height:50px"></div>
                     <div class="clear" />
             </div>
         </div>
@@ -121,10 +128,6 @@
                AlbumId, D4D.Platform.Domain.PublishStatus.Publish);
         }
 
-        comment1.ObjectId = AlbumId;
-        comment1.ObjectType = (int)ObjectTypeDefine.Album;
-        comment1.CommentsCount = CommentsCount;
-        comment1.CommentUrl = "/photo/c/" + AlbumId + ".html";
     }
     protected BandInfo Band
     {

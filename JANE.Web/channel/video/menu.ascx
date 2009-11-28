@@ -3,71 +3,43 @@
 <%@ Import Namespace="System.Collections.Generic" %>
 <%@ Import Namespace="D4D.Platform.Domain" %>
 <%@ Import Namespace="D4D.Platform" %>
- <style type="text/css">
-  .sub-nav .sub{height:auto;font-weight:normal;font-size:12px;clear:both; background:none; padding-bottom:30px;}
-  </style>
-<div class="sub-title">
-  <p class="title">视频</p>
-  <p class="nav-link">您的位置：首页 > 视频</p>
-</div>
-<div class="sub-nav">
-  <ul><%
-        
-        System.Collections.Generic.List<BandInfo> list = new System.Collections.Generic.List<BandInfo>();
-        list.Add(new BandInfo()
-        {
-            BandId = -1,
-            BandName = "全部"
-        });
-        list.Add(new BandInfo()
-        {
-            BandId = 0,
-            BandName = "公司"
-        });
-        list.AddRange(D4D.Web.Helper.Helper.BandColl.Values);
-        foreach (BandInfo i in list)
-      {
-          if (i.BandId == BandId)
-          {
-           %>
-    <li>》<font color="red"><%=i.BandName%>视频</font></li>
-    <li class="sub">
-    <dl class="dateList clearfix">
-     <dt>时间标签</dt>
-    <dt class="date">
-    <%int startYear = (CurrentSelectYear == DateTime.Now.Year) ? CurrentSelectYear : CurrentSelectYear + 1;
-      for (int n = startYear; n > startYear-3; n--)
-      {
-          int month = 12;
+<div class="left floatleft">
+    <div class="spacer" style="height:43px;"></div>
+	<div class="spacer"></div>
+	
+	<div class="video_tag_time">
+		<h2 class="black_5757">时间标签</h2>
+	    <div class="video_tag_time_year">
+       	<%int startYear = (CurrentSelectYear == DateTime.Now.Year) ? CurrentSelectYear : CurrentSelectYear + 1;
+		int month = 12;
           if (CurrentSelectYear == DateTime.Now.Year)
               month = DateTime.Now.Month;
-           %><a href="?year=<%=n %>&month=<%=month %>" <%=(CurrentSelectYear==n)?"class=\"on\"":"" %>><%=n%>年</a><%} %>
-    </dt>
-    <dd><% 
+      		for (int n = startYear; n > startYear-3; n--)
+      			{
+           %><a  href="/video.html?year=<%=n %>&month=<%=month %>" <%=(CurrentSelectYear==n)?"class=\"white\"":"" %>><%=n%>年</a> <%}%>
+           <a href="/video.html?year=<%=CurrentSelectYear-1 %>&month=<%=month %>"><img src="/static/images/ico_next.gif" /></a>
+           <%if(startYear > CurrentSelectYear){%>
+		   <a href="/video.html?year=<%=CurrentSelectYear+1 %>&month=<%=month %>"><img src="/static/images/ico_up.gif" /></a>
+           <%}%>
+		</div>
+	    <div class="spacer"></div>
+	    <div class="video_tag_time_moth">
+			<% 
           int length = (CurrentSelectYear == DateTime.Now.Year) ? DateTime.Now.Month : 12;
           for (int n = length; n > 0; n--)
-          {%><a href="?year=<%=CurrentSelectYear %>&month=<%=n %>" <%=(n == CurrentSelectMonth)?"class=\"on\"":"" %>>
+          {%><a href="/video.html?year=<%=CurrentSelectYear %>&month=<%=n %>" <%=(n == CurrentSelectMonth)?"class=\"orange\"":"" %>>
           <%=((n < 10) ? "0" : "") + n.ToString()%>月</a><% }%>
-    </dd>
-    </dl>
-    <dl class="tagList">
-        <dt>热门标签</dt>
-        <dd>
-        <% foreach(Tag tag in ListTags){
-               Response.Write(GetTagStr(tag));
+		</div>
+	</div>
+	<div class="spacer" style="height:30px"></div>
+	<div class="video_tag_hot">
+		<h2>热门标签</h2>
+	    <div class="video_tag_hot_key">
+		<% foreach(Tag tag in ListTags){
+               Response.Write(GetTagStr(tag) + " ");
            }%>
-        </dd>
-    </dl>
-    </li>
-    <%}
-          else
-          {
-        string s= (i.BandId>=0)?"/video/"+i.BandId+".html":"/video.html";
-              %>
-    <li>》<a href="<%=s %>"><%=i.BandName%>视频</a></li>
-    <%}
-      } %>
-  </ul>
+	  </div>
+  </div>
 </div>
 <script  runat="server">
     public string Channel;

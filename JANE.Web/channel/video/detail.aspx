@@ -1,32 +1,40 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage/Main.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage/Channel.Master" %>
 <%@ Import Namespace="D4D.Platform.Domain" %>
 <%@ Import Namespace="D4D.Platform" %>
 <%@ Import Namespace="System.Collections.Generic" %>
 <%@ Register src="~/Control/comment.ascx" tagname="comment" tagprefix="uc1" %>
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader"></asp:Content>
 <asp:Content ContentPlaceHolderID="ContentMain" runat="server">
-<div class="sub-title">
-        <p class="title">
-            视频</p>
-        <p class="nav-link">
-            您的位置：首页 > 视频</p>
+<div class="right floatleft">
+  <div class="cd_right">
+    <div class="w_562 h_578">
+      <div class="spacer" style="height:36px"></div>
+	  <div class="cd_title video_title font24"><h1 class="floatleft font24" style="width:98%">- <%=CurrentNews.Title%></h1></div>
+	  <div class="spacer" style="height:20px"></div>
+	  <div class="video_play">
+	  	<%=CurrentNews.Body%>
+	  </div>
+	  
+	  <div class="spacer"></div>
+	  <div class="spacer"></div>
+	  <div class="video_play_bar">
+	    <div class="video_play_bar_tag floatleft deepblue"><%=GetTagHtml(CurrentNews.NewsId)%></div>
+	    <div class="video_play_bar_commend floatright">
+		
+		<a href="/video/c/<%=NewsId %>.html" class="btn_gray floatleft"><span>发表评论</span></a>
+		<div class="vspacer"></div>
+		<a href="/video/c/<%=NewsId %>.html" class="btn_gray floatleft"><span>评论（<%=CommentsCount%>条）</span></a>
+		</div>
+	  </div>
+	  <div class="spacer" style="height:20px"></div>
+	  
+      
+	  <div class="clear"></div>
     </div>
-<div class="album_detail">
-        <div class="channel">
-            <h1>
-                全部视频 / <font color="red"><%=CurrentNews.Title%></font></h1>
-            <div class="return">
-                <a href="/video.html" style="color: red">返回视频首页</a></div>
-        </div>
-    <div style="text-align:center; padding:20px 0;">
-    <%=CurrentNews.Body%>
+	<div class="clear"></div>
 	</div>
-    <div style="width:690px; margin:20px auto;">
-	<%=GetTagHtml(CurrentNews.NewsId)%>
-    <uc1:comment ID="comment1"  runat="server" />
-    </div>
-    </div>
-    
+	<div class="clear"></div>
+  </div>
 </asp:Content>
 
 <script runat="server">
@@ -168,10 +176,6 @@
         {
             BindNews();
         }
-        comment1.ObjectId = NewsId;
-        comment1.ObjectType = (int)ObjectTypeDefine.Video;
-        comment1.CommentsCount = CommentsCount;
-        comment1.CommentUrl = "/video/c/" + NewsId + ".html";
     }
     
     private const string TitleFormat = "{0}新闻";

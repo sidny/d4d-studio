@@ -481,11 +481,13 @@ a..btn_blue:hover{
 	border-left:1px #DCDEDD solid;
 	border-right:1px #DCDEDD solid;
 	border-top:none;
+	position:relative;
 }
 .cd_music_list_item_a{
 	height:23px;
 	border-bottom:1px #DDDDDD solid;
 	background:#E7F9EB;
+	
 }
 .cd_music_list_item_b{
 	height:23px;
@@ -1233,15 +1235,6 @@ a..btn_blue:hover{
 }
 /*µÇÂ¼*/
 .login{
-	position:fixed;
-	margin:100px 0px 0px 350px;
-	width:396px;
-	border:1px #575757 solid;
-	background:#ffffff;
-	z-index:99;
-}
-*html .login{
-	position:absolute;
 	width:396px;
 	border:1px #575757 solid;
 	background:#ffffff;

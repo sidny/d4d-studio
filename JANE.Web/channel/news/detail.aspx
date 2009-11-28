@@ -29,7 +29,6 @@
 	<%} %>
 	</div>
 	<div class="spacer"></div>
-    <p><uc1:comment ID="comment1"  runat="server" /></p>
     
     
     </div>
@@ -176,11 +175,12 @@ protected void Page_Load(object sender, EventArgs e)
         SetTitle();
         BindNews();
     }
+    /*
     comment1.ObjectId = NewsId;
     comment1.ObjectType = (int)ObjectTypeDefine.News;
     comment1.CommentsCount = CommentsCount;
     comment1.CommentUrl = "/news/c/" + NewsId + ".html";
-
+    */
 }
 
 private const string TitleFormat = "{0}新闻";
