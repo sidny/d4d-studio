@@ -1,4 +1,22 @@
-<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="top.ascx.cs" Inherits="D4D.Web.Control.top" %>
+<%@ Control Language="C#" AutoEventWireup="true" %>
+<script type="text/javascript">
+    function menuReady(func) {
+        var flash = window["menu"] || document["menu"];
+        setTimeout(function() {
+            flash.setMenu([
+            { text: "首页", url: "/" },
+	        { text: "资讯", url: "/news.html" },
+	        { text: "行程", url: "/calender.html" },
+	        { text: "档案", url: "/singer.html" },
+	        { text: "唱片", url: "/music.html" },
+	        { text: "视频", url: "/video.html" },
+	        { text: "图片", url: "/photo.html" },
+	        { text: "论坛", url: "http://bbs.janezhang.com",target:"_blank" },
+	        { text: "商城", url: "/shop.html" }
+        ]);
+        }, 500);
+    }
+</script>
 <div class="head">
   <div class="head_login">
    <%if (D4D.Web.Helper.AdminHelper.CurrentUser == null)
@@ -11,12 +29,22 @@
 | <a href="#">语言选择</a><img src="/static/images/ico_arrow.gif" align="absmiddle" />
   </div>
   <div>
-    <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" width="1300" height="40">
-      <param name="movie" value="/static/images/menu.swf" />
-      <param name="quality" value="high" />
-<param name="wmode" value="transparent" />
-      <embed src="/static/images/menu.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" wmode="transparent" type="application/x-shockwave-flash" width="1300" height="40"></embed>
-    </object>
+  <script type="text/javascript">
+          AC_FL_RunContent(
+		"src", "/static/images/menu",
+		"width", "1300",
+		"height", "40",
+		"align", "middle",
+		"id", "menu",
+		"quality", "high",
+		"name", "menu",
+		"allowScriptAccess", "always",
+		"wmode","transparent",
+		"type", "application/x-shockwave-flash",
+		"pluginspage", "http://www.adobe.com/go/getflashplayer"
+	);
+</script>  
+  
   </div>
 </div>
 <script type="text/javascript">
