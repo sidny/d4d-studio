@@ -40,7 +40,7 @@
      <ul class="news_list">
      </HeaderTemplate>
          <ItemTemplate>
-         <li>
+         <li> 
 			<p><a href="/news/d/<%#((News)Container.DataItem).NewsId %>.html"><%#((News)Container.DataItem).Title %></a></p>
 			<span><asp:Literal ID="litListTag" runat="server"></asp:Literal>  [<%#((News)Container.DataItem).PublishDate.ToString("yyyy-MM-dd")%>]</span>
 		 </li>  
@@ -49,7 +49,10 @@
       	</ul>
       </FooterTemplate>   
 </asp:Repeater>
-    <div id="pager" class="pagestyle"></div>
+	  <div class="spacer"></div>
+	  <div class="spacer"></div>
+    <div id="pager" class="pages_num margincenter"></div>
+	  <div class="spacer" style="height:20px"></div>
 </div>
 <script type="text/javascript">
     $(document).ready(function() {
@@ -82,6 +85,8 @@
                 });
     });
 </script>
+</div>
+</div>
 </asp:Content>
 <script runat="server">
     
