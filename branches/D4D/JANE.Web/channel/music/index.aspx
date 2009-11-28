@@ -1,141 +1,73 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true"
-    MasterPageFile="~/MasterPage/Channel.Master" %>
+    MasterPageFile="~/MasterPage/Main.Master" %>
 <%@ Import Namespace="D4D.Platform.Domain" %>
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader">
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentMain" runat="server">
-    <div class="music">
-    <asp:Repeater ID="repMusicTitle" runat="server">
+<div class="cd_body">
+  <!--right-->
+  <div class="right_1100">
+  <div class="cd_right_902">
+    <div class="w_782 h_578">
+      <div class="spacer" style="height:46px"></div>
+	  <div class="cd_title_782"></div>
+	  <div class="spacer" style="height:40px"></div>
+	  <asp:Repeater ID="repMusicTitle" runat="server">
         <HeaderTemplate>
-            <ul>
+       <ul class="cd_list_01">
         </HeaderTemplate>
         <ItemTemplate>
-            <li>            
-            <p class="pic"><a href="<%#GetUrl(((MusicTitle)Container.DataItem).MusicId,2) %>"><img src="<%#((MusicTitle)Container.DataItem).LImage %>" width="60" height="60" /></a></p>
-            <p class="text"><%#GetNewImage((MusicTitle)Container.DataItem)%><a href="<%#GetUrl(((MusicTitle)Container.DataItem).MusicId,2) %>">
-            <%#((MusicTitle)Container.DataItem).Title %></a> 
-               <br />
-               歌手：<%#GetBandName(((MusicTitle)Container.DataItem).BandId)%>
-               &nbsp;&nbsp;发行：<%#GetDate(((MusicTitle)Container.DataItem).PublishDate)%>
-            </p>
-            </li>
-            <%#(Container.ItemIndex%2 == 1)?"<li class=\"line\">&nbsp;</li>":"" %>
+        <li>
+            <span class="cd_img floatleft"><a href="<%#GetUrl(((MusicTitle)Container.DataItem).MusicId,2) %>"><img src="<%#((MusicTitle)Container.DataItem).LImage %>" /></a></span>
+		    <div class="floatright cd_list_01_text">
+		    <h1><%#GetNewImage((MusicTitle)Container.DataItem)%><a href="<%#GetUrl(((MusicTitle)Container.DataItem).MusicId,2) %>">
+            <%#((MusicTitle)Container.DataItem).Title %></a></h1>
+		    <div class="clear" style="height:4px"></div>
+		    <p><%#GetDate(((MusicTitle)Container.DataItem).PublishDate)%></p>
+		    <div class="clear" style="height:4px"></div>
+		    <div>
+                <a href="<%#GetUrl(((MusicTitle)Container.DataItem).MusicId,2) %>" class="btn_play">播放此专辑</a>
+                <div class="vspacer"></div>
+                <a href="#" class="btn_gray floatleft"><span class="floatleft">YOJO购买</span></a>
+                <div class="vspacer"></div>
+                <a href="#" class="btn_gray floatleft"><span class="floatleft">当当购买</span></a>			    </div>
+            </div>
+           </li>
         </ItemTemplate>
         <FooterTemplate>
             </ul>
         </FooterTemplate>
-    </asp:Repeater>
-    <div class="pagestyle" id="pager"></div>
+    </asp:Repeater>	  
+    </div>
+	<div class="clear"></div>
+	</div>
+	<div class="clear"></div>
+  </div>
+  <!--right/-->
+  <div class="clear"></div>
 </div>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-    var cur = parseInt("<%=PageIndex %>");
-    var total = parseInt("<%=PageTotalCount %>");
-        var href = location.href;
-        if(href.match(/page=\d+/gi)) href = href.replace(/page=\d+/ig,"page=__id__");
-        else href +="?page=__id__";
-        $("#pager").pagination(
-          total,
-                {
-                    items_per_page: 10,
-                    num_display_entries: 10,
-                    current_page: cur - 1,
-                    link_to: href,
-                    prev_text: "上一页",
-                    next_text: "下一页",
-                    callback: function() { return true; }
-                });
-    });
-</script>
 </asp:Content>
 
 <script runat="server">
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        BindMusicTitleRep(PageIndex);
-    }
-
-    protected int PageIndex
-    {
-        get
-        {
-            string queryPage = Request.QueryString["page"];
-            if (string.IsNullOrEmpty(queryPage)) return 1;
-
-            int page = 1;
-
-            int.TryParse(queryPage, out page);
-
-            if (page == 0) page = 1;
-
-            return page;
-        }
-    }
-    protected int DateYear
-    {
-        get
-        {
-            string dateid = Request.QueryString["date"];
-            if (string.IsNullOrEmpty(dateid)) return 0;
-
-            int id = 0;
-
-            int.TryParse(dateid, out id);
-            return id;
-        }
+        BindMusicTitleRep();
     }
     protected int BandId
     {
         get
         {
-            string queryid = Request.QueryString["id"];
-            if (string.IsNullOrEmpty(queryid)) return 0;
-
-            int id = 0;
-
-            int.TryParse(queryid, out id);
-            return id;
+            return D4D.Web.Helper.Helper.BandId;
         }
     }
-    private int totalCount;
-    protected int PageTotalCount
-    {
-        get
-        {
-            return totalCount;
-        }
-    }
-    private void BindMusicTitleRep(int pageIndex)
+    private void BindMusicTitleRep()
     {
         D4D.Platform.Domain.PagingContext pager = new D4D.Platform.Domain.PagingContext();
-        pager.RecordsPerPage = 10;
-        pager.CurrentPageNumber = pageIndex;
-        if (BandId > 0)
-        {
-            if (DateYear <= 1950)
-                repMusicTitle.DataSource = D4D.Platform.D4DGateway.MusicProvider.GetPagedMusicTitlesByBandId(pager,
-                   BandId, D4D.Platform.Domain.PublishStatus.Publish);
-            else
-            {
-                repMusicTitle.DataSource = D4D.Platform.D4DGateway.MusicProvider.GetPagedMusicTitlesByBandIdANDPublishYear(pager,
-                    BandId, DateYear, PublishStatus.Publish);
-            }
-        }
-        else
-        {
-            if (DateYear <= 1950)
-                repMusicTitle.DataSource = D4D.Platform.D4DGateway.MusicProvider.GetPagedMusicTitles(pager,
-                               D4D.Platform.Domain.PublishStatus.Publish);
-            else
-            {
-                repMusicTitle.DataSource = D4D.Platform.D4DGateway.MusicProvider.GetPagedMusicTitlesByPublishYear(pager,
-                    DateYear, PublishStatus.Publish);
-            }
-        }
+        pager.RecordsPerPage = 1000;
+        repMusicTitle.DataSource = D4D.Platform.D4DGateway.MusicProvider.GetPagedMusicTitlesByBandId(
+            pager, BandId, PublishStatus.Publish);
         repMusicTitle.DataBind();
-        totalCount = pager.TotalRecordCount;
 
     }
     protected string GetUrl(int id, int type)
@@ -170,15 +102,6 @@
             bool.TryParse(key, out result);
             return result;
         }
-    }
-    protected string GetBandName(int id)
-    {
-        string s = string.Empty; 
-            BandInfo band ;
-            D4D.Web.Helper.Helper.BandColl.TryGetValue(id, out band);
-            if(band!=null)
-                 s = band.BandName;
-            return s;
     }
     protected string GetNewImage(MusicTitle m)
     {

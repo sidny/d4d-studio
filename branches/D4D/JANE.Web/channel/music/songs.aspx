@@ -5,101 +5,128 @@
 <%@ Register src="~/Control/comment.ascx" tagname="comment" tagprefix="uc1" %>
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader">
 <style type="text/css">
-.album-desc{border:1px solid #d3d3d3;_height:170px; min-height:170px; width:580px; padding:15px;}
-.album-desc p{ padding-left:185px;line-height:20px;}
-.album-desc p.img{float:left; padding-right:15px; padding-left:0;}
-.album-desc p.title{ font-size:24px; color:#666666; font-family:微软雅黑,黑体; padding:0; line-height:normal; height:36px}
-.music-list{ border:1px solid #d3d3d3; color:#6e6e6e;  border-top:none; width:610px;}
-.music-list td{ border-bottom:1px solid #d3d3d3; height:30px; vertical-align:middle; position:relative;}
-.music-list td span{ z-index:100; display:inline-block; position:relative;}
-.music-list .processbar{ background:#ff7e33; height:20px; width:0; left:0; position:absolute; top:8px;}
-.music-list span {margin-top:6px;  padding-top:5px;}
-.music-list span.control{ padding-top:2px; background:url(/static/images/album/player.gif) no-repeat left; border:0; height:20px; width:11px; cursor:pointer; }
-.music-list span.on{ background-position:right;}
-.slider{ float:right; height:520px;}
-.slider .jCarouselLite{ width:131px; height:440px; padding-top:5px;}
-.slider ul{width:131px; height:440px; overflow:hidden; text-align:center; line-height:26px;}
-.slider ul li img{ background:url(/static/images/music/cd.gif); padding:1px 8px 2px 6px; width:60px; height:60px;}
-
+.slider .jCarouselLite{ width:131px; padding-left:20px; margin:0 auto; height:440px;}
  </style>
  <script src="/static/js/AC_OETags.js" type="text/javascript"></script>
 <script src="/static/js/jcarousellite_1.0.1.pack.js" type="text/javascript"></script>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentMain" runat="server">
-  <%if (false)
-  { %>
-   <script type="text/javascript" src="../../static/js/jquery-1.3.2.js"></script>
-<%} %>
-<div class="sub-title">
-  <p class="title">音乐</p>
-  <p class="nav-link">您的位置：首页 > 音乐 ><%=Music.Title %></p>
-</div>
-    <div style="margin:20px auto; width:780px; _height:600px; min-height:600px;">
-    <div class="sub-title" style="border:none">
-        <p class="title" style="width:50%"><a href="/music.html">全部音乐</a> / <font color="red"><%=Music.Title%></font></p>
-        <p class="nav-link"><a href="/music.html">返回音乐首页</a></p>
-    </div>
-    <div class="slider">
-    <div class="prev"><input type="image" src="/static/images/music/prev.gif" /></div>
+<div class="cd_body">
+  <!--left-->
+  <div class="left floatleft">
+    <div class="spacer" style="height:56px;"></div>
+	<div class="slider">
+    <div class="aligncenter cd_pages prev"><img src="/static/images/ico_arrow_1.gif" /></div>
+	<div class="spacer"></div>
+	<div class="spacer"></div>
     <div class="jCarouselLite">
     <asp:Repeater ID="repMusicTitle" runat="server">
         <HeaderTemplate>
-            <ul>
+         <ul class="cd_list">
         </HeaderTemplate>
         <ItemTemplate>
-            <li>            
-            <p class="pic"><a href="<%#(((MusicTitle)Container.DataItem).MusicId) %>.html"><img src="<%#((MusicTitle)Container.DataItem).SImage %>" width="75" height="65" /></a></p>
-            <p class="text"><a href="<%#(((MusicTitle)Container.DataItem).MusicId) %>.html">
-            <%#((MusicTitle)Container.DataItem).Title %></a></p>
-            </li>
+        <li>
+			<span><a href="<%#(((MusicTitle)Container.DataItem).MusicId) %>.html"><img src="<%#((MusicTitle)Container.DataItem).SImage %>" width="75" height="65" /></a></span>
+			<a href="<%#(((MusicTitle)Container.DataItem).MusicId) %>.html">
+            <%#((MusicTitle)Container.DataItem).Title %></a>
+		</li>
         </ItemTemplate>
         <FooterTemplate>
-            </ul>
+        </ul>
         </FooterTemplate>
     </asp:Repeater>
     </div>
-    <div class="next"><input type="image" src="/static/images/music/next.gif" /></div>
-    </div>
-    <div class="album-desc">
-        <p class="img"><img src="<%=musicTitle.LImage%>" width="170" height="170" /> </p>
-        <p class="title"><%=musicTitle.Title%></p>
-        <p>歌手：<%=BandInfo(musicTitle.BandId).BandName%></p>
-        <p>出版时间：
-        <%if(musicTitle.PublishDate.Year < 2000){ %>未发行
+	<div class="aligncenter cd_pages next"><img src="/static/images/ico_arrow.gif" /></div>
+  </div>
+  </div>
+ 
+  <!--left/-->
+  <!--right-->
+  <div class="right floatleft">
+  <div class="cd_right">
+    <div class="w_562 h_578">
+      <div class="spacer" style="height:36px"></div>
+	  
+	  <div class="cd_title">
+	  <h1 class="floatleft font24"> - <%=musicTitle.Title%></h1>
+	  <div class="floatright"><a href="/music.html">返回唱片</a></div>
+	  </div>
+	  
+	  <div class="spacer" style="height:20px"></div>
+	  
+	  <div class="cd_intro">
+	    <div class="cd_img floatleft"><img src="<%=musicTitle.LImage%>" /></div>
+	    <div class="cd_info floatright">
+			<div class="spacer" style="height:2px;"></div>
+			<h1><%=musicTitle.Title%></h1>
+			<div class="spacer" style="height:12px;"></div>
+			<p><%if(musicTitle.PublishDate.Year < 2000){ %>未发行
         <%}else{
               Response.Write(musicTitle.PublishDate.ToString("yyyy年M月d日"));
-          }%></p>
-        <p><%=musicTitle.Body%></p>
-    </div>
-    
-    <div class="music-list">
+          }%><br />
+            <%=musicTitle.Body%></p>
+		    <div class="spacer" style="height:11px"></div>
+		    <div class="cd_info_btn">
+			<a href="#" class="btn_play">播放此专辑</a>
+			<div class="vspacer"></div>
+			<a href="#" class="btn_gray floatleft"><span class="floatleft">YOJO购买</span></a>
+			<div class="vspacer"></div>
+			<a href="#" class="btn_gray floatleft"><span class="floatleft">当当购买</span></a>			</div>
+	    </div>
+	    <div class="clear"></div>
+	  </div>
+      
     <asp:Repeater ID="repList" runat="server">
         <HeaderTemplate>
-     <table border="0" cellpadding="2" cellspacing="0" width="100%">
-        <tr><td colspan="4" valign="middle" style="padding-left:40px;"><span id="btn-play-all" href="#全部播放"><img src="/static/images/album/playall.gif" alt="全部播放" /></span></td></tr>
-        <tr bgcolor="#d3d3d3">
-        <th width="50" height="20"></th>
-        <th width="400" align="left">歌曲名</th>
-        <th align="left">歌手</th>
-        <th width="80">长度</th>
-        </tr>
-        </HeaderTemplate>
-        
-        <ItemTemplate>
-        <tr>
-        <td align="right" valign="middle"><span class="control"  href="<%#((MusicSongList)Container.DataItem).SongFile %>" index="<%#Container.ItemIndex %>" songId="<%#((MusicSongList)Container.DataItem).ListId %>"></span></td>
-        <td><span><%#((MusicSongList)Container.DataItem).SongName %></span><div class="processbar"></div>
-            
-        </td>
-         <td><span><%=BandInfo(musicTitle.BandId).BandName%></span></td> 
-         <td class="song-time" align="center">&nbsp;<%#((MusicSongList)Container.DataItem).SongTime %>&nbsp;</td>
-         </tr>
-        </ItemTemplate>
-        <FooterTemplate>
-         </table>
-        </FooterTemplate>
-    </asp:Repeater>
+	    <div class="cd_music_list">
+	    </HeaderTemplate>
+	    <ItemTemplate>
+	    <div class="cd_music_list_item_a">
+		  <div class="cd_music_vote_1"></div>
+		  <div class="cd_music_vote_2"></div>
+		  <div class="cd_music_list_name floatleft">
+			<a href="#" song="<%#((MusicSongList)Container.DataItem).SongFile %>" index="<%#Container.ItemIndex %>" songId="<%#((MusicSongList)Container.DataItem).ListId %>">play</a>
+			<span><%#((MusicSongList)Container.DataItem).SongName %></span>
+		  </div>
+		  <div class="cd_music_list_time floatright"><%#((MusicSongList)Container.DataItem).SongTime %></div>
+		</div>
+		</ItemTemplate>
+		<AlternatingItemTemplate>
+	    <div class="cd_music_list_item_b">
+		  <div class="cd_music_vote_1"></div>
+		  <div class="cd_music_vote_2"></div>
+		  <div class="cd_music_list_name floatleft">
+			<a href="#" song="<%#((MusicSongList)Container.DataItem).SongFile %>" index="<%#Container.ItemIndex %>" songId="<%#((MusicSongList)Container.DataItem).ListId %>">play</a>
+			<span><%#((MusicSongList)Container.DataItem).SongName %></span>
+		  </div>
+		  <div class="cd_music_list_time floatright"><%#((MusicSongList)Container.DataItem).SongTime %></div>
+		</div>
+		</AlternatingItemTemplate>
+		<FooterTemplate>
+	    </div>
+		</FooterTemplate>
+	</asp:Repeater>
+		
+	  
+	  <div class="spacer" style="height:20px"></div>
+	  
+      <div class="cd_music_btn">
+		  <a href="/music/b<%=Music.BandId%>/c/<%=Music.MusicId%>.html" class="btn_gray floatright"><span class="floatleft">评论(<%=CommentsCount %>条)</span></a>
+		
+		  <a href="/music/b<%=Music.BandId%>/c/<%=Music.MusicId%>.html" class="btn_gray floatright mgr_10"><span class="floatleft">发表评论</span></a>
+		  
+	      <div class="clear"></div>
+      </div>
+	  <div class="clear"></div>
     </div>
+	<div class="clear"></div>
+	</div>
+	<div class="clear"></div>
+  </div>
+  <!--right/-->
+  <div class="clear"></div>
+  </div>
+    
     <div id="player">
 <script type="text/javascript"> 
 	if(DetectFlashVer(10,0,3)){
@@ -123,10 +150,6 @@
 	}
 </script>  
 </div>
-    <div style="width:600px; padding-top:20px;">
-        <uc1:comment ID="comment1"  runat="server" />
-    </div>
-</div>
 <script type="text/javascript">
     $(function() {
         $(".slider .jCarouselLite").jCarouselLite({
@@ -141,9 +164,9 @@
     var player = null;
     function playerReady(thePlayer) {
         player = window.document[thePlayer.id];
-        var buttons = $(".music-list span.control");
-        var processbar = $(".music-list div.processbar");
-        var songtime = $(".music-list .song-time");
+        var buttons = $(".cd_music_list a");
+        var processbar = $(".cd_music_list .cd_music_vote_2");
+        var songtime = $(".cd_music_list .cd_music_list_time");
         var current = 1;
         var init = false;
         function playerStateChange(obj) {
@@ -153,15 +176,15 @@
                     if (current < buttons.length) {
                         buttons[current].click();
                     } else {
-                        buttons.eq(current).removeClass("on");
+                    buttons.eq(current).removeClass("cd_music_playing");
                     }
                     break;
                 case "PLAYING":
-                    buttons.eq(current).addClass("on");
+                    buttons.eq(current).addClass("cd_music_playing");
                     break;
                 case "PAUSED":
                 default:
-                    buttons.eq(current).removeClass("on");
+                    buttons.eq(current).removeClass("cd_music_playing");
                     break;
             }
         }
@@ -206,32 +229,29 @@
         }
 
         buttons.click(function() {
-			if($("#btnLogin").length>0)$("#btnLogin").click();
-			else{
-            var $this = $(this);
+            if (false && $("#btnLogin").length > 0) $("#btnLogin").click();
+            else {
+                var $this = $(this);
 
-            if (player.getConfig()["state"] == "PLAYING" && current.toString() == $this.attr("index")) {
-                player.sendEvent("PLAY", false);
-            } else {
-                if (player.getConfig()["state"] == "PAUSED") {
-                    processbar.not(current).css({ width: 0 });
+                if (player.getConfig()["state"] == "PLAYING" && current.toString() == $this.attr("index")) {
+                    player.sendEvent("PLAY", false);
                 } else {
-                    processbar.css({ width: 0 })
+                    if (player.getConfig()["state"] == "PAUSED") {
+                        processbar.not(current).css({ width: 0 });
+                    } else {
+                        processbar.css({ width: 0 })
+                    }
+                    buttons.eq(current).removeClass("cd_music_playing");
+                    current = parseInt($(this).attr("index"));
+                    player.sendEvent("LOAD", buttons.eq(current).attr("song"));
+                    player.sendEvent("PLAY", true);
                 }
-                buttons.eq(current).removeClass("on");
-                current = parseInt($(this).attr("index"));
-                player.sendEvent("LOAD", buttons.eq(current).attr("href"));
-                player.sendEvent("PLAY", true);
             }
-			}
+            return false;
         });
         $("#btn-play-all").css({cursor:"pointer"}).click(function() {
-			if($("#btnLogin").length>0)$("#btnLogin").click();
-			else{
             current = 0;
-            player.sendEvent("LOAD", buttons.eq(current).attr("href"));
-            player.sendEvent("PLAY", true);
-			}
+            buttons.eq(current).click();
         });
 
     }
@@ -245,10 +265,6 @@
     {
         BindSongList();
 		BindMusicTitleRep();
-        comment1.ObjectId = MusicId;
-        comment1.ObjectType = (int)ObjectTypeDefine.MusicTitle;
-        comment1.CommentsCount = CommentsCount;
-        comment1.CommentUrl = "/music/b"+Music.BandId+"/c/"+MusicId+".html";
     }
 
    

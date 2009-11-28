@@ -4,29 +4,48 @@
 <%@ Import Namespace="System.Collections.Generic" %>
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader"></asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentMain" runat="server">
-
-<div class="video">
-<div class="channel">
-  <h1><asp:Literal ID="litTitle" runat="server"></asp:Literal></h1>
-</div>
-
-<asp:Repeater ID="repList" OnItemDataBound="repList_ItemDataBound" runat="server">
+<div class="right floatleft">
+  <div class="cd_right">
+    <div class="w_562 h_578">
+      <div class="spacer" style="height:36px"></div>
+	  <div class="cd_title video_title font24"><asp:Literal ID="litTitle" runat="server"></asp:Literal></div>
+	  <div class="spacer" style="height:20px"></div>
+	  <asp:Repeater ID="repList" OnItemDataBound="repList_ItemDataBound" runat="server">
      <HeaderTemplate>
-     <ul class="video-list">
+	  <ul class="video_list">
      </HeaderTemplate>
          <ItemTemplate>
-            <li>
-            <p class="image"><a href="/video/d/<%#((News)Container.DataItem).NewsId %>.html"><img src="<%#((News)Container.DataItem).SImage %>" height="96" width="120" alt="<%#HttpUtility.HtmlEncode(((News)Container.DataItem).Title) %>" /></a></p>
-            <p><%#GetNewImage((News)Container.DataItem) %><a href="/video/d/<%#((News)Container.DataItem).NewsId %>.html"><%#((News)Container.DataItem).Title %></a></p>
-            <p><asp:Literal ID="litListTag" runat="server"></asp:Literal> | <%#((News)Container.DataItem).Hits %>次</p>
-            <p><font color="red"> <%#((News)Container.DataItem).PublishDate.ToString("yyyy-MM-dd")%></font></p>
-            </li>  
-         </ItemTemplate>
+	  	<li>
+			<div class="video_list_btn_play"><a href="/video/d/<%#((News)Container.DataItem).NewsId %>.html"><img src="/static/images/btn_play.gif" /></a></div>
+			<div class="video_list_img"><a href="/video/d/<%#((News)Container.DataItem).NewsId %>.html"><img src="<%#((News)Container.DataItem).SImage %>" height="96" width="120" alt="<%#HttpUtility.HtmlEncode(((News)Container.DataItem).Title) %>" /></a></div>
+		    <p>
+				<%#((News)Container.DataItem).Title %><br />
+				<asp:Literal ID="litListTag" runat="server"></asp:Literal><br />
+				 <%#((News)Container.DataItem).PublishDate.ToString("yyyy-MM-dd")%>
+			</p>
+	  	</li>
+		 </ItemTemplate>
       <FooterTemplate>
       	</ul>
       </FooterTemplate>   
 </asp:Repeater>
-    <div id="pager" class="pagestyle"></div>
+	  <div class="spacer"></div>
+	  <div class="spacer"></div>
+	  
+	  <div id="pager" class="pages_num margincenter">
+			
+		</div>
+	  
+	  
+	  
+	  <div class="spacer" style="height:20px"></div>
+	  
+      
+	  <div class="clear"></div>
+    </div>
+	<div class="clear"></div>
+	</div>
+	<div class="clear"></div>
 </div>
 <script type="text/javascript">
     $(document).ready(function() {
@@ -96,13 +115,7 @@
     {
         get
         {
-            string queryid = Request.QueryString["id"];
-            if (string.IsNullOrEmpty(queryid)) return -1;
-
-            int id = 0;
-
-            int.TryParse(queryid, out id);
-            return id;
+            return D4D.Web.Helper.Helper.BandId;
         }
     }
 
@@ -171,28 +184,6 @@
             return string.Format("{0}年{1}月", TagYear, TagMonth);
         }
     }
-
-    public static IDictionary<int, BandInfo> BandColl
-    {
-        get
-        {
-            System.Collections.Generic.IDictionary<int, BandInfo> coll = D4D.Web.Helper.Helper.BandColl;
-
-            BandInfo band = new BandInfo();
-            band.BandId = 0;
-            band.BandName = "公司";
-
-            BandInfo bandCompany = new BandInfo();
-            bandCompany.BandId = -1;
-            bandCompany.BandName = "全部";
-
-            coll.Add(band.BandId, band);
-            coll.Add(bandCompany.BandId, bandCompany);
-            return coll;
-
-        }
-    } 
-    
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -204,16 +195,11 @@
     }
     
     private const string TitleFormat = "{0}视频";
-    private const string TitleTagFormat = "/<font color=\"red\">{0}</font>";
+    private const string TitleTagFormat = "- {0}";
     private void SetTitle()
     {
         //check bandName
-        BandInfo info;
-        if (BandColl.TryGetValue(BandId, out info))
-        {
-            litTitle.Text = string.Format(TitleFormat,info.BandName);
-        }
-
+        
         if (!string.IsNullOrEmpty(TagName))
         {
             litTitle.Text += string.Format(TitleTagFormat, TagName);            
@@ -354,7 +340,7 @@
         return result;
     }
     
-    private const string TagEmFormat = "<em>标签：{0}</em>";
+    private const string TagEmFormat = "标签：{0}";
     private const string AFormat = "<a href=\"{0}\">{1}</a>";
     private const string TagLinkFormat = "/video.html?id={0}&tagid={1}&tag={2}";
     protected void repList_ItemDataBound(object sender, RepeaterItemEventArgs e)
