@@ -6,7 +6,7 @@
 }
 body{
 	color:#3B3B3B;
-	background:url(./images/body_bg.jpg) repeat-x left top #D1EDD4;
+	background:url(/static/images/body_bg.jpg) repeat-x left top #D1EDD4;
 	line-height:1.3em;
 }
 td,div,dl,ul,li,table,h1,h2,h3,h4,h5,h6,ol,dt,dd{
@@ -150,34 +150,34 @@ a:hover{
 }
 .cd_body{
 	float:left;
-	background:url(./images/cd_right_img.jpg) no-repeat right top;
+	background:url(/static/images/cd_right_img.jpg) no-repeat right top;
 }
 .changereg{
 	width:1100px;
 }
 .cd_body.jane_info{
-	background:url(./images/cd_right_img_jane_info.jpg) no-repeat right top;
+	background:url(/static/images/cd_right_img_jane_info.jpg) no-repeat right top;
 }
 .cd_body.video_play_bg{
 	width:1150px;
-	background:url(./images/cd_right_img_video_play.jpg) no-repeat right top;
+	background:url(/static/images/cd_right_img_video_play.jpg) no-repeat right top;
 }
 .cd_body.pic_bg{
-	background:url(./images/cd_right_img_pic.jpg) no-repeat right top;
+	background:url(/static/images/cd_right_img_pic.jpg) no-repeat right top;
 }
 .cd_body.news_bg{
-	background:url(./images/cd_right_img_news.jpg) no-repeat right top;
+	background:url(/static/images/cd_right_img_news.jpg) no-repeat right top;
 }
 .cd_body.journey_bg{
-	background:url(./images/cd_right_img_journey.jpg) no-repeat right top;
+	background:url(/static/images/cd_right_img_journey.jpg) no-repeat right top;
 }
 .cd_body.shop_bg{
-	background:url(./images/cd_right_img_shop.jpg) no-repeat right top;
+	background:url(/static/images/cd_right_img_shop.jpg) no-repeat right top;
 }
 .cd_right{
 	float:left;
 	width:662px;
-	background:url(./images/cd_right_bg.png) repeat-y ;
+	background:url(/static/images/cd_right_bg.png) repeat-y ;
 }
 *html .cd_right{
 	background-image:none;
@@ -189,7 +189,7 @@ a:hover{
 }
 .cd_right_902{
 	width:902px;
-	background:url(./images/cd_right_bg.png);
+	background:url(/static/images/cd_right_bg.png);
 }
 *html .cd_right_902{
 	background-image:none;
@@ -227,7 +227,7 @@ a:hover{
 	width:67px;
 	height:60px;
 	padding:2px;
-	background:url(./images/bg_67x60.jpg) no-repeat center;
+	background:url(/static/images/bg_67x60.jpg) no-repeat center;
 }
 .cd_list_01{
 	margin:0px auto;
@@ -248,7 +248,7 @@ a:hover{
 	width:67px;
 	height:60px;
 	padding:2px;
-	background:url(./images/bg_67x60.jpg) no-repeat center;
+	background:url(/static/images/bg_67x60.jpg) no-repeat center;
 }
 .cd_list_01_text{
 	width:270px;
@@ -290,7 +290,7 @@ a:hover{
 	padding-right:5px;
 	line-height:50px;
 	color:#686765;
-	background:url(./images/cd_title.jpg) no-repeat;
+	background:url(/static/images/cd_title.jpg) no-repeat;
 }
 .cd_title h1{
 	display:block;
@@ -309,34 +309,34 @@ a:hover{
 	color:#3AC0CB;
 }
 .cd_title.jane_info_title{
-	background:url(./images/jane_info_title.jpg) no-repeat;
+	background:url(/static/images/jane_info_title.jpg) no-repeat;
 }
 .cd_title.shopping_cart_title{
-	background:url(./images/shopping_cart_title.jpg) no-repeat;
+	background:url(/static/images/shopping_cart_title.jpg) no-repeat;
 }
 .cd_title.order_confirm_title{
-	background:url(./images/order_confirm_title.jpg) no-repeat;
+	background:url(/static/images/order_confirm_title.jpg) no-repeat;
 }
 .cd_title.to_addrees_title{
-	background:url(./images/to_addrees_title.jpg) no-repeat;
+	background:url(/static/images/to_addrees_title.jpg) no-repeat;
 }
 .cd_title.order_ok_title{
-	background:url(./images/order_ok_title.jpg) no-repeat;
+	background:url(/static/images/order_ok_title.jpg) no-repeat;
 }
 .cd_title.news_title{
-	background:url(./images/news_title.jpg) no-repeat;
+	background:url(/static/images/news_title.jpg) no-repeat;
 }
 .cd_title.commend_title{
-	background:url(./images/commend_title.gif) no-repeat;
+	background:url(/static/images/commend_title.gif) no-repeat;
 }
 .cd_title.journey_title{
-	background:url(./images/journey_title.gif) no-repeat;
+	background:url(/static/images/journey_title.gif) no-repeat;
 }
 
 .cd_title.news_con_title{
 	width:562px;
 	padding:0px;
-	background:url(./images/news_con_title.gif) repeat-x;
+	background:url(/static/images/news_con_title.gif) repeat-x;
 }
 .cd_title.news_con_title h1{
 	width:562px;
@@ -347,19 +347,19 @@ a:hover{
 	text-align:left;
 	font-size:24px;
 	line-height:38px;
-	background:url(./images/shop_title.jpg) no-repeat;
+	background:url(/static/images/shop_title.jpg) no-repeat;
 }
 .cd_title.video_title{
 	text-align:left;
 	font-size:24px;
 	line-height:38px;
-	background:url(./images/video_title.jpg) no-repeat;
+	background:url(/static/images/video_title.jpg) no-repeat;
 }
 .cd_title.pic_title{
 	text-align:left;
 	font-size:24px;
 	line-height:38px;
-	background:url(./images/pic_title.jpg) no-repeat;
+	background:url(/static/images/pic_title.jpg) no-repeat;
 }
 .cd_title a{
 	color:#686765;
@@ -371,7 +371,7 @@ a:hover{
 	padding-right:5px;
 	line-height:35px;
 	color:#686765;
-	background:url(./images/tit_cd.gif) no-repeat;
+	background:url(/static/images/tit_cd.gif) no-repeat;
 	border-bottom:1px #DAD7D5 solid;
 }
 .cd_title_782 a{
@@ -390,7 +390,7 @@ a:hover{
 	height:124px;
 	padding:4px 0px 0px 0px;
 	text-align:center;
-	background:url(./images/bg_134x120.gif) no-repeat;
+	background:url(/static/images/bg_134x120.gif) no-repeat;
 }
 .cd_info{
 	width:330px;
@@ -414,7 +414,7 @@ a:hover{
 	text-indent:23px;
 	color:#ffffff;
 	cursor:pointer;
-	background:url(./images/btn_blue.gif) no-repeat;
+	background:url(/static/images/btn_blue.gif) no-repeat;
 }
 a.btn_play:hover{
 	text-decoration:none;
@@ -426,7 +426,7 @@ a.btn_play:hover{
 	line-height:19px;
 	cursor:pointer;
 	border:1px #DDDDDD solid;
-	background:url(./images/btn_gray.gif) repeat-x center;
+	background:url(/static/images/btn_gray.gif) repeat-x center;
 }
 .btn_gray span{
 	float:left;
@@ -445,13 +445,13 @@ a..btn_gray:hover{
 	padding:0px 0px 0px 8px;
 	line-height:26px;
 	cursor:pointer;
-	background:url(./images/btn_gray1.gif) no-repeat left top;
+	background:url(/static/images/btn_gray1.gif) no-repeat left top;
 }
 .btn_gray01 span{
 	float:left;
 	display:block;
 	height:26px;
-	background:url(./images/btn_gray1.gif) no-repeat right top;
+	background:url(/static/images/btn_gray1.gif) no-repeat right top;
 	padding:0px 8px 0px 0px;
 }
 a..btn_gray01:hover{
@@ -462,7 +462,7 @@ a..btn_gray01:hover{
 	height:19px;
 	cursor:pointer;
 	border:1px #0F669D solid;
-	background:url(./images/btn_blue_1.gif) repeat-x center;
+	background:url(/static/images/btn_blue_1.gif) repeat-x center;
 }
 .btn_blue span{
 	float:left;
@@ -527,14 +527,14 @@ a..btn_blue:hover{
 	width:20px;
 	height:23px;
 	text-indent:-100px;
-	background:url(./images/ico_play.png) no-repeat left 3px;
+	background:url(/static/images/ico_play.png) no-repeat left 3px;
 	overflow:hidden;
 }
 .cd_music_list_name a.cd_music_playing{
 	display:block;
 	width:20px;
 	height:23px;
-	background:url(./images/ico_puse.png) no-repeat left 3px;
+	background:url(/static/images/ico_puse.png) no-repeat left 3px;
 	overflow:hidden;
 }
 *html .cd_music_list_name a{
@@ -607,12 +607,12 @@ a..btn_blue:hover{
 }
 .jane_info_menu a:hover{
 	color:#fff;
-	background:#38C2CD url(./images/ico_arrow_2.gif) no-repeat 60px 8px;
+	background:#38C2CD url(/static/images/ico_arrow_2.gif) no-repeat 60px 8px;
 	border:1px #38C2CD solid;
 }
 .jane_info_menu a.jane_info_menu_on{
 	color:#fff;
-	background:#38C2CD url(./images/ico_arrow_2.gif) no-repeat 60px 8px;
+	background:#38C2CD url(/static/images/ico_arrow_2.gif) no-repeat 60px 8px;
 	border:1px #38C2CD solid;
 }
 .jane_info_text{
@@ -721,7 +721,7 @@ a..btn_blue:hover{
 	text-align:right;
 	line-height:24px;
 }
-.pages_num a{
+.pages_num a,.pages_num span{
 	float:left;
 	display:block;
 	height:19px;
@@ -729,7 +729,7 @@ a..btn_blue:hover{
 	text-align:center;
 	line-height:18px;
 }
-.pages_num a:hover,.pages_num a.pages_num_on{
+.pages_num a:hover,.pages_num .current,.pages_num .current.prev, .pages_num .current.next {
 	color:#38C2CD;
 	background:#000000;
 }
@@ -911,7 +911,7 @@ a..btn_blue:hover{
 	width:150px;
 	height:100px;
 	padding:7px 5px 4px 6px;
-	background:url(./images/pic_list_bg.gif) no-repeat;
+	background:url(/static/images/pic_list_bg.gif) no-repeat;
 }
 .pic_list li p{
 	display:block;
@@ -950,7 +950,7 @@ a..btn_blue:hover{
 	width:520px;
 	height:31px;
 	padding:10px 15px;
-	background:url(./images/bg_590x51.png) no-repeat;
+	background:url(/static/images/bg_590x51.png) no-repeat;
 }
 *html .pic_show_info{
 	width:520px;
@@ -972,14 +972,14 @@ a..btn_blue:hover{
 	width:9px;
 	height:74px;
 	cursor:pointer;
-	background:url(./images/ico_up1.gif) no-repeat left center;
+	background:url(/static/images/ico_up1.gif) no-repeat left center;
 }
 .pic_pages_next{
 	float:right;
 	width:9px;
 	height:74px;
 	cursor:pointer;
-	background:url(./images/ico_next1.gif) no-repeat left center;
+	background:url(/static/images/ico_next1.gif) no-repeat left center;
 }
 .pic_pages ul{
 	float:left;
@@ -1009,7 +1009,7 @@ a..btn_blue:hover{
 	width:495px;
 	height:30px;
 	padding-left:10px;
-	background:url(./images/li_bg_dot_black.gif) no-repeat 0px 15px;
+	background:url(/static/images/li_bg_dot_black.gif) no-repeat 0px 15px;
 }
 .news_list p{
 	float:left;
@@ -1125,7 +1125,7 @@ a..btn_blue:hover{
 	width:29px;
 	padding-left:28px;
 	cursor:pointer;
-	background:url(./images/ico_up2.gif) no-repeat 12px 8px;
+	background:url(/static/images/ico_up2.gif) no-repeat 12px 8px;
 }
 .journey_month_today{
 	width:86px;
@@ -1136,7 +1136,7 @@ a..btn_blue:hover{
 	padding-right:28px;
 	text-align:right;
 	cursor:pointer;
-	background:url(./images/ico_next2.gif) no-repeat 33px 8px;
+	background:url(/static/images/ico_next2.gif) no-repeat 33px 8px;
 }
 .journey_week_title{
 	width:203px;
@@ -1304,7 +1304,7 @@ a..btn_blue:hover{
 	width:260px;
 	padding:10px 10px 10px 30px;
 	line-height:26px;
-	background:url(./images/ico_ok.gif) no-repeat 0px 10px;
+	background:url(/static/images/ico_ok.gif) no-repeat 0px 10px;
 }
 .change_ok a:hover{
 	text-decoration:underline;
@@ -1340,6 +1340,14 @@ a..btn_blue:hover{
 	height:100%;
 }
 
+.sort0{ font-size:12px; color:#999999}
+.sort1{ font-size:14px; color:#676767}
+.sort2{ font-size:16px; color:#333333}
+.sort3{ font-size:18px; color:#000000;}
+.sort4{ font-size:12px; color:Red; font-weight:bold}
+.sort5{ font-size:14px; color:Red; font-weight:bold}
+.sort6{ font-size:16px; color:Red; font-weight:bold}
+.sort7{ font-size:18px; color:Red; font-weight:bold}
 
 
 

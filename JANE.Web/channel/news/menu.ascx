@@ -16,10 +16,10 @@
               month = DateTime.Now.Month;
       		for (int n = startYear; n > startYear-3; n--)
       			{
-           %><a  href="?year=<%=n %>&month=<%=month %>" <%=(CurrentSelectYear==n)?"class=\"white\"":"" %>><%=n%>年</a><%}%>
-           <a href="?year=<%=CurrentSelectYear-1 %>&month=<%=month %>"><img src="/static/images/ico_next.gif" /></a>
+           %><a  href="/news.html?year=<%=n %>&month=<%=month %>" <%=(CurrentSelectYear==n)?"class=\"white\"":"" %>><%=n%>年</a> <%}%>
+           <a href="/news.html?year=<%=CurrentSelectYear-1 %>&month=<%=month %>"><img src="/static/images/ico_next.gif" /></a>
            <%if(startYear > CurrentSelectYear){%>
-		   <a href="?year=<%=CurrentSelectYear+1 %>&month=<%=month %>"><img src="/static/images/ico_up.gif" /></a>
+		   <a href="/news.html?year=<%=CurrentSelectYear+1 %>&month=<%=month %>"><img src="/static/images/ico_up.gif" /></a>
            <%}%>
 		</div>
 	    <div class="spacer"></div>
@@ -27,7 +27,7 @@
 			<% 
           int length = (CurrentSelectYear == DateTime.Now.Year) ? DateTime.Now.Month : 12;
           for (int n = length; n > 0; n--)
-          {%><a href="?year=<%=CurrentSelectYear %>&month=<%=n %>" <%=(n == CurrentSelectMonth)?"class=\"orange\"":"" %>>
+          {%><a href="/news.html?year=<%=CurrentSelectYear %>&month=<%=n %>" <%=(n == CurrentSelectMonth)?"class=\"orange\"":"" %>>
           <%=((n < 10) ? "0" : "") + n.ToString()%>月</a><% }%>
 		</div>
 	</div>
