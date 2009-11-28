@@ -1138,7 +1138,6 @@
     <Content Include="static\images\journey_title.gif" />
     <Content Include="static\images\li_bg_dot_black.gif" />
     <Content Include="static\images\menu.swf" />
-    <Content Include="static\images\menu.xml" />
     <Content Include="static\images\news_con_title.gif" />
     <Content Include="static\images\news_title.jpg" />
     <Content Include="static\images\order_confirm_title.jpg" />
@@ -1160,6 +1159,7 @@
     <Content Include="static\images\pic_list_bg.gif" />
     <Content Include="static\images\pic_news_con.jpg" />
     <Content Include="static\images\pic_title.jpg" />
+    <Content Include="static\images\player.swf" />
     <Content Include="static\images\shopping_cart_title.jpg" />
     <Content Include="static\images\shop_title.jpg" />
     <Content Include="static\images\tit_cd.gif" />
