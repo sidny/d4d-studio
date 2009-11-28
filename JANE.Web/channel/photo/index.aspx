@@ -3,64 +3,47 @@
 <%@ Import Namespace="D4D.Platform" %>
 <%@ Import Namespace="System.Collections.Generic" %>
 <%@ Import Namespace="System.Linq" %>
+<%@ Register src="~/Control/pager.ascx" tagname="pager" tagprefix="uc1" %>
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader">
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentMain" runat="server">
-<div class="main">
-        <div class="channel">
-            <h1>
-                <asp:Literal ID="litTitle" runat="server"></asp:Literal></h1>
-        </div>
-        <div class="album">
+ <div class="right floatleft">
+  <div class="cd_right">
+    <div class="w_562 h_578">
+      <div class="spacer" style="height:36px"></div>
+	  
+	  <div class="cd_title pic_title"><asp:Literal ID="litTitle" runat="server" Visible="false"></asp:Literal></div>
+	  
+	  <div class="spacer" style="height:40px"></div>
+               
             <asp:Repeater ID="repList" runat="server">
                 <HeaderTemplate>
-                <ul class="clearfix">
+                <ul class="pic_list">
                 </HeaderTemplate>
                 <ItemTemplate>
                 <li>
-                  <p class="bg"><a href="/photo/album/<%#((Album)Container.DataItem).AlbumId %>.html"><img width="150" height="100" src="<%#((Album)Container.DataItem).SImage%>" alt="" /></a></p>
-                  <p><%#GetNewImage((Album)Container.DataItem) %><a href="/photo/album/<%#((Album)Container.DataItem).AlbumId %>.html"><%#((Album)Container.DataItem).Title %></a></p>
-                  <p><a href="/photo/album/<%#((Album)Container.DataItem).AlbumId %>.html" style="color: red"><%#((Album)Container.DataItem).TotalCount %>张</a> | <%#((Album)Container.DataItem).PublishDate.ToString("yyyy-MM-dd")%></p>
+                <div><a href="/photo/album/<%#((Album)Container.DataItem).AlbumId %>.html"><img width="150" height="100" src="<%#((Album)Container.DataItem).SImage%>" alt="" /></a></div>
+			<p>
+				<%#GetNewImage((Album)Container.DataItem) %><a href="/photo/album/<%#((Album)Container.DataItem).AlbumId %>.html"><%#((Album)Container.DataItem).Title %></a><br />
+				<span class="blue"><%#((Album)Container.DataItem).TotalCount %>张</span> <span class="gray">| <%#((Album)Container.DataItem).PublishDate.ToString("yyyy-MM-dd")%></span>
+			</p>
                  </li>
                 </ItemTemplate>
                 <FooterTemplate>
+                <div class="clear"></div>
                </ul>
                 </FooterTemplate>
             </asp:Repeater>
-       <div id="pager" class="pagestyle"></div>
+      <div class="spacer"></div>
+	  <div class="spacer"></div>    
+      <uc1:pager ID="pager1" runat="server"  />
+	  <div class="clear"></div>
+
+	  <div class="spacer"></div>  
+	  <div class="spacer"></div>  
+    </div>
+    </div>
 </div>
-</div>
-<script type="text/javascript">
-    $(document).ready(function() {
-        var cur = parseInt("<%=PageIndex %>");
-        var total = parseInt("<%=PageTotalCount %>");
-        var pageSize = parseInt("<%=PageSize %>");
-        var href = location.pathname;
-        if (location.search) {
-            if (!location.search.match(/page=\d+/ig)) {
-                href += location.search + "&page=__id__";
-            } else {
-                href += location.search;
-            }
-        } else {
-            href += "?page=__id__";
-        }
-        $("#pager").pagination(
-          total,
-                {
-                    items_per_page: pageSize,
-                    num_display_entries: 10,
-                    current_page: cur - 1,
-                    num_edge_entries: 0,
-                    link_to: href.replace(/page=\d+/ig, "page=__id__"),
-                    prev_text: "上一页",
-                    next_text: "下一页",
-                    callback: function(id) {
-                        return true;
-                    }
-                });
-    });
-</script>
 </asp:Content>
 
 <script runat="server">
@@ -68,6 +51,9 @@
     {
         BindMusicTitleRep(PageIndex);
         SetTitle();
+        pager1.PageIndex = PageIndex;
+        pager1.PageSize = PageSize;
+        pager1.PageTotalCount = PageTotalCount;
     }
 
     protected int PageIndex
@@ -90,13 +76,7 @@
     {
         get
         {
-            string queryid = Request.QueryString["id"];
-            if (string.IsNullOrEmpty(queryid)) return 0;
-
-            int id = 0;
-
-            int.TryParse(queryid, out id);
-            return id;
+            return D4D.Web.Helper.Helper.BandId;
         }
     }
     private int totalCount;
@@ -256,8 +236,8 @@
         }
 
     }
-    private const string TitleFormat = "{0}照片/ <font color=\"red\">{1}</font>";
-    private const string OnlyTitleFormat = "{0}照片";
+    private const string TitleFormat = "- <font color=\"red\">{0}</font>";
+    private const string OnlyTitleFormat = "- {0}照片";
     private void SetTitle()
     {
         //check bandName
@@ -271,14 +251,13 @@
 
         if (TagId > 0)
         {
-            litTitle.Text = string.Format(TitleFormat, HeadTitle,TagName);
+            litTitle.Text = string.Format(TitleFormat,TagName);
         }
         else if (TagYear >= 1900 && TagMonth > 0 && TagMonth <= 12)
         {
-            litTitle.Text = string.Format(TitleFormat, HeadTitle,TagYear.ToString() + "年" + TagMonth + "月");
+            litTitle.Text = string.Format(TitleFormat,TagYear.ToString() + "年" + TagMonth + "月");
         }
-        else
-            litTitle.Text = string.Format(OnlyTitleFormat, HeadTitle);
+        
         
 
     }
