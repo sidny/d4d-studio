@@ -30,7 +30,6 @@
                  </li>
                 </ItemTemplate>
                 <FooterTemplate>
-                <div class="clear"></div>
                </ul>
                 </FooterTemplate>
             </asp:Repeater>
