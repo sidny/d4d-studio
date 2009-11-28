@@ -5,33 +5,45 @@
 <%@ Import Namespace="D4D.ResourceManager" %>
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader"></asp:Content>
 <asp:Content ContentPlaceHolderID="ContentMain" runat="server">
-<div class="main">
-<div class="channel">
-  <h1><asp:Literal ID="litTitle" runat="server"></asp:Literal></h1>
-</div>
-
-<asp:Repeater ID="repTop" OnItemDataBound="repTop_ItemDataBound" runat="server">
+<div class="right floatleft">
+ <div class="cd_right">
+   <div class="w_562 h_578">
+     <div class="spacer" style="height:36px"></div>
+     	<div class="cd_title news_title">
+			<h1 class="font24 floatleft"><asp:Literal ID="litTitle" runat="server"></asp:Literal></h1> 
+			<div class="floatright alginright">
+            	<div class="spacer4"></div>
+			</div>
+	  </div>
+	  <div class="spacer" style="height:30px"></div>
+	  <asp:Repeater ID="repTop" OnItemDataBound="repTop_ItemDataBound" runat="server">
         <HeaderTemplate>
-        <ul class="news-top">
+        <div class="head_news">
         </HeaderTemplate>
          <ItemTemplate>
-             <asp:Literal ID="litTopLi" runat="server"></asp:Literal>
-	            <asp:Literal ID="litTopImage" runat="server"></asp:Literal>
-	            <p><a href="/news/d/<%#((News)Container.DataItem).NewsId %>.html"><b><%#((News)Container.DataItem).Title %></b></a>  <asp:Literal ID="litTopTag" runat="server"></asp:Literal> <label> <%#((News)Container.DataItem).PublishDate.ToString("yyyy-MM-dd")%></label></p>
-	            <p><%#((News)Container.DataItem).Preview %></p>
-              </li>
+         	<div class="head_news_pic floatleft"><asp:Literal ID="litTopImage" runat="server"></asp:Literal></div>
+	    	<div class="head_news_text floatright">
+				<h1 class="font14"><a href="/news/d/<%#((News)Container.DataItem).NewsId %>.html"><b><%#((News)Container.DataItem).Title %></b></a></h1>
+				<span><asp:Literal ID="litTopTag" runat="server"></asp:Literal>   [<%#((News)Container.DataItem).PublishDate.ToString("yyyy-MM-dd")%>] </span>
+				<div class="spacer4"></div>
+				<p><%#((News)Container.DataItem).Preview %></p>
+			</div>
+	    	<div class="clear"></div>
          </ItemTemplate>
         <FooterTemplate>
-        </ul>
+        </div>
+	  	<div class="spacer" style="height:30px"></div>
         </FooterTemplate>
  </asp:Repeater> 
-
 <asp:Repeater ID="repList" OnItemDataBound="repList_ItemDataBound" runat="server">
      <HeaderTemplate>
-     <ul class="news-list">
+     <ul class="news_list">
      </HeaderTemplate>
          <ItemTemplate>
-            <li> + <a href="/news/d/<%#((News)Container.DataItem).NewsId %>.html"><%#((News)Container.DataItem).Title %></a> <asp:Literal ID="litListTag" runat="server"></asp:Literal>  <label> <%#((News)Container.DataItem).PublishDate.ToString("yyyy-MM-dd")%></label></li>  
+         <li>
+			<p><a href="/news/d/<%#((News)Container.DataItem).NewsId %>.html"><%#((News)Container.DataItem).Title %></a></p>
+			<span><asp:Literal ID="litListTag" runat="server"></asp:Literal>  [<%#((News)Container.DataItem).PublishDate.ToString("yyyy-MM-dd")%>]</span>
+		 </li>  
          </ItemTemplate>
       <FooterTemplate>
       	</ul>
@@ -71,7 +83,6 @@
     });
 </script>
 </asp:Content>
-
 <script runat="server">
     
     protected int PageIndex
@@ -80,18 +91,13 @@
         {
             string queryPage = Request.QueryString["page"];
             if (string.IsNullOrEmpty(queryPage)) return 1;
-
-            int page = 1;
-
-            int.TryParse(queryPage, out page);
-
-            if (page == 0) page = 1;
-
-            return page;
+           int page = 1;
+           int.TryParse(queryPage, out page);
+           if (page == 0) page = 1;
+           return page;
         }
     }
-
-    private int totalCount;
+   private int totalCount;
     protected int PageTotalCount
     {
         get
@@ -99,7 +105,7 @@
             return totalCount;
         }
     }
-    protected int PageSize = 15;
+    protected int PageSize = 10;
     /// <summary>
     /// 0 company news 
     /// </summary>
@@ -110,23 +116,18 @@
             return D4D.Web.Helper.Helper.BandId;
         }
     }
-
-    protected int TagId
+   protected int TagId
     {
         get
         {
             string tid = Request.QueryString["tagid"];
             if (string.IsNullOrEmpty(tid)) return 0;
-
-            int id = 0;
-
-            int.TryParse(tid, out id);
+           int id = 0;
+           int.TryParse(tid, out id);
             return id;
         }
     }
-
-
-    public string TagName
+   public string TagName
     {
         get
         {
@@ -137,65 +138,53 @@
                 return tagName;
         }
     }
-
-    public int TagYear        
+   public int TagYear        
     {
         get
         {
             string yid = Request.QueryString["year"];
             if (string.IsNullOrEmpty(yid)) return 0;
-
-            int id = 0;
-
-            int.TryParse(yid, out id);
+           int id = 0;
+           int.TryParse(yid, out id);
             return id;
         }
     }
-
-    public int TagMonth
+   public int TagMonth
     {
         get
         {
             string mid = Request.QueryString["month"];
             if (string.IsNullOrEmpty(mid)) return 0;
-
-            int id = 0;
-
-            int.TryParse(mid, out id);
+           int id = 0;
+           int.TryParse(mid, out id);
             return id;
         }
     }
-
-    public string TagTime
+   public string TagTime
     {
         get
         {
             if (TagYear <= 1900) return string.Empty;
             if (TagMonth > 12 && TagMonth <= 0) return string.Empty;
-
-            return string.Format("{0}年{1}月", TagYear, TagMonth);
+           return string.Format("{0}-{1}", TagYear, TagMonth);
         }
     }
-
-    public static IDictionary<int, BandInfo> BandColl
+   public static IDictionary<int, BandInfo> BandColl
     {
         get
         {
             System.Collections.Generic.IDictionary<int, BandInfo> coll = D4D.Web.Helper.Helper.BandColl;
-
-            BandInfo band = new BandInfo();
+           BandInfo band = new BandInfo();
             band.BandId = 0;
             band.BandName = "公司";
-
-            BandInfo bandCompany = new BandInfo();
+           BandInfo bandCompany = new BandInfo();
             bandCompany.BandId = -1;
             bandCompany.BandName = "全部";
             
             coll.Add(band.BandId, band);
             coll.Add(bandCompany.BandId, bandCompany);
             return coll;
-
-        }
+       }
     } 
     
     protected void Page_Load(object sender, EventArgs e)
@@ -209,28 +198,21 @@
     }
     
     private const string TitleFormat = "{0}新闻";
-    private const string TitleTagFormat = "/<font color=\"red\">{0}</font>";
+    private const string TitleTagFormat = "- {0}";
     private void SetTitle()
     {
         //check bandName
         BandInfo info;
-        if (BandColl.TryGetValue(BandId, out info))
-        {
-            litTitle.Text = string.Format(TitleFormat,info.BandName);
-        }
-
-        if (!string.IsNullOrEmpty(TagName))
+       if (!string.IsNullOrEmpty(TagName))
         {
             litTitle.Text += string.Format(TitleTagFormat, TagName);            
         }
-
-        if (!string.IsNullOrEmpty(TagTime))
+       if (!string.IsNullOrEmpty(TagTime))
         {
             litTitle.Text += string.Format(TitleTagFormat, TagTime); 
         }
-        
     }
-    private const int MaxTopCount = 3;
+    private const int MaxTopCount = 1;
     private void BindNews(int pageIndex)
     {
         D4D.Platform.Domain.PagingContext pager = new D4D.Platform.Domain.PagingContext();
@@ -254,15 +236,13 @@
             {
                 DateTime sTime = new DateTime(TagYear, TagMonth, 1);
                 DateTime eTime = sTime.AddMonths(1).AddDays(-1);
-
-                resultList = D4DGateway.NewsProvider.GetPagedNewsByPublishDate(pager,
+               resultList = D4DGateway.NewsProvider.GetPagedNewsByPublishDate(pager,
                   sTime, eTime,PublishStatus.Publish, NewsRemarkType.Normal);
                 if (pageIndex <= 1)
                 {
                     topResultList = D4DGateway.NewsProvider.GetTopImageNewsByPublishDate(
                         sTime, eTime, MaxTopCount, NewsRemarkType.Normal);
-
-                }
+               }
             }
             else
             {
@@ -290,8 +270,7 @@
             {
                 DateTime sTime = new DateTime(TagYear, TagMonth, 1);
                 DateTime eTime = sTime.AddMonths(1).AddDays(-1);
-
-                resultList = D4DGateway.NewsProvider.GetPagedNewsByTypeANDPublishDate(pager, 
+               resultList = D4DGateway.NewsProvider.GetPagedNewsByTypeANDPublishDate(pager, 
                     (BandType)BandId, sTime, eTime,
                    PublishStatus.Publish);
                  if (pageIndex <= 1)
@@ -341,8 +320,7 @@
             }
              */
         }
-
-        if (pageIndex <= 1 && topResultList != null)//gettop
+       if (pageIndex <= 1 && topResultList != null)//gettop
         {
             repTop.DataSource = topResultList;
             repTop.DataBind();
@@ -352,18 +330,16 @@
     protected void repTop_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
         News m = e.Item.DataItem as News;
-
-        if (m != null)
+       if (m != null)
         {
-          Literal litTopLi = e.Item.FindControl("litTopLi") as Literal ;
+          //Literal litTopLi = e.Item.FindControl("litTopLi") as Literal ;
          
           
-
-          //if (e.Item.ItemIndex == 0)
+         //if (e.Item.ItemIndex == 0)
           //    litTopLi.Text = "<li class=\"big\">";
           //else
           //{
-              litTopLi.Text = "<li>";
+           //   litTopLi.Text = "<li>";
               if (!string.IsNullOrEmpty(m.SImage))
               {
                   Literal litTopImage = e.Item.FindControl("litTopImage") as Literal;
@@ -372,21 +348,18 @@
               }
               
          // }
-
-          Literal litTopTag = e.Item.FindControl("litTopTag") as Literal;
+         Literal litTopTag = e.Item.FindControl("litTopTag") as Literal;
           litTopTag.Text = GetTagHtml(m.NewsId);  
             
         }
     }
-
-    private string GetTagHtml(int newsId)
+   private string GetTagHtml(int newsId)
     {
         string result = string.Empty;
         //get tag
         List<TagRelation> relationList =
         D4DGateway.TagsProvider.GetTagRelationByObject(newsId, ObjectTypeDefine.News);
-
-        if (relationList != null && relationList.Count > 0)
+       if (relationList != null && relationList.Count > 0)
         {
             int maxCount = relationList.Count;
             if (maxCount > 20) maxCount = 20;
@@ -396,8 +369,7 @@
                 tagids.Add(relationList[i].TagId);
             }
             Dictionary<int, Tag> tagDic = D4DGateway.TagsProvider.GetTags20(tagids);
-
-            if (tagDic != null && tagDic.Count > 0)
+           if (tagDic != null && tagDic.Count > 0)
             {
                 StringBuilder sb = new StringBuilder(1024);
                 foreach (KeyValuePair<int, Tag> kvp in tagDic)
@@ -407,12 +379,9 @@
                      string.Format(TagLinkFormat, BandId, kvp.Key, HttpUtility.UrlEncode(kvp.Value.TagName)),
                      kvp.Value.TagName);
                 }
-
-
-                result = string.Format(TagEmFormat, sb.ToString());
+               result = string.Format(TagEmFormat, sb.ToString());
             }
-
-        }
+       }
         return result;
     }
     
@@ -422,11 +391,9 @@
     protected void repList_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
         News m = e.Item.DataItem as News;
-
-        if (m != null)
+       if (m != null)
         {
-
-            Literal litListTag = e.Item.FindControl("litListTag") as Literal;
+           Literal litListTag = e.Item.FindControl("litListTag") as Literal;
             litListTag.Text = GetTagHtml(m.NewsId);
         }
     }
