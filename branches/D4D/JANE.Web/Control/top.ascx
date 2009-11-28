@@ -15,7 +15,7 @@
       <param name="movie" value="/static/images/menu.swf" />
       <param name="quality" value="high" />
 <param name="wmode" value="transparent" />
-      <embed src="/static/images/menu.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="1300" height="40"></embed>
+      <embed src="/static/images/menu.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" wmode="transparent" type="application/x-shockwave-flash" width="1300" height="40"></embed>
     </object>
   </div>
 </div>

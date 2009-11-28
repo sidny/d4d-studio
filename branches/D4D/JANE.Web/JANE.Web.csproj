@@ -751,6 +751,7 @@
     <Content Include="channel\video\detail.aspx" />
     <Content Include="channel\video\index.aspx" />
     <Content Include="channel\video\menu.ascx" />
+    <Content Include="Control\pager.ascx" />
     <Content Include="Control\ValidateCode.ashx" />
     <None Include="fckeditor\editor\dialog\fck_spellerpages\spellerpages\server-scripts\spellchecker.cfm" />
     <None Include="fckeditor\editor\dialog\fck_spellerpages\spellerpages\server-scripts\spellchecker.php" />
@@ -1084,6 +1085,11 @@
     <Content Include="static\images\admin\logo.png" />
     <Content Include="static\images\admin\row.png" />
     <Content Include="static\images\admin\top.png" />
+    <Content Include="static\images\album\ad_next.png" />
+    <Content Include="static\images\album\ad_prev.png" />
+    <Content Include="static\images\album\ad_scroll_back.png" />
+    <Content Include="static\images\album\ad_scroll_forward.png" />
+    <Content Include="static\images\album\loader.gif" />
     <Content Include="static\images\bg_134x120.gif" />
     <Content Include="static\images\bg_590x51.png" />
     <Content Include="static\images\bg_67x60.jpg" />
