@@ -95,6 +95,13 @@ namespace D4D.Platform
                 return SpamKeywordProvider.Instance;
             }
         }
+        public static AddInfoProvider AddInfoProvider
+        {
+            get
+            {
+                return AddInfoProvider.Instance;
+            }
+        }
        
        
     }
