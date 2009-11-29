@@ -171,7 +171,7 @@
         {
             if (TagYear <= 1900) return string.Empty;
             if (TagMonth > 12 && TagMonth <= 0) return string.Empty;
-           return string.Format("{0}-{1}", TagYear, TagMonth);
+           return string.Format("{0}年{1}月", TagYear, TagMonth);
         }
     }
    public static IDictionary<int, BandInfo> BandColl
@@ -331,7 +331,7 @@
             repTop.DataBind();
         }
     }
-    private const string SImageFormat = "<p class=\"pic\"><a href=\"{0}\"><img width=\"70\" height=\"60\" src=\"{1}\" /></a></p>";
+    private const string SImageFormat = "<p class=\"pic\"><a href=\"{0}\"><img width=\"100\" height=\"75\" src=\"{1}\" /></a></p>";
     protected void repTop_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
         News m = e.Item.DataItem as News;
@@ -390,7 +390,7 @@
         return result;
     }
     
-    private const string TagEmFormat = "<em>标签：{0}</em>";
+    private const string TagEmFormat = "标签：{0}";
     private const string AFormat = "<a href=\"{0}\">{1}</a>";
     private const string TagLinkFormat = "/channel/news/news.aspx?id={0}&tagid={1}&tag={2}";
     protected void repList_ItemDataBound(object sender, RepeaterItemEventArgs e)

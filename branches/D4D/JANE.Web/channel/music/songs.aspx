@@ -67,7 +67,7 @@
             <%=musicTitle.Body%></p>
 		    <div class="spacer" style="height:11px"></div>
 		    <div class="cd_info_btn">
-			<a href="#" class="btn_play">播放此专辑</a>
+			<a href="#" id="btn-play-all" class="btn_play">播放此专辑</a>
 			<div class="vspacer"></div>
 			<a href="#" class="btn_gray floatleft"><span class="floatleft">YOJO购买</span></a>
 			<div class="vspacer"></div>
