@@ -1,19 +1,22 @@
 <%@ Control Language="C#" AutoEventWireup="true" %>
 <script type="text/javascript">
+    var menuData = {
+        "home": { text: "首页", url: "/" },
+        "news": { text: "资讯", url: "/news.html" },
+        "calender": { text: "行程", url: "/calender.html" },
+        "singer": { text: "档案", url: "/singer.html" },
+        "music": { text: "唱片", url: "/music.html" },
+        "video": { text: "视频", url: "/video.html" },
+        "photo": { text: "图片", url: "/photo.html" },
+        "bbs": { text: "论坛", url: "http://bbs.janezhang.com", target: "_blank" },
+        "shop": { text: "商城", url: "/shop.html" }
+    };
+    var channel = "<%=channel %>" || "home";
+    menuData[channel].isCurrent = true;
     function menuReady(func) {
         var flash = window["menu"] || document["menu"];
         setTimeout(function() {
-            flash.setMenu([
-            { text: "首页", url: "/" },
-	        { text: "资讯", url: "/news.html" },
-	        { text: "行程", url: "/calender.html" },
-	        { text: "档案", url: "/singer.html" },
-	        { text: "唱片", url: "/music.html" },
-	        { text: "视频", url: "/video.html" },
-	        { text: "图片", url: "/photo.html" },
-	        { text: "论坛", url: "http://bbs.janezhang.com",target:"_blank" },
-	        { text: "商城", url: "/shop.html" }
-        ]);
+            flash.setMenu(menuData);
         }, 500);
     }
 </script>
