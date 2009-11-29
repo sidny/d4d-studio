@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="D4DGateway.cs" />
     <Compile Include="DiscuzGateway.cs" />
+    <Compile Include="Domain\AddInfo.cs" />
     <Compile Include="Domain\Album.cs" />
     <Compile Include="Domain\BandInfo.cs" />
     <Compile Include="Domain\BaseD4DDomain.cs" />
@@ -76,6 +77,8 @@
     <Compile Include="Helper\DiscuzHelper.cs" />
     <Compile Include="Helper\ImageHelper.cs" />
     <Compile Include="Helper\SpamKeywordHelper.cs" />
+    <Compile Include="Persistence\AddInfoDao.cs" />
+    <Compile Include="Providers\AddInfoProvider.cs" />
     <Compile Include="Persistence\AlbumDao.cs" />
     <Compile Include="Persistence\CommentDao.cs" />
     <Compile Include="Persistence\BandInfoDao.cs" />
