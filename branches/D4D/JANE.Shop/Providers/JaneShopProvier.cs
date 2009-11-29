@@ -49,16 +49,37 @@ namespace JANE.Shop.Providers
         #endregion
 
         //购物车
+        //订单
+        #region JaneShopOrders
+        public int SetShopOrder(ShopOrder item)
+        {
+            return JaneShopOrdersDao.SetShopOrder(item);
+        }
 
+        public void DeleteShopOrder(int id)
+        {
+            JaneShopOrdersDao.DeleteShopOrder(id);
+        }
 
-        //创建订单
+        public ShopOrder GetShopOrder(int id)
+        {
+            return JaneShopOrdersDao.GetShopOrder(id);
+        }
 
-        //订单更新        
+        public List<ShopOrder> GetPagedShopOrder(PagingContext pager, OrderType ordertype)
+        {
+            return JaneShopOrdersDao.GetPagedShopOrder(pager, (int)ordertype);
+        }
+        #endregion
 
         //订单列表
 
       
 
-        //收获信息
+        //收货地址信息
+
+        //产品购物信息
+        //type id joyolink dangdang link
+
     }
 }
