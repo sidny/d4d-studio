@@ -7,7 +7,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentMain" runat="server">
 <div class="main">
 <div class="channel">
-  <h1>评论: <a href="/video/d/<%=CurrentNews.NewsId%>.html"><font color="red"><%=CurrentNews.Title%></a></font></h1>
+  <h1>评论: <a href="/video/d/<%=CurrentNews.NewsId%>.html"><font color="red"><%=CurrentNews.Title%></font></a></h1>
 </div>
 
 <ul class="comments">

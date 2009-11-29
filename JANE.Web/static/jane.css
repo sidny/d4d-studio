@@ -1,8 +1,9 @@
+ï»¿@charset "utf-8";
 *{
 	margin:0px;
 	padding:0px;
 	font-size:12px;
-	font-family:"Î¢ÈíÑÅºÚ",Verdana;
+	font-family:"å¾®è½¯é›…é»‘",Verdana;
 }
 body{
 	color:#3B3B3B;
@@ -200,7 +201,7 @@ a:hover{
 	position:relative;
 }
 
-/*³ªÆ¬*/
+/*å”±ç‰‡*/
 .cd_pages{
 	height:5px;
 	clear:both;
@@ -589,7 +590,7 @@ a..btn_blue:hover{
 	margin:15px 0px 0px 0px;
 	height:45px;
 }
-/*¸öÈËµµ°¸*/
+/*ä¸ªäººæ¡£æ¡ˆ*/
 .jane_info_menu{
 	margin:0px auto;
 	width:200px;
@@ -735,7 +736,7 @@ a..btn_blue:hover{
 	color:#38C2CD;
 	background:#000000;
 }
-/*È·ÈÏ¶©µ¥*/
+/*ç¡®è®¤è®¢å•*/
 .order_confirm{
 	margin:0px auto;
 	width:500px;
@@ -768,7 +769,7 @@ a..btn_blue:hover{
 .buy_none a:hover{
 	text-decoration:underline;
 }
-/*¶©µ¥Íê³É*/
+/*è®¢å•å®Œæˆ*/
 .order_ok{
 	line-height:26px;
 }
@@ -1002,7 +1003,7 @@ a..btn_blue:hover{
 .pic_pages ul li.pic_pages_on{
 	background:#38C2CD;
 }
-/*×ÉÑ¯*/
+/*å’¨è¯¢*/
 .news_list{
 	margin:0px auto;
 	width:495px;
@@ -1233,7 +1234,7 @@ a..btn_blue:hover{
 .wid_20 img{
 	cursor:pointer;
 }
-/*µÇÂ¼*/
+/*ç™»å½•*/
 .login{
 	width:396px;
 	border:1px #575757 solid;
@@ -1342,149 +1343,3 @@ a..btn_blue:hover{
 .sort5{ font-size:14px; color:Red; font-weight:bold}
 .sort6{ font-size:16px; color:Red; font-weight:bold}
 .sort7{ font-size:18px; color:Red; font-weight:bold}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
