@@ -159,11 +159,11 @@ a:hover{
 .cd_body.jane_info{
 	background:url(/static/images/cd_right_img_jane_info.jpg) no-repeat right top;
 }
-.cd_body.video_play_bg{
+.cd_body.video_bg{
 	width:1150px;
 	background:url(/static/images/cd_right_img_video_play.jpg) no-repeat right top;
 }
-.cd_body.pic_bg{
+.cd_body.photo_bg{
 	background:url(/static/images/cd_right_img_pic.jpg) no-repeat right top;
 }
 .cd_body.news_bg{

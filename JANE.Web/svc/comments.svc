@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using LTP.Accounts.Bus;
 using D4D.Platform;
 using D4D.Platform.Domain;
+using D4D.Web.Helper;
 using System.Web;
 using System.Net;
 
@@ -52,8 +53,8 @@ namespace JANE.Web.svc
         [WebInvoke(RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
         public int Create(string content,int id, int type )
         {
-            if (Helper.AdminHelper.CurrentUser == null) return -1;
-            if (Helper.AdminHelper.CurrentUser.UserType.Trim() ==
+            if (AdminHelper.CurrentUser == null) return -1;
+            if (AdminHelper.CurrentUser.UserType.Trim() ==
                 ((int)UserType.Type.Rejected).ToString()) return -2;
             if (string.IsNullOrEmpty(content) || id == null || type == null) return 0;
             try
@@ -64,9 +65,9 @@ namespace JANE.Web.svc
                     ObjectType = (ObjectTypeDefine)type,
                     Body =  D4D.Platform.Helper.SpamKeywordHelper.FilterContent( content),
                     AddDate = DateTime.Now,
-                    UserId = Helper.AdminHelper.CurrentUser.UserID,
-                    AddUserID = Helper.AdminHelper.CurrentUser.UserID,
-                    UserName = Helper.AdminHelper.CurrentUser.UserName,
+                    UserId = AdminHelper.CurrentUser.UserID,
+                    AddUserID = AdminHelper.CurrentUser.UserID,
+                    UserName = AdminHelper.CurrentUser.UserName,
                     Status = PublishStatus.Publish
                 });
             }
@@ -79,7 +80,7 @@ namespace JANE.Web.svc
         [WebGet(RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
         public int Delete(int id)
         {
-            if (Helper.AdminHelper.CurrentUser == null || Helper.AdminHelper.CurrentUser.UserType.Trim() != ((int)UserType.Type.Admin).ToString()) return -1;
+            if (AdminHelper.CurrentUser == null || AdminHelper.CurrentUser.UserType.Trim() != ((int)UserType.Type.Admin).ToString()) return -1;
             if (id == null) return 0;
             try
             {

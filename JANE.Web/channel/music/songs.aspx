@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage/Main.Master"%>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage/Channel.Master"%>
 <%@ Import Namespace="D4D.Platform.Domain" %>
 <%@ Import Namespace="System.Collections.Generic" %>
 <%@ Import Namespace="System.Linq" %>
@@ -6,65 +6,35 @@
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader">
 <style type="text/css">
 .slider .jCarouselLite{ width:131px; padding-left:20px; margin:0 auto; height:440px;}
- </style>
+</style>
  <script src="/static/js/AC_OETags.js" type="text/javascript"></script>
 <script src="/static/js/jcarousellite_1.0.1.pack.js" type="text/javascript"></script>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentMain" runat="server">
-<div class="cd_body">
-  <!--left-->
-  <div class="left floatleft">
-    <div class="spacer" style="height:56px;"></div>
-	<div class="slider">
-    <div class="aligncenter cd_pages prev"><img src="/static/images/ico_arrow_1.gif" /></div>
-	<div class="spacer"></div>
-	<div class="spacer"></div>
-    <div class="jCarouselLite">
-    <asp:Repeater ID="repMusicTitle" runat="server">
-        <HeaderTemplate>
-         <ul class="cd_list">
-        </HeaderTemplate>
-        <ItemTemplate>
-        <li>
-			<span><a href="<%#(((MusicTitle)Container.DataItem).MusicId) %>.html"><img src="<%#((MusicTitle)Container.DataItem).SImage %>" width="75" height="65" /></a></span>
-			<a href="<%#(((MusicTitle)Container.DataItem).MusicId) %>.html">
-            <%#((MusicTitle)Container.DataItem).Title %></a>
-		</li>
-        </ItemTemplate>
-        <FooterTemplate>
-        </ul>
-        </FooterTemplate>
-    </asp:Repeater>
-    </div>
-	<div class="aligncenter cd_pages next"><img src="/static/images/ico_arrow.gif" /></div>
-  </div>
-  </div>
- 
-  <!--left/-->
-  <!--right-->
   <div class="right floatleft">
   <div class="cd_right">
     <div class="w_562 h_578">
       <div class="spacer" style="height:36px"></div>
 	  
 	  <div class="cd_title">
-	  <h1 class="floatleft font24"> - <%=musicTitle.Title%></h1>
+	  <h1 class="floatleft font24"> - <%=Music.Title%></h1>
 	  <div class="floatright"><a href="/music.html">返回唱片</a></div>
 	  </div>
 	  
 	  <div class="spacer" style="height:20px"></div>
 	  
 	  <div class="cd_intro">
-	    <div class="cd_img floatleft"><img src="<%=musicTitle.LImage%>" /></div>
+	    <div class="cd_img floatleft"><img src="<%=Music.LImage%>" /></div>
 	    <div class="cd_info floatright">
 			<div class="spacer" style="height:2px;"></div>
-			<h1><%=musicTitle.Title%></h1>
+			<h1><%=Music.Title%></h1>
 			<div class="spacer" style="height:12px;"></div>
-			<p><%if(musicTitle.PublishDate.Year < 2000){ %>未发行
+			<p><%if (Music.PublishDate.Year < 2000)
+        { %>未发行
         <%}else{
-              Response.Write(musicTitle.PublishDate.ToString("yyyy年M月d日"));
+              Response.Write(Music.PublishDate.ToString("yyyy年M月d日"));
           }%><br />
-            <%=musicTitle.Body%></p>
+            <%=Music.Body%></p>
 		    <div class="spacer" style="height:11px"></div>
 		    <div class="cd_info_btn">
 			<a href="#" id="btn-play-all" class="btn_play">播放此专辑</a>
@@ -124,8 +94,6 @@
 	<div class="clear"></div>
   </div>
   <!--right/-->
-  <div class="clear"></div>
-  </div>
     
     <div id="player">
 <script type="text/javascript"> 
@@ -151,16 +119,6 @@
 </script>  
 </div>
 <script type="text/javascript">
-    $(function() {
-        $(".slider .jCarouselLite").jCarouselLite({
-            btnNext: ".slider .next",
-            btnPrev: ".slider .prev",
-            speed: 500,
-			vertical:true,
-			circular: false,
-			visible: 4
-        });
-    });
     var player = null;
     function playerReady(thePlayer) {
         player = window.document[thePlayer.id];
@@ -264,7 +222,6 @@
     protected void Page_Load(object sender, EventArgs e)
     {
         BindSongList();
-		BindMusicTitleRep();
     }
 
    
@@ -304,18 +261,6 @@
 		repList.DataSource = list;
         repList.DataBind();
         totalCount = list.Count;
-
-    }
-	private void BindMusicTitleRep()
-    {
-        D4D.Platform.Domain.PagingContext pager = new D4D.Platform.Domain.PagingContext();
-        pager.RecordsPerPage = 10000;
-        pager.CurrentPageNumber = 1;
-		int BandId = Music.BandId;
-        repMusicTitle.DataSource = D4D.Platform.D4DGateway.MusicProvider.GetPagedMusicTitlesByBandId(pager,Music.BandId,
-                           D4D.Platform.Domain.PublishStatus.Publish);
-        
-        repMusicTitle.DataBind();
 
     }
    	protected BandInfo BandInfo(int Id)
