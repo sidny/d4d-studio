@@ -6,6 +6,9 @@ using D4D.Platform.Domain;
 
 namespace JANE.Shop.Domain
 {
+    /// <summary>
+    /// 商品信息
+    /// </summary>
     public class ShopItem : BaseD4DDomain
     {
           public ShopItem() { }
