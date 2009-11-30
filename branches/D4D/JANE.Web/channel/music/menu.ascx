@@ -1,98 +1,58 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" %>
 <%@ Import Namespace="D4D.Platform.Domain" %>
-<style title="text/css">
-.sub-nav li.sub {
-    background:none; height:auto; line-height:21px; font-weight:normal; padding:5px 30px; font-size:12px;
-}
-.sub-nav li.sub a {
-    display:block;
-}
-</style>
-<div class="sub-title">
-  <p class="title">音乐</p>
-  <p class="nav-link">您的位置：首页 > <%=Channel %></p>
-</div>
-<div class="sub-nav">
-    <ul>
-  <asp:Repeater runat="server" ID="menuList" OnItemDataBound="menuList_ItemDataBind">
+<div class="left floatleft">
+<div class="spacer" style="height:56px;"></div>
+<div class="slider">
+<div class="aligncenter cd_pages prev"><img src="/static/images/ico_arrow_1.gif" /></div>
+<div class="spacer"></div>
+<div class="spacer"></div>
+<div class="jCarouselLite">
+<asp:Repeater ID="repMusicTitle" runat="server">
     <HeaderTemplate>
-        <li>》<%#GetLink(Container.DataItem) %></li>
-        <asp:PlaceHolder runat="server" ID="Sub">
-        <li class="sub">
-        <% for (int i = int.Parse(DateTime.Now.ToString("yyyy")); i >= 2006; i--)
-           { %>
-            <a href="/music/<%=i %>.html" <% if(i.ToString() == Request["date"]){ %> style="color:red"<%} %>>&gt; <%=i%>年</a>
-        <% } %>
-        </li>
-        </asp:PlaceHolder>
+     <ul class="cd_list">
     </HeaderTemplate>
     <ItemTemplate>
-        <li>》<%#GetLink(Container.DataItem) %></li>
-        <asp:PlaceHolder runat="server" ID="Sub">
-        <li class="sub">
-        <% for (int i = int.Parse(DateTime.Now.ToString("yyyy")); i >= 2006; i--)
-           { %>
-            <a href="/music/b<%#((BandInfo)Container.DataItem).BandId %>/<%=i%>.html" <% if(i.ToString() == Request["date"]){ %> style="color:red"<%} %>>&gt;  <%=i%>年</a>
-        <% } %>
-        </li>
-        </asp:PlaceHolder>
+    <li>
+		<span><a href="<%#(((MusicTitle)Container.DataItem).MusicId) %>.html"><img src="<%#((MusicTitle)Container.DataItem).SImage %>" width="75" height="65" /></a></span>
+		<a href="<%#(((MusicTitle)Container.DataItem).MusicId) %>.html">
+        <%#((MusicTitle)Container.DataItem).Title %></a>
+	</li>
     </ItemTemplate>
-    </asp:Repeater>
-  </ul>
-  
+    <FooterTemplate>
+    </ul>
+    </FooterTemplate>
+</asp:Repeater>
 </div>
+<div class="aligncenter cd_pages next"><img src="/static/images/ico_arrow.gif" /></div>
+</div>
+</div>
+<script type="text/javascript">
+    $(function() {
+        $(".slider .jCarouselLite").jCarouselLite({
+            btnNext: ".slider .next",
+            btnPrev: ".slider .prev",
+            speed: 500,
+            vertical: true,
+            circular: false,
+            visible: 4
+        });
+    });
+
+</script>
+ 
 <script  runat="server">
     public string Channel;
     private static Hashtable channelList = new Hashtable();
     
     protected void Page_Load(object sender, EventArgs e)
     {
-        menuList.DataSource = D4D.Web.Helper.Helper.BandList;
-        menuList.DataBind();
-    }
-    protected String GetLink(Object o)
-    {
-        BandInfo band = o as BandInfo;
-        if (band != null)
-        {
-            if (Request["id"] == band.BandId.ToString())
-            {
-                Channel = string.Format("{0}音乐", band.BandName);
-                return string.Format("<font color=\"red\">{0}音乐</font>", band.BandName);
-            }
-            else
-            {
-                return string.Format("<a href=\"/music/b{0}.html\">{1}音乐</a>", band.BandId, band.BandName);
-            }
-        }
-        else
-        {
-            Channel = "全部音乐";
-            if (String.IsNullOrEmpty(Request["id"]))
-            {
-                
-                return string.Format("<font color=\"red\">全部音乐</font>");
-            }
-            else
-            {
-                return string.Format("<a href=\"/music.html\">全部音乐</a>");
-            }
-        }
+        D4D.Platform.Domain.PagingContext pager = new D4D.Platform.Domain.PagingContext();
+        pager.RecordsPerPage = 10000;
+        pager.CurrentPageNumber = 1;
+		
+        repMusicTitle.DataSource = D4D.Platform.D4DGateway.MusicProvider.GetPagedMusicTitlesByBandId(pager, D4D.Web.Helper.Helper.BandId,
+        D4D.Platform.Domain.PublishStatus.Publish);
+        repMusicTitle.DataBind();
 
-    }
-
-    protected void menuList_ItemDataBind(object source, RepeaterItemEventArgs e)
-    {
-        PlaceHolder place = e.Item.FindControl("Sub") as PlaceHolder;
-        BandInfo band = e.Item.DataItem as BandInfo;
-        place.Visible = false;
-        if (band == null && String.IsNullOrEmpty(Request["id"]))
-        {
-            place.Visible = true;
-        }
-        if (band != null && band.BandId.ToString() == Request["id"])
-        {
-            place.Visible = true;
-        }
     }
 </script>

@@ -28,9 +28,18 @@
 	<p align="center"><img src="<%=CurrentNews.LImage%>" alt="" /></p>
 	<%} %>
 	</div>
-	<div class="spacer"></div>
-    
-    
+    <div class="spacer"></div>
+	  <div class="spacer"></div>
+	  <div class="video_play_bar">
+	    <div class="video_play_bar_tag floatleft deepblue"><%=GetTagHtml(CurrentNews.NewsId)%></div>
+	    <div class="video_play_bar_commend floatright">
+		
+		<a href="/news/c/<%=NewsId %>.html" class="btn_gray floatleft"><span>发表评论</span></a>
+		<div class="vspacer"></div>
+		<a href="/news/c/<%=NewsId %>.html" class="btn_gray floatleft"><span>评论（<%=CommentsCount%>条）</span></a>
+		</div>
+	  </div>
+	  <div class="spacer" style="height:20px"></div>
     </div>
     </div>
 </div>
