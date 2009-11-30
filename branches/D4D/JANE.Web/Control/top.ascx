@@ -11,7 +11,7 @@
         "bbs": { text: "¬€Ã≥", url: "http://bbs.janezhang.com", target: "_blank" },
         "shop": { text: "…Ã≥«", url: "/shop.html" }
     };
-    var channel = "<%=channel %>" || "home";
+    var channel = "<%=channel %>" ;
     menuData[channel].isCurrent = true;
     function menuReady(func) {
         var flash = window["menu"] || document["menu"];
@@ -146,7 +146,7 @@
             channel = path[2];
         }
     }
-    private string channel = "/";
+    private string channel = "home";
     protected string GetMenu( string str)
     {
 
