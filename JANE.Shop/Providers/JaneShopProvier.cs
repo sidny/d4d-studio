@@ -48,7 +48,38 @@ namespace JANE.Shop.Providers
         }
         #endregion
 
-        //购物车
+        //购物清单
+        #region JaneShopTradelistDao
+        public int SetShopTradelist(ShopTradelist item)
+        {
+            return JaneShopTradelistDao.SetShopTradelist(item);
+        }
+
+        public void DeleteShopTradelist(int id)
+        {
+            JaneShopTradelistDao.DeleteShopTradelist(id);
+        }
+
+        public void DeleteShopTradelistByOrderId(int orderid)
+        {
+            JaneShopTradelistDao.DeleteShopTradelistByOrderId(orderid);
+        }
+
+        public ShopTradelist GetShopTradelist(int id)
+        {
+            return JaneShopTradelistDao.GetShopTradelist(id);
+        }
+
+        public List<ShopTradelist> GetShopTradelistByOrderId(int orderid)
+        {
+            return JaneShopTradelistDao.GetShopTradelistByOrderId(orderid);
+        }
+
+        public List<ShopTradelist> GetPagedShopOrder(PagingContext pager, int orderid)
+        {
+            return JaneShopTradelistDao.GetPagedTradelist(pager, orderid);
+        }
+        #endregion
         //订单
         #region JaneShopOrders
         public int SetShopOrder(ShopOrder item)
@@ -72,14 +103,10 @@ namespace JANE.Shop.Providers
         }
         #endregion
 
-        //订单列表
-
-      
+        //订单列表      
 
         //收货地址信息
-
-        //产品购物信息
-        //type id joyolink dangdang link
+        
 
     }
 }
