@@ -18,7 +18,7 @@
         </HeaderTemplate>
         <ItemTemplate>
         <li>
-            <span class="cd_img floatleft"><a href="<%#GetUrl(((MusicTitle)Container.DataItem).MusicId,2) %>"><img src="<%#((MusicTitle)Container.DataItem).LImage %>" /></a></span>
+            <span class="cd_img floatleft"><a href="<%#GetUrl(((MusicTitle)Container.DataItem).MusicId,2) %>"><img src="<%#((MusicTitle)Container.DataItem).LImage %>" width="60" height="60" /></a></span>
 		    <div class="floatright cd_list_01_text">
 		    <h1><%#GetNewImage((MusicTitle)Container.DataItem)%><a href="<%#GetUrl(((MusicTitle)Container.DataItem).MusicId,2) %>">
             <%#((MusicTitle)Container.DataItem).Title %></a></h1>
