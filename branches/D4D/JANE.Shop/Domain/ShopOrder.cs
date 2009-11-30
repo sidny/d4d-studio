@@ -5,6 +5,9 @@ using System.Text;
 
 namespace JANE.Shop.Domain
 {
+    /// <summary>
+    /// 订单信息
+    /// </summary>
     public class ShopOrder
     {
           public ShopOrder() { }
