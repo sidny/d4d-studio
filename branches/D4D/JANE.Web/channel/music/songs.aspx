@@ -187,7 +187,7 @@
         }
 
         buttons.click(function() {
-            if (false && $("#btnLogin").length > 0) $("#btnLogin").click();
+            if ($("#btnLogin").length > 0) $("#btnLogin").click();
             else {
                 var $this = $(this);
 

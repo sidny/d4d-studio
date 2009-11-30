@@ -57,8 +57,8 @@
 
                                                 }
                  %>
-                                        <li><a href="http://www.showcitytimes.net<%=item.ImageFile%>">
-                                            <img src="http://www.showcitytimes.net<%=item.SImageFile%>" title="<%=HttpUtility.HtmlEncode(item.ImageName)%>"
+                                        <li><a href="<%=item.ImageFile%>">
+                                            <img src="<%=item.SImageFile%>" title="<%=HttpUtility.HtmlEncode(item.ImageName)%>"
                                                 longdesc="<%=CurrentAlbum.PublishDate.ToLongDateString()%>" class="image<%=i+1 %>">
                                         </a></li>
                                         <%} %>
