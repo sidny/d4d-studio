@@ -17,9 +17,9 @@
       		for (int n = startYear; n > startYear-3; n--)
       			{
            %><a  href="/news.html?year=<%=n %>&month=<%=month %>" <%=(CurrentSelectYear==n)?"class=\"white\"":"" %>><%=n%>年</a> <%}%>
-           <a href="/news.html?year=<%=CurrentSelectYear-1 %>&month=<%=month %>"><img src="/static/images/ico_next.gif" /></a>
+           <a href="/news.html?year=<%=CurrentSelectYear-1 %>&month=<%=month %>" class="video_tag_time_year_img"><img src="/static/images/ico_next.gif" /></a>
            <%if(startYear > CurrentSelectYear){%>
-		   <a href="/news.html?year=<%=CurrentSelectYear+1 %>&month=<%=month %>"><img src="/static/images/ico_up.gif" /></a>
+		   <a href="/news.html?year=<%=CurrentSelectYear+1 %>&month=<%=month %>" class="video_tag_time_year_img"><img src="/static/images/ico_up.gif" /></a>
            <%}%>
 		</div>
 	    <div class="spacer"></div>
