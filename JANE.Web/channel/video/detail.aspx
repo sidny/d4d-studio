@@ -9,7 +9,9 @@
   <div class="cd_right">
     <div class="w_562 h_578">
       <div class="spacer" style="height:36px"></div>
-	  <div class="cd_title video_title font24"><h1 class="floatleft font24" style="width:98%">- <%=CurrentNews.Title%></h1></div>
+	  <div class="cd_title video_title font24">
+      <h1 class="floatleft font24 blue" style="width:98%">视频<span>- <%=CurrentNews.Title%></span></h1>
+		</div>
 	  <div class="spacer" style="height:20px"></div>
 	  <div class="video_play">
 	  	<%=CurrentNews.Body%>

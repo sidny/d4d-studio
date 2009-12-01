@@ -86,7 +86,7 @@
             return totalCount;
         }
     }
-    protected int PageSize = 12;
+    protected int PageSize = 6;
 
     protected int TagId
     {

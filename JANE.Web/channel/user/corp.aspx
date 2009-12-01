@@ -4,14 +4,47 @@
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader">
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentMain" runat="server">
-<div class="sub-title">
-  <p class="title"><%=Channel %></p>
-  <p class="nav-link">您的位置：首页 > <%=Channel %></p>
+<div class="cd_body jane_info">
+  <!--left-->
+  <div class="left floatleft">
+    <div class="spacer" style="height:56px;"></div>
+	<div class="jane_info_menu">
+		<a href="/about.html">公司介绍</a> 
+		<a href="/links.html">合作伙伴</a> 
+		<a href="/contact.html">联系我们</a>
+		<a href="#">靓颖演唱会</a>
+        <a href="#">靓颖历程</a> 
+		<a href="#">靓颖奖项</a>
+		<a href="#">靓颖演唱会</a>
+	</div>
+	<div class="spacer"></div>
+  </div>
+  <!--left/-->
+  <!--right-->
+  <div class="right floatleft">
+  <div class="cd_right">
+    <div class="w_562 h_578">
+      <div class="spacer" style="height:36px"></div>
+	  
+	  <div class="cd_title jane_info_title">
+      	<h1 class="blue"><%=Channel%></h1>
+      </div>
+	  
+	  <div class="spacer" style="height:20px"></div>
+	  <div class="jane_info_text">
+	  	<asp:Label runat="server" ID="text"></asp:Label>
+	  </div>
+	  <div class="spacer" style="height:30px"></div>
+      
+	  <div class="clear"></div>
+    </div>
+	<div class="clear"></div>
+	</div>
+	<div class="clear"></div>
+  </div>
+  <!--right/-->
+  <div class="clear"></div>
 </div>
-<div class="clearfix" style=" width:680px; padding:20px; margin:20px auto; line-height:20px;">
-       <asp:Label runat="server" ID="text"></asp:Label>
- </div>
-
 </asp:Content>
 <script runat="server">
     protected string Channel = string.Empty;
@@ -26,18 +59,21 @@
                     Channel = "联系我们";
                     break;
                 case "zhaopin":
-                    Channel = "少城招聘";
+                    Channel = "招聘信息";
                     break;
                 case "copyright":
-                    Channel = "使用条款";
+                    Channel = "免责声明";
+                    break;
+				case "adservice":
+                    Channel = "广告服务";
                     break;
 				case "links":
-                    Channel = "友情链接";
+                    Channel = "合作伙伴";
                     break;
                 case "about":
                 default:
                     page = "about";
-                    Channel = "关于我们";
+                    Channel = "公司介绍";
                     break;
                 
             }

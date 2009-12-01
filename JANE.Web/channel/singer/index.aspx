@@ -39,7 +39,7 @@
       <div class="spacer" style="height:36px"></div>
 	  
 	  <div class="cd_title jane_info_title">
-      	<h1 class="blue">档案<span>-张靓颖档案</span></h1>
+      	<h1 class="blue">档案<span>- 张靓颖档案</span></h1>
       </div>
 	  
 	  <div class="spacer" style="height:20px"></div>
