@@ -13,7 +13,7 @@
       <div class="spacer" style="height:36px"></div>
 	  
 	  <div class="cd_title pic_title">
-	  	<h1 class="font24 floatleft"><asp:Literal ID="litTitle" runat="server"></asp:Literal></h1> 
+	  	  <h1 class="font24 floatleft blue">图片<span>- <asp:Literal ID="litTitle" runat="server"></asp:Literal></span></h1> 
 		<div class="floatright alginright">
 			<div class="spacer4"></div>
 			<a href="/photo.html">&lt;&lt;返回图片</a>

@@ -11,9 +11,9 @@
   <div class="cd_right">
     <div class="w_562 h_578">
       <div class="spacer" style="height:36px"></div>
-	  
-	  <div class="cd_title pic_title"><asp:Literal ID="litTitle" runat="server" Visible="false"></asp:Literal></div>
-	  
+	   <div class="cd_title pic_title">
+       <h1 class="font24 floatleft blue">图片<span><asp:Literal ID="litTitle" runat="server"></asp:Literal></span></h1> 
+</div>	 
 	  <div class="spacer" style="height:40px"></div>
                
             <asp:Repeater ID="repList" runat="server">
@@ -235,7 +235,7 @@
         }
 
     }
-    private const string TitleFormat = "- <font color=\"red\">{0}</font>";
+    private const string TitleFormat = "- {0}";
     private const string OnlyTitleFormat = "- {0}照片";
     private void SetTitle()
     {
