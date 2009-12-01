@@ -27,7 +27,7 @@
 	    </HeaderTemplate>
 	    <ItemTemplate>
 	       <td width="33%" align="center" valign="bottom">
-            <p><a href="/photo/album/<%#((D4D.Platform.Domain.Image)Container.DataItem).AlbumId%>/slider.html?id=<%#((D4D.Platform.Domain.Image)Container.DataItem).ImageId%>"><img src="<%#((D4D.Platform.Domain.Image)Container.DataItem).SImageFile %>" /></a></p> 
+            <p><a href="/photo/album/<%#((D4D.Platform.Domain.Image)Container.DataItem).AlbumId%>/slider.html?id=<%#((D4D.Platform.Domain.Image)Container.DataItem).ImageId%>"><img src="<%#((D4D.Platform.Domain.Image)Container.DataItem).SImageFile %>" class="mgb_10" /></a></p> 
             <p><a href="/photo/album/<%#((D4D.Platform.Domain.Image)Container.DataItem).AlbumId%>/slider.html?id=<%#((D4D.Platform.Domain.Image)Container.DataItem).ImageId%>"><%#((D4D.Platform.Domain.Image)Container.DataItem).ImageName%></a></p>
            </td>
         </ItemTemplate>
