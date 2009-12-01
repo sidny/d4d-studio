@@ -34,7 +34,7 @@
     <div class="w_562 h_578">
       <div class="spacer" style="height:36px"></div>
 	  <div class="cd_title journey_title">
-	  	<h1 class="font24 floatleft">- <%=sDate.ToString("yyyy年M月") %></h1> 
+      	<h1 class="font24 floatleft blue">行程<span>-<%=sDate.ToString("yyyy年M月") %></span></h1> 
 	  </div>
 	  <div class="spacer" style="height:20px"></div>
 	  

@@ -12,7 +12,7 @@
                 $(this).parent().find(".jane_info_menu_on").removeClass("jane_info_menu_on");
                 $(this).addClass("jane_info_menu_on");
                 $(".jane_info_text").hide().eq(index).show();
-                $(".jane_info_title").html($(this).text());
+                $(".jane_info_title span").html("- "+$(this).text());
             });
         });
     });
@@ -38,7 +38,9 @@
     <div class="w_562 h_578">
       <div class="spacer" style="height:36px"></div>
 	  
-	  <div class="cd_title jane_info_title"></div>
+	  <div class="cd_title jane_info_title">
+      	<h1 class="blue">档案<span>-张靓颖档案</span></h1>
+      </div>
 	  
 	  <div class="spacer" style="height:20px"></div>
 	  <div class="jane_info_text">
