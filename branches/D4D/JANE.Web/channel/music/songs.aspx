@@ -17,14 +17,14 @@
       <div class="spacer" style="height:36px"></div>
 	  
 	  <div class="cd_title">
-	  <h1 class="floatleft font24"> - <%=Music.Title%></h1>
+      <h1 class="floatleft font24 blue">唱片<span>- <%=Music.Title%></span></h1>
 	  <div class="floatright"><a href="/music.html">返回唱片</a></div>
 	  </div>
 	  
 	  <div class="spacer" style="height:20px"></div>
 	  
 	  <div class="cd_intro">
-	    <div class="cd_img floatleft"><img src="<%=Music.LImage%>" /></div>
+	    <div class="cd_img floatleft"><img width="120" height="120" src="<%=Music.LImage%>" /></div>
 	    <div class="cd_info floatright">
 			<div class="spacer" style="height:2px;"></div>
 			<h1><%=Music.Title%></h1>
