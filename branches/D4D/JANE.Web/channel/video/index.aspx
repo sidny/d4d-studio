@@ -342,8 +342,8 @@
         return result;
     }
     
-    private const string TagEmFormat = "标签：{0}";
-    private const string AFormat = "<a href=\"{0}\">{1}</a>";
+    private const string TagEmFormat = "<span class=\"black_666\">标签：{0}</span>";
+    private const string AFormat = "<a clsss=\"black_666\" href=\"{0}\">{1}</a>";
     private const string TagLinkFormat = "/video.html?id={0}&tagid={1}&tag={2}";
     protected void repList_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {

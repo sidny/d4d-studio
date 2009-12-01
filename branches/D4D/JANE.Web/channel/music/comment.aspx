@@ -16,8 +16,7 @@
       <div class="spacer" style="height:36px"></div>
 	  
 	  <div class="cd_title commend_title">
-	  	<h1 class="font24 floatleft" style="width:100%">-<a href="/music/b<%=Music.BandId %>/song/<%=Music.MusicId%>.html"><span class="blue font24"><%=Music.Title%></span></a></h1> 
-		
+       <h1 class="floatleft blue" style="width:100%">评论<span>-<a href="/music/b<%=Music.BandId %>/song/<%=Music.MusicId%>.html"><span class="blue font24"><%=Music.Title%></span></a></span> </h1>
 	  </div>
 	  
 	  <div class="spacer" style="height:30px"></div>

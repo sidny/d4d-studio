@@ -32,7 +32,12 @@
     }
 </script>
 </asp:Content>
-<asp:Content ContentPlaceHolderID="ContentMain" runat="server" ID="Main"></asp:Content>
+<asp:Content ContentPlaceHolderID="ContentMain" runat="server" ID="Main">
+<div>
+<script type="text/javascript">     
+	</script>
+</div>
+</asp:Content>
 <script runat="server">
     protected List<News> newsList;
     protected List<Show> showList;
