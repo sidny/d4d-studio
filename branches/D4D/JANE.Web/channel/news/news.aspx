@@ -10,7 +10,7 @@
    <div class="w_562 h_578">
      <div class="spacer" style="height:36px"></div>
      	<div class="cd_title news_title">
-       		<h1 class="floatleft blue">资讯<span>- <asp:Literal ID="litTitle" runat="server"></asp:Literal></span> </h1> 
+       		<h1 class="floatleft blue">资讯<span><asp:Literal ID="litTitle" runat="server"></asp:Literal></span> </h1> 
 			<div class="floatright alginright">
             	<div class="spacer4"></div>
 			</div>
