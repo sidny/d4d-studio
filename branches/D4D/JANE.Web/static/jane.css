@@ -8,7 +8,7 @@ body{
 	color:#3B3B3B;
 	background:url(/static/images/body_bg.jpg) repeat-x left top #D1EDD4;
 	line-height:1.3em;
-	font-family:"宋体","微软雅黑",Verdana;
+	font-family:verdana,"宋体","微软雅黑";
 }
 td,div,dl,ul,li,table,h1,h2,h3,h4,h5,h6,ol,dt,dd{
 	overflow:hidden;
@@ -78,6 +78,9 @@ a:hover{
 .mgr_10{
 	margin-right:10px;
 }
+.mgb_10{
+	margin-bottom:10px;
+}
 .clear{
 	height:0px;
 	overflow:hidden;
@@ -122,7 +125,7 @@ a:hover{
 }
 /**/
 .head{
-	width:1100px;
+	width:1300px;
 	height:62px;
 	clear:both;
 }
@@ -225,10 +228,14 @@ a:hover{
 .cd_list li span{
 	display:block;
 	margin-bottom:4px;
-	width:67px;
+	width:60px;
 	height:60px;
-	padding:2px;
-	background:url(/static/images/bg_67x60.jpg) no-repeat center;
+	padding:1px 2px 2px 8px;
+	background:url(/static/images/bg_67x60.gif) no-repeat center;
+}
+.cd_list li span img{
+	width:60px;
+	height:60px;
 }
 .cd_list_01{
 	margin:0px auto;
@@ -246,10 +253,10 @@ a:hover{
 .cd_list_01 li span.cd_img{
 	display:block;
 	margin-bottom:4px;
-	width:67px;
+	width:60px;
 	height:60px;
-	padding:2px;
-	background:url(/static/images/bg_67x60.jpg) no-repeat center;
+	padding:1px 2px 2px 8px;
+	background:url(/static/images/bg_67x60.gif) no-repeat center;
 }
 .cd_list_01_text{
 	width:270px;
@@ -287,7 +294,6 @@ a:hover{
 .cd_title{
 	width:557px;
 	height:42px;
-	text-align:right;
 	padding-right:5px;
 	line-height:50px;
 	color:#686765;
@@ -397,15 +403,11 @@ a:hover{
 	border:1px #DCDEDD solid;
 }
 .cd_img{
-	width:141px;
-	height:124px;
-	padding:4px 0px 0px 0px;
+	width:121px;
+	height:120px;
+	padding:3px 5px 4px 15px;
 	text-align:center;
 	background:url(/static/images/bg_134x120.gif) no-repeat;
-}
-.cd_img img{
-	width:67px;
-	height:60px;
 }
 .cd_info{
 	width:330px;
@@ -583,7 +585,7 @@ a..btn_blue:hover{
 }
 /*footer*/
 .footer{
-	width:100%;
+	width:1330px;
 	height:60px;
 	background:#000000;
 	clear:both;
@@ -606,6 +608,7 @@ a..btn_blue:hover{
 	margin:15px 0px 0px 0px;
 	width:175px;
 	height:45px;
+	background:#000;
 }
 /*个人档案*/
 .jane_info_menu{
@@ -842,14 +845,14 @@ a..btn_blue:hover{
 .video_tag_time_year a.video_tag_time_year_img{
 	float:right;
 	margin-left:0px;
-	width:20px;
+	width:21px;
 }
 .video_tag_time_year a img{
 	border-left:1px #F2F1DF solid;
 }
 .video_tag_time_moth{
 	line-height:22px;
-	word-spacing:2px;
+	word-spacing:5px;
 }
 .video_tag_time_moth a.orange{
 	color:#ff6600
@@ -893,12 +896,12 @@ a..btn_blue:hover{
 }
 .video_list li{
 	float:left;
-	margin:10px 3px;
-	width:134px;
+	margin:10px 10px;
+	width:120px;
 	height:175px;
 }
 *html .video_list li{
-	margin:10px 2px;
+	margin:10px 4px;
 }
 .video_list li p{
 	display:block;
@@ -906,7 +909,7 @@ a..btn_blue:hover{
 }
 .video_list_btn_play{
 	position:absolute;
-	margin:60px 0px 0px 90px;
+	margin:60px 0px 0px 85px;
 	width:29px;
 	height:28px;
 	z-index:1;
@@ -925,6 +928,7 @@ a..btn_blue:hover{
 	margin:0px 12px 6px 12px;
 	width:160px;
 	height:170px;
+	text-align:center;
 }
 *html .pic_list li{
 	margin:0px 10px 6px 10px;
