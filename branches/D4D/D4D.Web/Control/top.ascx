@@ -12,7 +12,7 @@
           else
           { %>
          <label><%=D4D.Web.Helper.AdminHelper.CurrentUser.UserName %></label>
-         <a id="logout" href="/regist.html">×¢Ïú</a>
+         <a id="logout" href="/">×¢Ïú</a>
   <%} %></div>
      <div id="loginForm" style="width:500px; padding:15px; display:none; text-align:left">
      	<div style="position:absolute; text-align:right; margin-left:468px; _margin-left:498px; margin-top:-15px;"><a href="javascript:$.unblockUI()"><img src="/static/images/user/close.gif" /></a></div>
