@@ -46,7 +46,7 @@
 	  <div class="spacer"></div>
 	  <div class="login_row">
 		<div class="login_row_name font14 floatleft">
-		  Ум&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ТыЃК
+		  Ум&nbsp;&nbsp;&nbsp;&nbsp;ТыЃК
 		</div>
 		<div class="login_row_con floatright">
 			<input type="password" name="password" style="width:180px; height:16px;line-height:16px;" class="input_02 font14" />
