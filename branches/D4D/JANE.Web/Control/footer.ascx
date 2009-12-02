@@ -19,7 +19,7 @@
 	  </div>
   </div>
   <div class="floatleft footer_logo">
-  <a href="http://www.showcitytimes.net"><img src="/static/images/foot_logo.gif" alt="" /></a>
+  <a href="http://www.showcitytimes.net" target="_blank"><img src="/static/images/foot_logo.gif" alt="" /></a>
   </div>
   <div class="clear"></div>
 </div>

@@ -23,7 +23,7 @@
 		    <p>
 				<%#((News)Container.DataItem).Title %><br />
 				<asp:Literal ID="litListTag" runat="server"></asp:Literal><br />
-				 <%#((News)Container.DataItem).PublishDate.ToString("yyyy-MM-dd")%>
+				<span class="black_6666"><%#((News)Container.DataItem).PublishDate.ToString("yyyy-MM-dd")%></span>
 			</p>
 	  	</li>
 		 </ItemTemplate>
@@ -109,7 +109,7 @@
             return totalCount;
         }
     }
-    protected int PageSize = 12;
+    protected int PageSize = 8;
     /// <summary>
     /// 0 company news 
     /// </summary>
@@ -342,8 +342,8 @@
         return result;
     }
     
-    private const string TagEmFormat = "<span class=\"black_666\">标签：{0}</span>";
-    private const string AFormat = "<a clsss=\"black_666\" href=\"{0}\">{1}</a>";
+    private const string TagEmFormat = "<span class=\"black_6666\">标签：{0}</span>";
+    private const string AFormat = "<a href=\"{0}\">{1}</a>";
     private const string TagLinkFormat = "/video.html?id={0}&tagid={1}&tag={2}";
     protected void repList_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
