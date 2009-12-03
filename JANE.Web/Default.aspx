@@ -33,8 +33,21 @@
 </script>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="ContentMain" runat="server" ID="Main">
-<div>
-<script type="text/javascript">     
+<div style="width:1400px;">
+<script type="text/javascript">
+     AC_FL_RunContent(
+		"src", "/static/images/home",
+		"width", "1300",
+		"height", "630",
+		"align", "bottom",
+		"id", "index",
+		"quality", "high",
+		"name", "index",
+		"allowScriptAccess", "always",
+		"wmode","transparent",
+		"type", "application/x-shockwave-flash",
+		"pluginspage", "http://www.adobe.com/go/getflashplayer"
+	);
 	</script>
 </div>
 </asp:Content>
