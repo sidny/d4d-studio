@@ -134,7 +134,7 @@ namespace D4D.Platform.Persistence
                     delegate(IRecord record)
                     {
                         p.Uid = record.GetInt32OrDefault(0, 0);
-                        p.Groupid = record.GetInt32OrDefault(1, 0);
+                        p.Groupid = record.GetInt16OrDefault(1, 0);
                         p.Adminid = record.GetInt32OrDefault(2, 0);
                     },
                     uid,
@@ -152,7 +152,7 @@ namespace D4D.Platform.Persistence
                     delegate(IRecord record)
                     {
                         p.Uid = record.GetInt32OrDefault(0, 0);
-                        p.Groupid = record.GetInt32OrDefault(1, 0);
+                        p.Groupid = record.GetInt16OrDefault(1, 0);
                         p.Adminid = record.GetInt32OrDefault(2, 0);
                     },
                     username,
