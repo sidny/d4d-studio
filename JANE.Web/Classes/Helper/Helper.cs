@@ -6,6 +6,7 @@ using D4D.Platform.Domain;
 using D4D.Platform;
 using System.Globalization;
 using System.Threading;
+using D4D.Platform.Helper.Discuz;
 
 namespace D4D.Web.Helper
 {
@@ -50,6 +51,70 @@ namespace D4D.Web.Helper
                         return band.BandId;
                 }
                 return 0;
+            }
+        }
+       
+
+        public bool IsDizLogin
+        {
+            get
+            {
+                return GetCookieUserId() > 0;
+            }
+        }
+        public DiscuzShortUserInfo DizUser
+        {
+            get
+            {
+                int uid = GetCookieUserId();
+                if (uid > 0)
+                {
+                    if (dizUser == null || dizUser.Uid != uid)
+                    {
+                       dizUser = DiscuzGateway.DiscuzAccountProvider.GetShortUserInfo(uid);
+                    }
+                }
+                else
+                {
+                    dizUser = null;
+                }
+
+                return dizUser;
+            }
+        }
+
+
+        private DiscuzShortUserInfo dizUser
+        {
+            get
+            {
+                return HttpContext.Current.Session["dnt"] as DiscuzShortUserInfo;
+            }
+            set
+            {
+                HttpContext.Current.Session["dnt"] = value;
+            }
+        }
+        public int GetCookieUserId()
+        {
+           return int.Parse(DiscuzHelper.GetCookie("userid"));
+        }
+        public string GetCookieUserName()
+        {
+            if (IsDizLogin)
+            {
+                string username = DiscuzHelper.GetCookie("username");
+
+                if (string.IsNullOrEmpty(username))
+                {
+                    username = DizUser.Username;
+                    DiscuzHelper.WriteCookie("username", username);
+                }
+                return username;
+            }
+            else
+            {
+                return String.Empty;
             }
         }
     }
