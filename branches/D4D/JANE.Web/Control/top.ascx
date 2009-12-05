@@ -1,4 +1,5 @@
 <%@ Control Language="C#" AutoEventWireup="true" %>
+<%@ Import Namespace="D4D.Web.Helper" %>
 <script type="text/javascript">
     var menuData = {
         "home": { text: "Ê×Ò³", url: "/" },
@@ -22,7 +23,7 @@
 </script>
 <div class="head">
   <div class="head_login">
-   <%if (D4D.Web.Helper.AdminHelper.CurrentUser == null)
+   <%if (Helper.IsDizLogin != true)
           { %>
   <a href="#" id="btnLogin">µÇÂ¼</a> | <a href="http://bbs.janezhang.com/register.aspx?agree=yes">×¢²á</a>
   <div style="display:none"><div class="login" id="loginForm">
@@ -79,7 +80,7 @@
    <%}
           else
           { %>
-          <label><%=D4D.Web.Helper.AdminHelper.CurrentUser.UserName %></label> | <a href="#" id="logout">ÍË³öµÇÂ¼</a>
+          <label><%=Helper.GetCookieUserName() %></label> | <a href="#" id="logout">ÍË³öµÇÂ¼</a>
         <%} %>
 | <a href="#">ÓïÑÔÑ¡Ôñ</a><img src="/static/images/ico_arrow.gif" align="absmiddle" />
   </div>
@@ -125,7 +126,7 @@
                     width: 396,
                     left: ($(window).width() - 396) / 2,
                     top: ($(window).height() - 300) / 2,
-                    border: "none"                    
+                    border: "none"
                 }
             });
             $('.blockOverlay').attr('title', 'µã»÷È¡ÏûµÇÂ½').click($.unblockUI);
@@ -133,7 +134,9 @@
         });
         $("#logout").click(function() {
             $.getJSON("/svc/user.svc/LoginOut");
-            window.location.reload();
+            setTimeout(function() {
+                location.reload();
+            }, 1000);
             return false;
         });
     }); 

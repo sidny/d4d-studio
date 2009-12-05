@@ -53,21 +53,21 @@ namespace JANE.Web.svc
         [WebInvoke(RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
         public int Create(string content,int id, int type )
         {
-            if (AdminHelper.CurrentUser == null) return -1;
-            if (AdminHelper.CurrentUser.UserType.Trim() ==
-                ((int)UserType.Type.Rejected).ToString()) return -2;
+            if (!Helper.IsDizLogin) return -1;
+           // if (Helper.DizUser.) return -2;
             if (string.IsNullOrEmpty(content) || id == null || type == null) return 0;
             try
             {
+                DiscuzShortUserInfo user = Helper.DizUser;
                 return D4DGateway.CommentProvider.InsertComment(new Comment()
                 {
                     ObjectId = id,
                     ObjectType = (ObjectTypeDefine)type,
                     Body =  D4D.Platform.Helper.SpamKeywordHelper.FilterContent( content),
                     AddDate = DateTime.Now,
-                    UserId = AdminHelper.CurrentUser.UserID,
-                    AddUserID = AdminHelper.CurrentUser.UserID,
-                    UserName = AdminHelper.CurrentUser.UserName,
+                    UserId = user.Uid,
+                    AddUserID = user.Uid,
+                    UserName = user.Username,
                     Status = PublishStatus.Publish
                 });
             }
