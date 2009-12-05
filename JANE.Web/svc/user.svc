@@ -5,7 +5,8 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
-using LTP.Accounts.Bus;
+using D4D.Platform;
+using D4D.Platform.Domain;
 using System.Web;
 using System.Net;
 
@@ -32,68 +33,41 @@ namespace JANE.Web.svc
         [WebGet(RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
         public bool CheckUserName(string username)
         {
-            LTP.Accounts.Bus.User user = new LTP.Accounts.Bus.User();
-            return user.HasUser(username.Trim());
+            return (0 < DiscuzGateway.DiscuzAccountProvider.GetUserIdByUserName(username));
         }
 
         [OperationContract]
         [WebGet(RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
         public LoginInfo Login(string username, string password)
         {
-            AccountsPrincipal newUser = AccountsPrincipal.ValidateLogin(username, password);
-            if (newUser == null) return new LoginInfo() { UserId=0,UserName="" };
-            else
+            if (string.IsNullOrEmpty(key))
             {
-                LTP.Accounts.Bus.User currentUser = new LTP.Accounts.Bus.User(newUser);
-                HttpContext.Current.Session["UserInfo"] = currentUser;
-                HttpContext.Current.Session["Style"] = currentUser.Style;
-                System.Web.Security.FormsAuthentication.SetAuthCookie(currentUser.UserName, false);
-                return new LoginInfo() { UserId = currentUser.UserID, UserName = currentUser.UserName }; 
+                return new LoginInfo();
             }
+            LoginInfo userinfo = new LoginInfo();
+            userinfo.UserId = DiscuzGateway.DiscuzAccountProvider.CheckPassword(username, password, true);
+            if (userinfo.UserId > 0)
+            {
+                userinfo.UserName = username;
+                DiscuzShortUserInfo dsui = DiscuzGateway.DiscuzAccountProvider.GetShortUserInfo(userinfo.UserId);
+                D4D.Platform.Helper.Discuz.DiscuzHelper.WriteUserCookie(dsui, 60 * 24, key);
+            }
+            return userinfo;
         }
         [OperationContract]
         [WebGet(RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
         public Boolean LoginOut()
         {
-                HttpContext.Current.Session["UserInfo"] = null;
-                System.Web.Security.FormsAuthentication.SignOut();
-                return true;
+            D4D.Platform.Helper.Discuz.DiscuzHelper.ClearUserCookie();
+            return true;
               
         }
-        [OperationContract]
-        [WebInvoke(BodyStyle=WebMessageBodyStyle.WrappedRequest,Method="POST",ResponseFormat=WebMessageFormat.Json,RequestFormat=WebMessageFormat.Json)]
-        public bool Regist(string username, string password, string email)
-        {
-            if (string.IsNullOrEmpty(username) || username.Length > 3 || password ==null || password.Length<6 || string.IsNullOrEmpty(email))
-                return false;
-            
-            int userid = 0;
-            try
-            {
-                LTP.Accounts.Bus.User newUser = new LTP.Accounts.Bus.User();
-                newUser.UserName = username;
-                //newUser.Password=AccountsPrincipal.EncryptPassword(txtPassword.Text);
-                newUser.NonEncryptPasswordPassword = password;
-                newUser.TrueName = username;
-                newUser.Email = email;
-                newUser.EmployeeID = 0;
-                //newUser.DepartmentID=this.Dropdepart.SelectedValue;
-                newUser.Activity = true;
-                newUser.UserType = ((int)UserType.Type.Guest).ToString();
-                newUser.Style = 1;
-                userid = newUser.Create();
-            }
-            catch (Exception e)
-            {
-                log4net.LogManager.GetLogger("d4d").Error(e);
-            }
-            return (userid > 0);
-        }
-        // Add more operations here and mark them with [OperationContract]
         
         public struct LoginInfo{
             public int UserId;
             public string UserName;   
         }
+
+        protected static string key = System.Configuration.ConfigurationManager.AppSettings["DiscuzKey"];
     }
 }
