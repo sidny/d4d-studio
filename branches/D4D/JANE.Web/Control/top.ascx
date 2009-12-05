@@ -74,6 +74,7 @@
 	  
 	  <div class="login_foot">登录张靓颖官方网站，获得更多精彩资讯</div>
 	  <div class="spacer"></div>
+	 </form>
 	</div></div>
    <%}
           else
