@@ -46,15 +46,15 @@ namespace D4D.Platform.Domain
         private int m_digestposts;	//精华贴数
         private int m_oltime;	//在线时间
         private int m_pageviews;	//页面浏览量
-        private int m_credits;	//积分数
-        private float m_extcredits1;	//扩展积分1
-        private float m_extcredits2;	//扩展积分2
-        private float m_extcredits3;	//扩展积分3
-        private float m_extcredits4;	//扩展积分4
-        private float m_extcredits5;	//扩展积分5
-        private float m_extcredits6;	//扩展积分6
-        private float m_extcredits7;	//扩展积分7
-        private float m_extcredits8;	//扩展积分8
+        private Decimal m_credits;	//积分数
+        private Decimal m_extcredits1;	//扩展积分1
+        private Decimal m_extcredits2;	//扩展积分2
+        private Decimal m_extcredits3;	//扩展积分3
+        private Decimal m_extcredits4;	//扩展积分4
+        private Decimal m_extcredits5;	//扩展积分5
+        private Decimal m_extcredits6;	//扩展积分6
+        private Decimal m_extcredits7;	//扩展积分7
+        private Decimal m_extcredits8;	//扩展积分8
         private int m_avatarshowid;	//头像ID
         private string m_email;	//邮件地址
         private string m_bday;	//生日
@@ -257,7 +257,7 @@ namespace D4D.Platform.Domain
         ///<summary>
         ///积分数
         ///</summary>
-        public int Credits
+        public Decimal Credits
         {
             get { return m_credits; }
             set { m_credits = value; }
@@ -265,7 +265,7 @@ namespace D4D.Platform.Domain
         ///<summary>
         ///扩展积分1
         ///</summary>
-        public float Extcredits1
+        public Decimal Extcredits1
         {
             get { return m_extcredits1; }
             set { m_extcredits1 = value; }
@@ -273,7 +273,7 @@ namespace D4D.Platform.Domain
         ///<summary>
         ///扩展积分2
         ///</summary>
-        public float Extcredits2
+        public Decimal Extcredits2
         {
             get { return m_extcredits2; }
             set { m_extcredits2 = value; }
@@ -281,7 +281,7 @@ namespace D4D.Platform.Domain
         ///<summary>
         ///扩展积分3
         ///</summary>
-        public float Extcredits3
+        public Decimal Extcredits3
         {
             get { return m_extcredits3; }
             set { m_extcredits3 = value; }
@@ -289,7 +289,7 @@ namespace D4D.Platform.Domain
         ///<summary>
         ///扩展积分4
         ///</summary>
-        public float Extcredits4
+        public Decimal Extcredits4
         {
             get { return m_extcredits4; }
             set { m_extcredits4 = value; }
@@ -297,7 +297,7 @@ namespace D4D.Platform.Domain
         ///<summary>
         ///扩展积分5
         ///</summary>
-        public float Extcredits5
+        public Decimal Extcredits5
         {
             get { return m_extcredits5; }
             set { m_extcredits5 = value; }
@@ -305,7 +305,7 @@ namespace D4D.Platform.Domain
         ///<summary>
         ///扩展积分6
         ///</summary>
-        public float Extcredits6
+        public Decimal Extcredits6
         {
             get { return m_extcredits6; }
             set { m_extcredits6 = value; }
@@ -313,7 +313,7 @@ namespace D4D.Platform.Domain
         ///<summary>
         ///扩展积分7
         ///</summary>
-        public float Extcredits7
+        public Decimal Extcredits7
         {
             get { return m_extcredits7; }
             set { m_extcredits7 = value; }
@@ -321,7 +321,7 @@ namespace D4D.Platform.Domain
         ///<summary>
         ///扩展积分8
         ///</summary>
-        public float Extcredits8
+        public Decimal Extcredits8
         {
             get { return m_extcredits8; }
             set { m_extcredits8 = value; }
