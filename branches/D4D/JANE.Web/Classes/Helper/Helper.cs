@@ -55,14 +55,14 @@ namespace D4D.Web.Helper
         }
        
 
-        public bool IsDizLogin
+        public static bool IsDizLogin
         {
             get
             {
-                return GetCookieUserId() > 0;
+                return (GetCookieUserId() > 0);
             }
         }
-        public DiscuzShortUserInfo DizUser
+        public static DiscuzShortUserInfo DizUser
         {
             get
             {
@@ -84,7 +84,7 @@ namespace D4D.Web.Helper
         }
 
 
-        private DiscuzShortUserInfo dizUser
+        private static DiscuzShortUserInfo dizUser
         {
             get
             {
@@ -95,11 +95,13 @@ namespace D4D.Web.Helper
                 HttpContext.Current.Session["dnt"] = value;
             }
         }
-        public int GetCookieUserId()
+        public static int GetCookieUserId()
         {
-           return int.Parse(DiscuzHelper.GetCookie("userid"));
+            int uid = 0;
+            int.TryParse(DiscuzHelper.GetCookie("userid"), out uid);
+            return uid;
         }
-        public string GetCookieUserName()
+        public static string GetCookieUserName()
         {
             if (IsDizLogin)
             {
