@@ -90,8 +90,8 @@ namespace Core.Data
 
         internal static SqlCommand CreateParameterizedCommand(SqlConnection connection, string databaseInstanceName, string commandName)
         {
-            if (commandName.IndexOf("dbo", StringComparison.OrdinalIgnoreCase) == -1)
-                throw new NoDboException(connection.Database, commandName);
+            //if (commandName.IndexOf("dbo", StringComparison.OrdinalIgnoreCase) == -1)
+            //    throw new NoDboException(connection.Database, commandName);
 
 			SqlCommand command = commandCache.GetCommandCopy(connection, databaseInstanceName, commandName);
 		
@@ -108,8 +108,8 @@ namespace Core.Data
         /// <returns></returns>
 		internal static SqlCommand CreateParameterMappedCommand(SqlConnection connection, string procedureName, ParameterMapper parameterMapper)
         {
-            if(procedureName.IndexOf("dbo",StringComparison.OrdinalIgnoreCase) == -1)
-                throw new NoDboException(connection.Database, procedureName);
+            //if(procedureName.IndexOf("dbo",StringComparison.OrdinalIgnoreCase) == -1)
+            //    throw new NoDboException(connection.Database, procedureName);
 
            SqlCommand command = connection.CreateCommand();
             command.CommandText = procedureName;
@@ -129,8 +129,8 @@ namespace Core.Data
         /// </summary>
 		internal static SqlCommand CreateParameterMappedCommand<T>(SqlConnection connection, string procedureName, ParameterMapper<T> parameterMapper, T objectInstance)
         {
-            if (procedureName.IndexOf("dbo", StringComparison.OrdinalIgnoreCase) == -1)
-                throw new NoDboException(connection.Database, procedureName);
+            //if (procedureName.IndexOf("dbo", StringComparison.OrdinalIgnoreCase) == -1)
+            //    throw new NoDboException(connection.Database, procedureName);
 
             SqlCommand command = connection.CreateCommand();
             command.CommandText = procedureName;
