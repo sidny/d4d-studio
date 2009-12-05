@@ -705,6 +705,10 @@
       <Project>{F0CAA2F4-5BB4-4BD4-879B-7C8C49ED9782}</Project>
       <Name>D4D.Platform</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JANE.Shop\JANE.Shop.csproj">
+      <Project>{971FEE5C-7D22-43C0-8422-4DA9407B2504}</Project>
+      <Name>JANE.Shop</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LTP.Accounts\LTP.Accounts.csproj">
       <Project>{86D2B20D-B407-48BE-874E-4920AC9A831F}</Project>
       <Name>LTP.Accounts</Name>
@@ -713,6 +717,7 @@
   <ItemGroup>
     <None Include="admin\Accounts\images\skin2\vssver2.scc" />
     <Content Include="admin\Admin.Master" />
+    <Content Include="admin\shop\Shop.aspx" />
     <Content Include="channel\calender\index.aspx" />
     <Content Include="channel\calender\menu.ascx" />
     <Content Include="channel\music\comment.aspx" />
