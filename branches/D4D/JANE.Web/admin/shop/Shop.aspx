@@ -175,14 +175,7 @@
                         <asp:CheckBox ID="txtStatus" runat="server"></asp:CheckBox>
                     </td>
                 </tr>
-                <tr>
-                    <th align="center" width="100">
-                         ”∆µ–¬Œ≈
-                    </th>
-                    <td>
-                        <asp:CheckBox ID="cbIsVideo" runat="server"></asp:CheckBox>
-                    </td>
-                </tr>
+                
                 <tr>
                     <th align="center" width="100">
                         &nbsp;
@@ -354,10 +347,7 @@
         DateTime date = DateTime.MinValue;
         DateTime.TryParse(txtPublishDate.Text, out date);
         item.PublishDate = date;
-        decimal price = 0;
-        decimal.TryParse(txtPrice.Text, out price);
-        item.Price = price;
-
+        item.Price = Convert.ToDecimal(txtPrice.Text);
         if (string.IsNullOrEmpty(txtSImage.UploadResult) && !string.IsNullOrEmpty(txtLImage.ThumbnailImage))
             item.SImage = txtLImage.ThumbnailImage;
         else
