@@ -33,6 +33,11 @@ namespace JANE.Shop.Domain
             get;
             set;
         }
+        public string Body
+        {
+            get;
+            set;
+        }
 
         public decimal Price
         {
