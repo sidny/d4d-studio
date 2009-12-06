@@ -10,7 +10,7 @@ CREATE TABLE [dbo].[shop_orders] (
 	[address] [nvarchar] (4000) COLLATE Chinese_PRC_CI_AS NULL ,
 	[email] [nvarchar] (500) COLLATE Chinese_PRC_CI_AS NULL ,
 	[mobile] [nvarchar] (100) COLLATE Chinese_PRC_CI_AS NULL ,
-	[paymoney] [decimal](19, 4) NULL ,
+	[paymoney] [float] NULL ,
 	[paytype] [int] NULL ,
 	[payresult] [int] NULL ,
 	[payremark] [nvarchar] (4000) COLLATE Chinese_PRC_CI_AS NULL ,

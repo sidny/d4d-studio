@@ -1,8 +1,4 @@
-﻿SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
--- =============================================
+﻿-- =============================================
 -- Create date: 2009-11-29
 -- Description:	Add Or Set shop_items
 -- =============================================
@@ -10,8 +6,7 @@ CREATE PROCEDURE [dbo].[Shop_items_Set]
    @id AS INT ,
    @name AS NVARCHAR(2000),    
    @description AS NVARCHAR(4000), 
-   @body AS NVARCHAR(4000), 
-   @price AS decimal, 
+   @price AS float, 
    @SImage AS NVARCHAR(1000),
    @LImage AS NVARCHAR(1000),  
    @PublishDate AS DATETIME,
@@ -27,10 +22,9 @@ BEGIN
 	INSERT INTO shop_items
 			   (name,
 			   description,
-			   body,
 			   price,
 			   SImage,
-			   LImage,
+			  LImage,
 			   PublishDate,			
 			   AddUserId,
 			   AddDate,			
@@ -39,7 +33,6 @@ BEGIN
 		 VALUES
 			   (@name,
 			   @description,
-			   @body,
 			   @price,
 			   @SImage,
 			   @LImage,
@@ -53,7 +46,7 @@ BEGIN
    ELSE
    BEGIN
     UPDATE shop_items
-    SET name = @name,description=@description,body=@body,price= @price,
+    SET name = @name,description=@description,price= @price,
     SImage=@SImage,LImage=@LImage,PublishDate=@PublishDate,
     AddDate=GETDATE(),[Status]=@Status,   AddUserId=@AddUserId
     WHERE id =  @id
@@ -61,3 +54,4 @@ BEGIN
 	
 	RETURN @id 
 END
+GO
