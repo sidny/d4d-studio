@@ -675,6 +675,9 @@
     <Compile Include="admin\Upload\UploadTest.aspx.designer.cs">
       <DependentUpon>UploadTest.aspx</DependentUpon>
     </Compile>
+    <Compile Include="channel\shop\shoporderhandler.ashx.cs">
+      <DependentUpon>shoporderhandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Classes\Helper\AdminHelper.cs" />
     <Compile Include="Classes\Helper\Helper.cs" />
     <Compile Include="Control\comment.ascx.cs">
@@ -734,8 +737,12 @@
     <Content Include="channel\photo\photo.aspx" />
     <Content Include="channel\photo\slider.aspx" />
     <Content Include="channel\search\index.aspx" />
+    <Content Include="channel\shop\order_confirm.aspx" />
     <Content Include="channel\shop\detail.aspx" />
+    <Content Include="channel\shop\order_finish.aspx" />
     <Content Include="channel\shop\index.aspx" />
+    <Content Include="channel\shop\order_tradelist.aspx" />
+    <Content Include="channel\shop\order_addr.aspx" />
     <Content Include="channel\singer\index.aspx" />
     <Content Include="channel\singer\menu.ascx" />
     <Content Include="channel\singer\singer.aspx" />
@@ -749,6 +756,7 @@
     <Content Include="channel\video\menu.ascx" />
     <Content Include="Control\pager.ascx" />
     <Content Include="Control\ValidateCode.ashx" />
+    <Content Include="channel\shop\shoporderhandler.ashx" />
     <None Include="fckeditor\editor\dialog\fck_spellerpages\spellerpages\server-scripts\spellchecker.cfm" />
     <None Include="fckeditor\editor\dialog\fck_spellerpages\spellerpages\server-scripts\spellchecker.php" />
     <None Include="fckeditor\editor\dialog\fck_spellerpages\spellerpages\server-scripts\spellchecker.pl" />
