@@ -24,9 +24,10 @@ namespace JANE.Shop.Persistence
                  parameters.AddWithValue("@Id", item.Id);
                  parameters.AddWithValue("@name", item.Name);
                  parameters.AddWithValue("@description", item.Description);
+                 parameters.AddWithValue("@body", item.Body);
                  parameters.AddWithValue("@price", item.Price);
                  parameters.AddWithValue("@SImage", item.SImage);
-                 parameters.AddWithValue("@LImage", item.PublishDate);
+                 parameters.AddWithValue("@LImage", item.LImage);
                  parameters.AddWithValue("@PublishDate", item.PublishDate);            
                  parameters.AddWithValue("@AddUserId", item.AddUserID);
                  parameters.AddWithValue("@Status", (int)(item.Status));                
@@ -71,7 +72,8 @@ namespace JANE.Shop.Persistence
                          m.PublishDate = record.GetDateTimeOrEmpty(6);
                          m.AddUserID = record.GetInt32OrDefault(7, 0);
                          m.AddDate = record.GetDateTime(8);
-                         m.Status = (PublishStatus)(record.GetInt32OrDefault(9, 0));                  
+                         m.Status = (PublishStatus)(record.GetInt32OrDefault(9, 0));
+                         m.Body = record.GetStringOrEmpty(10);
                      
                      },
                      id);

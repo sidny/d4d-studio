@@ -29,13 +29,7 @@
         <div>
             <div>
                 <h1>
-                    商品列表   <asp:DropDownList ID="ddlNewsRemarkTypes" Visible="false" runat="server" 
-                        onselectedindexchanged="ddlNewsRemarkTypes_SelectedIndexChanged" 
-                        AutoPostBack="True">
-                        <asp:ListItem Value="-1">全部</asp:ListItem>
-                        <asp:ListItem Value="0">普通新闻</asp:ListItem>
-                        <asp:ListItem Value="1">视频新闻</asp:ListItem>
-                        </asp:DropDownList></h1>
+                    商品列表</h1>
             </div>
             <asp:Repeater ID="repList" OnItemDataBound="repList_ItemDataBound" runat="server">
                 <HeaderTemplate>
@@ -45,16 +39,16 @@
                                 编号
                             </th>
                             <th>
-                                标题
+                                名称
                             </th>
                             <th>
-                                类型
+                                价格
                             </th>
                             <th>
                                 发布状态
                             </th>
                             <th>
-                                新闻日期
+                                发布日期
                             </th>
                             <th>
                                 添加日期
@@ -76,7 +70,7 @@
                             <asp:HyperLink ID="litTitle" runat="server"></asp:HyperLink>
                         </td>
                         <td>
-                            <asp:Literal ID="litNewsType" runat="server"></asp:Literal>
+                            <asp:Literal ID="litPrice" runat="server"></asp:Literal>
                         </td>
                         <td>
                             <asp:CheckBox ID="litStatus" runat="server"></asp:CheckBox>
@@ -111,18 +105,25 @@
     <asp:Panel ID="addPanel" runat="server">
         <div>
             <h1>
-                编辑新闻</h1>
+                编辑商品</h1>
         </div>
         <div>
             <table cellspacing="1" cellpadding="4" rules="all" align="center" width="100%" class="grid">
                 <tr>
                     <th align="center" width="100">
-                        标题
+                        名称
                     </th>
                     <td>
                         <asp:TextBox ID="txtTitle" runat="server" Width="500px"></asp:TextBox>
                         <asp:HiddenField ID="txtNewsId" runat="server" Value="0"></asp:HiddenField>
-                        <asp:HiddenField ID="txtHits" runat="server" Value="0"></asp:HiddenField>
+                    </td>
+                </tr>
+                <tr>
+                    <th width="100">
+                        价格
+                    </th>
+                    <td>
+                       <asp:TextBox ID="txtPrice" runat="server"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
@@ -135,20 +136,11 @@
                 </tr>
                 <tr>
                     <th width="100">
-                        正文
+                        描述
                     </th>
                     <td>
                     <FCKeditorV2:FCKeditor ID="txtBody" runat="server" />
 			
-                    </td>
-                </tr>
-                <tr>
-                    <th width="100">
-                        歌手
-                    </th>
-                    <td>
-                        <asp:DropDownList ID="txtBandId" runat="server">
-                        </asp:DropDownList>
                     </td>
                 </tr>
                 <tr>
@@ -177,15 +169,6 @@
                 </tr>
                 <tr>
                     <th align="center" width="100">
-                        Tag标签
-                    </th>
-                    <td>
-                        <asp:TextBox ID="txtTags" runat="server"></asp:TextBox>
-                        
-                    </td>
-                </tr>
-                <tr>
-                    <th align="center" width="100">
                         发布状态
                     </th>
                     <td>
@@ -210,65 +193,6 @@
                 </tr>
             </table>
         </div>
-
-        <script type="text/javascript">
-
-            $(document).ready(function() {
-                window.selectTags = {};
-                $("#<%=txtTags.ClientID %>").after("<input class=\"has-autocomplete\" /><div id='tagsArea' style=\"line-height:21px;padding-top:5px;\"/>")
-                $($("#<%=txtTags.ClientID %>").attr("readonly", "readonly").hide().val().split(",")).each(function() {
-                    selectTags[this] = this;
-                });
-                $.getJSON("/svc/admin.svc/GetTag", function(response) {
-                    window.tags = response.d;
-                    $(tags).each(function() {
-                        if (selectTags[this.Id]) {
-                            delete selectTags[this.Id];
-                            addItem(this);
-                        }
-                    });
-                    $(".has-autocomplete").autocomplete(tags, {
-                        minChars: 1,
-                        width: 100,
-                        // matchContains: "word,number",
-                        autoFill: false,
-                        formatItem: function(row, i, max) {
-                            return row.Text;
-                        },
-                        formatMatch: function(row, i, max) {
-                            return row.Text;
-                        },
-                        formatResult: function(row) {
-                            return "";
-                        }
-                    }).result(function(event, item) {
-                        addItem(item);
-                        return false;
-                    });
-                    function addItem(item) {
-                        if (!selectTags[item.Id]) {
-                            selectTags[item.Id] = item;
-                            var str = "<span style='padding:5px;' tagid=\"" + item.Id + "\"><u>" + item.Text + "</u></span>";
-                            $("#tagsArea").append(
-                            $(str).click(function() {
-                                delete selectTags[$(this).attr("tagid")];
-                                $(this).remove();
-                                fillValue();
-                            })
-                            );
-                            fillValue();
-                        }
-                    }
-                    function fillValue() {
-                        var a = [];
-                        for (var i in selectTags) {
-                            a.push(i);
-                        }
-                        $("#<%=txtTags.ClientID %>").val(a.join(","));
-                    }
-                });
-            });
-				</script>
 
     </asp:Panel>
 
@@ -370,8 +294,7 @@
             int id = 0;
             if (int.TryParse(litID.Text, out id))
             {
-                News m = D4DGateway.NewsProvider.GetNews(id);
-                System.Collections.Generic.List<TagRelation> list = D4DGateway.TagsProvider.GetTagRelationByObject(id, ObjectTypeDefine.News);
+                ShopItem m = JaneShopGateway.JaneShopProvier.GetShopItem(id);
                 DrawAddPanel(m);
                 btnAdd.Text = "更新";
                 addPanel.Visible = true;
@@ -390,37 +313,31 @@
             int id = 0;
             if (int.TryParse(litID.Text, out id))
             {
-                D4DGateway.NewsProvider.DeleteNews(id);
-                D4DGateway.TagsProvider.DeleteTagRelationByObject(id, ObjectTypeDefine.News);
+                JaneShopGateway.JaneShopProvier.DeleteShopItem(id);
                 BindList();
             }
         }
 
     }
 
-    private const string NormalNews = "普通新闻";
-    private const string VideoNews = "视频新闻";
     protected void repList_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
-        News m = e.Item.DataItem as News;
+        ShopItem m = e.Item.DataItem as ShopItem;
 
         if (m != null)
         {
             Literal litId = e.Item.FindControl("litID") as Literal;
             HyperLink litTitle = e.Item.FindControl("litTitle") as HyperLink;
-            Literal litNewsType = e.Item.FindControl("litNewsType") as Literal;
+            Literal litPrice = e.Item.FindControl("litPrice") as Literal;
             CheckBox litStatus = e.Item.FindControl("litStatus") as CheckBox;
             Literal litPublishDate = e.Item.FindControl("litPublishDate") as Literal;
             Literal litAddDate = e.Item.FindControl("litAddDate") as Literal;
 
-            litId.Text = m.NewsId.ToString();
-            litTitle.Text = m.Title;
-            litTitle.NavigateUrl = "/channel/news/detail.aspx?id="+m.NewsId.ToString();
+            litId.Text = m.Id.ToString();
+            litTitle.Text = m.Name;
+            litTitle.NavigateUrl = "/channel/shop/detail.aspx?id=" + m.Id.ToString();
             litTitle.Target = "_blank";
-            if (m.Remark == "video")
-                litNewsType.Text = VideoNews;
-            else
-                litNewsType.Text = NormalNews;
+            litPrice.Text = m.Price.ToString();
             litStatus.Checked = (m.Status == PublishStatus.Publish);
             litStatus.Enabled = false;
             litAddDate.Text = m.AddDate.ToLongDateString();
@@ -430,13 +347,16 @@
 
     protected void btnAdd_Click(object sender, EventArgs e)
     {
-        News item = new News();
+        ShopItem item = new ShopItem();
         int id = 0;
         int.TryParse(txtNewsId.Value, out id);
-        item.NewsId = id;
+        item.Id = id;
         DateTime date = DateTime.MinValue;
         DateTime.TryParse(txtPublishDate.Text, out date);
         item.PublishDate = date;
+        decimal price = 0;
+        decimal.TryParse(txtPrice.Text, out price);
+        item.Price = price;
 
         if (string.IsNullOrEmpty(txtSImage.UploadResult) && !string.IsNullOrEmpty(txtLImage.ThumbnailImage))
             item.SImage = txtLImage.ThumbnailImage;
@@ -444,42 +364,14 @@
             item.SImage = txtSImage.UploadResult;
 
         item.SImage = txtSImage.UploadResult;
-        item.NewsType = Convert.ToInt32(txtBandId.SelectedValue);
-        item.Hits = Convert.ToInt32(txtHits.Value);
         if (txtStatus.Checked) item.Status = PublishStatus.Publish;
-        item.Title = txtTitle.Text;
-        item.Preview = txtPreview.Text;
+        item.Name = txtTitle.Text;
+        item.Description = txtPreview.Text;
         item.Body = txtBody.Value ;
         item.AddDate = DateTime.Now;
         item.AddUserID = D4D.Web.Helper.AdminHelper.CurrentUser.UserID;
-        if (cbIsVideo.Checked)
-            item.Remark = "video";
-        else
-        {
-            item.Remark = "";
-        }
-        int result = D4DGateway.NewsProvider.SetNews(item);
-        D4DGateway.TagsProvider.DeleteTagRelationByObject(result, ObjectTypeDefine.News);
-        if (txtTags.Text.Length > 0)
-        {
-            string[] tags = txtTags.Text.Split(',');
-            foreach (string s in tags)
-            {
-                int i = 0;
-                int.TryParse(s, out i);
-                if (i > 0)
-                {
-                    D4DGateway.TagsProvider.SetTagRelation(new TagRelation()
-                    {
-                        TagId = i,
-                        AddDate = DateTime.Now,
-                        AddUserID = D4D.Web.Helper.AdminHelper.CurrentUser.UserID,
-                        ObjectId = result,
-                        ObjectType = ObjectTypeDefine.News
-                    });
-                }
-            }
-        }
+
+        int result = JaneShopGateway.JaneShopProvier.SetShopItem(item);
         addPanel.Visible = false;
 
         BindList();
@@ -496,28 +388,15 @@
     {
         if (item == null) item = new ShopItem();
         txtNewsId.Value = item.Id.ToString();
-
-        txtBandId.SelectedValue = item.NewsType.ToString();
-        txtHits.Value = item.Hits.ToString();
-
         txtPublishDate.Text = (item.PublishDate == DateTime.MinValue) ? DateTime.Now.ToLongDateString() : item.PublishDate.ToLongDateString();
         txtLImage.UploadResult = item.LImage;
         txtSImage.UploadResult = item.SImage;
         txtStatus.Checked = (item.Status == PublishStatus.Publish);
-        txtTitle.Text = item.Title;
-        txtPreview.Text = item.Preview;
+        txtTitle.Text = item.Name;
+        txtPreview.Text = item.Description;
         txtBody.Value = item.Body;
-        txtTags.Text = String.Join(",", (from i in list
-                                         select i.TagId.ToString()).ToArray());
-
-        if (item.Remark == "video")
-            cbIsVideo.Checked = true;
-        else
-            cbIsVideo.Checked = false;
-
-
-
-
+        txtPrice.Text = item.Price.ToString();
+        
     }
 
 </script>
