@@ -66,7 +66,7 @@ namespace JANE.Shop.Persistence
                          m.Id = record.GetInt32OrDefault(0, 0);
                          m.Name = record.GetStringOrEmpty(1);
                          m.Description = record.GetStringOrEmpty(2);
-                         m.Price = record.GetDecimal(3);
+                         m.Price = record.GetFloat(3);
                          m.SImage = record.GetStringOrEmpty(4);
                          m.LImage = record.GetStringOrEmpty(5);
                          m.PublishDate = record.GetDateTimeOrEmpty(6);
@@ -87,7 +87,7 @@ namespace JANE.Shop.Persistence
             m.Id = record.GetInt32OrDefault(0, 0);
             m.Name = record.GetStringOrEmpty(1);
             m.Description = record.GetStringOrEmpty(2);
-            m.Price = record.GetDecimal(3);
+            m.Price = record.GetFloat(3);
             m.SImage = record.GetStringOrEmpty(4);
             m.LImage = record.GetStringOrEmpty(5);
             m.PublishDate = record.GetDateTimeOrEmpty(6);

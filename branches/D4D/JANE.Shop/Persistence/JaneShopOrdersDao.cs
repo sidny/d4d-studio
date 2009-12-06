@@ -73,7 +73,7 @@ namespace JANE.Shop.Persistence
                          m.Address = record.GetStringOrEmpty(4);
                          m.Email = record.GetStringOrEmpty(5);
                          m.Mobile = record.GetStringOrEmpty(6);
-                         m.Paymoney = record.GetDecimal(7);
+                         m.Paymoney = record.GetFloat(7);
                          m.Paytype =(PayType)( record.GetInt32OrDefault(8,0));
                          m.Payresult = (PayResult)(record.GetInt32OrDefault(9, 0));
                          m.Payremark = record.GetStringOrEmpty(10);
@@ -96,7 +96,7 @@ namespace JANE.Shop.Persistence
             m.Address = record.GetStringOrEmpty(4);
             m.Email = record.GetStringOrEmpty(5);
             m.Mobile = record.GetStringOrEmpty(6);
-            m.Paymoney = record.GetDecimal(7);
+            m.Paymoney = record.GetFloat(7);
             m.Paytype = (PayType)(record.GetInt32OrDefault(8, 0));
             m.Payresult = (PayResult)(record.GetInt32OrDefault(9, 0));
             m.Payremark = record.GetStringOrEmpty(10);

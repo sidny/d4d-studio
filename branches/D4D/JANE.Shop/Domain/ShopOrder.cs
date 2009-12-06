@@ -60,7 +60,7 @@ namespace JANE.Shop.Domain
         }
 
 
-        public decimal Paymoney
+        public float Paymoney
         {
             get;
             set;
