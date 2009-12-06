@@ -21,7 +21,8 @@ BEGIN
 			   PublishDate,			
 			   AddUserId,
 			   AddDate,			
-			   [Status]		
+			   [Status],
+			body		
     FROM shop_items With(nolock)
     WHERE id =  @id
  
