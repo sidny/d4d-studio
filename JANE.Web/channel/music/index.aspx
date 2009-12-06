@@ -1,6 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true"
     MasterPageFile="~/MasterPage/Main.Master" %>
 <%@ Import Namespace="D4D.Platform.Domain" %>
+<%@ Import Namespace="System.Linq" %>
+<%@ Import Namespace="System.Collections.Generic" %>
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader">
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentMain" runat="server">
@@ -28,9 +30,9 @@
 		    <div>
                 <a href="<%#GetUrl(((MusicTitle)Container.DataItem).MusicId,2) %>" class="btn_play">播放此专辑</a>
                 <div class="vspacer"></div>
-                <a href="#" class="btn_gray floatleft"><span class="floatleft">YOJO购买</span></a>
+                <a href="<%#GetAddUrl(((MusicTitle)Container.DataItem).MusicId,1) %>#" class="btn_gray floatleft"><span class="floatleft">JOYO购买</span></a>
                 <div class="vspacer"></div>
-                <a href="#" class="btn_gray floatleft"><span class="floatleft">当当购买</span></a>			    </div>
+                <a href="<%#GetAddUrl(((MusicTitle)Container.DataItem).MusicId,2) %>#" class="btn_gray floatleft"><span class="floatleft">当当购买</span></a>			    </div>
             </div>
            </li>
         </ItemTemplate>
@@ -61,12 +63,17 @@
             return D4D.Web.Helper.Helper.BandId;
         }
     }
+    protected Dictionary<int,AddInfo> AddInfos;
     private void BindMusicTitleRep()
     {
         D4D.Platform.Domain.PagingContext pager = new D4D.Platform.Domain.PagingContext();
         pager.RecordsPerPage = 1000;
-        repMusicTitle.DataSource = D4D.Platform.D4DGateway.MusicProvider.GetPagedMusicTitlesByBandId(
+        System.Collections.Generic.List<MusicTitle> list = D4D.Platform.D4DGateway.MusicProvider.GetPagedMusicTitlesByBandId(
             pager, BandId, PublishStatus.Publish);
+        repMusicTitle.DataSource = list ;
+        List<int> ids = (from i in list
+                        select i.MusicId).ToList();
+        AddInfos = D4D.Platform.D4DGateway.AddInfoProvider.GetAddInfos20(ids,(int)ObjectTypeDefine.MusicTitle);
         repMusicTitle.DataBind();
 
     }
@@ -109,6 +116,20 @@
             return "";
         else
             return "<img src=\"/static/images/new.gif\" align=\"absmiddle\"> ";
+    }
+    protected string GetAddUrl(int Id, int Type)
+    {
+        AddInfo info = new AddInfo();
+        AddInfos.TryGetValue(Id, out info);
+        if (info == null) return string.Empty;
+        else
+        {
+            if (Type == 1)
+                return info.Info1;
+            if (Type == 2)
+                return info.Info2;
+        }
+        return string.Empty;
     }
 </script>
 

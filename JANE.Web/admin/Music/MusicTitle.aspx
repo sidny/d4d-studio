@@ -55,6 +55,12 @@
                     <th align="center" width="100">发行日期</th>
                       <td><asp:TextBox ID="txtPublishDate" CssClass="has-datepicker" runat="server"></asp:TextBox> </td>
                     </tr> 
+                    <th align="center" width="100">Joyo链接</th>
+                      <td><asp:TextBox ID="txtJoyo" runat="server"></asp:TextBox> </td>
+                    </tr> 
+                    <th align="center" width="100">当当链接</th>
+                      <td><asp:TextBox ID="txtDangDang" runat="server"></asp:TextBox> </td>
+                    </tr> 
                     <tr>
                     <th align="center" width="100">&nbsp;</th>
                       <td><asp:Button ID="btnAdd" runat="server" Text="新增" onclick="btnAdd_Click" /></td>
@@ -250,6 +256,7 @@
             if (int.TryParse(litID.Text, out id))
             {
                 D4DGateway.MusicProvider.DeleteMusicTitle(id);
+                D4DGateway.AddInfoProvider.DeleteAddInfo(id, (int)ObjectTypeDefine.MusicTitle);
                 BindMusicTitleRep(1);
             }
         }
@@ -305,6 +312,7 @@
         m.AddUserID = currentUser.UserID;
         DateTime date = DateTime.Now;
         DateTime.TryParse(txtPublishDate.Text, out date);
+        
         m.PublishDate = date;
 
         int status = 1;
@@ -312,6 +320,12 @@
         int.TryParse(ddlPublishStatus.SelectedValue, out status);
         m.Status = (PublishStatus)status;
         int result = D4DGateway.MusicProvider.SetMusicTitle(m);
+        AddInfo addInfo = new AddInfo();
+        addInfo.ObjectId = result;
+        addInfo.ObjectType =(int)ObjectTypeDefine.MusicTitle;
+        addInfo.Info1 = txtJoyo.Text;
+        addInfo.Info2 = txtDangDang.Text;
+        D4DGateway.AddInfoProvider.SetAddInfo(addInfo);
         addPanel.Visible = false;
         listPanel.Visible = true;
         BindMusicTitleRep(1);
@@ -332,6 +346,8 @@
         txtTitle.Text = "";
         txtBody.Text = "";
         bandIdList.SelectedIndex = 0;
+        txtJoyo.Text = "";
+        txtDangDang.Text = "";
         addPanel.Visible = true;
         listPanel.Visible = false;
         btnAdd.Text = "更新";
