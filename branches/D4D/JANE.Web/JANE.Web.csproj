@@ -734,6 +734,8 @@
     <Content Include="channel\photo\photo.aspx" />
     <Content Include="channel\photo\slider.aspx" />
     <Content Include="channel\search\index.aspx" />
+    <Content Include="channel\shop\detail.aspx" />
+    <Content Include="channel\shop\index.aspx" />
     <Content Include="channel\singer\index.aspx" />
     <Content Include="channel\singer\menu.ascx" />
     <Content Include="channel\singer\singer.aspx" />
