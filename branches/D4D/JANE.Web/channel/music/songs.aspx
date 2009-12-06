@@ -39,9 +39,9 @@
 		    <div class="cd_info_btn">
 			<a href="#" id="btn-play-all" class="btn_play">播放此专辑</a>
 			<div class="vspacer"></div>
-			<a href="#" class="btn_gray floatleft"><span class="floatleft">YOJO购买</span></a>
+			<a href="<%=AddUrlInfo.Info1 %>#" class="btn_gray floatleft"><span class="floatleft">YOJO购买</span></a>
 			<div class="vspacer"></div>
-			<a href="#" class="btn_gray floatleft"><span class="floatleft">当当购买</span></a>			</div>
+			<a href="<%=AddUrlInfo.Info2 %>#" class="btn_gray floatleft"><span class="floatleft">当当购买</span></a>			</div>
 	    </div>
 	    <div class="clear"></div>
 	  </div>
@@ -236,6 +236,18 @@
 
             int.TryParse(queryid, out id);
             return id;
+        }
+    }
+    private AddInfo addUrlInfo;
+    protected AddInfo AddUrlInfo
+    {
+        get
+        {
+            if (addUrlInfo == null)
+            {
+                addUrlInfo = D4D.Platform.D4DGateway.AddInfoProvider.GetAddInfo(MusicId, (int)ObjectTypeDefine.MusicTitle);
+            }
+            return addUrlInfo;
         }
     }
 	private MusicTitle musicTitle;
