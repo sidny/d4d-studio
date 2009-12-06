@@ -1,8 +1,4 @@
-﻿SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
--- =============================================
+﻿-- =============================================
 -- Create date: 2009-11-29
 -- =============================================
 CREATE PROCEDURE [dbo].[Shop_orders_Set]
@@ -13,7 +9,7 @@ CREATE PROCEDURE [dbo].[Shop_orders_Set]
    @address AS NVARCHAR(4000), 
     @email AS NVARCHAR(500), 
 	@mobile AS NVARCHAR(100), 
-   @paymoney AS decimal(19, 4), 
+   @paymoney AS float, 
  @paytype AS INT   ,
   @payresult AS INT   ,
    @payremark AS NVARCHAR(4000), 
@@ -68,3 +64,4 @@ BEGIN
 	
 	RETURN @id 
 END
+GO
