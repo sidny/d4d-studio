@@ -680,6 +680,7 @@
     </Compile>
     <Compile Include="Classes\Helper\AdminHelper.cs" />
     <Compile Include="Classes\Helper\Helper.cs" />
+    <Compile Include="Classes\Helper\ShopHelper.cs" />
     <Compile Include="Control\comment.ascx.cs">
       <DependentUpon>comment.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

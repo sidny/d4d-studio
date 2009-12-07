@@ -154,13 +154,13 @@
             bool bRedirect = true;
             if (D4D.Web.Helper.Helper.IsDizLogin)
             {
-                DiscuzShortUserInfo u = D4D.Web.Helper.Helper.DizUser;
-                if (u != null && u.Uid >= 0)
+                int userId = D4D.Web.Helper.Helper.GetCookieUserId();
+                if (userId > 0)
                 {
 
                     //GetAddress from addInfo,2000 is user address
                     AddInfo aInfo =
-                        D4D.Platform.D4DGateway.AddInfoProvider.GetAddInfo(u.Uid, 2000);
+                        D4D.Platform.D4DGateway.AddInfoProvider.GetAddInfo(userId, 2000);
                     if (aInfo != null)
                     {
                         litName.Text = aInfo.Info1;

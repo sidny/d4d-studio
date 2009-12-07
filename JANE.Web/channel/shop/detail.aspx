@@ -54,10 +54,11 @@
 			<div class="spacer"></div>
 			<div class="spacer"></div>
 			<div>
-				<a href="#" class="btn_blue floatleft"><span>购买</span></a>
-				<div class="vspacer"></div>
-				<a href="#" class="btn_gray floatleft"><span>收藏到购物车</span></a>
-			</div>
+				   <asp:LinkButton ID="btnBuy" CssClass="btn_blue floatleft" runat="server" OnClick="btnBuy_Click"><span>购买</span></asp:LinkButton>               
+            <div class="vspacer"></div>
+				   <asp:LinkButton ID="btnAddShopCar" CssClass="btn_blue floatleft" runat="server" OnClick="btnAddShopCar_Click"><span>收藏到购物车</span></asp:LinkButton>
+				    <asp:Literal ID="litMsg" runat="server"></asp:Literal>
+        </div>
 		</div>
 		<div class="clear"></div>
 	  </div>
@@ -151,6 +152,63 @@
             bool.TryParse(key, out result);
             return result;
         }
+    }
+
+    protected void btnBuy_Click(object sender, EventArgs e)
+    {
+        
+        
+        int orderid = 0;
+        if (D4D.Web.Helper.Helper.IsDizLogin)
+        {
+            int userId = D4D.Web.Helper.Helper.GetCookieUserId();
+            if (userId > 0)
+            {
+              
+                if (Item != null)
+                    orderid = SetShopCar(userId, Item.Id, 1);
+
+                Response.Redirect("/order/" + orderid.ToString() + ".html");
+            }
+            else
+                litMsg.Text = "请登录！";
+        }
+        else
+            litMsg.Text = "请登录！";
+      
+    }
+
+    protected void btnAddShopCar_Click(object sender, EventArgs e)
+    {
+     
+
+        if (D4D.Web.Helper.Helper.IsDizLogin)
+        {
+            int userId = D4D.Web.Helper.Helper.GetCookieUserId();
+            if (userId > 0)
+            {
+                if (Item != null)
+                    SetShopCar(userId, Item.Id, 1);
+            }
+            else
+                litMsg.Text = "请登录！";
+        }
+        else
+            litMsg.Text = "请登录！";
+    }
+
+    private int SetShopCar(int userId, int itemId, int itemCount)
+    {
+        ShopOrder shopOrder =
+        JANE.Web.Classes.Helper.ShopHelper.GetUserShopCar(userId);
+
+        if (shopOrder != null && shopOrder.Id > 0)
+        {
+            JANE.Web.Classes.Helper.ShopHelper.SetTradeList(shopOrder.Id, itemId, itemCount);
+            return shopOrder.Id;
+        }
+        else
+            return 0;
     }
     
 </script>

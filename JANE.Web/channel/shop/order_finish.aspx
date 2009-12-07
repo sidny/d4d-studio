@@ -95,13 +95,13 @@
             bool bRedirect = true;
             if (D4D.Web.Helper.Helper.IsDizLogin)
             {
-                DiscuzShortUserInfo u = D4D.Web.Helper.Helper.DizUser;
-                if (u != null && u.Uid >= 0)
+                int userId = D4D.Web.Helper.Helper.GetCookieUserId();
+                if (userId > 0)
                 {
                     if (OrderId > 0)
                     {
                           ShopOrder sOrder = JaneShopGateway.JaneShopProvier.GetShopOrder(OrderId);
-                          if (sOrder != null && sOrder.UserId == u.Uid)
+                          if (sOrder != null && sOrder.UserId == userId)
                           {
                               bRedirect = false;
                               string info = "未知";
