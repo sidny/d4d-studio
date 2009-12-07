@@ -1,9 +1,4 @@
-﻿
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
--- =============================================
+﻿-- =============================================
 -- Create date: 2009-10-11
 -- =============================================
 CREATE PROCEDURE [dbo].[Shop_orders_GetPaged]
@@ -64,7 +59,9 @@ BEGIN
 			   payresult,
 				payremark,
 				paythirdnum,
-				paydate
+				paydate,
+     				zipcode,
+				username
 		FROM dbo.shop_orders t WITH(NOLOCK)
 		INNER JOIN @Results r ON  (t.Id = r.Id)	
 		WHERE 
@@ -80,3 +77,5 @@ END
 
  
 
+
+GO

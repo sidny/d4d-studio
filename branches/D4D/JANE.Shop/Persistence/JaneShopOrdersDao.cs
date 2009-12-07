@@ -34,6 +34,8 @@ namespace JANE.Shop.Persistence
                  parameters.AddWithValue("@payremark", item.Payremark);
                  parameters.AddWithValue("@paythirdnum", item.Paythirdnum);
                  parameters.AddWithValue("@paydate", item.Paydate);
+                 parameters.AddWithValue("@zipcode", item.ZipCode);
+                 parameters.AddWithValue("@username", item.UserName);
                  parameters.AddWithValue("@RetVal", DBNull.Value, ParameterDirectionWrap.ReturnValue);
 
              },
@@ -78,8 +80,9 @@ namespace JANE.Shop.Persistence
                          m.Payresult = (PayResult)(record.GetInt32OrDefault(9, 0));
                          m.Payremark = record.GetStringOrEmpty(10);
                          m.Paythirdnum = record.GetStringOrEmpty(11);
-                         m.Paydate = record.GetDateTime(12);                       
-
+                         m.Paydate = record.GetDateTime(12);
+                         m.ZipCode = record.GetStringOrEmpty(13);
+                         m.UserName = record.GetStringOrEmpty(14);
                      },
                      id);
             }
@@ -101,8 +104,9 @@ namespace JANE.Shop.Persistence
             m.Payresult = (PayResult)(record.GetInt32OrDefault(9, 0));
             m.Payremark = record.GetStringOrEmpty(10);
             m.Paythirdnum = record.GetStringOrEmpty(11);
-            m.Paydate = record.GetDateTime(12);           
-
+            m.Paydate = record.GetDateTime(12);
+            m.ZipCode = record.GetStringOrEmpty(13);
+            m.UserName = record.GetStringOrEmpty(14);
             list.Add(m);
         }
          internal static List<ShopOrder> GetPagedShopOrder(PagingContext pager, int ordertype)

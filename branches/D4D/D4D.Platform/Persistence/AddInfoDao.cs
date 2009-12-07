@@ -17,7 +17,10 @@ namespace D4D.Platform.Persistence
              "dbo.Add_infos_Set",
              info.ObjectId, info.ObjectType,
              info.Info1,info.Info2,
-             info.Info3, info.Info4);
+             info.Info3, info.Info4,
+              info.Info5, info.Info6,
+             info.Info7, info.Info8
+             );
         }
 
         internal static void DeleteAddInfo(int objectId, int objectType)
@@ -45,6 +48,10 @@ namespace D4D.Platform.Persistence
                      info.Info2 = record.GetStringOrEmpty(3);
                      info.Info3 = record.GetStringOrEmpty(4);
                      info.Info4 = record.GetStringOrEmpty(5);
+                     info.Info5 = record.GetStringOrEmpty(6);
+                     info.Info6 = record.GetStringOrEmpty(7);
+                     info.Info7 = record.GetStringOrEmpty(8);
+                     info.Info8 = record.GetStringOrEmpty(9);
                  },
                  objectId, objectType);
 
@@ -78,6 +85,10 @@ namespace D4D.Platform.Persistence
                    info.Info2 = record.GetStringOrEmpty(3);
                    info.Info3 = record.GetStringOrEmpty(4);
                    info.Info4 = record.GetStringOrEmpty(5);
+                   info.Info5 = record.GetStringOrEmpty(6);
+                   info.Info6 = record.GetStringOrEmpty(7);
+                   info.Info7 = record.GetStringOrEmpty(8);
+                   info.Info8 = record.GetStringOrEmpty(9);
                    if (!dic.ContainsKey(info.ObjectId))
                        dic.Add(info.ObjectId, info);
                }

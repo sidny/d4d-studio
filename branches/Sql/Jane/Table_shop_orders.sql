@@ -15,7 +15,9 @@ CREATE TABLE [dbo].[shop_orders] (
 	[payresult] [int] NULL ,
 	[payremark] [nvarchar] (4000) COLLATE Chinese_PRC_CI_AS NULL ,
 	[paythirdnum] [nvarchar] (1000) COLLATE Chinese_PRC_CI_AS NULL ,
-	[paydate] [datetime] NULL 
+	[paydate] [datetime] NULL ,
+	[zipcode] [nvarchar] (50) COLLATE Chinese_PRC_CI_AS NULL ,
+	[username] [nvarchar] (200) COLLATE Chinese_PRC_CI_AS NULL 
 ) ON [PRIMARY]
 GO
 
