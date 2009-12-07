@@ -27,7 +27,7 @@
 		<a href="/order/<%=OrderId %>.html" class="jane_info_menu_on">购物车</a> 
 		<a href="/order/check/<%=OrderId %>.html">订单确认</a> 
 		<a href="/order/addr/<%=OrderId %>.html">收货地址</a>
-		<a href="/order/finish/<%=OrderId %>.html">订单确认</a>
+		<a href="#">订单确认</a>
 	</div>
 	<div class="spacer"></div>
   </div>
@@ -78,7 +78,7 @@
 		</div>
 		<div class="shopping_cart_list_num floatleft">
 			<a href="/shop/order_tradelist.aspx?id=<%=OrderId %>&t=subtractcount&tid=<%#((ShopTradelistDetail)Container.DataItem).Id%>" ><img src="images/ico_subtract.gif" /></a>
-			<input type="text"  style="width:45px;" value="<%#((ShopTradelistDetail)Container.DataItem).ItemCount%>" class="input01" />
+			<input type="text"  readonly style="width:45px;" value="<%#((ShopTradelistDetail)Container.DataItem).ItemCount%>" class="input01" />
 			<a href="/shop/order_tradelist.aspx?id=<%=OrderId %>&t=addcount&tid=<%#((ShopTradelistDetail)Container.DataItem).Id%>" ><img src="images/ico_add.gif" /></a>
 			<div class="clear"></div>
 		</div>
@@ -170,11 +170,20 @@
                 ShopOrder sOrder = JaneShopGateway.JaneShopProvier.GetShopOrder(OrderId);
                 if (sOrder != null)
                 {
-                    DiscuzShortUserInfo u = D4D.Web.Helper.Helper.DizUser;
-                    if (u != null && u.Uid == sOrder.UserId)
+                    if (sOrder.Ordertype == OrderType.ShopCar)//购物车状态
                     {
-                        bRedirect = false;
-                    }                    
+                        DiscuzShortUserInfo u = D4D.Web.Helper.Helper.DizUser;
+                        if (u != null && u.Uid == sOrder.UserId)
+                        {
+
+                            bRedirect = false;
+                        }
+                    }
+                    else if (sOrder.Ordertype == OrderType.Order)
+                    {
+                        Response.Redirect("/order/finish/" + OrderId.ToString() + ".html", true);
+                        return;
+                    }             
                 }       
             }
               if (bRedirect)
