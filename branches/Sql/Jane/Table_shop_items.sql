@@ -6,6 +6,7 @@ CREATE TABLE [dbo].[shop_items] (
 	[id] [int] IDENTITY (1, 1) NOT NULL ,
 	[name] [nvarchar] (2000) COLLATE Chinese_PRC_CI_AS NULL ,
 	[description] [nvarchar] (4000) COLLATE Chinese_PRC_CI_AS NULL ,
+	[body] [nvarchar] (4000) COLLATE Chinese_PRC_CI_AS NULL ,
 	[price] [float] NULL ,
 	[SImage] [nvarchar] (1000) COLLATE Chinese_PRC_CI_AS NULL ,
 	[LImage] [nvarchar] (1000) COLLATE Chinese_PRC_CI_AS NULL ,
