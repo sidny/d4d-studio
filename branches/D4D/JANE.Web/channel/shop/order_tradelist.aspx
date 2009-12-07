@@ -172,8 +172,8 @@
                 {
                     if (sOrder.Ordertype == OrderType.ShopCar)//购物车状态
                     {
-                        DiscuzShortUserInfo u = D4D.Web.Helper.Helper.DizUser;
-                        if (u != null && u.Uid == sOrder.UserId)
+                        int userId = D4D.Web.Helper.Helper.GetCookieUserId();
+                        if (userId > 0)
                         {
 
                             bRedirect = false;

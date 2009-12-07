@@ -135,13 +135,13 @@
             bool bRedirect = true;
             if (D4D.Web.Helper.Helper.IsDizLogin)
             {
-                DiscuzShortUserInfo u = D4D.Web.Helper.Helper.DizUser;
-                if (u != null && u.Uid >= 0)
+                int userId = D4D.Web.Helper.Helper.GetCookieUserId();
+                if (userId> 0)
                 {
                     bRedirect = false;
                     //GetAddress from addInfo,2000 is user address
                     AddInfo aInfo =
-                        D4D.Platform.D4DGateway.AddInfoProvider.GetAddInfo(u.Uid, 2000);
+                        D4D.Platform.D4DGateway.AddInfoProvider.GetAddInfo(userId, 2000);
                     if (aInfo != null)
                     {
                         txtName.Text = aInfo.Info1;
@@ -191,16 +191,16 @@
         {
             litInfo.Text = "请输入电话联系方式！";
             return;
-        }      
-         DiscuzShortUserInfo u = D4D.Web.Helper.Helper.DizUser;
-         if (u != null && u.Uid >= 0)
+        }
+        int userId = D4D.Web.Helper.Helper.GetCookieUserId();
+        if (userId > 0)
          {
              aInfo.Info1 = txtName.Text;
              aInfo.Info2 = txtAddr.Text;
              aInfo.Info3 = txtZipCode.Text;
              aInfo.Info4 = txtEmail.Text;
              aInfo.Info5 = txtMobile.Text;
-             aInfo.ObjectId = u.Uid;
+             aInfo.ObjectId = userId;
 
              D4D.Platform.D4DGateway.AddInfoProvider.SetAddInfo(aInfo);
          }
