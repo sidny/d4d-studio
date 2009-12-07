@@ -1,9 +1,4 @@
-﻿
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
--- =============================================
+﻿-- =============================================
 -- Create date: 2009-11-29
 -- =============================================
 CREATE PROCEDURE [dbo].[Add_infos_Get]   
@@ -18,8 +13,14 @@ BEGIN
 			   info1,
 			   info2,
 			  info3,
-			   info4	
+			   info4,
+ 			   info5,
+			   info6,
+			  info7,
+			   info8		
     FROM add_infos With(nolock)
    WHERE objectid =  @objectid AND objecttype=@objecttype
  
 END
+
+GO

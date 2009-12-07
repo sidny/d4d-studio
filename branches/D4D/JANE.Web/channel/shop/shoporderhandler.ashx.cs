@@ -42,20 +42,26 @@ namespace JANE.Web.channel.shop
                                     switch (handlerType.ToLower())
                                     {
                                         case "cleartradelist":
-                                            //get orderid
-                                            JaneShopGateway.JaneShopProvier.DeleteShopTradelistByOrderId(orderId);
+                                            if (sOrder.Ordertype == OrderType.ShopCar)//只有购物车状态才能清空
+                                            {
+                                                //get orderid
+                                                JaneShopGateway.JaneShopProvier.DeleteShopTradelistByOrderId(orderId);
+                                            }
                                             context.Response.Redirect(returnUrl);
                                             break;
                                         case "delonetradelist":
-                                            string strTid = context.Request.QueryString["tid"];
-                                            int tid;
-                                            int.TryParse(strTid, out tid);
-                                            if (tid > 0)
+                                            if (sOrder.Ordertype == OrderType.ShopCar)//只有购物车状态才能删除
                                             {
-                                                ShopTradelist tradeList = JaneShopGateway.JaneShopProvier.GetShopTradelist(tid);
-                                                if (tradeList != null && tradeList.OrderId == orderId)
+                                                string strTid = context.Request.QueryString["tid"];
+                                                int tid;
+                                                int.TryParse(strTid, out tid);
+                                                if (tid > 0)
                                                 {
-                                                    JaneShopGateway.JaneShopProvier.DeleteShopTradelist(tid);
+                                                    ShopTradelist tradeList = JaneShopGateway.JaneShopProvier.GetShopTradelist(tid);
+                                                    if (tradeList != null && tradeList.OrderId == orderId)
+                                                    {
+                                                        JaneShopGateway.JaneShopProvier.DeleteShopTradelist(tid);
+                                                    }
                                                 }
                                             }
                                             context.Response.Redirect(returnUrl);

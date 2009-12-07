@@ -43,6 +43,30 @@ namespace D4D.Platform.Domain
             get;
             set;
         }
+
+        public string Info5
+        {
+            get;
+            set;
+        }
+
+        public string Info6
+        {
+            get;
+            set;
+        }
+
+        public string Info7
+        {
+            get;
+            set;
+        }
+
+        public string Info8
+        {
+            get;
+            set;
+        }
     }
 
 

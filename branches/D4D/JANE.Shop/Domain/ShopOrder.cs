@@ -59,6 +59,18 @@ namespace JANE.Shop.Domain
             set;
         }
 
+        public string ZipCode
+        {
+            get;
+            set;
+        }
+
+        public string UserName
+        {
+            get;
+            set;
+        }
+
 
         public float Paymoney
         {
