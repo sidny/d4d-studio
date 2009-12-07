@@ -9,6 +9,7 @@
 <script src="/static/js/jquery.pagination.js" type="text/javascript"></script>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentMain" runat="server">
+ <form id="Form1" method="post" runat="server">
  <div class="cd_body shop_bg">
   <!--left-->
   <div class="left floatleft">
@@ -52,13 +53,13 @@
                 <h2><%#((ShopItem)Container.DataItem).Name %></h2>
                 <div><%#((ShopItem)Container.DataItem).Description %></div>
                 <div class="spacer4"></div>
-                <p><%#((ShopItem)Container.DataItem).Price %></p>
-
+                <p><%#((ShopItem)Container.DataItem).Price %></p>              
                 </div>
                 <div class="shopping_cart_list_buy floatleft">
-                <a href="#" class="btn_blue floatleft"><span>购买</span></a>
+                <asp:LinkButton ID="btnBuy" CssClass="btn_blue floatleft" runat="server" OnClick="btnBuy_Click"><span>购买</span></asp:LinkButton>               
                 <div class="vspacer"></div>
-                <a href="#" class="btn_gray floatleft"><span>收藏到购物车</span></a>
+                <asp:LinkButton ID="btnAddShopCar" CssClass="btn_blue floatleft" runat="server" OnClick="btnAddShopCar_Click"><span>收藏到购物车</span></asp:LinkButton>
+                
                 <div class="clear"></div>
                 </div>
                 <div class="clear"></div>
@@ -67,7 +68,7 @@
                 <FooterTemplate>
                 </FooterTemplate>
             </asp:Repeater>
-	  
+	  <asp:Literal ID="litMsg" runat="server"></asp:Literal>
 	  <div class="spacer"></div>
 	  <div class="spacer"></div>
 	  <div class="spacer"></div>
@@ -90,6 +91,7 @@
   <!--right/-->
   <div class="clear"></div>
   </div>
+  </form>
 </asp:Content>
 
 <script runat="server">
@@ -230,6 +232,65 @@
             return "";
         else
             return "<img src=\"/static/images/new.gif\"> ";
+    }
+
+    protected void btnBuy_Click(object sender, EventArgs e)
+    {
+        LinkButton bt = sender as LinkButton;
+        RepeaterItem ri = bt.Parent as RepeaterItem;
+        int orderid = 0;
+        if (D4D.Web.Helper.Helper.IsDizLogin)
+        {
+            int userId = D4D.Web.Helper.Helper.GetCookieUserId();
+            if (userId > 0)
+            {
+                ShopItem item = ri.DataItem as ShopItem;
+                if (item != null)
+                    orderid = SetShopCar(userId, item.Id, 1);
+                Response.Redirect("/order/" + orderid.ToString() + ".html");
+
+            }
+            else
+                litMsg.Text = "请登录！";
+        }
+        else
+            litMsg.Text = "请登录！";
+     
+    }
+
+    protected void btnAddShopCar_Click(object sender, EventArgs e)
+    {
+        LinkButton bt = sender as LinkButton;
+        RepeaterItem ri = bt.Parent as RepeaterItem;
+
+        if (D4D.Web.Helper.Helper.IsDizLogin)
+        {
+            int userId = D4D.Web.Helper.Helper.GetCookieUserId();
+            if (userId > 0)
+              {
+                  ShopItem item = ri.DataItem as ShopItem;
+                  if (item != null)
+                      SetShopCar(userId, item.Id, 1);
+              }
+            else
+                litMsg.Text = "请登录！";
+        }
+        else
+            litMsg.Text = "请登录！";
+    }
+
+    private int SetShopCar(int userId, int itemId, int itemCount)
+    {
+        ShopOrder shopOrder =
+        JANE.Web.Classes.Helper.ShopHelper.GetUserShopCar(userId);
+
+        if (shopOrder != null && shopOrder.Id > 0)
+        {
+            JANE.Web.Classes.Helper.ShopHelper.SetTradeList(shopOrder.Id, itemId, itemCount);
+            return shopOrder.Id;
+        }
+        else
+            return 0;
     }
 </script>
 

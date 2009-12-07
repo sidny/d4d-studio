@@ -29,11 +29,11 @@ namespace JANE.Web.channel.shop
                     int.TryParse(strOrderId, out orderId);
                     if (orderId > 0)
                     {
-                        DiscuzShortUserInfo u = D4D.Web.Helper.Helper.DizUser;
-                        if (u != null && u.Uid >= 0)
+                        int userId = D4D.Web.Helper.Helper.GetCookieUserId();
+                        if (userId > 0)
                         {
                             ShopOrder sOrder = JaneShopGateway.JaneShopProvier.GetShopOrder(orderId);
-                            if (sOrder != null && sOrder.UserId == u.Uid)
+                            if (sOrder != null && sOrder.UserId == userId)
                             {
                                 //get returnUrl
                                 string returnUrl = context.Request.QueryString["rurl"];
