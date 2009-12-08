@@ -1,9 +1,4 @@
-﻿
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
--- =============================================
+﻿-- =============================================
 -- Create date: 2009-11-29
 -- =============================================
 CREATE PROCEDURE [dbo].[Shop_items_Get]   
@@ -22,8 +17,10 @@ BEGIN
 			   AddUserId,
 			   AddDate,			
 			   [Status],
-			body		
+              body		
     FROM shop_items With(nolock)
     WHERE id =  @id
  
 END
+
+GO
