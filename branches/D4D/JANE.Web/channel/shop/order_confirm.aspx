@@ -34,6 +34,7 @@
 	  <div class="spacer" style="height:36px"></div>
 	  
 	  <div class="order_confirm">
+	      <asp:Literal ID="litInfo" runat="server"></asp:Literal>
 		  <div class="order_confirm_left floatleft b">
 				送货地址：  
 		  </div>
@@ -82,17 +83,17 @@
 		  <div class="order_confirm_right floatleft">
 				<ul class="pay_sort">
 					<li>
-						<img src="images/pay_xyk.gif" />
+						<img src="/static/images/pay_xyk.gif" />
 						<asp:RadioButton ID="RadioButton1" runat="server"
                                                     GroupName="paymethod" Checked="True" Text="银行卡信用卡支付"></asp:RadioButton>                          
 					</li>
 					<li>
-						<img src="images/pay_zfb.gif" />
+						<img src="/static/images/pay_zfb.gif" />
 							<asp:RadioButton ID="RadioButton2" runat="server"
                                                     GroupName="paymethod"  Text="支付宝支付"></asp:RadioButton>                     
 					</li>
 					<li>
-						<img src="images/pay_kq.gif" />
+						<img src="/static/images/pay_kq.gif" />
 						<asp:RadioButton ID="RadioButton3" runat="server"
                                                     GroupName="paymethod" Text="快钱支付"></asp:RadioButton>                     
 					</li>
@@ -180,7 +181,7 @@
                     if (OrderId > 0)
                     {
                         ShopOrder sOrder = JaneShopGateway.JaneShopProvier.GetShopOrder(OrderId);
-                        if (sOrder != null && sOrder.UserId == u.Uid)
+                        if (sOrder != null && sOrder.UserId == userId)
                         {
                             if (sOrder.Ordertype == OrderType.ShopCar)//购物车状态
                             {
@@ -238,7 +239,17 @@
 
     protected void btnConfirm_Click(object sender, EventArgs e)
     {
-       
+        if (string.IsNullOrEmpty(litName.Text)||
+            string.IsNullOrEmpty(litAddr.Text)||
+            string.IsNullOrEmpty(litZipCode.Text)||
+            string.IsNullOrEmpty(litEmail.Text)||
+            string.IsNullOrEmpty(litMobile.Text)
+            )
+        {
+            litInfo.Text = "<span style=\"color: #FF3300;\">请更新送货地址！</span>";
+            return;
+        }
+        
           ShopOrder sOrder = JaneShopGateway.JaneShopProvier.GetShopOrder(OrderId);
           if (sOrder != null && sOrder.Ordertype ==OrderType.ShopCar)
           {

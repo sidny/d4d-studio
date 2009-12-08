@@ -103,10 +103,18 @@ namespace JANE.Shop.Domain
             set;
         }
 
+        private DateTime _payDate= new DateTime(1900,1,1);//default date
         public DateTime Paydate
         {
-            get;
-            set;
+            get
+            {
+                return _payDate;
+            }
+
+            set
+            {
+                _payDate = value;
+            }
         }
     }
 }

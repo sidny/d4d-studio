@@ -77,9 +77,9 @@
 			<div><a href="/shop/order_tradelist.aspx?id=<%=OrderId %>&t=deltid&tid=<%#((ShopTradelistDetail)Container.DataItem).Id%>&tname=<%#((ShopTradelistDetail)Container.DataItem).UrlEncodeItemName%>"  class="btn_gray floatleft"><span>删除</span></a></div>
 		</div>
 		<div class="shopping_cart_list_num floatleft">
-			<a href="/shop/order_tradelist.aspx?id=<%=OrderId %>&t=subtractcount&tid=<%#((ShopTradelistDetail)Container.DataItem).Id%>" ><img src="images/ico_subtract.gif" /></a>
+			<a href="/shop/order_tradelist.aspx?id=<%=OrderId %>&t=subtractcount&tid=<%#((ShopTradelistDetail)Container.DataItem).Id%>" ><img src="/static/images/ico_subtract.gif" /></a>
 			<input type="text"  readonly style="width:45px;" value="<%#((ShopTradelistDetail)Container.DataItem).ItemCount%>" class="input01" />
-			<a href="/shop/order_tradelist.aspx?id=<%=OrderId %>&t=addcount&tid=<%#((ShopTradelistDetail)Container.DataItem).Id%>" ><img src="images/ico_add.gif" /></a>
+			<a href="/shop/order_tradelist.aspx?id=<%=OrderId %>&t=addcount&tid=<%#((ShopTradelistDetail)Container.DataItem).Id%>" ><img src="/static/images/ico_add.gif" /></a>
 			<div class="clear"></div>
 		</div>
 		<div class="clear"></div>
