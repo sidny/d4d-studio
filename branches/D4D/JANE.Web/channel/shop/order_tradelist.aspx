@@ -113,7 +113,7 @@
   </div>
 </asp:Content>
 <script runat="server">
-    protected float TotalPrice
+    protected double TotalPrice
     {
         get;
         set;

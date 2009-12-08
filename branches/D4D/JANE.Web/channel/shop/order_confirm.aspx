@@ -136,7 +136,7 @@
         }
     }
 
-    protected float TotalPrice
+    protected double TotalPrice
     {
         get;
         set;

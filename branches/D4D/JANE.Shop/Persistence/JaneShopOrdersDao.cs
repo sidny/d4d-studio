@@ -89,6 +89,37 @@ namespace JANE.Shop.Persistence
             return m;
         }
 
+         internal static ShopOrder GetUserShopCar(int userId)
+         {
+             ShopOrder m = new ShopOrder();
+             if (userId > 0)
+             {
+                 SafeProcedure.ExecuteAndMapRecords(
+                         Database.GetDatabase(JaneDefine.DBInstanceName),
+                      "dbo.Shop_orders_ShopCarGet",
+                      delegate(IRecord record)
+                      {
+                          m.Id = record.GetInt32OrDefault(0, 0);
+                          m.UserId = record.GetInt32OrDefault(1, 0);
+                          m.AddDate = record.GetDateTimeOrEmpty(2);
+                          m.Ordertype = (OrderType)(record.GetInt32OrDefault(3, 0));
+                          m.Address = record.GetStringOrEmpty(4);
+                          m.Email = record.GetStringOrEmpty(5);
+                          m.Mobile = record.GetStringOrEmpty(6);
+                          m.Paymoney = record.GetDouble(7);
+                          m.Paytype = (PayType)(record.GetInt32OrDefault(8, 0));
+                          m.Payresult = (PayResult)(record.GetInt32OrDefault(9, 0));
+                          m.Payremark = record.GetStringOrEmpty(10);
+                          m.Paythirdnum = record.GetStringOrEmpty(11);
+                          m.Paydate = record.GetDateTime(12);
+                          m.ZipCode = record.GetStringOrEmpty(13);
+                          m.UserName = record.GetStringOrEmpty(14);
+                      },
+                      userId);
+             }
+             return m;
+         }
+
          internal static void MapList(IRecord record, List<ShopOrder> list)
         {
             ShopOrder m = new ShopOrder();
