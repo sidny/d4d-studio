@@ -89,7 +89,10 @@
 <script runat="server">
     protected void Page_Load(object sender, EventArgs e)
     {
-        BindItem();
+        if (!IsPostBack)
+        {
+            BindItem();
+        }
     }
 
     protected int ItemId
