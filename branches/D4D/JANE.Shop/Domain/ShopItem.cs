@@ -39,7 +39,7 @@ namespace JANE.Shop.Domain
             set;
         }
 
-        public float Price
+        public double Price
         {
             get;
             set;
