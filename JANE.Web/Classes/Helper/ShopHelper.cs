@@ -17,24 +17,21 @@ namespace JANE.Web.Classes.Helper
         public static ShopOrder GetUserShopCar(int userId)
         {
             //查询购物车是否有
-            PagingContext pager = new PagingContext();
-            pager.CurrentPageNumber = 1;
-              pager.RecordsPerPage = 1;
-            List<ShopOrder> listShopCar =
-              JaneShopGateway.JaneShopProvier.GetPagedShopOrder(pager, OrderType.ShopCar);
+            ShopOrder sOrder =
+              JaneShopGateway.JaneShopProvier.GetUserShopCar(userId);
 
-            if (listShopCar != null && listShopCar.Count > 0)
-                return listShopCar[0];
+            if (sOrder != null&&sOrder.Id>0)
+                return sOrder;
             else
             {
                 //new shopcar
-                ShopOrder order = new ShopOrder();
-                order.Ordertype = OrderType.ShopCar;
-                order.UserId = userId;
-                order.AddDate = DateTime.Now;
-                order.Id =
-                JaneShopGateway.JaneShopProvier.SetShopOrder(order);
-                return order;
+                sOrder = new ShopOrder();
+                sOrder.Ordertype = OrderType.ShopCar;
+                sOrder.UserId = userId;
+                sOrder.AddDate = DateTime.Now;
+                sOrder.Id =
+                JaneShopGateway.JaneShopProvier.SetShopOrder(sOrder);
+                return sOrder;
             }
         }
         /// <summary>
