@@ -247,6 +247,7 @@
                 ShopItem item = ri.DataItem as ShopItem;
                 if (item != null)
                     orderid = SetShopCar(userId, item.Id, 1);
+              
                 Response.Redirect("/order/" + orderid.ToString() + ".html");
 
             }
@@ -271,6 +272,7 @@
                   ShopItem item = ri.DataItem as ShopItem;
                   if (item != null)
                       SetShopCar(userId, item.Id, 1);
+                 
               }
             else
                 litMsg.Text = "请登录！";

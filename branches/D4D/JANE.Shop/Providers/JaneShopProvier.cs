@@ -101,6 +101,11 @@ namespace JANE.Shop.Providers
         {
             return JaneShopOrdersDao.GetPagedShopOrder(pager, (int)ordertype);
         }
+
+        public ShopOrder GetUserShopCar(int userId)
+        {
+            return JaneShopOrdersDao.GetUserShopCar(userId);
+        }
         #endregion
 
         //订单列表      
