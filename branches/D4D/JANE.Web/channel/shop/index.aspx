@@ -42,10 +42,11 @@
 	  
 	  <div class="spacer"></div> 
 		
-		 <asp:Repeater ID="repList" runat="server">
+		 <asp:Repeater ID="repList" runat="server"  OnItemDataBound="repList_ItemDataBound">
                 <HeaderTemplate>
                 </HeaderTemplate>
-                <ItemTemplate>
+                <ItemTemplate>               
+                <asp:Literal ID="litItemId" runat="server" Visible="false" ></asp:Literal>                 
                 <div class="shopping_cart_list">
                 <div class="shopping_cart_list_img floatleft">
                 <a href="/shop/d/<%#((ShopItem)Container.DataItem).Id %>.html"><img src="<%#((ShopItem)Container.DataItem).LImage %>" width="80" height="80" alt="" /></a></div>
@@ -97,11 +98,14 @@
 <script runat="server">
     protected void Page_Load(object sender, EventArgs e)
     {
-        BindMusicTitleRep(PageIndex);
-        SetTitle();
-        pager1.PageIndex = PageIndex;
-        pager1.PageSize = PageSize;
-        pager1.PageTotalCount = PageTotalCount;
+        if (!IsPostBack)
+        {
+            BindMusicTitleRep(PageIndex);
+            SetTitle();
+            pager1.PageIndex = PageIndex;
+            pager1.PageSize = PageSize;
+            pager1.PageTotalCount = PageTotalCount;
+        }
     }
 
     protected int PageIndex
@@ -189,6 +193,18 @@
         totalCount = pager.TotalRecordCount;
 
     }
+
+    protected void repList_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        ShopItem m = e.Item.DataItem as ShopItem;
+
+        if (m != null)
+        {
+            Literal litItemId = e.Item.FindControl("litItemId") as Literal;
+            litItemId.Text = m.Id.ToString();
+           
+        }
+    }
    
     private const string TitleFormat = "- {0}";
     private void SetTitle()
@@ -244,11 +260,18 @@
             int userId = D4D.Web.Helper.Helper.GetCookieUserId();
             if (userId > 0)
             {
-                ShopItem item = ri.DataItem as ShopItem;
-                if (item != null)
-                    orderid = SetShopCar(userId, item.Id, 1);
-              
-                Response.Redirect("/order/" + orderid.ToString() + ".html");
+                Literal litItemId = ri.FindControl("litItemId") as Literal;
+                if (litItemId != null)
+                {
+                    int currentItemId;
+                    int.TryParse(litItemId.Text, out currentItemId);
+                    if (currentItemId > 0)
+                    {                       
+                        orderid = SetShopCar(userId, currentItemId, 1);
+                    }
+
+                    Response.Redirect("/order/" + orderid.ToString() + ".html");
+                }
 
             }
             else
@@ -269,9 +292,17 @@
             int userId = D4D.Web.Helper.Helper.GetCookieUserId();
             if (userId > 0)
               {
-                  ShopItem item = ri.DataItem as ShopItem;
-                  if (item != null)
-                      SetShopCar(userId, item.Id, 1);
+                  Literal litItemId = ri.FindControl("litItemId") as Literal;
+                  if (litItemId != null)
+                  {
+                      int currentItemId;
+                      int.TryParse(litItemId.Text, out currentItemId);
+                      if (currentItemId > 0)
+                      {                         
+                          SetShopCar(userId, currentItemId, 1);
+                      }
+                      
+                  }
                  
               }
             else
