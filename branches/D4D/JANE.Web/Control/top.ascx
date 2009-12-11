@@ -88,7 +88,7 @@
   <script type="text/javascript">
           AC_FL_RunContent(
 		"src", "/static/images/menu",
-		"width", "1300",
+		"width", "100%",
 		"height", "40",
 		"align", "middle",
 		"id", "menu",

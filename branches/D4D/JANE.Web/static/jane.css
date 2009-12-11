@@ -125,13 +125,12 @@ a:hover{
 }
 /**/
 .head{
-	width:1300px;
 	height:62px;
 	clear:both;
 }
 .head_login{
 	height:18px;
-	padding:4px 95px 0px 0px;
+	padding:4px 15px 0px 0px;
 	text-align:right;
 	color:#492A16;
 	font-weight:bold;
@@ -585,14 +584,14 @@ a..btn_blue:hover{
 }
 /*footer*/
 .footer{
-	width:1330px;
+	width:100%;
 	height:60px;
 	background:#000000;
 	clear:both;
 }
 .footer_link{
 	margin:15px 0px 0px 18px;
-	width:884px;
+	width:780px;
 	height:45px;
 	overflow:hidden;
 }
@@ -605,9 +604,10 @@ a..btn_blue:hover{
 	height:12px;
 }
 .footer_logo{
-	margin:15px 0px 0px 0px;
+	padding:15px 15px 0px 0px;
 	width:175px;
 	height:45px;
+	float:right;
 	background:#000;
 }
 /*个人档案*/
@@ -898,7 +898,7 @@ a..btn_blue:hover{
 	float:left;
 	margin:10px 10px;
 	width:120px;
-	height:175px;
+	height:190px;
 }
 *html .video_list li{
 	margin:10px 4px;
@@ -1247,6 +1247,7 @@ a..btn_blue:hover{
 .wid_130{
 	width:130px;
 }
+.journey_table_con .wid_90,.journey_table_con .wid_93,.journey_table_con .wid_130{ text-align:center}
 .wid_210{
 	width:210px;
 }
