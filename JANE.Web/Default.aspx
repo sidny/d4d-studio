@@ -3,8 +3,11 @@
 <%@ Import Namespace="D4D.Platform.Domain" %>
 <%@ Import Namespace=" D4D.Platform" %>
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="header">
+<style type="text/css">
+.main{ width:100%; position:relative;}
+</style>
 <script type="text/javascript">
-    var data = {};
+    var data = { movie:"/static/images/photo.swf"};
     data.newsList = [];
     <%for(int i = 0 ; i<NewsList.Count;i++){
         News item = NewsList[i];
@@ -26,25 +29,24 @@
        });
     <%} %>
     function homeReady() {
-        var argus = arguments;
-        var flash = window[argus[0]] || document[argus[0]];
-        flash.sendData(data);
+        var flash = window["index"] || document["index"];
+        flash.setContent({movie:"/static/images/photo.swf"})
     }
 </script>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="ContentMain" runat="server" ID="Main">
-<div style="width:1400px;">
+<div>
 <script type="text/javascript">
      AC_FL_RunContent(
-		"src", "/static/images/home",
-		"width", "1300",
+		"src", "/static/images/index",
+		"width", "100%",
 		"height", "630",
-		"align", "bottom",
 		"id", "index",
 		"quality", "high",
 		"name", "index",
 		"allowScriptAccess", "always",
 		"wmode","transparent",
+		"flashvars", "ready=homeReady&wWidth=" + $(window).width(),
 		"type", "application/x-shockwave-flash",
 		"pluginspage", "http://www.adobe.com/go/getflashplayer"
 	);
