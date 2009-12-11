@@ -54,7 +54,7 @@ namespace JANE.Web.svc
         public int Create(string content,int id, int type )
         {
             if (!Helper.IsDizLogin) return -1;
-           // if (Helper.DizUser.) return -2;
+            if (Helper.DizUser.Groupid == 4) return -2; //same to bbs
             if (string.IsNullOrEmpty(content) || id == null || type == null) return 0;
             try
             {
