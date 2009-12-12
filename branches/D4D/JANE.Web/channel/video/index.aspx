@@ -21,7 +21,7 @@
 			<div class="video_list_btn_play"><a href="/video/d/<%#((News)Container.DataItem).NewsId %>.html"><img src="/static/images/btn_play.gif" /></a></div>
 			<div class="video_list_img"><a href="/video/d/<%#((News)Container.DataItem).NewsId %>.html"><img src="<%#((News)Container.DataItem).SImage %>" height="96" width="120" alt="<%#HttpUtility.HtmlEncode(((News)Container.DataItem).Title) %>" /></a></div>
 		    <p>
-				<%#((News)Container.DataItem).Title %><br />
+				<a href="/video/d/<%#((News)Container.DataItem).NewsId %>.html"><%#((News)Container.DataItem).Title %></a><br />
 				<asp:Literal ID="litListTag" runat="server"></asp:Literal><br />
 				<span class="black_6666"><%#((News)Container.DataItem).PublishDate.ToString("yyyy-MM-dd")%></span>
 			</p>
