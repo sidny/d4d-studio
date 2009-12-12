@@ -897,7 +897,7 @@ a..btn_blue:hover{
 .video_list li{
 	float:left;
 	margin:10px 10px;
-	width:120px;
+	width:130px;
 	height:190px;
 }
 *html .video_list li{
@@ -1068,6 +1068,8 @@ a..btn_blue:hover{
 .head_news_text{
 	width:375px;
 }
+.head_news_text a{ color:#3AC0CB}
+.head_news_text a:hover{color:#333230}
 .head_news_text span{
 	display:block;
 	color:#999999;
