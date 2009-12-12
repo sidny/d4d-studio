@@ -275,10 +275,10 @@
 
             }
             else
-                litMsg.Text = "请登录！";
+                litMsg.Text = "<span style=\"color: #FF3300;\">请先登录！</span>";
         }
         else
-            litMsg.Text = "请登录！";
+            litMsg.Text = "<span style=\"color: #FF3300;\">请先登录！</span>";
      
     }
 
@@ -306,10 +306,10 @@
                  
               }
             else
-                litMsg.Text = "请登录！";
+                litMsg.Text = "<span style=\"color: #FF3300;\">请先登录！</span>";
         }
         else
-            litMsg.Text = "请登录！";
+            litMsg.Text = "<span style=\"color: #FF3300;\">请先登录！</span>";
     }
 
     private int SetShopCar(int userId, int itemId, int itemCount)

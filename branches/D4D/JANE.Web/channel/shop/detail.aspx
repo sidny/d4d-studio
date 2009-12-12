@@ -9,6 +9,7 @@
 <script src="/static/js/jquery.pagination.js" type="text/javascript"></script>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentMain" runat="server">
+ <form id="Form1" method="post" runat="server">
  <div class="cd_body shop_bg">
   <!--left-->
   <div class="left floatleft">
@@ -57,8 +58,9 @@
 				   <asp:LinkButton ID="btnBuy" CssClass="btn_blue floatleft" runat="server" OnClick="btnBuy_Click"><span>购买</span></asp:LinkButton>               
             <div class="vspacer"></div>
 				   <asp:LinkButton ID="btnAddShopCar" CssClass="btn_blue floatleft" runat="server" OnClick="btnAddShopCar_Click"><span>收藏到购物车</span></asp:LinkButton>
-				    <asp:Literal ID="litMsg" runat="server"></asp:Literal>
+				   
         </div>
+         <asp:Literal ID="litMsg" runat="server"></asp:Literal>
 		</div>
 		<div class="clear"></div>
 	  </div>
@@ -84,15 +86,16 @@
   <!--right/-->
   <div class="clear"></div>
   </div>
+  </form>
 </asp:Content>
 
 <script runat="server">
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
-        {
+        //if (!IsPostBack)
+        //{
             BindItem();
-        }
+        //}
     }
 
     protected int ItemId
@@ -174,10 +177,10 @@
                 Response.Redirect("/order/" + orderid.ToString() + ".html");
             }
             else
-                litMsg.Text = "请登录！";
+                litMsg.Text = "<span style=\"color: #FF3300;\">请先登录！</span>";
         }
         else
-            litMsg.Text = "请登录！";
+            litMsg.Text = "<span style=\"color: #FF3300;\">请先登录！</span>";
       
     }
 
@@ -194,10 +197,10 @@
                     SetShopCar(userId, Item.Id, 1);
             }
             else
-                litMsg.Text = "请登录！";
+                litMsg.Text = "<span style=\"color: #FF3300;\">请先登录！</span>";
         }
         else
-            litMsg.Text = "请登录！";
+            litMsg.Text = "<span style=\"color: #FF3300;\">请先登录！</span>";
     }
 
     private int SetShopCar(int userId, int itemId, int itemCount)
