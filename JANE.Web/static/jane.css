@@ -556,11 +556,14 @@ a..btn_blue:hover{
 	overflow:hidden;
 }
 *html .cd_music_list_name a{
+	cursor:pointer;
 	display:block;
 	width:20px;
 	height:23px;
+	_margin-top:3px;
+	_margin-right:5px;
 	background:none;
-	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="./images/ico_play.png");
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/static/images/ico_play.png");
 	overflow:hidden;
 }
 *html .cd_music_list_name a.cd_music_playing{
@@ -568,7 +571,7 @@ a..btn_blue:hover{
 	width:20px;
 	height:23px;
 	background:none;
-	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="./images/ico_puse.png");
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/static/images/ico_puse.png");
 	overflow:hidden;
 }
 .cd_music_list_time{
