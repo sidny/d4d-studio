@@ -895,11 +895,11 @@ a..btn_blue:hover{
 }
 .video_list{
 	margin:0px auto;
-	width:562px;
+	width:580px;
 }
 .video_list li{
 	float:left;
-	margin:10px 10px;
+	margin:10px 10px 10px 0;
 	width:130px;
 	height:190px;
 }

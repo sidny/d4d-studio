@@ -40,7 +40,7 @@
 	  
 	  <div class="cd_title shopping_cart_title">
 	  <div class="spacer12"></div>	 
-	  <a href="/shop/shoporderhandler.ashx?t=cleartradelist&id=<%=OrderId %>&rurl=<%=GetReturnUrl() %>" onclick="return  ConfirmDelete()" class="btn_gray floatright"><span>清空购物车</span></a>
+	  <a href="/channel/shop/shoporderhandler.ashx?t=cleartradelist&id=<%=OrderId %>&rurl=<%=GetReturnUrl() %>" onclick="return  ConfirmDelete()" class="btn_gray floatright"><span>清空购物车</span></a>
 	  </div>
 	  
     <asp:MultiView ID="mvTradeList" runat="server" ActiveViewIndex="0">
@@ -62,7 +62,7 @@
     <asp:PlaceHolder ID="delDialog" runat="server" Visible ="false">
 	  <div class="dialog">
 	  	<div class="dialog_con floatleft"><asp:Literal ID="deleteMsg" runat="server"></asp:Literal></div>
-		<div class="dialog_btn floatleft"><a href="/shop/shoporderhandler.ashx?t=delonetradelist&tid=<%=TradeListId %>&id=<%=OrderId %>&rurl=<%=GetReturnUrl() %>" class="btn_gray floatleft"><span>是的</span></a><div class="vspacer"></div><a href="/order/<%=OrderId %>.html" class="btn_gray floatleft"><span>取消</span></a></div>
+		<div class="dialog_btn floatleft"><a href="/channel/shop/shoporderhandler.ashx?t=delonetradelist&tid=<%=TradeListId %>&id=<%=OrderId %>&rurl=<%=GetReturnUrl() %>" class="btn_gray floatleft"><span>是的</span></a><div class="vspacer"></div><a href="/order/<%=OrderId %>.html" class="btn_gray floatleft"><span>取消</span></a></div>
 		<div class="clear"></div>
 	  </div>
 	</asp:PlaceHolder>
@@ -74,12 +74,12 @@
 			<h2><%#((ShopTradelistDetail)Container.DataItem).Item.Name%></h2>
 			<p><%#((ShopTradelistDetail)Container.DataItem).Item.Price%>元</p>
 			<div class="spacer"></div>
-			<div><a href="/shop/order_tradelist.aspx?id=<%=OrderId %>&t=deltid&tid=<%#((ShopTradelistDetail)Container.DataItem).Id%>&tname=<%#((ShopTradelistDetail)Container.DataItem).UrlEncodeItemName%>"  class="btn_gray floatleft"><span>删除</span></a></div>
+			<div><a href="/channel/shop/order_tradelist.aspx?id=<%=OrderId %>&t=deltid&tid=<%#((ShopTradelistDetail)Container.DataItem).Id%>&tname=<%#((ShopTradelistDetail)Container.DataItem).UrlEncodeItemName%>"  class="btn_gray floatleft"><span>删除</span></a></div>
 		</div>
 		<div class="shopping_cart_list_num floatleft">
-			<a href="/shop/order_tradelist.aspx?id=<%=OrderId %>&t=subtractcount&tid=<%#((ShopTradelistDetail)Container.DataItem).Id%>" ><img src="/static/images/ico_subtract.gif" /></a>
+			<a href="/channel/shop/order_tradelist.aspx?id=<%=OrderId %>&t=subtractcount&tid=<%#((ShopTradelistDetail)Container.DataItem).Id%>" ><img src="/static/images/ico_subtract.gif" /></a>
 			<input type="text"  readonly style="width:45px;" value="<%#((ShopTradelistDetail)Container.DataItem).ItemCount%>" class="input01" />
-			<a href="/shop/order_tradelist.aspx?id=<%=OrderId %>&t=addcount&tid=<%#((ShopTradelistDetail)Container.DataItem).Id%>" ><img src="/static/images/ico_add.gif" /></a>
+			<a href="/channel/shop/order_tradelist.aspx?id=<%=OrderId %>&t=addcount&tid=<%#((ShopTradelistDetail)Container.DataItem).Id%>" ><img src="/static/images/ico_add.gif" /></a>
 			<div class="clear"></div>
 		</div>
 		<div class="clear"></div>

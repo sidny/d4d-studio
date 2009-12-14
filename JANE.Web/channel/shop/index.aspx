@@ -37,7 +37,7 @@
       <div class="spacer" style="height:36px"></div>
 	  
 	  <div class="cd_title shop_title">
-	  	<h1 class="floatleft font24">　　 <asp:Literal ID="litTitle" runat="server" /></h1>
+	  	<h1 class="floatleft font24">商城 <asp:Literal ID="litTitle" runat="server" /></h1>
 	  </div>
 	  
 	  <div class="spacer"></div> 
