@@ -32,8 +32,9 @@ namespace JANE.Shop.Domain
     public enum PayResult : int
     {
         None = 0,//未发布,创建未支付
-        HasPay = 1,//已支付
+        HasPay = 1,//已支付完毕
         PayFaild = 2,//支付失败
+        PayTradeSuccess =3,//第三方支付成功
         ALL = 9
     }
     
