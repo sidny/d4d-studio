@@ -42,6 +42,12 @@ namespace JANE.Shop.Domain
                 _notifyUrl = notifyUrl;
             }
 
+            string sellerEmail = ConfigurationManager.AppSettings["AliPay_SellerEmail"];
+            if (!string.IsNullOrEmpty(sellerEmail))
+            {
+                _sellerEmail = sellerEmail;
+            }
+
         }
 
         #region Property
@@ -117,6 +123,18 @@ namespace JANE.Shop.Domain
             set
             {
                 _notifyUrl = value;
+            }
+        }
+        private string _sellerEmail = AliPayDefinition.DEFAULT_SELLER_ALIPAYEMAIL;
+        public string SellerEmail
+        {
+            get
+            {
+                return _sellerEmail;
+            }
+            set
+            {
+                _sellerEmail = value;
             }
         }
 
