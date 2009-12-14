@@ -177,8 +177,8 @@
                 </tr>
                 
                 <tr>
-                    <th align="center" width="100">
-                        &nbsp;
+                    <th align="center" width="100">&nbsp;
+                        
                     </th>
                     <td>
                         <asp:Button ID="btnAdd" runat="server" Text="ÐÂÔö" OnClick="btnAdd_Click" />
@@ -347,7 +347,7 @@
         DateTime date = DateTime.MinValue;
         DateTime.TryParse(txtPublishDate.Text, out date);
         item.PublishDate = date;
-        item.Price = Convert.ToDecimal(txtPrice.Text);
+        item.Price = Convert.ToDouble(txtPrice.Text);
         if (string.IsNullOrEmpty(txtSImage.UploadResult) && !string.IsNullOrEmpty(txtLImage.ThumbnailImage))
             item.SImage = txtLImage.ThumbnailImage;
         else
