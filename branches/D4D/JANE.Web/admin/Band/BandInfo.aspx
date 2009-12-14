@@ -19,13 +19,13 @@
             <asp:Panel ID="listPanel" runat="server">
             <div>
            
-             <div>艺人列表</div>
+             <div>语言列表</div>
              <asp:Repeater ID="repList" runat="server" OnItemDataBound="repList_ItemDataBound">
                 <HeaderTemplate>
                 <table cellspacing="1" cellpadding="4" rules="all"  align="center" width="100%" class="grid">
                     <tr align="center">
                       <th align="center" style="width: 30px;">编号</th>
-                      <th>艺人名称</th>
+                      <th>语言类型</th>
                       <th style="width: 30px;">修改</th>
                       <th style="width: 30px;">删除</th>
                     </tr>

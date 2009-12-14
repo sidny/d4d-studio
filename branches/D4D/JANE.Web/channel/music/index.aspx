@@ -12,7 +12,7 @@
   <div class="cd_right_902">
     <div class="w_782 h_578">
       <div class="spacer" style="height:46px"></div>
-	  <div class="cd_title_782"></div>
+	  <div class="cd_title" style="width:782px; background-repeat:repeat"><h1 class="floatleft font24 blue">音乐</h1></div>
 	  <div class="spacer" style="height:40px"></div>
 	  <asp:Repeater ID="repMusicTitle" runat="server">
         <HeaderTemplate>
