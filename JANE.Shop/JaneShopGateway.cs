@@ -14,5 +14,13 @@ namespace JANE.Shop
                 return JaneShopProvier.Instance;
             }
         }
+
+        public static AliPayProvider AliPayProvider
+        {
+            get
+            {
+                return AliPayProvider.Instance;
+            }
+        }
     }
 }
