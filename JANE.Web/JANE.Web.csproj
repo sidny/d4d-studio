@@ -702,6 +702,12 @@
     <Compile Include="MasterPage\Default.Master.designer.cs">
       <DependentUpon>Default.Master</DependentUpon>
     </Compile>
+    <Compile Include="payment\paynotify.ashx.cs">
+      <DependentUpon>paynotify.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="payment\payreturn.ashx.cs">
+      <DependentUpon>payreturn.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -812,6 +818,8 @@
     <None Include="fckeditor\fckeditor_php4.php" />
     <None Include="fckeditor\fckeditor_php5.php" />
     <None Include="fckeditor\fckutils.cfm" />
+    <Content Include="payment\paynotify.ashx" />
+    <Content Include="payment\payreturn.ashx" />
     <Content Include="MasterPage\Channel.Master" />
     <Content Include="MasterPage\Main.Master" />
     <Content Include="MasterPage\Default.Master" />
