@@ -74,6 +74,10 @@
       <Project>{EEE4DF1C-A616-48AF-BE94-647335274B15}</Project>
       <Name>D4D.ResourceManager</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JANE.Shop\JANE.Shop.csproj">
+      <Project>{971FEE5C-7D22-43C0-8422-4DA9407B2504}</Project>
+      <Name>JANE.Shop</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
