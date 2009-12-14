@@ -35,10 +35,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\Core.Data.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -49,16 +55,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\AliPayConfig.cs" />
     <Compile Include="Domain\JaneDefine.cs" />
+    <Compile Include="Domain\PaymentDefine.cs" />
     <Compile Include="Domain\ShopItem.cs" />
     <Compile Include="Domain\ShopOrder.cs" />
     <Compile Include="Domain\ShopTradelist.cs" />
+    <Compile Include="Helper\PaymentHelper.cs" />
     <Compile Include="JaneShopGateway.cs" />
     <Compile Include="Persistence\JaneShopItemsDao.cs" />
     <Compile Include="Persistence\JaneShopOrdersDao.cs" />
     <Compile Include="Persistence\JaneShopTradelistDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\JaneShopProvier.cs" />
+    <Compile Include="Providers\PaymentProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\D4D.Platform\D4D.Platform.csproj">
