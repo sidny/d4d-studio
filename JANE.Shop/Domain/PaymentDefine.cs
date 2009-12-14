@@ -27,7 +27,7 @@ namespace JANE.Shop.Domain
         public const string SERVICE_CREATE_DIRECT_PAY_BY_USER = "create_direct_pay_by_user";
         public const string SERVICE_NOTIFY_VERIFY = "notify_verify";
 
-        public const string DEFAULT_SELLER_ALIPAYEMAIL = "bd@showcitytimes.net";//wait real account
+        public const string DEFAULT_SELLER_ALIPAYEMAIL = "312981394@qq.com";//wait real account
 
     }
     /// <summary>
