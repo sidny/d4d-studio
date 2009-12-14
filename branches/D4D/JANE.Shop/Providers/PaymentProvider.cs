@@ -223,8 +223,11 @@ namespace JANE.Shop.Providers
         /// <returns></returns>
         public ShopOrder GetShopOrderResult(NameValueCollection nvc, bool isVerify)
         {
+           
 
             if (nvc == null) return null;
+
+            if (!isVerify) return null;
 
             //Set MySpaceOrderNo
             string out_trade_no = nvc["out_trade_no"];
@@ -256,7 +259,7 @@ namespace JANE.Shop.Providers
                             //case "WAIT_SELLER_SEND_GOODS"://支付宝收到买家付款，请卖家发货
                             //case "WAIT_BUYER_CONFIRM_GOODS"://卖家已发货，买家确认中
                             //case "WAIT_SYS_PAY_SELLER"://买家确认收到货，等待支付宝付款给卖家
-                            order.Payresult = PayResult.HasPay;
+                            order.Payresult = PayResult.PayTradeSuccess;
                             break;
                         case "TRADE_CLOSED"://交易中途关闭
                             order.Payresult = PayResult.PayFaild;
@@ -286,7 +289,18 @@ namespace JANE.Shop.Providers
             return order;
         }
 
-
+        /// <summary>
+        /// 校验交易，同时返回结果
+        /// </summary>
+        /// <param name="nvc"></param>
+        /// <returns></returns>
+        public ShopOrder VerifyAndGetResult(NameValueCollection nvc)
+        {
+            AliPayConfig alipayConfig = new AliPayConfig();
+            return GetShopOrderResult(nvc,
+                VerifyNotifyValue(nvc, alipayConfig.PartnerKey, alipayConfig.NotifyUrl,
+                alipayConfig.EncodingName));
+        }
         #endregion
 
 
