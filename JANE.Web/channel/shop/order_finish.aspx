@@ -49,7 +49,8 @@
 		<div class="spacer" style="height:50px"></div>
 
 	  	<div class="aligncenter">正准备自动连接银行支付页面，请稍后3秒钟……</div>
-	  
+	     <form action="http://www.alipay.com" method="get" id="aliForm" target="_blank"></form>
+	    
 	  <div class="spacer" style="height:30px"></div>
       
 	  <div class="clear"></div>
@@ -61,6 +62,9 @@
   <!--right/-->
   <div class="clear"></div>
   </div>
+  <script type="text/javascript">
+      $("#aliForm").submit();
+  </script>
 </asp:Content>
 <script runat="server">
     protected int OrderId
