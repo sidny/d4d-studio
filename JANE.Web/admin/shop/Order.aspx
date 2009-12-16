@@ -507,7 +507,7 @@
             listPayDate.Text = m.Paydate.ToString("yyyy-MM-dd HH:mm:ss");
             litPayThirdNum.Text = m.Paythirdnum;
             litPayRemark.Text = m.Payremark;
-            litTradeList.Text =string.Format("<a href='OrderTradeList.aspx?id={0}'>商品</a>",m.Id);
+            litTradeList.Text =string.Format("<a href='OrderTradeList.aspx?id={0}'>详细</a>",m.Id);
          
         }
     }
