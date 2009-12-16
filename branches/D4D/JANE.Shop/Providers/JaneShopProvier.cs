@@ -133,6 +133,11 @@ namespace JANE.Shop.Providers
             return JaneShopOrdersDao.GetPagedShopOrder(pager, (int)ordertype);
         }
 
+        public List<ShopOrder> GetPagedShopOrderbyUser(PagingContext pager, int userid, OrderType ordertype)
+        {
+            return JaneShopOrdersDao.GetPagedShopOrderbyUser(pager, userid, (int)ordertype);
+        }
+
         public ShopOrder GetUserShopCar(int userId)
         {
             return JaneShopOrdersDao.GetUserShopCar(userId);

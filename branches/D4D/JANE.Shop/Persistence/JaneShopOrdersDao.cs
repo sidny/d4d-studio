@@ -165,5 +165,32 @@ namespace JANE.Shop.Persistence
 
             return list;
         }
+
+         internal static List<ShopOrder> GetPagedShopOrderbyUser(PagingContext pager,int userid, int ordertype)
+         {
+             List<ShopOrder> list = new List<ShopOrder>(pager.RecordsPerPage);
+
+             SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(JaneDefine.DBInstanceName),
+                "dbo.Shop_orders_GetPagedByUser",
+                delegate(IParameterSet parameters)
+                {
+                    parameters.AddWithValue("@userid", userid);
+                    parameters.AddWithValue("@ordertype", ordertype);
+                    parameters.AddWithValue("@PageIndex", pager.CurrentPageNumber);
+                    parameters.AddWithValue("@PageSize", pager.RecordsPerPage);
+                    parameters.AddWithValue("@NumberOfCount", 0, ParameterDirectionWrap.Output);
+                },
+                delegate(IRecord record)
+                {
+                    MapList(record, list);
+                },
+                delegate(IParameterSet outputParameters)
+                {
+                    pager.TotalRecordCount = outputParameters.GetValue("@NumberOfCount") == DBNull.Value ? 0 : (int)outputParameters.GetValue("@NumberOfCount");
+                }
+            );
+
+             return list;
+         }
     }
 }
