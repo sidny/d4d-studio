@@ -31,11 +31,37 @@ namespace JANE.Shop.Providers
         {
             JaneShopItemsDao.DeleteShopItem(id);
         }
-
+        /// <summary>
+        /// 获取商品信息不自动加点击数
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ShopItem GetShopItem(int id)
         {
             return JaneShopItemsDao.GetShopItem(id);
         }
+        /// <summary>
+        /// 获取商品信息 如果hits 小于 0 不累计点击数
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="hits"></param>
+        /// <returns></returns>
+        public ShopItem GetShopItem(int id, int hits)
+        {
+            return JaneShopItemsDao.GetShopItem(id, hits);
+        } 
+
+        /// <summary>
+        /// 获取商品信息自动+1点击数
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ShopItem GetShopItemAddHit(int id)
+        {
+            return JaneShopItemsDao.GetShopItem(id,1);
+        }
+
+       
 
         public List<ShopItem> GetPagedShopItem(PagingContext pager, PublishStatus publishStatus)
         {
