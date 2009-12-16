@@ -40,16 +40,22 @@
 		  	张靓颖官方网站 感谢您的订购！<br />
 			您的订单号： <%=OrderId%><br />                   
 			支付方式为：<asp:Literal ID="litPayType" runat="server" ></asp:Literal><br /><br /><br />
-			
+			<span class="blue font16"><%=strMessage %></span>
+			 <!--
 			<span class="blue font16">此订单已交处理中心，很快您会收到一封确认信，请注意查收！</span>
+				-->
 	     </div>
 		 
 		<div class="spacer" style="height:35px"></div>
 		<div class="line_01"></div>
 		<div class="spacer" style="height:50px"></div>
-
+        <!--
 	  	<div class="aligncenter">正准备自动连接银行支付页面，请稍后3秒钟……</div>
-	     <form action="http://www.alipay.com" method="get" id="aliForm" target="_blank"></form>
+	  	-->
+	  	<%if (!string.IsNullOrEmpty(payUrl))
+        { %>
+	     <form action="<%=payUrl %>" method="get" id="payForm" target="_blank"></form>
+	     <%} %>
 	    
 	  <div class="spacer" style="height:30px"></div>
       
@@ -62,9 +68,12 @@
   <!--right/-->
   <div class="clear"></div>
   </div>
+  	<%if (!string.IsNullOrEmpty(payUrl))
+        { %>
   <script type="text/javascript">
-      $("#aliForm").submit();
+      $("#payForm").submit();
   </script>
+    <%} %>
 </asp:Content>
 <script runat="server">
     protected int OrderId
@@ -91,7 +100,8 @@
         get;
         set;
     }
-
+    protected string strMessage = string.Empty;
+    protected string payUrl = string.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -105,27 +115,103 @@
                     if (OrderId > 0)
                     {
                           ShopOrder sOrder = JaneShopGateway.JaneShopProvier.GetShopOrder(OrderId);
-                          if (sOrder != null && sOrder.UserId == userId)
+                          if (sOrder != null && sOrder.UserId == userId && sOrder.Ordertype == OrderType.Order
+                              && sOrder.Id > 0 && (sOrder.Payresult == PayResult.None || sOrder.Payresult == PayResult.PayFaild)
+                              )
                           {
-                              bRedirect = false;
-                              string info = "未知";
-                              switch (sOrder.Paytype)
-                              {
-                                  case PayType.AliPay:
-                                      info = "支付宝支付";
-                                      break;
-                                  case PayType.BankCard:
-                                      info = "银行卡支付";
-                                      break;
-                                  case PayType.QuickMonty:
-                                      info = "快钱支付";
-                                      break;
-                                  default:
-                                      break;
-                              }
+                               List<ShopTradelist> tradeList = JaneShopGateway.JaneShopProvier.GetShopTradelistByOrderId(OrderId);
+                               if (tradeList != null && tradeList.Count > 0)
+                               {
+                                   bRedirect = false;
+                                   string info = "未知";
+                                   #region GetItem
+                                   ShopItem shopItem;
+                                   Dictionary<int, ShopItem> dicItemPrice = new Dictionary<int, ShopItem>();
+                                   StringBuilder sbShopItems = new StringBuilder(256);
+                                   foreach (ShopTradelist t in tradeList)
+                                   {
+                                       shopItem = null;
+                                       TotalItems += t.ItemCount;
+                                       //getPrice
+                                       if (t.ItemId > 0)
+                                       {
+                                           if (!dicItemPrice.ContainsKey(t.ItemId))
+                                           {
+                                               shopItem = JaneShopGateway.JaneShopProvier.GetShopItem(t.ItemId);
+                                               if (shopItem != null)
+                                                   dicItemPrice.Add(t.ItemId, shopItem);
+                                           }
+                                           else
+                                           {
+                                               dicItemPrice.TryGetValue(t.ItemId, out shopItem);
 
-                              litPayType.Text = info;
+                                           }
+
+                                           if (shopItem != null)
+                                           {
+                                               sbShopItems.Append(shopItem.Name);
+                                               sbShopItems.Append("x");
+                                               sbShopItems.Append(t.ItemCount);
+                                               //litOrderInfo.Text += shopItem.Name + "x" + t.ItemCount.ToString() + " ";
+                                               TotalPrice += (t.ItemCount * (shopItem.Price));
+                                           }
+                                       }
+                                   }//end foreach
+                                   string shopitemDes = sbShopItems.ToString();
+                                   if (!string.IsNullOrEmpty(shopitemDes))
+                                   {
+                                       shopitemDes = "张靓颖官网商品";
+                                   }
+                                   else if (shopitemDes.Length > 350)
+                                       shopitemDes = shopitemDes.Substring(0, 350);
+                                   #endregion
+                                   switch (sOrder.Paytype)
+                                   {
+                                       case PayType.AliPay:
+                                           info = "支付宝支付";
+                                           //create alipay url
+                                           AliPayConfig aliPayConfig = new AliPayConfig();
+                                           payUrl = JaneShopGateway.AliPayProvider.CreatUrl(
+                                             aliPayConfig.GatewayUrl,
+                                            AliPayDefinition.SERVICE_CREATE_DIRECT_PAY_BY_USER,
+                                            aliPayConfig.PartnerID,
+                                            AliPayDefinition.DEFAULT_SIGNTYPE,
+                                            sOrder.Id.ToString(),
+                                            "张靓颖官网商品",
+                                            shopitemDes,
+                                            ((int)AliPaymentType.BuyProduct).ToString(),//1
+                                            TotalPrice.ToString(),
+                                            "http://cn.janezhang.com",//商品展示链接
+                                            aliPayConfig.SellerEmail, //"bd@showcitytimes.net",
+                                            aliPayConfig.PartnerKey,
+                                            aliPayConfig.ReturnUrl,
+                                            aliPayConfig.EncodingName,
+                                            aliPayConfig.ReturnUrl);
+                                           //add strMessage
+                                           strMessage = "此订单已提交支付宝支付，请注意弹出支付宝窗口是否被浏览器拦截！";
+                                           break;
+                                       case PayType.BankCard:
+                                           info = "银行卡支付";
+                                           break;
+                                       case PayType.QuickMonty:
+                                           info = "快钱支付";
+                                           break;
+                                       default:
+                                           break;
+                                   }
+
+                                   litPayType.Text = info;
+                               }//tradeList
+                               else
+                               {
+                                   strMessage = "订单状态错误：没有选择购物物品！";
+                               }
+                          }//else order error
+                          else
+                          {
+                              strMessage = "订单状态错误：单号错误或者已经付款完毕！";
                           }
+                          
                     }
                 }
             }

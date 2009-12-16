@@ -750,6 +750,8 @@
     <Content Include="channel\shop\index.aspx" />
     <Content Include="channel\shop\order_tradelist.aspx" />
     <Content Include="channel\shop\order_addr.aspx" />
+    <Content Include="channel\shop\order_userorder.aspx" />
+    <Content Include="channel\shop\order_userorderlist.aspx" />
     <Content Include="channel\singer\index.aspx" />
     <Content Include="channel\singer\menu.ascx" />
     <Content Include="channel\singer\singer.aspx" />
