@@ -12,7 +12,8 @@ CREATE PROCEDURE [dbo].[Shop_items_Set]
    @LImage AS NVARCHAR(1000),  
    @PublishDate AS DATETIME,
    @AddUserId AS INT,   
-   @Status AS INT   
+   @Status AS INT ,
+   @Hits   AS INT = 0
 AS
 BEGIN
 	
@@ -30,7 +31,8 @@ BEGIN
 			   PublishDate,			
 			   AddUserId,
 			   AddDate,			
-			   [Status]			  
+			   [Status]	,
+              Hits			   
 			   )
 		 VALUES
 			   (@name,
@@ -42,7 +44,8 @@ BEGIN
 			   @PublishDate,
 			   @AddUserId,
 			   GETDATE(),			
-			   @Status			
+			   @Status,
+				@Hits
 			 )
 		SET @id = 	 @@IDENTITY 
    END
@@ -51,7 +54,8 @@ BEGIN
     UPDATE shop_items
     SET name = @name,description=@description,body=@body,price= @price,
     SImage=@SImage,LImage=@LImage,PublishDate=@PublishDate,
-    AddDate=GETDATE(),[Status]=@Status,   AddUserId=@AddUserId
+    AddDate=GETDATE(),[Status]=@Status,   AddUserId=@AddUserId,
+	Hits=@Hits	
     WHERE id =  @id
    END
 	

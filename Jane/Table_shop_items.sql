@@ -13,7 +13,8 @@ CREATE TABLE [dbo].[shop_items] (
 	[PublishDate] [datetime] NULL ,
 	[AddUserId] [int] NULL ,
 	[AddDate] [datetime] NULL ,
-	[Status] [int] NULL 
+	[Status] [int] NULL ,
+	[Hits] [int] NULL 
 ) ON [PRIMARY]
 GO
 
