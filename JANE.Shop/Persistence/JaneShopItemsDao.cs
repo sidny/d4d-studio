@@ -30,7 +30,8 @@ namespace JANE.Shop.Persistence
                  parameters.AddWithValue("@LImage", item.LImage);
                  parameters.AddWithValue("@PublishDate", item.PublishDate);            
                  parameters.AddWithValue("@AddUserId", item.AddUserID);
-                 parameters.AddWithValue("@Status", (int)(item.Status));                
+                 parameters.AddWithValue("@Status", (int)(item.Status));
+                 parameters.AddWithValue("@Hits", (int)(item.Hits));     
                  parameters.AddWithValue("@RetVal", DBNull.Value, ParameterDirectionWrap.ReturnValue);
 
              },
@@ -52,8 +53,11 @@ namespace JANE.Shop.Persistence
              id);
             }
         }
-
         internal static ShopItem GetShopItem(int id)
+        {
+            return GetShopItem(id, 0);
+        }
+        internal static ShopItem GetShopItem(int id, int hits)
         {
             ShopItem m = new ShopItem(id);
             if (id > 0)
@@ -74,9 +78,10 @@ namespace JANE.Shop.Persistence
                          m.AddDate = record.GetDateTime(8);
                          m.Status = (PublishStatus)(record.GetInt32OrDefault(9, 0));
                          m.Body = record.GetStringOrEmpty(10);
+                         m.Hits = record.GetInt32OrDefault(11,0);
                      
                      },
-                     id);
+                     id, hits);
             }
             return m;
         }
@@ -93,9 +98,35 @@ namespace JANE.Shop.Persistence
             m.PublishDate = record.GetDateTimeOrEmpty(6);
             m.AddUserID = record.GetInt32OrDefault(7, 0);
             m.AddDate = record.GetDateTime(8);
-            m.Status = (PublishStatus)(record.GetInt32OrDefault(9, 0));                
+            m.Status = (PublishStatus)(record.GetInt32OrDefault(9, 0));
+            m.Body = record.GetStringOrEmpty(10);
+            m.Hits = record.GetInt32OrDefault(11, 0);
 
             list.Add(m);
+        }
+        /// <summary>
+        /// 获取已发布商品根据最大点击数倒序排列的商品信息
+        /// </summary>
+        /// <param name="maxCount"></param>
+        /// <returns></returns>
+        internal static List<ShopItem> GetTopPublishedShopItemsOrderByHits(int maxCount)
+        {
+            List<ShopItem> list = new List<ShopItem>(maxCount);
+
+            SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(JaneDefine.DBInstanceName),
+               "dbo.Shop_items_GetTopPublishedShopItemsOrderByHits",
+               delegate(IParameterSet parameters)
+               {
+                   parameters.AddWithValue("@MaxCount", maxCount);
+                 
+               },
+               delegate(IRecord record)
+               {
+                   MapList(record, list);
+               }              
+           );
+
+            return list;
         }
         internal static List<ShopItem> GetPagedShopItem(PagingContext pager, int publishStatus)
         {
