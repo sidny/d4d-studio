@@ -70,9 +70,9 @@ namespace JANE.Web.payment
                 log.Warn("alipay result:" + bResult.ToString());
 
                 if (bResult)
-                    context.Response.Redirect("/order/finish/" + janeOrderID + ".html");//这里是否跳转到哪里要待定
+                    context.Response.Redirect("/channel/shop/order_userorder.aspx?id=" + janeOrderID );//这里是否跳转到哪里要待定
                 else
-                     context.Response.Redirect("/shop.html");
+                    context.Response.Redirect("/channel/shop/order_userorderlist.aspx");
 
             }
             else
