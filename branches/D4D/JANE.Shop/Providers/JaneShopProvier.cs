@@ -72,6 +72,11 @@ namespace JANE.Shop.Providers
         {
             return JaneShopItemsDao.GetPagedShopItemByPublishDate(pager, (int)publishStatus,sTime,eTime);
         }
+
+        public List<ShopItem> GetTopPublishedShopItemsOrderByHits(int maxCount)
+        {
+            return JaneShopItemsDao.GetTopPublishedShopItemsOrderByHits(maxCount);
+        }
         #endregion
 
         //购物清单
