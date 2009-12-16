@@ -727,6 +727,8 @@
   <ItemGroup>
     <None Include="admin\Accounts\images\skin2\vssver2.scc" />
     <Content Include="admin\Admin.Master" />
+    <Content Include="admin\shop\Order.aspx" />
+    <Content Include="admin\shop\OrderTradeList.aspx" />
     <Content Include="admin\shop\Shop.aspx" />
     <Content Include="channel\calender\index.aspx" />
     <Content Include="channel\calender\menu.ascx" />
