@@ -71,5 +71,11 @@ namespace JANE.Shop.Domain
             get;
             set;
         }
+
+        public int Hits
+        {
+            get;
+            set;
+        }
     }
 }

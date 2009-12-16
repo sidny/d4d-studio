@@ -1,13 +1,9 @@
-﻿
-/****** Object:  StoredProcedure [dbo].[Album_GetPaged]    Script Date: 10/26/2009 18:15:28 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
--- =============================================
+﻿-- =============================================
 -- Create date: 2009-10-11
 -- =============================================
-CREATE PROCEDURE [dbo].[Shop_items_GetPaged]
+CREATE PROCEDURE [dbo].[Shop_items_GetPagedByPublishDate]   
+      @STime DATETIME,
+   @ETime DATETIME,
     @PublishStatus INT ,
 	@PageIndex INT,
 	@PageSize INT,	
@@ -34,18 +30,19 @@ BEGIN
 	
 			INSERT INTO 
 			@Results (Id)
-			SELECT	id  
-			FROM dbo.shop_items WITH(NOLOCK)		
-			ORDER BY id DESC 	
+			SELECT	Id  
+			FROM dbo.shop_items WITH(NOLOCK)	
+			WHERE  PublishDate>=@STime AND PublishDate<=@ETime
+			ORDER BY PublishDate DESC 	
 	END
 	ELSE 
 	BEGIN
 	        INSERT INTO 
 			@Results (Id)
-			SELECT	id  
+			SELECT	Id  
 			FROM dbo.shop_items WITH(NOLOCK)	
-			WHERE [Status] =@PublishStatus 	
-			ORDER BY id DESC 	
+			WHERE [Status] =@PublishStatus 	AND PublishDate>=@STime AND PublishDate<=@ETime
+			ORDER BY PublishDate DESC 	
 	END 
 	
 		
@@ -53,7 +50,7 @@ BEGIN
 
 
 		SELECT   
-		       t.Id, 
+		          t.Id, 
                name,
 			   description,
 			   price,
@@ -62,12 +59,14 @@ BEGIN
 			   PublishDate,			
 			   AddUserId,
 			   AddDate,			
-			   [Status]		
+			   [Status],
+                                           body,
+                                           Hits		
 		FROM dbo.shop_items t WITH(NOLOCK)
 		INNER JOIN @Results r ON  (t.Id = r.Id)	
 		WHERE 
 			r.Pos BETWEEN @StartRow AND @RowCount	
-	   ORDER BY t.id DESC 	
+	   ORDER BY PublishDate DESC 	
   
 END
 
@@ -78,3 +77,6 @@ END
 
  
 
+
+
+GO
