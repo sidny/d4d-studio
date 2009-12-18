@@ -203,6 +203,9 @@
              aInfo.ObjectId = userId;
 
              D4D.Platform.D4DGateway.AddInfoProvider.SetAddInfo(aInfo);
+
+             if (OrderId > 0)
+                 Response.Redirect("/order/check/" + OrderId.ToString() + ".html");
          }
     
     }
