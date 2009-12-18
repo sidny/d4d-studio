@@ -50,12 +50,9 @@
 		<div class="line_01"></div>
 		<div class="spacer" style="height:50px"></div>
         <!--
-	  	<div class="aligncenter">正准备自动连接银行支付页面，请稍后3秒钟……</div>
+	  	<div class="aligncenter">正准备自动连接银行支付页面，请稍后3秒钟……</div>	  	
 	  	-->
-	  	<%if (!string.IsNullOrEmpty(payUrl))
-        { %>
-	     <form action="<%=payUrl %>" method="get" id="payForm" target="_blank"></form>
-	     <%} %>
+	  	
 	    
 	  <div class="spacer" style="height:30px"></div>
       
@@ -71,7 +68,7 @@
   	<%if (!string.IsNullOrEmpty(payUrl))
         { %>
   <script type="text/javascript">
-      $("#payForm").submit();
+      window.open('<%=payUrl %>');
   </script>
     <%} %>
 </asp:Content>
