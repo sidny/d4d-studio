@@ -31,8 +31,6 @@
 	</div>
 	<div class="spacer"></div>
   </div>
-  <!--left/-->
-  <!--right-->
   <div class="right floatleft">
   <div class="cd_right">
     <div class="w_562 h_578">
@@ -61,10 +59,7 @@
     </div>
 	<div class="clear"></div>
 	</div>
-	<div class="clear"></div>
   </div>
-  <!--right/-->
-  <div class="clear"></div>
 </div>
 </asp:Content>
 <script runat="server">

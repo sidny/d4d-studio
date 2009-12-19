@@ -292,16 +292,18 @@ a:hover{
 }
 .cd_title{
 	width:557px;
-	height:42px;
+	_height:42px;
+	min-height:42px;
 	padding-right:5px;
 	line-height:50px;
 	color:#686765;
-	background:url(/static/images/cd_title.jpg) no-repeat;
+	background:url(/static/images/cd_title.jpg) no-repeat center bottom;
 }
 .cd_title h1{
 	display:block;
 	width:390px;
-	height:42px;
+	_height:42px;
+	min-height:42px;
 	text-align:left;
 	line-height:38px;
 	font-size:26px;
@@ -321,6 +323,7 @@ a:hover{
 .cd_title div a:hover{
 	color:#3AC0CB;
 }
+/*
 .cd_title.jane_info_title{
 	background:url(/static/images/jane_info_title.jpg) no-repeat;
 }
@@ -345,11 +348,12 @@ a:hover{
 .cd_title.journey_title{
 	background:url(/static/images/journey_title.gif) no-repeat;
 }
+*/
 
 .cd_title.news_con_title{
 	width:562px;
 	padding:0px;
-	background:url(/static/images/news_con_title.gif) repeat-x;
+	/*background:url(/static/images/news_con_title.gif) repeat-x */;
 }
 .cd_title.news_con_title h1{
 	width:auto;
@@ -357,25 +361,26 @@ a:hover{
 	text-align:center;
 	font-weight:normal;
 	font-family:"微软雅黑","黑体";
-	font-size:26px;
+	font-size:22px;
+	line-height:1.5em;
 }
 .cd_title.shop_title{
 	text-align:left;
 	font-size:26px;
 	line-height:38px;
-	background:url(/static/images/shop_title.jpg) no-repeat;
+	/*background:url(/static/images/shop_title.jpg) no-repeat */;
 }
 .cd_title.video_title{
 	text-align:left;
 	font-size:26px;
 	line-height:38px;
-	background:url(/static/images/video_title.jpg) no-repeat;
+	/* background:url(/static/images/video_title.jpg) no-repeat */;
 }
 .cd_title.pic_title{
 	text-align:left;
 	font-size:26px;
 	line-height:38px;
-	background:url(/static/images/pic_title.jpg) no-repeat;
+	/*background:url(/static/images/pic_title.jpg) no-repeat */;
 }
 .cd_title a{
 	color:#686765;
@@ -387,7 +392,7 @@ a:hover{
 	padding-right:5px;
 	line-height:35px;
 	color:#686765;
-	background:url(/static/images/tit_cd.gif) no-repeat;
+	/* background:url(/static/images/tit_cd.gif) no-repeat */;
 	border-bottom:1px #DAD7D5 solid;
 }
 .cd_title_782 a{
