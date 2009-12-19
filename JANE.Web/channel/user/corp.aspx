@@ -5,7 +5,6 @@
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentMain" runat="server">
 <div class="cd_body jane_info">
-  <!--left-->
   <div class="left floatleft">
     <div class="spacer" style="height:56px;"></div>
 	<div class="jane_info_menu">
@@ -21,8 +20,6 @@
   <script type="text/javascript">
       $(".jane_info_menu .<%=page%>").addClass("jane_info_menu_on");
   </script>
-  <!--left/-->
-  <!--right-->
   <div class="right floatleft">
   <div class="cd_right">
     <div class="w_562 h_578">
@@ -42,10 +39,7 @@
     </div>
 	<div class="clear"></div>
 	</div>
-	<div class="clear"></div>
   </div>
-  <!--right/-->
-  <div class="clear"></div>
 </div>
 </asp:Content>
 <script runat="server">
