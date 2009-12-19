@@ -353,6 +353,7 @@ a:hover{
 .cd_title.news_con_title{
 	width:562px;
 	padding:0px;
+	overflow:visible;
 	/*background:url(/static/images/news_con_title.gif) repeat-x */;
 }
 .cd_title.news_con_title h1{
@@ -363,6 +364,7 @@ a:hover{
 	font-family:"微软雅黑","黑体";
 	font-size:22px;
 	line-height:1.5em;
+	overflow:visible;
 }
 .cd_title.shop_title{
 	text-align:left;
@@ -1132,7 +1134,6 @@ a..btn_blue:hover{
 }
 .news_con p{
 	margin:15px 0px;
-	text-indent:2em;
 	line-height:19px;
 }
 .news_con_img{

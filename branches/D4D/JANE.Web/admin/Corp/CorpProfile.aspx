@@ -50,6 +50,12 @@
                <FCKeditorV2:FCKeditor ID="txtLinks" ToolbarSet="ShowCity" runat="server" />
             </td>
          </tr>
+          <tr >
+            <th align="center" style="width: 30px;">广告服务</th>
+            <td>
+               <FCKeditorV2:FCKeditor ID="txtAdservice" ToolbarSet="ShowCity" runat="server" />
+            </td>
+         </tr>
        </table>
 </form>
 </asp:Content>
@@ -85,6 +91,7 @@
            txtZhaopin.Value = D4DGateway.CorpInfoProvider.ReadProfileContent("zhaopin");
            txtCopyright.Value = D4DGateway.CorpInfoProvider.ReadProfileContent("copyright");
 		   txtLinks.Value = D4DGateway.CorpInfoProvider.ReadProfileContent("links");
+           txtAdservice .Value = D4DGateway.CorpInfoProvider.ReadProfileContent("adservice");
         }
     }
     protected void btnGoFlashPage_Click(object sender, EventArgs e)
@@ -112,6 +119,8 @@
 		
 		if (!string.IsNullOrEmpty(txtLinks.Value))
             D4DGateway.CorpInfoProvider.SetProfileContent("links", txtLinks.Value);
+        if (!string.IsNullOrEmpty(txtAdservice.Value))
+            D4DGateway.CorpInfoProvider.SetProfileContent("adservice", txtAdservice.Value);
 
         Response.Redirect("CorpProfile.aspx");
     }
