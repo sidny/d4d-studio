@@ -9,16 +9,18 @@
   <div class="left floatleft">
     <div class="spacer" style="height:56px;"></div>
 	<div class="jane_info_menu">
-		<a href="/about.html">公司介绍</a> 
-		<a href="/links.html">合作伙伴</a> 
-		<a href="/contact.html">联系我们</a>
-		<a href="#">靓颖演唱会</a>
-        <a href="#">靓颖历程</a> 
-		<a href="#">靓颖奖项</a>
-		<a href="#">靓颖演唱会</a>
+		<a class="about" href="/about.html">公司介绍</a> 
+		<a class="links" href="/links.html">合作伙伴</a> 
+		<a class="contact" href="/contact.html">联系我们</a>
+		<a class="zhaopin" href="/zhaopin.html">招聘信息</a>
+        <a class="adservice" href="/adservice.html">广告服务</a> 
+		<a class="copyright" href="/copyright.html">免责声明</a>
 	</div>
 	<div class="spacer"></div>
   </div>
+  <script type="text/javascript">
+      $(".jane_info_menu .<%=page%>").addClass("jane_info_menu_on");
+  </script>
   <!--left/-->
   <!--right-->
   <div class="right floatleft">
@@ -48,10 +50,10 @@
 </asp:Content>
 <script runat="server">
     protected string Channel = string.Empty;
-
+    protected string page = string.Empty;
     protected void Page_Load(object sender, EventArgs e)
         {
-            string page = Request["page"];
+            page = Request["page"];
             switch (Request["page"])
             {
                 
