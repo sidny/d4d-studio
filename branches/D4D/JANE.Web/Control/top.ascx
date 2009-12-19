@@ -36,7 +36,7 @@
 	  <div class="spacer" style="height:30px"></div>
 	  <div class="login_row">
 		<div class="login_row_name font14 floatleft">
-		  用户名字：
+		  用户名：
 		</div>
 		<div class="login_row_con floatright">
 			<input type="text" name="username" style="width:180px; height:16px;line-height:16px;" class="input_02 font14" />
@@ -47,7 +47,7 @@
 	  <div class="spacer"></div>
 	  <div class="login_row">
 		<div class="login_row_name font14 floatleft">
-		  密&nbsp;&nbsp;&nbsp;&nbsp;码：
+		  密&nbsp;&nbsp;码：
 		</div>
 		<div class="login_row_con floatright">
 			<input type="password" name="password" style="width:180px; height:16px;line-height:16px;" class="input_02 font14" />
@@ -62,7 +62,7 @@
 		 &nbsp;
 		</div>
 		<div class="login_row_con floatright">
-			<input type="submit" value="登录" />
+			<a href="#" id="btn-login-submit" class="btn_blue floatleft"><span>登录</span></a>
 			<div class="vspacer"></div>
 			<div class="floatleft" style="line-height:20px"><a href="http://bbs.janezhang.com/register.aspx?agree=yes">立即注册</a> | <a href="http://bbs.janezhang.com/getpassword.aspx">忘记密码</a></div>	
 		</div>
