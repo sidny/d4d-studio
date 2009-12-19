@@ -133,7 +133,6 @@ a:hover{
 	padding:4px 15px 0px 0px;
 	text-align:right;
 	color:#492A16;
-	font-weight:bold;
 }
 .head_login a{
 	color:#492A16;
@@ -599,6 +598,7 @@ a..btn_blue:hover{
 	background:white;
 	clear:both;
 }
+
 .footer_link{
 	margin:10px 0px 0px 18px;
 	width:780px;
@@ -608,10 +608,10 @@ a..btn_blue:hover{
 	font-family:"微软雅黑","黑体";
 }
 .footer_link ul{
-	height:15px;	
+	height:18px;	
 }
-.footer_link a{ font-weight:bold; color:#aeaeae}
-.footer_link a:hover{ color:#444}
+.footer_link a{ font-weight:bold; color:#444}
+.footer_link a:hover{ color:#aeaeae}
 .footer_link div{
 	font-size:10px;
 }
