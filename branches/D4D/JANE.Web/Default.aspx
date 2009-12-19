@@ -14,8 +14,8 @@
 .main .link a img{ filter:Gray Alpha(Opacity=15);opacity:0.15;}
 .main .link a:hover img{ filter:none;opacity:1;}
 #video{
-	z-index:100px;
-    left:10px;
+	z-index:100;
+    left:20px;
     position:absolute;
 	margin-top:-85px;
 }
@@ -34,6 +34,7 @@
 		"width", "191",
 		"height", "133",
 		"quality", "high",
+		"wmode","transparent",
 		"flashvars", "MtvLink=http://mp3.showcitytimes.net/flv/mtv.flv&MtvPic=/static/images/pic.png",
 		"type", "application/x-shockwave-flash",
 		"pluginspage", "http://www.adobe.com/go/getflashplayer"
@@ -47,7 +48,7 @@
      AC_FL_RunContent(
 		"src", "/static/images/index",
 		"width", "100%",
-		"height", "630",
+		"height", "610",
 		"id", "index",
 		"quality", "high",
 		"name", "index",
