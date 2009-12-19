@@ -63,24 +63,10 @@
   </FooterTemplate>
   </asp:Repeater>
 	  </div>
-	  <div class="spacer" style="height:35px"></div>
-	  
-	  <div id="pager" class="pages_num margincenter">
-			
-		</div>
-	  
-	  
-	  
-	  <div class="spacer" style="height:50px"></div>
-	  
-      
-	  <div class="clear"></div>
+  <div class="spacer" style="height:35px"></div>
+  <div id="pager" class="pages_num margincenter">
     </div>
-	<div class="clear"></div>
-	</div>
-	<div class="clear"></div>
-  </div>
-  <!--right/-->
+  <div class="spacer" style="height:50px"></div>
   <div class="clear"></div>
 </div>
 <script type="text/javascript">

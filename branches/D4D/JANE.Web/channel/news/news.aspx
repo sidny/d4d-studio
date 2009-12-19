@@ -51,7 +51,7 @@
 </asp:Repeater>
 	  <div class="spacer"></div>
 	  <div class="spacer"></div>
-    <div id="pager" class="pages_num margincenter"></div>
+    <div id="pager" class="pages_num" style="width:auto"></div>
 	  <div class="spacer" style="height:20px"></div>
 </div>
 <script type="text/javascript">

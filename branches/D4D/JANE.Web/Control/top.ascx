@@ -13,7 +13,7 @@
         "shop": { text: "илЁг", url: "/shop.html" }
     };
     var channel = "<%=channel %>" ;
-    menuData[channel].isCurrent = true;
+    if(menuData[channel])menuData[channel].isCurrent = true;
     function menuReady(func) {
         var flash = window["menu"] || document["menu"];
         setTimeout(function() {
