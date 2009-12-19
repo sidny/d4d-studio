@@ -5,11 +5,11 @@
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="header">
 <style type="text/css">
 .main{ width:100%; position:relative;z-index:10}
-.news-list{position: absolute; top: 140px; width: 342px; left: 523px;}
-.show-list{position: absolute; top: 330px; width: 342px; left: 523px;}
+.news-list{position: absolute; top: 100px; width: 342px; left: 523px;}
+.show-list{position: absolute; top: 290px; width: 342px; left: 523px;}
 .main li{ height:24px; color:#666}
 .main li label{ float:right;}
-.main .link{ position:absolute; top:500px; width:500px; text-align:center; left:440px;}
+.main .link{ position:absolute; top:440px; width:500px; text-align:center; left:440px;}
 .main .link a{ margin:0 10px;}
 .main .link a img{ filter:Gray Alpha(Opacity=15);opacity:0.15;}
 .main .link a:hover img{ filter:none;opacity:1;}
@@ -48,7 +48,7 @@
      AC_FL_RunContent(
 		"src", "/static/images/index",
 		"width", "100%",
-		"height", "610",
+		"height", "543",
 		"id", "index",
 		"quality", "high",
 		"name", "index",

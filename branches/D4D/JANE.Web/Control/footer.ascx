@@ -15,7 +15,7 @@
 		<li><a href="/copyright.html">免责声明</a></li>
 	  </ul>
 	  <div>
-	  Copyright&copy; 2006 - 2009 JANEZHANG.COM, All Rights Reserved　[京ICP证字030276号] 
+	  Copyright&copy; 2006 - 2009 JANEZHANG.COM, All Rights Reserved　[<a style="color:#aeaeae" href="http://www.miibeian.gov.cn/" target="_blank">京ICP证字030276号</a>] 
 	  </div>
   </div>
   <div class="footer_logo">
