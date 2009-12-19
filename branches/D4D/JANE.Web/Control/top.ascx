@@ -2,6 +2,7 @@
 <%@ Import Namespace="D4D.Web.Helper" %>
 <script type="text/javascript">
     var menuData = {
+		"logo": { text: "首页", url: "/" },
         "home": { text: "首页", url: "/" },
         "news": { text: "资讯", url: "/news.html" },
         "calender": { text: "行程", url: "/calender.html" },

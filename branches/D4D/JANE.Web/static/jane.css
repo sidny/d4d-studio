@@ -595,30 +595,35 @@ a..btn_blue:hover{
 /*footer*/
 .footer{
 	width:100%;
-	height:60px;
-	background:#000000;
+	height:50px;
+	background:white;
 	clear:both;
 }
 .footer_link{
-	margin:15px 0px 0px 18px;
+	margin:10px 0px 0px 18px;
 	width:780px;
-	height:45px;
+	height:35px;
 	overflow:hidden;
+	color:#aeaeae;
+	font-family:"微软雅黑","黑体";
 }
 .footer_link ul{
-	height:20px;
+	height:15px;	
+}
+.footer_link a{ font-weight:bold; color:#aeaeae}
+.footer_link a:hover{ color:#444}
+.footer_link div{
+	font-size:10px;
 }
 .footer_link ul li{
 	float:left;
 	padding-right:10px;
-	height:12px;
 }
 .footer_logo{
-	padding:15px 15px 0px 0px;
+	padding:10px 15px 0px 0px;
 	width:175px;
-	height:45px;
+	height:40px;
 	float:right;
-	background:#000;
 }
 /*个人档案*/
 .jane_info_menu{
