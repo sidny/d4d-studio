@@ -37,17 +37,11 @@
 	  <div id="pager" class="pages_num margincenter">
 			
 		</div>
-	  
-	  
-	  
 	  <div class="spacer" style="height:20px"></div>
-	  
-      
 	  <div class="clear"></div>
     </div>
 	<div class="clear"></div>
 	</div>
-	<div class="clear"></div>
 </div>
 <script type="text/javascript">
     $(document).ready(function() {

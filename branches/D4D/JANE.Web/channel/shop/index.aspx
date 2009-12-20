@@ -14,18 +14,29 @@
   <!--left-->
   <div class="left floatleft">
     <div class="spacer" style="height:46px;"></div>
-	<div class="jane_info_menu">
-		<a href="/shop.html"
-		<%if (String.IsNullOrEmpty(DateStr))
-       {%>class="jane_info_menu_on"<%} %>>全部商品</a> 
-		<%for (int i = 0; i < 12; i++)
-    { 
-        DateTime date = DateTime.Now.AddMonths(-1*i);
+    <div class="jane_info_menu">
+        <a href="/shop.html" class="jane_info_menu_on">全部商品</a> 
+	</div>
+		<%
+            List<ShopItem> list =JaneShopGateway.JaneShopProvier.GetTopPublishedShopItemsOrderByHits(5);
+		if(list.Count>0){        
         %>
-		<a href="/shop/<%=date.ToString("yyyyMM") %>.html"
-		<%if(date.ToString("yyyyMM") == DateStr){ %>
-		class="jane_info_menu_on"<%} %>><%=date.ToString("yyyy年MM月") %></a> 
+        <div class="video_tag_hot">
+        <h2>热门商品</h2>
+		<div class="video_tag_hot_key">
+		    <% foreach (ShopItem item in list)
+         { %>
+		    <a href="/shop/d/<%=item.Id %>.html"><%=item.Name %></a>
+		    <%} %>
+	  </div>
+    	</div>
 		<%} %>
+        <div class="spacer"></div>
+     <div class="jane_info_menu">
+       <%if (D4D.Web.Helper.Helper.IsDizLogin)
+         { %>
+        <a href="/channel/shop/order_userorderlist.aspx">我的订单</a> 
+        <%} %>
 	</div>
 	<div class="spacer"></div>
   </div>
@@ -87,7 +98,6 @@
     </div>
 	<div class="clear"></div>
 	</div>
-	<div class="clear"></div>
   </div>
   <!--right/-->
   </div>
@@ -190,6 +200,7 @@
         repList.DataSource = resultList;
         repList.DataBind();
         totalCount = pager.TotalRecordCount;
+        
 
     }
 
