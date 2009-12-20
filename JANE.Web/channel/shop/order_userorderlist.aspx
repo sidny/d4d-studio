@@ -4,7 +4,6 @@
 <%@ Import Namespace="JANE.Shop" %>
 <%@ Import Namespace="System.Collections.Generic" %>
 <%@ Import Namespace="System.Linq" %>
-<%@ Register src="~/Control/pager.ascx" tagname="pager" tagprefix="uc1" %>
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader">
 <script src="/static/js/jquery.pagination.js" type="text/javascript"></script>
 </asp:Content>
@@ -54,7 +53,7 @@
 	    </ItemTemplate>
 	    <FooterTemplate>
 	      <div class="pages">
-	     <uc1:pager ID="pager1" runat="server"  />
+	         <div id="pager" class="pages_num" style="width:auto"></div>
 		<div class="clear"></div>
 	     </div>
 	    </FooterTemplate>
@@ -72,12 +71,40 @@
     </div>
 	<div class="clear"></div>
 	</div>
-	<div class="clear"></div>
   </div>
   <!--right/-->
-  <div class="clear"></div>
   </div> 
-
+<script type="text/javascript">
+    $(document).ready(function() {
+        var cur = parseInt("<%=PageIndex %>");
+        var total = parseInt("<%=PageTotalCount %>");
+        var pageSize = parseInt("<%=PageSize %>");
+        var href = location.pathname;
+        if (location.search) {
+            if (!location.search.match(/page=\d+/ig)) {
+                href += location.search + "&page=__id__";
+            } else {
+                href += location.search;
+            }
+        } else {
+            href += "?page=__id__";
+        }
+        $("#pager").pagination(
+          total,
+                {
+                    items_per_page: pageSize,
+                    num_display_entries: 10,
+                    current_page: cur - 1,
+                    num_edge_entries: 0,
+                    link_to: href.replace(/page=\d+/ig, "page=__id__"),
+                    prev_text: "上一页",
+                    next_text: "下一页",
+                    callback: function(id) {
+                        return true;
+                    }
+                });
+    });
+</script>
 </asp:Content>
 <script runat="server"> 
     
@@ -124,7 +151,9 @@
                     userId, OrderType.Order);
                     repList.DataSource = listShoporder;
                     repList.DataBind();
-                    totalCount = pager.TotalRecordCount;
+                     totalCount = pager.TotalRecordCount;
+                   
+    
                 }
                 else
                     litMsg.Text = "请先登录才能查看";
