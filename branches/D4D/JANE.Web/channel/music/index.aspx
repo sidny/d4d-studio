@@ -43,10 +43,8 @@
     </div>
 	<div class="clear"></div>
 	</div>
-	<div class="clear"></div>
   </div>
   <!--right/-->
-  <div class="clear"></div>
 </div>
 </asp:Content>
 

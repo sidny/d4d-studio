@@ -3,73 +3,70 @@
 <%@ Import Namespace="System.Collections.Generic" %>
 <%@ Import Namespace="System.Linq" %>
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader">
-<script src="/static/js/jquery.pagination.js" type="text/javascript"></script>
+  <script src="/static/js/jquery.pagination.js" type="text/javascript"></script>
 </asp:Content>
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentMain" runat="server"><div class="cd_body journey_bg">
-  <!--left-->
-  <div class="left floatleft">
-    <div class="spacer" style="height:43px;"></div>
-	
-    <div class="journey_month">
-	  <ul class="journey_month_title">
-	  </ul>
-	  <ul class="journey_week_title">
-	  	<li class="floatleft">日</li>
-		<li class="floatleft">一</li>
-		<li class="floatleft">二</li>
-		<li class="floatleft">三</li>
-		<li class="floatleft">四</li>
-		<li class="floatleft">五</li>
-		<li class="floatleft">六</li>
-	  </ul>
-	  <ul class="journey_month_date">
-	  </ul>
-	</div>
-	
-  </div>
-  <!--left/-->
-  <!--right-->
-  <div class="right floatleft">
-  <div class="cd_right">
-    <div class="w_562 h_578">
-      <div class="spacer" style="height:36px"></div>
-	  <div class="cd_title journey_title">
-      	<h1 class="font24 floatleft blue">行程<span>-<%=sDate.ToString("yyyy年M月") %></span></h1> 
-	  </div>
-	  <div class="spacer" style="height:20px"></div>
-	  
-	  <asp:Repeater ID="repList" runat="server">
-       <HeaderTemplate>
-        <div class="journey_table">
-	    <div class="journey_table_title">
-	        <div class="wid_90">时间</div>
-		    <div class="wid_93">地点</div>
-		    <div class="wid_130">活动名称</div>
-		    <div class="wid_210">活动说明</div>
-	      </div>
-	    <div id="calender">
-      </HeaderTemplate>
-      <ItemTemplate>
-      <div class="journey_table_con date<%#((Show)Container.DataItem).ShowDate.ToString("yyyyMMdd")%>">
-	        <div class="wid_90"><%#((Show)Container.DataItem).ShowDate.ToString("yyyy-MM-dd") %><%#GetExpireString(Container.DataItem)%></div>
-	        <div class="wid_93"><%#((Show)Container.DataItem).ShowPlace%></div>
-	        <div class="wid_130"><%#((Show)Container.DataItem).Title%></div>
-	        <div class="wid_210"><%#((Show)Container.DataItem).Body%></div>
-		  <div class="clear"></div>
-	      </div>
-    </ItemTemplate>
-    <FooterTemplate>
-        </div></div>
-  </FooterTemplate>
-  </asp:Repeater>
-	  </div>
-  <div class="spacer" style="height:35px"></div>
-  <div id="pager" class="pages_num margincenter">
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentMain" runat="server">
+  <div class="cd_body journey_bg">
+    <!--left-->
+    <div class="left floatleft">
+      <div class="spacer" style="height:43px;"></div>
+      <div class="journey_month">
+        <ul class="journey_month_title">
+        </ul>
+        <ul class="journey_week_title">
+          <li class="floatleft">日</li>
+          <li class="floatleft">一</li>
+          <li class="floatleft">二</li>
+          <li class="floatleft">三</li>
+          <li class="floatleft">四</li>
+          <li class="floatleft">五</li>
+          <li class="floatleft">六</li>
+        </ul>
+        <ul class="journey_month_date">
+        </ul>
+      </div>
     </div>
-  <div class="spacer" style="height:50px"></div>
-  <div class="clear"></div>
-</div>
-<script type="text/javascript">
+    <!--left/-->
+    <!--right-->
+    <div class="right floatleft">
+      <div class="cd_right">
+        <div class="w_562 h_578">
+          <div class="spacer" style="height:36px"></div>
+          <div class="cd_title journey_title">
+            <h1 class="font24 floatleft blue">行程<span>-<%=sDate.ToString("yyyy年M月") %></span></h1>
+          </div>
+          <div class="spacer" style="height:20px"></div>
+          <div class="journey_table">
+            <div class="journey_table_title">
+              <div class="wid_90">时间</div>
+              <div class="wid_93">地点</div>
+              <div class="wid_130">活动名称</div>
+              <div class="wid_210">活动说明</div>
+            </div>
+            <div id="calender">
+              <asp:Repeater ID="repList" runat="server">
+                <ItemTemplate>
+                  <div class="journey_table_con date<%#((Show)Container.DataItem).ShowDate.ToString("yyyyMMdd")%>">
+                    <div class="wid_90"><%#((Show)Container.DataItem).ShowDate.ToString("yyyy-MM-dd") %><%#GetExpireString(Container.DataItem)%></div>
+                    <div class="wid_93"><%#((Show)Container.DataItem).ShowPlace%></div>
+                    <div class="wid_130"><%#((Show)Container.DataItem).Title%></div>
+                    <div class="wid_210"><%#((Show)Container.DataItem).Body%></div>
+                    <div class="clear"></div>
+                  </div>
+                </ItemTemplate>
+              </asp:Repeater>
+            </div>
+            <div class="spacer" style="height:35px"></div>
+            <div id="pager" class="pages_num margincenter"> </div>
+            <div class="spacer" style="height:50px"></div>
+            <div class="clear"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
      
 
     $(document).ready(function() {
@@ -150,7 +147,6 @@
     
 </script>
 </asp:Content>
-
 <script runat="server">
 protected int PageIndex
     {
