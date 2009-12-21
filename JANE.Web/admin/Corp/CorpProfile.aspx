@@ -14,7 +14,7 @@
      <asp:Literal ID="litId" runat="server" Visible="false"></asp:Literal>
        <table cellspacing="1" cellpadding="4" rules="all"  align="center" width="100%" class="grid">
          <tr >
-            <th align="center" style="width: 30px;">首页广告<a href="CorpTopFlash.aspx" ><font color="red" >直接编辑</font></a></th>
+            <th align="center" style="width: 30px;">首页活动<a href="CorpTopFlash.aspx" ><font color="red" >直接编辑</font></a></th>
             <td>
                 <asp:TextBox ID="txtAd" TextMode="MultiLine" runat="server" Width="100%" 
                     Height="100px"></asp:TextBox>
