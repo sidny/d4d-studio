@@ -77,10 +77,10 @@
     <%} %>
 </ul>
 <div class="link">
-    <a href="http://kaixin001.com" target="_blank"><img src="/static/images/intro/kaixin.gif" /></a>
-    <a href="http://www.myspace.cn" target="_blank"><img src="/static/images/intro/myspace.gif" /></a>
-    <a href="http://www.youku.com" target="_blank"><img src="/static/images/intro/youku.gif" /></a>
-    <a href="http://www.sina.com.cn" target="_blank"><img src="/static/images/intro/sina.gif" /></a>
+    <a href="http://www.kaixin001.com/zhangliangying" target="_blank"><img src="/static/images/intro/kaixin.gif" /></a>
+    <a href="http://www.myspace.cn/zhangliangying " target="_blank"><img src="/static/images/intro/myspace.gif" /></a>
+    <a href="http://music.youku.com/JaneZhang" target="_blank"><img src="/static/images/intro/youku.gif" /></a>
+    <a href="http://blog.sina.com.cn/zhangliangying" target="_blank"><img src="/static/images/intro/sina.gif" /></a>
 </div>
 </asp:Content>
 <script runat="server">
