@@ -61,7 +61,7 @@
                         break;
                 }
             }
-            title += "张靓影官方网站";
+            title += "张靓颖官方网站";
             Page.Header.Title = title;
         }
 </script>
