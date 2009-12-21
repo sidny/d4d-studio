@@ -8,7 +8,7 @@ body{
 	color:#3B3B3B;
 	background:url(/static/images/body_bg.jpg) repeat-x left top #D1EDD4;
 	line-height:1.3em;
-	font-family:verdana,"宋体","微软雅黑";
+	font-family:"微软雅黑",verdana,"新宋体";
 }
 td,div,dl,ul,li,table,h1,h2,h3,h4,h5,h6,ol,dt,dd{
 	overflow:hidden;
