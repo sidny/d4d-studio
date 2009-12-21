@@ -138,11 +138,11 @@
            */
             if (!string.IsNullOrEmpty(adString))
             {
-                adString = adString.ToLower().Replace("</li>",string.Empty);
+                //adString = adString.ToLower().Replace("</li>",string.Empty);
                 //Setcontent
 
                 string[] liS =
-                    adString.Split(new string[1] { "<li>" }, 
+                    adString.Split(new string[1] { "</a>" }, 
                     StringSplitOptions.RemoveEmptyEntries);
                 if (liS != null && liS.Length > 0)
                 {
@@ -185,7 +185,8 @@
             }
         }
     }
-    private const string LiFormat = "<li><a href=\"{0}\"><img src=\"{1}\" alt=\"{2}\" /></a></li>";
+   // private const string LiFormat = "<li><a href=\"{0}\"><img src=\"{1}\" alt=\"{2}\" /></a></li>";
+    private const string LiFormat = "<a href=\"{0}\" target=\"_blank\"><img src=\"{1}\" alt=\"{2}\"  /><br/> {2}</a>";
     protected void btnSave_Click(object sender, EventArgs e)
     {
         StringBuilder sb = new StringBuilder(2048);
