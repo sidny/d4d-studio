@@ -55,7 +55,7 @@
                     <th align="center" width="100">发行日期</th>
                       <td><asp:TextBox ID="txtPublishDate" CssClass="has-datepicker" runat="server"></asp:TextBox> </td>
                     </tr> 
-                    <th align="center" width="100">Joyo链接</th>
+                    <th align="center" width="100">amazon链接</th>
                       <td><asp:TextBox ID="txtJoyo" runat="server"></asp:TextBox> </td>
                     </tr> 
                     <th align="center" width="100">当当链接</th>

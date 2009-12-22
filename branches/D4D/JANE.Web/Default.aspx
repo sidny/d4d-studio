@@ -19,7 +19,7 @@
     position:absolute;
 	margin-top:-85px;
 }
-.footer_link{ padding-left:200px; width:580px;}
+/*.footer_link{ padding-left:200px; width:580px;}*/
 </style>
     
 <script type="text/javascript">
@@ -27,7 +27,9 @@
         var flash = window["index"] || document["index"];
         flash.setContent({movie:"/static/images/photo.swf"})
     }
+	/*
 	$(function(){
+	
 		$("<div id=\"video\"></div>").insertAfter($("div.main"))
 		.html( AC_FL_RunHTML(
 		"src", "/static/images/video",
@@ -40,6 +42,7 @@
 		"pluginspage", "http://www.adobe.com/go/getflashplayer"
 		));
 	});
+	*/
 </script>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="ContentMain" runat="server" ID="Main">
