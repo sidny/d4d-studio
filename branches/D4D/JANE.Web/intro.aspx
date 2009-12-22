@@ -14,7 +14,7 @@
 	body{ background:#d1edd3 url(http://cn.janezhang.com/static/images/intro/bg.jpg) repeat-x top; padding:0; margin:0}
 	#wrap{ width:960px; height:593px; margin:0 auto; position:relative}
 	.intro1{ background:url(http://cn.janezhang.com/static/images/intro/tif.jpg) no-repeat; background-position:520px;}
-	.intro2{ background:url(http://cn.janezhang.com/static/images/intro/intro2.jpg) no-repeat; background-position:420px;}
+	.intro2{ background:url(http://cn.janezhang.com/static/images/intro/intro2.jpg) no-repeat; background-position:450px;}
 	.intro3{ background:url(http://cn.janezhang.com/static/images/intro/intro3.jpg) no-repeat; background-position:520px;}
 	.copyright{ font-family:Verdana, Geneva, sans-serif; font-size:10px; color:#949e94; position:absolute; bottom:20px;width:470px; text-align:center;margin-left:70px; }
 	.center{ background:url(http://cn.janezhang.com/static/images/intro/main.gif) no-repeat top center; width:470px; height:322px; margin-left:70px;}
