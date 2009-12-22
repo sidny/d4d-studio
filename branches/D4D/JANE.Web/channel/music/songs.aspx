@@ -38,10 +38,18 @@
 		    <div class="spacer" style="height:11px"></div>
 		    <div class="cd_info_btn">
 			<a href="#" id="btn-play-all" class="btn_play">播放此专辑</a>
+			<%if (!string.IsNullOrEmpty(AddUrlInfo.Info1))
+     { %>
 			<div class="vspacer"></div>
-			<a href="<%=AddUrlInfo.Info1 %>#" class="btn_gray floatleft"><span class="floatleft">YOJO购买</span></a>
+			<a href="<%=AddUrlInfo.Info1 %>#" class="btn_gray floatleft"><span class="floatleft">amazon购买</span></a>
+			<%}
+     if (!string.IsNullOrEmpty(AddUrlInfo.Info2))
+     {
+           %>
 			<div class="vspacer"></div>
-			<a href="<%=AddUrlInfo.Info2 %>#" class="btn_gray floatleft"><span class="floatleft">当当购买</span></a>			</div>
+			<a href="<%=AddUrlInfo.Info2 %>#" class="btn_gray floatleft"><span class="floatleft">当当购买</span></a>
+			<%} %>
+			</div>
 	    </div>
 	    <div class="clear"></div>
 	  </div>
@@ -246,6 +254,7 @@
             if (addUrlInfo == null)
             {
                 addUrlInfo = D4D.Platform.D4DGateway.AddInfoProvider.GetAddInfo(MusicId, (int)ObjectTypeDefine.MusicTitle);
+                if (addUrlInfo == null) addUrlInfo = new AddInfo();
             }
             return addUrlInfo;
         }

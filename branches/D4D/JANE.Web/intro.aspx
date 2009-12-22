@@ -41,7 +41,7 @@
 <div id="wrap">
 	<div><img src="http://cn.janezhang.com/static/images/intro/xas.gif" /></div>
     <div class="center"></div>
-    <div class="language">　<a href="http://cn.janezhang.com">中文</a><label>|</label><a href="http://en.janezhang.com">ENGLISH</a></div>
+    <div class="language">　<a href="http://cn.janezhang.com">中文</a><label>|</label><a>ENGLISH</a></div>
     <div class="link">
     <a href="http://www.kaixin001.com/zhangliangying" target="_blank"><img src="/static/images/intro/kaixin.gif" /></a>
     <a href="http://www.myspace.cn/zhangliangying " target="_blank"><img src="/static/images/intro/myspace.gif" /></a>
