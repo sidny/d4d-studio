@@ -9,8 +9,8 @@
 		<li><a href="/contact.html">联系我们</a></li>
 		<li><img src="/static/images/foot_line.gif" /></li>
 		<li><a href="/zhaopin.html">招聘信息</a></li>
-		<li><img src="/static/images/foot_line.gif" /></li>
-		<li><a href="/adservice.html">广告服务</a></li>
+		<!-- li><img src="/static/images/foot_line.gif" /></li>
+		<li><a href="/adservice.html">广告服务</a></li -->
 		<li><img src="/static/images/foot_line.gif" /></li>
 		<li><a href="/copyright.html">免责声明</a></li>
 	  </ul>
