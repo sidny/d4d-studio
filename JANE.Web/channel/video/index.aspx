@@ -22,8 +22,8 @@
 			<div class="video_list_img"><a href="/video/d/<%#((News)Container.DataItem).NewsId %>.html"><img src="<%#((News)Container.DataItem).SImage %>" height="96" width="120" alt="<%#HttpUtility.HtmlEncode(((News)Container.DataItem).Title) %>" /></a></div>
 		    <p>
 				<a href="/video/d/<%#((News)Container.DataItem).NewsId %>.html"><%#((News)Container.DataItem).Title %></a><br />
-				<asp:Literal ID="litListTag" runat="server"></asp:Literal><br />
-				<span class="black_6666"><%#((News)Container.DataItem).PublishDate.ToString("yyyy-MM-dd")%></span>
+				<asp:Literal ID="litListTag" runat="server"></asp:Literal>
+				<span class="black_6666" style="display:block;"><%#((News)Container.DataItem).PublishDate.ToString("yyyy-MM-dd")%></span>
 			</p>
 	  	</li>
 		 </ItemTemplate>
@@ -322,21 +322,19 @@
                 StringBuilder sb = new StringBuilder(1024);
                 foreach (KeyValuePair<int, Tag> kvp in tagDic)
                 {
-                    sb.Append(" ");
                     sb.AppendFormat(AFormat,
                      string.Format(TagLinkFormat, BandId, kvp.Key, HttpUtility.UrlEncode(kvp.Value.TagName)),
                      kvp.Value.TagName);
+					sb.Append(" ");
                 }
-
-
                 result = string.Format(TagEmFormat, sb.ToString());
             }
 
         }
-        return result;
+        return result.Trim();
     }
     
-    private const string TagEmFormat = "<span class=\"black_6666\">标签：{0}</span>";
+    private const string TagEmFormat = "<span class=\"black_6666\">标签:{0}</span>";
     private const string AFormat = "<a href=\"{0}\">{1}</a>";
     private const string TagLinkFormat = "/video.html?id={0}&tagid={1}&tag={2}";
     protected void repList_ItemDataBound(object sender, RepeaterItemEventArgs e)
