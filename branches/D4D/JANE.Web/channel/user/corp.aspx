@@ -12,7 +12,7 @@
 		<a class="links" href="/links.html">合作伙伴</a> 
 		<a class="contact" href="/contact.html">联系我们</a>
 		<a class="zhaopin" href="/zhaopin.html">招聘信息</a>
-        <a class="adservice" href="/adservice.html">广告服务</a> 
+        <!-- a class="adservice" href="/adservice.html">广告服务</a --> 
 		<a class="copyright" href="/copyright.html">免责声明</a>
 	</div>
 	<div class="spacer"></div>
