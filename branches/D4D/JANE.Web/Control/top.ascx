@@ -1,17 +1,17 @@
-<%@ Control Language="C#" AutoEventWireup="true" %>
+ï»¿<%@ Control Language="C#" AutoEventWireup="true" %>
 <%@ Import Namespace="D4D.Web.Helper" %>
 <script type="text/javascript">
     var menuData = {
-		"logo": { text: "Ê×Ò³", url: "/" },
-        "home": { text: "Ê×Ò³", url: "/" },
-        "news": { text: "×ÊÑ¶", url: "/news.html" },
-        "calender": { text: "ĞĞ³Ì", url: "/calender.html" },
-        "singer": { text: "µµ°¸", url: "/singer.html" },
-        "music": { text: "³ªÆ¬", url: "/music.html" },
-        "video": { text: "ÊÓÆµ", url: "/video.html" },
-        "photo": { text: "Í¼Æ¬", url: "/photo.html" },
-        "bbs": { text: "ÂÛÌ³", url: "http://bbs.janezhang.com", target: "_blank" },
-        "shop": { text: "ÉÌ³Ç", url: "/shop.html" }
+		"logo": { text: "é¦–é¡µ", url: "/" },
+        "home": { text: "é¦–é¡µ", url: "/" },
+        "news": { text: "èµ„è®¯", url: "/news.html" },
+        "calender": { text: "è¡Œç¨‹", url: "/calender.html" },
+        "singer": { text: "æ¡£æ¡ˆ", url: "/singer.html" },
+        "music": { text: "å”±ç‰‡", url: "/music.html" },
+        "video": { text: "è§†é¢‘", url: "/video.html" },
+        "photo": { text: "å›¾ç‰‡", url: "/photo.html" },
+        "bbs": { text: "è®ºå›", url: "http://bbs.janezhang.com", target: "_blank" },
+        "shop": { text: "å•†åŸ", url: "/shop.html" }
     };
     var channel = "<%=channel %>" ;
     if(menuData[channel])menuData[channel].isCurrent = true;
@@ -26,18 +26,18 @@
   <div class="head_login">
    <%if (Helper.IsDizLogin != true)
           { %>
-  <a href="#" id="btnLogin">µÇÂ¼</a> | <a href="http://bbs.janezhang.com/register.aspx?agree=yes">×¢²á</a>
+  <a href="#" id="btnLogin">ç™»å½•</a> | <a href="http://bbs.janezhang.com/register.aspx?agree=yes">æ³¨å†Œ</a>
   <div style="display:none"><div class="login" id="loginForm">
     <iframe style="width:398px; height:240px; position:absolute;z-index:-1; top:0; left:0; border:0;"></iframe>
     <form action="/svc/user.svc/Login">
 	  <div class="login_title">
-		<h1 class="font14">µÇÂ¼ÕÅö¦Ó±¹Ù·½ÍøÕ¾</h1>
+		<h1 class="font14">ç™»å½•å¼ é“é¢–å®˜æ–¹ç½‘ç«™</h1>
 		<span onclick="$.unblockUI()"><img src="/static/images/ico_close_01.gif" /></span>
 	  </div>
 	  <div class="spacer" style="height:30px"></div>
 	  <div class="login_row">
 		<div class="login_row_name font14 floatleft">
-		  ÓÃ»§Ãû£º
+		  ç”¨æˆ·åï¼š
 		</div>
 		<div class="login_row_con floatright">
 			<input type="text" name="username" style="width:180px; height:16px;line-height:16px;" class="input_02 font14" />
@@ -48,7 +48,7 @@
 	  <div class="spacer"></div>
 	  <div class="login_row">
 		<div class="login_row_name font14 floatleft">
-		  ÃÜ&nbsp;&nbsp;Âë£º
+		  å¯†&nbsp;&nbsp;ç ï¼š
 		</div>
 		<div class="login_row_con floatright">
 			<input type="password" name="password" style="width:180px; height:16px;line-height:16px;" class="input_02 font14" />
@@ -63,9 +63,9 @@
 		 &nbsp;
 		</div>
 		<div class="login_row_con floatright">
-			<a href="#" id="btn-login-submit" class="btn_blue floatleft"><span>µÇÂ¼</span></a>
+			<a href="#" id="btn-login-submit" class="btn_blue floatleft"><span>ç™»å½•</span></a>
 			<div class="vspacer"></div>
-			<div class="floatleft" style="line-height:20px"><a href="http://bbs.janezhang.com/register.aspx?agree=yes">Á¢¼´×¢²á</a> | <a href="http://bbs.janezhang.com/getpassword.aspx">Íü¼ÇÃÜÂë</a></div>	
+			<div class="floatleft" style="line-height:20px"><a href="http://bbs.janezhang.com/register.aspx?agree=yes">ç«‹å³æ³¨å†Œ</a> | <a href="http://bbs.janezhang.com/getpassword.aspx">å¿˜è®°å¯†ç </a></div>	
 		</div>
 		<div class="clear"></div>
 	  </div>
@@ -74,23 +74,23 @@
 	  <div class="spacer"></div>
 	  
 	  
-	  <div class="login_foot">µÇÂ¼ÕÅö¦Ó±¹Ù·½ÍøÕ¾£¬»ñµÃ¸ü¶à¾«²Ê×ÊÑ¶</div>
+	  <div class="login_foot">ç™»å½•å¼ é“é¢–å®˜æ–¹ç½‘ç«™ï¼Œè·å¾—æ›´å¤šç²¾å½©èµ„è®¯</div>
 	  <div class="spacer"></div>
 	 </form>
 	</div></div>
    <%}
           else
           { %>
-          <label><%=Helper.GetCookieUserName() %></label> | <a href="#" id="logout">ÍË³öµÇÂ¼</a>
+          <label><%=Helper.GetCookieUserName() %></label> | <a href="#" id="logout">é€€å‡ºç™»å½•</a>
         <%} %>
-| <a href="#">ÓïÑÔÑ¡Ôñ</a><img src="/static/images/ico_arrow.gif" align="absmiddle" />
+| <a href="#">è¯­è¨€é€‰æ‹©</a><img src="/static/images/ico_arrow.gif" align="absmiddle" />
   </div>
   <div>
   <script type="text/javascript">
           AC_FL_RunContent(
 		"src", "/static/images/menu",
 		"width", "100%",
-		"height", "40",
+		"height", "45",
 		"align", "middle",
 		"id", "menu",
 		"quality", "high",
@@ -110,10 +110,10 @@
         { success: function(response) {
             if (response.d && response.d.UserId > 0) {
                 $.unblockUI();
-                alert("µÇÂ¼³É¹¦");
+                alert("ç™»å½•æˆåŠŸ");
                 location.reload();
             } else {
-                alert("ÄúÊäÈëµÄÓÃ»§ÃûÃÜÂëÓĞÎó£¬ÇëÖØÊÔ");
+                alert("æ‚¨è¾“å…¥çš„ç”¨æˆ·åå¯†ç æœ‰è¯¯ï¼Œè¯·é‡è¯•");
             }
         }, dataType: "json"
         })
@@ -130,7 +130,7 @@
                     border: "none"
                 }
             });
-            $('.blockOverlay').attr('title', 'µã»÷È¡ÏûµÇÂ½').click($.unblockUI);
+            $('.blockOverlay').attr('title', 'ç‚¹å‡»å–æ¶ˆç™»é™†').click($.unblockUI);
 
         });
         $("#logout").click(function() {
