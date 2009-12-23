@@ -436,7 +436,7 @@ a:hover{
 	text-indent:23px;
 	color:#ffffff;
 	cursor:pointer;
-	background:url(/static/images/btn_blue.gif) no-repeat;
+	background:url(/static/images/btn.gif) no-repeat;
 }
 a.btn_play:hover{
 	text-decoration:none;
@@ -483,7 +483,7 @@ a..btn_gray01:hover{
 	display:block;
 	height:19px;
 	cursor:pointer;
-	border:1px #0F669D solid;
+	border:1px #47911a  solid;
 	background:url(/static/images/btn_blue_1.gif) repeat-x center;
 }
 .btn_blue span{
@@ -491,7 +491,7 @@ a..btn_gray01:hover{
 	display:block;
 	height:17px;
 	color:#fff;
-	border:1px #60C2D2 solid;
+	border:1px #b8e07c  solid;
 	padding:0px 8px;
 }
 a..btn_blue:hover{
@@ -1284,7 +1284,7 @@ a..btn_blue:hover{
 .login_title{
 	width:396px;
 	height:29px;
-	background:#39C2CC;
+	background:#47911a;
 }
 .login_title h1{
 	float:left;

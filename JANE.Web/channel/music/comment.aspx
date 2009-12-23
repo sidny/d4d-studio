@@ -46,9 +46,7 @@
 	  <div class="spacer" style="height:40px"></div>
 	  <div class="clear"></div>
     </div>
-	<div class="clear"></div>
 	</div>
-	<div class="clear"></div>
   </div>
 <%if (isAdmin)
   { %>
