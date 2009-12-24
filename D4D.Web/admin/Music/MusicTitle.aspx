@@ -48,7 +48,7 @@
                      <tr>
                     <th align="center" width="100">封面大图</th>
                       <td>
-                          <uc1:FileUpload ID="fuLImage" runat="server" />
+                          <uc1:FileUpload ID="fuLImage" runat="server" AutoShowAddWaterMark="false"/>
                          </td>
                     </tr>
                      <tr>
