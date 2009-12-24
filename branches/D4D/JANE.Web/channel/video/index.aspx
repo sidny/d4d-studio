@@ -21,7 +21,7 @@
 			<div class="video_list_btn_play"><a href="/video/d/<%#((News)Container.DataItem).NewsId %>.html"><img src="/static/images/btn_play.gif" /></a></div>
 			<div class="video_list_img"><a href="/video/d/<%#((News)Container.DataItem).NewsId %>.html"><img src="<%#((News)Container.DataItem).SImage %>" height="96" width="120" alt="<%#HttpUtility.HtmlEncode(((News)Container.DataItem).Title) %>" /></a></div>
 		    <p>
-				<a href="/video/d/<%#((News)Container.DataItem).NewsId %>.html"><%#((News)Container.DataItem).Title %></a><br />
+				<a href="/video/d/<%#((News)Container.DataItem).NewsId %>.html" style="font-weight:bold" title="<%#((News)Container.DataItem).Title %>"><%#GetSubString(((News)Container.DataItem).Title,9) %></a><br />
 				<asp:Literal ID="litListTag" runat="server"></asp:Literal>
 				<span class="black_6666" style="display:block;"><%#((News)Container.DataItem).PublishDate.ToString("yyyy-MM-dd")%></span>
 			</p>
@@ -354,5 +354,14 @@
             return "";
         else
             return "<img src=\"/static/images/new.gif\" align=\"absmiddle\"> ";
+    }
+    protected string GetSubString(string s, int length)
+    {
+        string temp = s;
+        if (s.Length > length)
+        {
+            temp = s.Substring(0, length) + "…";
+        }
+        return temp;
     }
 </script>
