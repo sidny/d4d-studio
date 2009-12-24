@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" %>
-<div id="pager" class="pages_num margincenter"></div>
+<div id="pager" class="pages_num" style="width:auto"></div>
 <script type="text/javascript">
     $(document).ready(function() {
         var cur = parseInt("<%=PageIndex %>");

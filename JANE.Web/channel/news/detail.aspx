@@ -13,7 +13,7 @@
       <div class="spacer" style="height:36px"></div>
 	  
 	  <div class="cd_title news_con_title">
-	  	<h1 class="font24 floatleft blue"><%=CurrentNews.Title%></h1>
+	  	<h1 class="font24 blue"><%=CurrentNews.Title%></h1>
 	  </div>
 	  <div class="spacer4"></div>
 	  <div class="news_con_sub_title">

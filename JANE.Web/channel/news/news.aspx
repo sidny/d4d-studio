@@ -42,7 +42,7 @@
          <ItemTemplate>
          <li> 
 			<p><a href="/news/d/<%#((News)Container.DataItem).NewsId %>.html"><%#((News)Container.DataItem).Title %></a></p>
-			<span><asp:Literal ID="litListTag" runat="server"></asp:Literal>  [<%#((News)Container.DataItem).PublishDate.ToString("yyyy-MM-dd")%>]</span>
+			<span><asp:Literal ID="litListTag" Visible="false" runat="server"></asp:Literal>  [<%#((News)Container.DataItem).PublishDate.ToString("yyyy-MM-dd")%>]</span>
 		 </li>  
          </ItemTemplate>
       <FooterTemplate>
@@ -206,8 +206,6 @@
     private const string TitleTagFormat = "- {0}";
     private void SetTitle()
     {
-        //check bandName
-        BandInfo info;
        if (!string.IsNullOrEmpty(TagName))
         {
             litTitle.Text += string.Format(TitleTagFormat, TagName);            
@@ -334,6 +332,7 @@
     private const string SImageFormat = "<p class=\"pic\"><a href=\"{0}\"><img width=\"100\" height=\"75\" src=\"{1}\" /></a></p>";
     protected void repTop_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
+        /*
         News m = e.Item.DataItem as News;
        if (m != null)
         {
@@ -357,6 +356,7 @@
           litTopTag.Text = GetTagHtml(m.NewsId);  
             
         }
+         */
     }
    private string GetTagHtml(int newsId)
     {
