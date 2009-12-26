@@ -298,7 +298,8 @@ namespace JANE.Shop.Providers
         {
             AliPayConfig alipayConfig = new AliPayConfig();
             return GetShopOrderResult(nvc,
-                VerifyNotifyValue(nvc, alipayConfig.PartnerKey, alipayConfig.NotifyUrl,
+                VerifyNotifyValue(nvc, alipayConfig.PartnerKey, CreateNotifyVerifyUrl(nvc["notify_id"],
+               alipayConfig.GatewayUrl, AliPayDefinition.SERVICE_NOTIFY_VERIFY, alipayConfig.PartnerID),
                 alipayConfig.EncodingName));
         }
         #endregion
