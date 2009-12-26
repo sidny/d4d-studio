@@ -702,12 +702,6 @@
     <Compile Include="MasterPage\Default.Master.designer.cs">
       <DependentUpon>Default.Master</DependentUpon>
     </Compile>
-    <Compile Include="payment\paynotify.ashx.cs">
-      <DependentUpon>paynotify.ashx</DependentUpon>
-    </Compile>
-    <Compile Include="payment\payreturn.ashx.cs">
-      <DependentUpon>payreturn.ashx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

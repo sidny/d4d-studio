@@ -183,7 +183,7 @@
                                             aliPayConfig.PartnerKey,
                                             aliPayConfig.ReturnUrl,
                                             aliPayConfig.EncodingName,
-                                            aliPayConfig.ReturnUrl);
+                                            aliPayConfig.NotifyUrl);
                                            //add strMessage
                                            strMessage = "此订单已提交支付宝支付，请注意弹出支付宝窗口是否被浏览器拦截！";
                                            break;

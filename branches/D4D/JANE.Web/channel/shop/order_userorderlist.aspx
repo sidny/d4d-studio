@@ -209,7 +209,8 @@
                      litOrderPayResult.Text = "交易成功";
                      break;
                  default:
-                     litOrderPayResult.Text = "未付款";
+                     litOrderPayResult.Text = "未付款  [" + "<a href=\"/order/finish/" + m.Id.ToString() + ".html\" >重新提交付款</a>" + "]";
+                     
                      break;
              }         
             
