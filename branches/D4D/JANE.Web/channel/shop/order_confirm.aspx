@@ -81,18 +81,18 @@
 				付款方式：  
 		  </div>
 		  <div class="order_confirm_right floatleft">
-				<ul class="pay_sort">
-					<li>
+				<ul class="pay_sort"> 
+					<li style="display:none">
 						<img src="/static/images/pay_xyk.gif" />
 						<asp:RadioButton ID="RadioButton1" runat="server"
-                                                    GroupName="paymethod" Checked="True" Text="银行卡信用卡支付"></asp:RadioButton>                          
+                                                    GroupName="paymethod"  Text="银行卡信用卡支付"></asp:RadioButton>                          
 					</li>
 					<li>
 						<img src="/static/images/pay_zfb.gif" />
 							<asp:RadioButton ID="RadioButton2" runat="server"
-                                                    GroupName="paymethod"  Text="支付宝支付"></asp:RadioButton>                     
+                                                    GroupName="paymethod" Checked="True" Text="支付宝支付"></asp:RadioButton>                     
 					</li>
-					<li>
+					<li  style="display:none">
 						<img src="/static/images/pay_kq.gif" />
 						<asp:RadioButton ID="RadioButton3" runat="server"
                                                     GroupName="paymethod" Text="快钱支付"></asp:RadioButton>                     

@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using JANE.Shop;
 using JANE.Shop.Domain;
+using System.Collections.Specialized;
 namespace TestWeb
 {
     public partial class _Default : System.Web.UI.Page
@@ -20,6 +21,7 @@ namespace TestWeb
             //foreach (KeyValuePair<string, string> kvp in config.ResourceDatas)
             //    litInfo.Text += "name:" + kvp.Key + " value:" + kvp.Value + "<br/>";
            AliPayConfig aliPayConfig = new AliPayConfig();
+            /*
            string urlPay = JaneShopGateway.AliPayProvider.CreatUrl(aliPayConfig.GatewayUrl,
                AliPayDefinition.SERVICE_CREATE_DIRECT_PAY_BY_USER,
                aliPayConfig.PartnerID,
@@ -37,6 +39,16 @@ namespace TestWeb
                aliPayConfig.ReturnUrl);
 
            Response.Redirect(urlPay);
+             */
+           NameValueCollection nvc = new NameValueCollection(Request.QueryString);
+           if (nvc.Count > 0)
+           {
+               AliPayConfig alipayConfig = new AliPayConfig();
+               bool vResult = JaneShopGateway.AliPayProvider.VerifyNotifyValue(nvc, alipayConfig.PartnerKey,
+                   JaneShopGateway.AliPayProvider.CreateNotifyVerifyUrl(nvc["notify_id"],
+               alipayConfig.GatewayUrl, AliPayDefinition.SERVICE_NOTIFY_VERIFY, alipayConfig.PartnerID),
+                alipayConfig.EncodingName);
+           }
 
 
 
