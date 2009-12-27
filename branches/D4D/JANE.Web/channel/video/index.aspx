@@ -2,6 +2,7 @@
 <%@ Import Namespace="D4D.Platform.Domain" %>
 <%@ Import Namespace="D4D.Platform" %>
 <%@ Import Namespace="System.Collections.Generic" %>
+<%@ Register src="~/Control/pager.ascx" tagname="pager" tagprefix="uc1" %>
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader"></asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentMain" runat="server">
 <div class="right floatleft">
@@ -23,7 +24,7 @@
 		    <p>
 				<a href="/video/d/<%#((News)Container.DataItem).NewsId %>.html" style="font-weight:bold" title="<%#((News)Container.DataItem).Title %>"><%#GetSubString(((News)Container.DataItem).Title,9) %></a><br />
 				<asp:Literal ID="litListTag" runat="server"></asp:Literal>
-				<span class="black_6666" style="display:block;"><%#((News)Container.DataItem).PublishDate.ToString("yyyy-MM-dd")%></span>
+				<span class="black_6666" style="display:block;"><%#((News)Container.DataItem).PublishDate.ToString("yyyy-MM-dd")%> <%#GetNewImage((News)Container.DataItem)%></span>
 			</p>
 	  	</li>
 		 </ItemTemplate>
@@ -33,47 +34,13 @@
 </asp:Repeater>
 	  <div class="spacer"></div>
 	  <div class="spacer"></div>
-	  
-	  <div id="pager" class="pages_num margincenter">
-			
-		</div>
+	  <uc1:pager ID="pager1" runat="server"  />
 	  <div class="spacer" style="height:20px"></div>
 	  <div class="clear"></div>
     </div>
 	<div class="clear"></div>
 	</div>
 </div>
-<script type="text/javascript">
-    $(document).ready(function() {
-        var cur = parseInt("<%=PageIndex %>");
-        var total = parseInt("<%=PageTotalCount %>");
-        var pageSize = parseInt("<%=PageSize %>");
-        var href = location.pathname;
-        if (location.search) {
-            if (!location.search.match(/page=\d+/ig)) {
-                href += location.search + "&page=__id__";
-            } else {
-                href += location.search;
-            }
-        } else {
-            href += "?page=__id__";
-        }
-        $("#pager").pagination(
-          total,
-                {
-                    items_per_page: pageSize,
-                    num_display_entries: 10,
-                    current_page: cur - 1,
-                    num_edge_entries: 0,
-                    link_to: href.replace(/page=\d+/ig, "page=__id__"),
-                    prev_text: "上一页",
-                    next_text: "下一页",
-                    callback: function(id) {
-                        return true;
-                    }
-                });
-    });
-</script>
 </asp:Content>
 
 <script runat="server">
@@ -185,7 +152,10 @@
         if (!IsPostBack)
         {
             SetTitle();
-            BindNews(PageIndex);
+            BindNews(PageIndex); 
+            pager1.PageIndex = PageIndex;
+            pager1.PageSize = PageSize;
+            pager1.PageTotalCount = PageTotalCount;
         }
         
     }
@@ -364,4 +334,5 @@
         }
         return temp;
     }
+   
 </script>

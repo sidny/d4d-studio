@@ -2,53 +2,76 @@
 <%@ Import Namespace="D4D.Platform.Domain" %>
 <%@ Import Namespace="D4D.Platform" %>
 <%@ Import Namespace="System.Collections.Generic" %>
-<asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader"></asp:Content>
+<asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader">
+
+    <script type="text/javascript" src="/static/js/jquery.highlight.js"></script>
+  <script src="/static/js/jquery.pagination.js" type="text/javascript"></script>
+</asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentMain" runat="server">
-<script type="text/javascript" src="/static/js/jquery.highlight.js"></script>
-<style type="text/css">
+    <style type="text/css">
     .highlight {  color:Red }
+	.main .search {
+		padding-top:50px;
+		padding-bottom:50px;
+	}
+	.main .right_1100{
+		background-image:url(/static/images/cd_right_img_search.jpg);
+	}
+	.main .no-result{
+		font-size:24px; font-size:24px; font-family:'Microsoft YaHei'; text-align:center; line-height:1em;
+		margin:100px 0; display:block;
+
+	}
 </style>
-<%if (!string.IsNullOrEmpty(SearchText)) {%>
-<script type="text/javascript">
+  <%if (!string.IsNullOrEmpty(SearchText)) {%>
+  <script type="text/javascript">
     $(document).ready(function() {
     $(".search-list").highlight("<%=SearchText %>");
     });
 </script>
-<%} %>
-<div class="sub-title">
-  <p class="title">搜索结果</p>
-  <p class="nav-link">您的位置：首页 > 搜索</p>
-</div>
-
-<div class="search">
-    <div class="search-nav">
-    <%=GetSearchTab() %>      
-    </div>
-    <div class="search-list">
-    <asp:Literal ID="litInfo" runat="server"></asp:Literal>
-    <asp:Repeater ID="repList" OnItemDataBound="repList_ItemDataBound" runat="server">
-     <HeaderTemplate>
-      <ul>
-     </HeaderTemplate>
-         <ItemTemplate>
-          <li>
-                <p>[<asp:Literal ID="litType" runat="server"></asp:Literal>] <asp:Literal ID="litTitle" runat="server"></asp:Literal></p>
-                <p> <asp:Literal ID="litBody" runat="server"></asp:Literal></p>
-            </li>          
-         </ItemTemplate>
-      <FooterTemplate>
-      	</ul>
-      </FooterTemplate>   
-    </asp:Repeater>        
-    </div>
-    <% if (SearchType != "all")
+  <%} %>
+  
+  <div class="cd_body right_1100">
+    <div class="cd_right_902">
+      <div class="search w_782 h_578">
+        <div class="search-nav">
+          <div style="width:120px; height:24px; float:left">
+            <label style="float:left;color:#6E8600; width:100px; font-size:24px; font-family:'Microsoft YaHei'; line-height:24px; height:24px; margin-top:-10px; position:absolute">搜索结果</label>
+          </div>
+          <%=GetSearchTab() %> </div>
+        <div class="search-list">
+          <asp:Label ID="litInfo" runat="server"></asp:Label>
+          <asp:Repeater ID="repList" OnItemDataBound="repList_ItemDataBound" runat="server">
+            <HeaderTemplate>
+              <ul>
+            </HeaderTemplate>
+            <ItemTemplate>
+              <li>
+                <p>[
+                  <asp:Literal ID="litType" runat="server"></asp:Literal>
+                  ]
+                  <asp:Literal ID="litTitle" runat="server"></asp:Literal>
+                </p>
+                <p>
+                  <asp:Literal ID="litBody" runat="server"></asp:Literal>
+                </p>
+              </li>
+            </ItemTemplate>
+            <FooterTemplate>
+              </ul>
+            </FooterTemplate>
+          </asp:Repeater>
+        </div>
+        <% if (SearchType != "all")
        { %>
-      <div id="pager" class="pagestyle"></div>
-      <%} %>
-</div>
- <% if (SearchType != "all")
+        <div id="pager" class="pages_num"></div>
+        <%} %>
+      </div>
+    </div>
+  </div>
+  <% if (SearchType != "all")
        { %>
-<script type="text/javascript">
+  <script type="text/javascript">
     $(document).ready(function() {
         var cur = parseInt("<%=PageIndex %>");
         var total = parseInt("<%=PageTotalCount %>");
@@ -147,15 +170,15 @@
 
         sb.AppendFormat(SearchTabPFormat,
            (SearchType == "news" ? tabSelectedForamt : string.Empty),
-           string.Format(AFormat, searchUrl+"&t=news", "星闻"));
+           string.Format(AFormat, searchUrl+"&t=news", "资讯"));
 
         sb.AppendFormat(SearchTabPFormat,
            (SearchType == "show" ? tabSelectedForamt : string.Empty),
-           string.Format(AFormat, searchUrl + "&t=show", "星程"));
+           string.Format(AFormat, searchUrl + "&t=show", "行程"));
 
         sb.AppendFormat(SearchTabPFormat,
            (SearchType == "music" ? tabSelectedForamt : string.Empty),
-           string.Format(AFormat, searchUrl + "&t=music", "音乐"));
+           string.Format(AFormat, searchUrl + "&t=music", "唱片"));
 
         sb.AppendFormat(SearchTabPFormat,
            (SearchType == "video" ? tabSelectedForamt : string.Empty),
@@ -177,7 +200,10 @@
                 BindSearch(PageIndex);
             }
             else
-                litInfo.Text = "无搜索结果！"; 
+            {
+                litInfo.Text = "无搜索结果！";
+                litInfo.CssClass = "no-result";
+            }
         }
 
     }
@@ -248,9 +274,13 @@
             litInfo.Text = string.Empty;
             repList.DataSource = list;
             repList.DataBind();
+            litInfo.Visible = false;
         }
         else
+        {
             litInfo.Text = "无搜索结果！";
+            litInfo.CssClass = "no-result";
+        }
     }
     private const int MaxBodyCount = 200;
     protected void repList_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -267,7 +297,7 @@
             switch (m.ObjectType)
             {
                 case ObjectTypeDefine.News:
-                    litType.Text = string.Format(AFormat, "/news.html", "星闻");
+                    litType.Text = string.Format(AFormat, "/news.html", "资讯");
                     litTitle.Text = string.Format(AFormat, "/news/d/" + m.ObjectId.ToString()
                         + ".html",
                         m.Title);
@@ -276,7 +306,7 @@
                     litBody.Text += "...";
                     break;
                 case ObjectTypeDefine.MusicTitle:               
-                    litType.Text = string.Format(AFormat, "/music.html", "音乐");
+                    litType.Text = string.Format(AFormat, "/music.html", "唱片");
                     litTitle.Text = string.Format(AFormat, "/music/b"+m.BandId.ToString()+"/song/"+m.ObjectId.ToString()
                         + ".html",
                       m.Title);
@@ -285,7 +315,7 @@
                     litBody.Text += "...";
                     break;
                 case ObjectTypeDefine.Show:
-                    litType.Text = string.Format(AFormat, "/calender.html", "星程");
+                    litType.Text = string.Format(AFormat, "/calender.html", "行程");
                     litTitle.Text = string.Format(AFormat, "/calender/b" + m.BandId.ToString()+"/d"+
                         m.PublishDate.ToString("yyyyMM") + ".html",
                       m.Title);
