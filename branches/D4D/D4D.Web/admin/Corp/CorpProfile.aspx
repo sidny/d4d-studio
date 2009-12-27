@@ -49,6 +49,11 @@
             <td>
                <FCKeditorV2:FCKeditor ID="txtLinks" ToolbarSet="ShowCity" runat="server" />
             </td>
+         </tr>   <tr>
+            <th align="center" style="width: 30px;">首页FLV</th>
+            <td>
+               <asp:TextBox ID="txtFlv" runat="server" Width="100%"></asp:TextBox>
+            </td>
          </tr>
        </table>
 </form>
@@ -85,6 +90,7 @@
            txtZhaopin.Value = D4DGateway.CorpInfoProvider.ReadProfileContent("zhaopin");
            txtCopyright.Value = D4DGateway.CorpInfoProvider.ReadProfileContent("copyright");
 		   txtLinks.Value = D4DGateway.CorpInfoProvider.ReadProfileContent("links");
+           txtFlv.Text = D4DGateway.CorpInfoProvider.ReadProfileContent("flv");
         }
     }
     protected void btnGoFlashPage_Click(object sender, EventArgs e)
@@ -112,7 +118,8 @@
 		
 		if (!string.IsNullOrEmpty(txtLinks.Value))
             D4DGateway.CorpInfoProvider.SetProfileContent("links", txtLinks.Value);
-
+        
+            D4DGateway.CorpInfoProvider.SetProfileContent("flv", txtFlv.Text,true);
         Response.Redirect("CorpProfile.aspx");
     }
 </script>
