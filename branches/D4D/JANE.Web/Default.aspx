@@ -27,8 +27,10 @@
         var flash = window["index"] || document["index"];
         flash.setContent({movie:"/static/images/photo.swf"})
     }
-	/*
-	$(function(){
+<% string flv =D4D.Platform.D4DGateway.CorpInfoProvider.ReadProfileContent("flv").Trim();
+if(!string.IsNullOrEmpty(flv)){
+%>
+$(function(){
 	
 		$("<div id=\"video\"></div>").insertAfter($("div.main"))
 		.html( AC_FL_RunHTML(
@@ -37,12 +39,13 @@
 		"height", "133",
 		"quality", "high",
 		"wmode","transparent",
-		"flashvars", "MtvLink=http://mp3.showcitytimes.net/flv/mtv.flv&MtvPic=/static/images/pic.png",
+		"flashvars", "MtvLink=<%=flv%>",
 		"type", "application/x-shockwave-flash",
 		"pluginspage", "http://www.adobe.com/go/getflashplayer"
 		));
+		$(".footer_link").css({"padding-left":"200px","width":"580px"})
 	});
-	*/
+<%}%>
 </script>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="ContentMain" runat="server" ID="Main">
