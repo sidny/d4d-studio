@@ -13,6 +13,9 @@ body{
 td,div,dl,ul,li,table,h1,h2,h3,h4,h5,h6,ol,dt,dd{
 	overflow:hidden;
 }
+form{
+	display:inline;	
+}
 li{
 	list-style:none;
 }
@@ -125,12 +128,15 @@ a:hover{
 }
 /**/
 .head{
-	height:67px;
+	height:79px;
 	clear:both;
 }
+.search_form {
+	display:inline; padding-right:30px;
+}
 .head_login{
-	height:18px;
-	padding:4px 15px 0px 0px;
+	height:27px;
+	padding:7px 15px 0px 0px;
 	text-align:right;
 	color:#492A16;
 }
@@ -296,7 +302,7 @@ a:hover{
 	padding-right:5px;
 	line-height:50px;
 	color:#686765;
-	background:url(/static/images/cd_title.jpg) no-repeat center bottom;
+	border-bottom:1px solid #dad7d5;
 }
 .cd_title h1{
 	display:block;
@@ -320,7 +326,7 @@ a:hover{
 	width:75px;
 }
 .cd_title div a:hover{
-	color:#3AC0CB;
+	color:#6e8600;
 }
 /*
 .cd_title.jane_info_title{
@@ -422,9 +428,10 @@ a:hover{
 }
 .cd_info p{
 	display:block;
-	height:60px;
+	_height:60px;
+	min-height:60px;
+    overflow:visible;
 	line-height:15px;
-	overflow:hidden;
 }
 /*btn*/
 .btn_play{
@@ -754,7 +761,7 @@ a..btn_blue:hover{
 	line-height:24px;
 }
 .pages_num{
-	width:290px;
+	/*width:290px */;
 	height:24px;
 	text-align:center;
 	line-height:24px;
@@ -1056,14 +1063,14 @@ a..btn_blue:hover{
 .news_list p{
 	float:left;
 	display:block;
-	width:300px;
+	width:385px;
 	height:30px;
 	line-height:30px;
 }
 .news_list span{
 	float:right;
 	display:block;
-	width:185px;
+	width:100px;
 	height:30px;
 	line-height:30px;
 	color:#938D87;
@@ -1383,3 +1390,11 @@ a..btn_blue:hover{
 .sort5{ font-size:14px; color:#6e8600; font-weight:bold}
 .sort6{ font-size:16px; color:#FD6700; font-weight:bold}
 .sort7{ font-size:18px; color:#38C0CE; font-weight:bold}
+.search-nav{border-bottom:1px solid #cbcbcb;height:26px;padding-left:10px;}
+.search-nav p{float:left;width:50px;height:18px;background:url(/static/images/search/nav.gif); padding-top:8px;text-align:center;cursor:pointer;margin-right:10px;}
+.search-nav p.on{height:18px;color:red; }
+.search-nav a:hover{text-decoration:none}
+.search-nav p.on a{ color:red; }
+.search-list ul{padding:20px 10px;}
+.search-list li{line-height:21px;padding-bottom:20px;}
+.search-list li a{text-decoration:underline}

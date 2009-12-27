@@ -24,8 +24,8 @@
                 <li>
                 <div><a href="/photo/album/<%#((Album)Container.DataItem).AlbumId %>.html"><img width="150" height="100" src="<%#((Album)Container.DataItem).SImage%>" alt="" /></a></div>
 			<p>
-				<%#GetNewImage((Album)Container.DataItem) %><a href="/photo/album/<%#((Album)Container.DataItem).AlbumId %>.html"><%#((Album)Container.DataItem).Title %></a><br />
-				<span class="blue"><%#((Album)Container.DataItem).TotalCount %>张</span> <span class="gray">| <%#((Album)Container.DataItem).PublishDate.ToString("yyyy-MM-dd")%></span>
+				<a href="/photo/album/<%#((Album)Container.DataItem).AlbumId %>.html"><%#((Album)Container.DataItem).Title %></a><br />
+				<span class="blue"><%#((Album)Container.DataItem).TotalCount %>张</span> <span class="gray">| <%#((Album)Container.DataItem).PublishDate.ToString("yyyy-MM-dd")%> <%#GetNewImage((Album)Container.DataItem)%></span>
 			</p>
                  </li>
                 </ItemTemplate>
@@ -290,7 +290,7 @@
     }
     protected string GetNewImage(Album n)
     {
-        if (DateTime.Now > n.PublishDate.AddDays(7))
+        if (DateTime.Now > n.PublishDate.AddDays(100))
             return "";
         else
             return "<img src=\"/static/images/new.gif\"> ";
