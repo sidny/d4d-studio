@@ -435,4 +435,11 @@
             litListTag.Text = GetTagHtml(m.NewsId);
         }
     }
+    protected string GetNewImage(Album n)
+    {
+        if (DateTime.Now > n.PublishDate.AddDays(7))
+            return "";
+        else
+            return "<img src=\"/static/images/new.gif\"> ";
+    }
 </script>

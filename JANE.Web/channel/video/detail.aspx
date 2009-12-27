@@ -9,8 +9,12 @@
   <div class="cd_right">
     <div class="w_562 h_578">
       <div class="spacer" style="height:36px"></div>
+      <div class="cd_title news_title" style="margin-bottom:10px;">
+        <div class="floatright alginright"><a href="/video.html">返回视频首页</a></div>
+        <span class="font18">全部视频</span>
+		</div>
 	  <div class="cd_title video_title font24">
-      <h1 class="floatleft font24 blue" style="width:98%">视频<span>- <%=CurrentNews.Title%></span></h1>
+      <h1 class="font24" style="width:99%; text-align:center"><%=CurrentNews.Title%></h1>
 		</div>
 	  <div class="spacer" style="height:20px"></div>
 	  <div class="video_play">
@@ -230,6 +234,6 @@
     
     private const string TagEmFormat = "标签：{0}";
     private const string AFormat = "<a href=\"{0}\">{1}</a>";
-    private const string TagLinkFormat = "/channel/video/news.aspx?id={0}&tagid={1}&tag={2}";
+    private const string TagLinkFormat = "/channel/video/index.aspx?id={0}&tagid={1}&tag={2}";
    
 </script>

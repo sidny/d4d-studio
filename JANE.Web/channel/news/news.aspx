@@ -3,6 +3,7 @@
 <%@ Import Namespace="D4D.Platform" %>
 <%@ Import Namespace="System.Collections.Generic" %>
 <%@ Import Namespace="D4D.ResourceManager" %>
+<%@ Register src="~/Control/pager.ascx" tagname="pager" tagprefix="uc1" %>
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader"></asp:Content>
 <asp:Content ContentPlaceHolderID="ContentMain" runat="server">
 <div class="right floatleft">
@@ -41,7 +42,7 @@
      </HeaderTemplate>
          <ItemTemplate>
          <li> 
-			<p><a href="/news/d/<%#((News)Container.DataItem).NewsId %>.html"><%#((News)Container.DataItem).Title %></a></p>
+			<p><%#GetNewImage((News)Container.DataItem) %> <a href="/news/d/<%#((News)Container.DataItem).NewsId %>.html"><%#((News)Container.DataItem).Title %></a> </p>
 			<span><asp:Literal ID="litListTag" Visible="false" runat="server"></asp:Literal>  [<%#((News)Container.DataItem).PublishDate.ToString("yyyy-MM-dd")%>]</span>
 		 </li>  
          </ItemTemplate>
@@ -51,40 +52,9 @@
 </asp:Repeater>
 	  <div class="spacer"></div>
 	  <div class="spacer"></div>
-    <div id="pager" class="pages_num" style="width:auto"></div>
+      <uc1:pager ID="pager1" runat="server"  />
 	  <div class="spacer" style="height:20px"></div>
 </div>
-<script type="text/javascript">
-    $(document).ready(function() {
-        var cur = parseInt("<%=PageIndex %>");
-        var total = parseInt("<%=PageTotalCount %>");
-        var pageSize = parseInt("<%=PageSize %>");
-        var href = location.pathname;
-        if (location.search) {
-            if (!location.search.match(/page=\d+/ig)) {
-                href += location.search + "&page=__id__";
-            } else {
-                href += location.search;
-            }
-        } else {
-            href += "?page=__id__";
-        }
-        $("#pager").pagination(
-          total,
-                {
-                    items_per_page: pageSize,
-                    num_display_entries: 10,
-                    current_page: cur - 1,
-                    num_edge_entries: 0,
-                    link_to: href.replace(/page=\d+/ig, "page=__id__"),
-                    prev_text: "上一页",
-                    next_text: "下一页",
-                    callback: function(id) {
-                        return true;
-                    }
-                });
-    });
-</script>
 </div>
 </div>
 </asp:Content>
@@ -197,7 +167,10 @@
         if (!IsPostBack)
         {
             SetTitle();
-            BindNews(PageIndex);
+            BindNews(PageIndex); 
+            pager1.PageIndex = PageIndex;
+            pager1.PageSize = PageSize;
+            pager1.PageTotalCount = PageTotalCount;
         }
         
     }
@@ -401,5 +374,12 @@
            Literal litListTag = e.Item.FindControl("litListTag") as Literal;
             litListTag.Text = GetTagHtml(m.NewsId);
         }
+    }
+    protected string GetNewImage(News n)
+    {
+        if (DateTime.Now > n.PublishDate.AddDays(7))
+            return "";
+        else
+            return "<img src=\"/static/images/new.gif\"> ";
     }
 </script>

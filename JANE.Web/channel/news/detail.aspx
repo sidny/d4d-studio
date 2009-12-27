@@ -11,14 +11,16 @@
   <div class="cd_right">
     <div class="w_562 h_578">
       <div class="spacer" style="height:36px"></div>
-	  
+	  <div class="cd_title news_title" style="margin-bottom:10px;">
+         <div class="floatright alginright"><a href="/news.html">返回资讯首页</a></div>
+         <span class="font18">全部资讯</span>
+      </div>
 	  <div class="cd_title news_con_title">
 	  	<h1 class="font24 blue"><%=CurrentNews.Title%></h1>
 	  </div>
 	  <div class="spacer4"></div>
-	  <div class="news_con_sub_title">
-	    <p><%=GetTagHtml(CurrentNews.NewsId, true)%></p>
-	    <span><%=CurrentNews.PublishDate.ToString("yyyy-MM-dd")%></span>
+	  <div align="center">
+	    <%=GetTagHtml(CurrentNews.NewsId, true)%>　　<%=CurrentNews.PublishDate.ToString("yyyy-MM-dd")%>
 	  </div>
 	  <div class="spacer" style="height:30px"></div>
 	  <div class="news_con">
@@ -38,17 +40,18 @@
 		<div class="vspacer"></div>
 		<a href="/news/c/<%=NewsId %>.html" class="btn_gray floatleft"><span>评论（<%=CommentsCount%>条）</span></a>
 		</div>
-	  </div>
-	  <div class="spacer" style="height:20px"></div>
+	  </div>	  
+     <div style="border-top:1px solid #dad7d5; padding:30px 0 30px 0; line-height:20px; margin-top:20px">   <%for(int i=0;i<NextPrev.Count;i++){
+      News news = NextPrev[i];%>
+    <p><%if( news.NewsId > CurrentNews.NewsId){%>上一条<%}else{ %>下一条<%} %> ：<a href="/news/d/<%= news.NewsId%>.html"><%= news.Title%></a> &nbsp;&nbsp; <%= news.PublishDate.ToString("yyyy-MM-dd")%></p>
+    <%} %>
+    </div> 
     </div>
     </div>
 </div>
 </asp:Content>
 
 <script runat="server">
-    
-    
-
 /// <summary>
 /// 0 company news 
 /// </summary>
@@ -78,6 +81,7 @@ protected int NewsId
         return id;
     }
 }
+
 protected int TagId
 {
     get
@@ -91,7 +95,7 @@ protected int TagId
         return id;
     }
 }
-protected static int CommentsCount
+protected int CommentsCount
 {
     get
     {
@@ -115,7 +119,6 @@ public string TagName
             return tagName;
     }
 }
-
 public int TagYear
 {
     get
@@ -214,17 +217,13 @@ private void SetTitle()
     }
 
 }
-protected static News CurrentNews;
+protected News CurrentNews;
 private void BindNews()
 {
 
     CurrentNews = D4DGateway.NewsProvider.GetNewsAddHits(NewsId);
-    /*
-    List<News> list = D4DGateway.NewsProvider.GetNewsTagRelation(NewsId, 5);
-    repList.DataSource = list;
-    repList.DataBind();
     NextPrev = D4DGateway.NewsProvider.GetNewsPreviousNext(NewsId);
-    */
+
 }
 protected List<News> NextPrev = new List<News>(2);
 private const string SImageFormat = "<p class=\"pic\"><a href=\"{0}\"><img width=\"70\" height=\"60\" src=\"{1}\" /></a></p>";

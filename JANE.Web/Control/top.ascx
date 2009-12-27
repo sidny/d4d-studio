@@ -24,6 +24,12 @@
 </script>
 <div class="head">
   <div class="head_login">
+ 	<span class="search_form">
+    	<form action="/search.html" method="get">
+    	<input type="text" name="s" style="height:18px; line-height:18px; border:1px solid #c8c8c8; color:#333" />
+        <input type="image" src="/static/images/search/search_btn.gif" align="absmiddle"/>
+        </form>
+    </span> 
    <%if (Helper.IsDizLogin != true)
           { %>
   <a href="#" id="btnLogin">登录</a> | <a href="http://bbs.janezhang.com/register.aspx?agree=yes">注册</a>
