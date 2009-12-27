@@ -157,6 +157,24 @@
     </dl>
     </div>
 </div>
+<% string flv = D4D.Platform.D4DGateway.CorpInfoProvider.ReadProfileContent("flv").Trim();
+if(!string.IsNullOrEmpty(flv)){%>
+<div class="videoplayer">
+<script type="text/javascript">
+AC_FL_RunContent(
+		"src", "/static/images/video",
+		"width", "0",
+		"height", "0",
+		"align", "middle",
+		"quality", "high",
+		"bgcolor", "#3A6EA5",
+		"flashvars", "MtvLink=<%=flv%>",
+		"type", "application/x-shockwave-flash",
+		"pluginspage", "http://www.adobe.com/go/getflashplayer"
+	);
+</script>
+</div>
+<%}%>
 </asp:Content>
 
 <script runat="server">
