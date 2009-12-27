@@ -34,6 +34,9 @@
     .content .photo dd{ float:left; padding-right:7px; padding-bottom:8px; height:58px; width:85px; overflow:hidden;}
     .content .photo dd a img{ border:2px solid #c5c5c5; width:81px; height:54px;}
     .content .photo dd a:hover img{ border:2px solid red;}
+	.content .videoplayer{width:273px; height:178px; border:1px solid #d9d8d4; background:#eef0ef; position:absolute; right: 10px; top:0;}
+	.content .videoplayer .player{ margin:11px; background:black; width:160px;}
+	.content .videoplayer img{ float:right;}
 	.svw { text-align:center; padding-top:100px;background: #fff; position:relative;} 
 	.svw ul {position: relative; left: -999em;}  /*core classes*/
 	.stripViewer {  position: relative; overflow: hidden;   margin: 0 0 1px 0; }
@@ -48,6 +51,8 @@
 	#tooltip h3 {  font: normal 10px Verdana;  margin: 0;  padding: 6px 2px;  border: 0; } 
   </style>
   <script type="text/javascript" src="/static/js/jquery.slideviewer.1.1.js"></script>
+  <script src="/static/js/AC_OETags.js" type="text/javascript"></script>
+
   <script type="text/javascript">
       $(window).bind("load", function() {
       $("div#slider").slideView({ easeFunc: "" });
@@ -74,7 +79,32 @@
 </div>
 </div>
 <div class="content">
-    <div class="clearfix" style="height:190px;">
+    <div class="clearfix" style="height:190px; position:relative;z=index:1">
+      <% string flv = D4D.Platform.D4DGateway.CorpInfoProvider.ReadProfileContent("flv").Trim();
+if(!string.IsNullOrEmpty(flv)){%>
+<div class="videoplayer"><img src="/static/images/close.gif"  /><div class="player">
+<script type="text/javascript">
+AC_FL_RunContent(
+		"src", "/static/images/video",
+		"width", "240",
+		"height", "160",
+		"align", "middle",
+		"quality", "high",
+		"bgcolor", "#3A6EA5",
+		"flashvars", "MtvLink=<%=flv%>",
+		"type", "application/x-shockwave-flash",
+		"pluginspage", "http://www.adobe.com/go/getflashplayer"
+	);
+
+$(function(){
+	$(".videoplayer img").click(function(){
+		$(this).parent().remove();				 
+	}).css("cursor","pointer").parent().css("z-index","9999");
+});
+</script>
+</div>
+</div>
+<%}%>
       <dl class="show">
         <dt class="line">最近星程</dt>
         <% foreach (Show item in ShowList)
@@ -122,12 +152,14 @@
                 <%} %>
                 $(".video a").click(function(){
                     $(".video a").removeClass("on");
-                    $(".video .player").html(movies[$(this).addClass("on").attr("index")].replace(/width="\d+"/i,"width=\"157\"").replace(/height="\d+"/i,"height=\"131\""));
+                    $(".video .player").html(movies[$(this).addClass("on").attr("index")].replace(/width="\d+"/i,"width=\"157\"").replace(/height="\d+"/i,"height=\"131\"").replace(/><\/embed>/i,' wmode="opaque"/>'));
                     return false;
                 }).eq(0).click();
             });
         </script>
+       
     </dl>
+    
     </div>
     <div>
     <dl class="singer">
@@ -156,25 +188,9 @@
         <%} %>
     </dl>
     </div>
+   
 </div>
-<% string flv = D4D.Platform.D4DGateway.CorpInfoProvider.ReadProfileContent("flv").Trim();
-if(!string.IsNullOrEmpty(flv)){%>
-<div class="videoplayer">
-<script type="text/javascript">
-AC_FL_RunContent(
-		"src", "/static/images/video",
-		"width", "0",
-		"height", "0",
-		"align", "middle",
-		"quality", "high",
-		"bgcolor", "#3A6EA5",
-		"flashvars", "MtvLink=<%=flv%>",
-		"type", "application/x-shockwave-flash",
-		"pluginspage", "http://www.adobe.com/go/getflashplayer"
-	);
-</script>
-</div>
-<%}%>
+
 </asp:Content>
 
 <script runat="server">

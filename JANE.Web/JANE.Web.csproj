@@ -1175,6 +1175,7 @@
     <Content Include="static\images\pic_news_con.jpg" />
     <Content Include="static\images\pic_title.jpg" />
     <Content Include="static\images\player.swf" />
+    <Content Include="static\images\search\nav.gif" />
     <Content Include="static\images\shopping_cart_title.jpg" />
     <Content Include="static\images\shop_title.jpg" />
     <Content Include="static\images\tit_cd.gif" />

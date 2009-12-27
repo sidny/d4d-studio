@@ -56,6 +56,12 @@
                <FCKeditorV2:FCKeditor ID="txtAdservice" ToolbarSet="ShowCity" runat="server" />
             </td>
          </tr>
+            <tr>
+            <th align="center" style="width: 30px;">首页FLV</th>
+            <td>
+               <asp:TextBox ID="txtFlv" runat="server" Width="100%"></asp:TextBox>
+            </td>
+         </tr>
        </table>
 </form>
 </asp:Content>
@@ -92,6 +98,7 @@
            txtCopyright.Value = D4DGateway.CorpInfoProvider.ReadProfileContent("copyright");
 		   txtLinks.Value = D4DGateway.CorpInfoProvider.ReadProfileContent("links");
            txtAdservice .Value = D4DGateway.CorpInfoProvider.ReadProfileContent("adservice");
+           txtFlv.Text = D4DGateway.CorpInfoProvider.ReadProfileContent("flv");
         }
     }
     protected void btnGoFlashPage_Click(object sender, EventArgs e)
@@ -122,6 +129,7 @@
         if (!string.IsNullOrEmpty(txtAdservice.Value))
             D4DGateway.CorpInfoProvider.SetProfileContent("adservice", txtAdservice.Value);
 
+        D4DGateway.CorpInfoProvider.SetProfileContent("flv", txtFlv.Text,false);
         Response.Redirect("CorpProfile.aspx");
     }
 </script>
