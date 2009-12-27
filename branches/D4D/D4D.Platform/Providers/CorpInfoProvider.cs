@@ -23,19 +23,24 @@ namespace D4D.Platform.Providers
             }
         }
         #endregion
-
-        public void SetProfileContent(string position, string content)
+        public void SetProfileContent(string position, string content,bool IgnoreEmpty)
         {
-            if (string.IsNullOrEmpty(content))
-                return;
-
-            string path = GetProfileContentFilePath(position);
-             using (StreamWriter sw = File.CreateText(path)) 
+            if (IgnoreEmpty)
             {
-                
+                if (string.IsNullOrEmpty(content))
+                    return;
+            }
+            string path = GetProfileContentFilePath(position);
+            using (StreamWriter sw = File.CreateText(path))
+            {
+
 
                 sw.Write(HttpUtility.HtmlEncode(content));
-            }    
+            }
+        }
+        public void SetProfileContent(string position, string content)
+        {
+            SetProfileContent(position, content, true);
         }
 
         public string GetProfileContentFilePath(string position)
