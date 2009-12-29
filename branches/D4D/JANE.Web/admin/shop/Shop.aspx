@@ -348,12 +348,13 @@
         DateTime.TryParse(txtPublishDate.Text, out date);
         item.PublishDate = date;
         item.Price = Convert.ToDouble(txtPrice.Text);
+       
         if (string.IsNullOrEmpty(txtSImage.UploadResult) && !string.IsNullOrEmpty(txtLImage.ThumbnailImage))
             item.SImage = txtLImage.ThumbnailImage;
         else
-            item.SImage = txtSImage.UploadResult;
+            item.SImage = txtLImage.UploadResult;
 
-        item.SImage = txtSImage.UploadResult;
+        item.LImage = txtLImage.UploadResult;
         if (txtStatus.Checked) item.Status = PublishStatus.Publish;
         item.Name = txtTitle.Text;
         item.Description = txtPreview.Text;
