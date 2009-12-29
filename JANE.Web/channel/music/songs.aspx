@@ -17,8 +17,8 @@
       <div class="spacer" style="height:36px"></div>
 	  
 	  <div class="cd_title">
-      <h1 class="floatleft font24 blue">唱片<span>- <%=Music.Title%></span></h1>
-	  <div class="floatright"><a href="/music.html">返回唱片</a></div>
+      <h1 class="floatleft font24 blue">音乐<span>- <%=Music.Title%></span></h1>
+	  <div class="floatright"><a href="/music.html">返回音乐</a></div>
 	  </div>
 	  
 	  <div class="spacer" style="height:20px"></div>
