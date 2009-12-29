@@ -178,7 +178,7 @@
 
         sb.AppendFormat(SearchTabPFormat,
            (SearchType == "music" ? tabSelectedForamt : string.Empty),
-           string.Format(AFormat, searchUrl + "&t=music", "唱片"));
+           string.Format(AFormat, searchUrl + "&t=music", "音乐"));
 
         sb.AppendFormat(SearchTabPFormat,
            (SearchType == "video" ? tabSelectedForamt : string.Empty),
@@ -306,7 +306,7 @@
                     litBody.Text += "...";
                     break;
                 case ObjectTypeDefine.MusicTitle:               
-                    litType.Text = string.Format(AFormat, "/music.html", "唱片");
+                    litType.Text = string.Format(AFormat, "/music.html", "音乐");
                     litTitle.Text = string.Format(AFormat, "/music/b"+m.BandId.ToString()+"/song/"+m.ObjectId.ToString()
                         + ".html",
                       m.Title);
