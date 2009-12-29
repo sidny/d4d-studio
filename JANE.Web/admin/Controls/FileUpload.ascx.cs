@@ -159,7 +159,8 @@ namespace D4D.Web.admin.Controls
                 catch (Exception ex)
                 {
                     log.Error("GetFileInfo Error", ex);
-                    ShowInfo("上传文件信息错误");
+                    ShowInfo(ex.Message + ex.StackTrace);
+                    //ShowInfo("上传文件信息错误");
                 }
             }
             else
