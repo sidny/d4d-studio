@@ -1148,6 +1148,10 @@ a..btn_blue:hover{
 	margin:15px 0px;
 	line-height:19px;
 }
+.news_con img{
+	max-width:560px;
+	_width:expression((this.width>560)?'560px':this.width+'px');
+}
 .news_con_img{
 	text-align:center;
 }
