@@ -1,9 +1,7 @@
 ﻿-- =============================================
 -- Create date: 2009-10-11
 -- =============================================
-CREATE PROCEDURE [dbo].[Shop_items_GetPagedByPublishDate]   
-      @STime DATETIME,
-   @ETime DATETIME,
+CREATE PROCEDURE [dbo].[Shop_items_GetPaged]
     @PublishStatus INT ,
 	@PageIndex INT,
 	@PageSize INT,	
@@ -30,19 +28,18 @@ BEGIN
 	
 			INSERT INTO 
 			@Results (Id)
-			SELECT	Id  
-			FROM dbo.shop_items WITH(NOLOCK)	
-			WHERE  PublishDate>=@STime AND PublishDate<=@ETime
-			ORDER BY PublishDate DESC 	
+			SELECT	id  
+			FROM dbo.shop_items WITH(NOLOCK)		
+			ORDER BY id DESC 	
 	END
 	ELSE 
 	BEGIN
 	        INSERT INTO 
 			@Results (Id)
-			SELECT	Id  
+			SELECT	id  
 			FROM dbo.shop_items WITH(NOLOCK)	
-			WHERE [Status] =@PublishStatus 	AND PublishDate>=@STime AND PublishDate<=@ETime
-			ORDER BY PublishDate DESC 	
+			WHERE [Status] =@PublishStatus 	
+			ORDER BY id DESC 	
 	END 
 	
 		
@@ -50,7 +47,7 @@ BEGIN
 
 
 		SELECT   
-		          t.Id, 
+		       t.Id, 
                name,
 			   description,
 			   price,
@@ -61,22 +58,13 @@ BEGIN
 			   AddDate,			
 			   [Status],
                                            body,
-                                           Hits		
+                                           Hits,
+BaseCountEachdeliver										   
 		FROM dbo.shop_items t WITH(NOLOCK)
 		INNER JOIN @Results r ON  (t.Id = r.Id)	
 		WHERE 
 			r.Pos BETWEEN @StartRow AND @RowCount	
-	   ORDER BY PublishDate DESC 	
+	   ORDER BY t.id DESC 	
   
 END
-
-
-
-
-	
-
- 
-
-
-
 GO

@@ -18,7 +18,8 @@ BEGIN
 			   AddDate,			
 			   [Status],
                 body,
-			  Hits		
+			  Hits,
+BaseCountEachdeliver			  
     FROM shop_items With(nolock)
     WHERE [Status] = 1 
 	ORDER BY Hits DESC, PublishDate DESC

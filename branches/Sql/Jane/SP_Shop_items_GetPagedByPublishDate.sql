@@ -1,9 +1,4 @@
-﻿
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
--- =============================================
+﻿-- =============================================
 -- Create date: 2009-10-11
 -- =============================================
 CREATE PROCEDURE [dbo].[Shop_items_GetPagedByPublishDate]   
@@ -64,7 +59,10 @@ BEGIN
 			   PublishDate,			
 			   AddUserId,
 			   AddDate,			
-			   [Status]		
+			   [Status],
+                                           body,
+                                           Hits,
+BaseCountEachdeliver										   
 		FROM dbo.shop_items t WITH(NOLOCK)
 		INNER JOIN @Results r ON  (t.Id = r.Id)	
 		WHERE 
@@ -72,12 +70,4 @@ BEGIN
 	   ORDER BY PublishDate DESC 	
   
 END
-
-
-
-
-	
-
- 
-
-
+GO
