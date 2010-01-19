@@ -342,6 +342,7 @@
             CheckBox litStatus = e.Item.FindControl("litStatus") as CheckBox;
             Literal litPublishDate = e.Item.FindControl("litPublishDate") as Literal;
             Literal litAddDate = e.Item.FindControl("litAddDate") as Literal;
+            Literal litBaseCountEachdeliver = e.Item.FindControl("litBaseCountEachdeliver") as Literal;
 
             litId.Text = m.Id.ToString();
             litTitle.Text = m.Name;
@@ -413,6 +414,7 @@
         txtPreview.Text = item.Description;
         txtBody.Value = item.Body;
         txtPrice.Text = item.Price.ToString();
+        txtBaseCountEachdeliver.Text = item.BaseCountEachdeliver.ToString();
         
     }
 
