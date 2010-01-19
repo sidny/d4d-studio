@@ -13,7 +13,8 @@ CREATE PROCEDURE [dbo].[Shop_items_Set]
    @PublishDate AS DATETIME,
    @AddUserId AS INT,   
    @Status AS INT ,
-   @Hits   AS INT = 0
+   @Hits   AS INT = 0,
+   @BaseCountEachdeliver AS INT= 5
 AS
 BEGIN
 	
@@ -32,7 +33,8 @@ BEGIN
 			   AddUserId,
 			   AddDate,			
 			   [Status]	,
-              Hits			   
+              Hits,
+			  BaseCountEachdeliver
 			   )
 		 VALUES
 			   (@name,
@@ -45,7 +47,8 @@ BEGIN
 			   @AddUserId,
 			   GETDATE(),			
 			   @Status,
-				@Hits
+				@Hits,
+				@BaseCountEachdeliver
 			 )
 		SET @id = 	 @@IDENTITY 
    END
@@ -55,7 +58,7 @@ BEGIN
     SET name = @name,description=@description,body=@body,price= @price,
     SImage=@SImage,LImage=@LImage,PublishDate=@PublishDate,
     AddDate=GETDATE(),[Status]=@Status,   AddUserId=@AddUserId,
-	Hits=@Hits	
+	Hits=@Hits	,BaseCountEachdeliver=@BaseCountEachdeliver
     WHERE id =  @id
    END
 	
