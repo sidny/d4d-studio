@@ -45,6 +45,9 @@
                                 价格
                             </th>
                             <th>
+                                送货计价单位
+                            </th>
+                            <th>
                                 发布状态
                             </th>
                             <th>
@@ -71,6 +74,9 @@
                         </td>
                         <td>
                             <asp:Literal ID="litPrice" runat="server"></asp:Literal>
+                        </td>
+                        <td>
+                            <asp:Literal ID="litBaseCountEachdeliver" runat="server"></asp:Literal>
                         </td>
                         <td>
                             <asp:CheckBox ID="litStatus" runat="server"></asp:CheckBox>
@@ -124,6 +130,17 @@
                     </th>
                     <td>
                        <asp:TextBox ID="txtPrice" runat="server"></asp:TextBox>
+                    </td>
+                </tr>
+                  <tr>
+                    <th width="100">
+                        送货计价单位
+                    </th>
+                    <td>
+                       <asp:TextBox ID="txtBaseCountEachdeliver" runat="server"></asp:TextBox>
+                       比如CD 送货计价单位 = 5 ，那么快递费用为10时，
+                       当买小于等于5件商品时候 费用就是10元；
+                       当买大于5小于等于10件商品 费用就是10x2 ，依次类推。
                     </td>
                 </tr>
                 <tr>
@@ -335,6 +352,7 @@
             litStatus.Enabled = false;
             litAddDate.Text = m.AddDate.ToLongDateString();
             litPublishDate.Text = m.PublishDate.ToLongDateString();
+            litBaseCountEachdeliver.Text = m.BaseCountEachdeliver.ToString();
         }
     }
 
@@ -361,6 +379,14 @@
         item.Body = txtBody.Value ;
         item.AddDate = DateTime.Now;
         item.AddUserID = D4D.Web.Helper.AdminHelper.CurrentUser.UserID;
+        
+        int iBaseCountEachdeliver = 5;
+        if (!string.IsNullOrEmpty(txtBaseCountEachdeliver.Text))
+        {
+            int.TryParse(txtBaseCountEachdeliver.Text, out iBaseCountEachdeliver);
+        }
+
+        item.BaseCountEachdeliver = iBaseCountEachdeliver;
 
         int result = JaneShopGateway.JaneShopProvier.SetShopItem(item);
         addPanel.Visible = false;
