@@ -22,8 +22,9 @@ BEGIN
 			   AddUserId,
 			   AddDate,			
 			   [Status],
-                                          body,
-			  Hits		
+                body,
+			  Hits,
+         BaseCountEachdeliver			  
     FROM shop_items With(nolock)
     WHERE id =  @id
  

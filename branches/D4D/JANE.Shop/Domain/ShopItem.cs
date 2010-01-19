@@ -77,5 +77,24 @@ namespace JANE.Shop.Domain
             get;
             set;
         }
+
+        private int _BaseCountEachdeliver = 5;
+        /// <summary>
+        /// 每件商品送货时候的计价单位数量
+        /// 比如CD 计价单位数量 = 5 ，那么快递费用为10
+        /// 当买小于等于5件商品时候 费用就是10元
+        /// 当买大于5小于等于10件商品 费用就是10x2 依次类推
+        /// </summary>
+        public int BaseCountEachdeliver
+        {
+            get
+            {
+                return _BaseCountEachdeliver;
+            }
+            set
+            {
+                _BaseCountEachdeliver = value;
+            }
+        }
     }
 }
