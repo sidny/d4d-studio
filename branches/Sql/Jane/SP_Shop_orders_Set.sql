@@ -16,7 +16,9 @@ CREATE PROCEDURE [dbo].[Shop_orders_Set]
     @paythirdnum AS NVARCHAR(1000)   ,
    @paydate AS DATETIME,
 @zipcode AS NVARCHAR(50), 
-    @username AS NVARCHAR(200)     
+    @username AS NVARCHAR(200),
+	@RegionId AS INT = 0,
+	@Freight AS Float = 0    
 AS
 BEGIN
 	
@@ -38,7 +40,9 @@ BEGIN
 				paythirdnum,
 				paydate,
 				zipcode,
-				username
+				username,
+				RegionId,
+				Freight
 			   )
 		 VALUES
 			   (@userid,
@@ -54,7 +58,9 @@ BEGIN
 				@paythirdnum,
 				@paydate,
 				@zipcode,
-				@username
+				@username,
+				@RegionId,
+				@Freight
 			 )
 		SET @id = 	 @@IDENTITY 
    END
@@ -65,7 +71,7 @@ BEGIN
     address=@address,email=@email,mobile=@mobile,
     paymoney=paymoney,paytype=@paytype,   payresult=@payresult,
 	 payremark=payremark,paythirdnum=@paythirdnum,   paydate=@paydate,
-   zipcode=@zipcode,username=@username
+   zipcode=@zipcode,username=@username,RegionId=@RegionId,Freight=@Freight
     WHERE id =  @id
    END
 	
