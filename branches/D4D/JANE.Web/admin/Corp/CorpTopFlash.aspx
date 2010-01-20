@@ -203,7 +203,12 @@
                     TextBox txtPicAlt = this.Form.FindControl("txtPicAlt" + i.ToString()) as TextBox;
                     if (txtPicAlt != null && !string.IsNullOrEmpty(txtPicAlt.Text))
                     {
-                        sb.AppendFormat(LiFormat, txtAd.Text, txtAdPic.UploadResult, txtPicAlt.Text);
+                        string picUrl = txtAdPic.UploadResult.ToLower();
+                        if (!picUrl.Contains("http://cn.janezhang.com/"))
+                        {
+                            picUrl = "http://cn.janezhang.com" + picUrl;
+                        }
+                        sb.AppendFormat(LiFormat, txtAd.Text, picUrl, txtPicAlt.Text);
                         sb.AppendLine();
                     }
                 }
