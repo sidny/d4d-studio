@@ -83,7 +83,7 @@ namespace JANE.Shop.Persistence
             list.Add(m);
         }
 
-         internal static List<ShopRegion> GetShopItemsByParentId(int parentId)
+         internal static List<ShopRegion> GetShopRegionsByParentId(int parentId)
         {
             List<ShopRegion> list = new List<ShopRegion>();
 
