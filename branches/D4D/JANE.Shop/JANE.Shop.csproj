@@ -62,6 +62,7 @@
     <Compile Include="Domain\ShopOrder.cs" />
     <Compile Include="Domain\ShopRegion.cs" />
     <Compile Include="Domain\ShopTradelist.cs" />
+    <Compile Include="Helper\CarriageHelper.cs" />
     <Compile Include="Helper\PaymentHelper.cs" />
     <Compile Include="JaneShopGateway.cs" />
     <Compile Include="Persistence\JaneShopItemsDao.cs" />
