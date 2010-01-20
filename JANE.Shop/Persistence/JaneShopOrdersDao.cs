@@ -36,6 +36,8 @@ namespace JANE.Shop.Persistence
                  parameters.AddWithValue("@paydate", item.Paydate);
                  parameters.AddWithValue("@zipcode", item.ZipCode);
                  parameters.AddWithValue("@username", item.UserName);
+                 parameters.AddWithValue("@RegionId", item.RegionId);
+                 parameters.AddWithValue("@Freight", item.Freight);
                  parameters.AddWithValue("@RetVal", DBNull.Value, ParameterDirectionWrap.ReturnValue);
 
              },
@@ -83,6 +85,8 @@ namespace JANE.Shop.Persistence
                          m.Paydate = record.GetDateTime(12);
                          m.ZipCode = record.GetStringOrEmpty(13);
                          m.UserName = record.GetStringOrEmpty(14);
+                         m.RegionId = record.GetInt32OrDefault(15, 0);
+                         m.Freight = record.GetDouble(16);
                      },
                      id);
             }
@@ -114,6 +118,8 @@ namespace JANE.Shop.Persistence
                           m.Paydate = record.GetDateTime(12);
                           m.ZipCode = record.GetStringOrEmpty(13);
                           m.UserName = record.GetStringOrEmpty(14);
+                          m.RegionId = record.GetInt32OrDefault(15, 0);
+                          m.Freight = record.GetDouble(16);
                       },
                       userId);
              }
@@ -138,6 +144,8 @@ namespace JANE.Shop.Persistence
             m.Paydate = record.GetDateTime(12);
             m.ZipCode = record.GetStringOrEmpty(13);
             m.UserName = record.GetStringOrEmpty(14);
+            m.RegionId = record.GetInt32OrDefault(15, 0);
+            m.Freight = record.GetDouble(16);
             list.Add(m);
         }
          internal static List<ShopOrder> GetPagedShopOrder(PagingContext pager, int ordertype)
