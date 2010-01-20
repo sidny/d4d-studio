@@ -724,6 +724,7 @@
     <Content Include="admin\shop\Order.aspx" />
     <Content Include="admin\shop\OrderTradeList.aspx" />
     <Content Include="admin\shop\Shop.aspx" />
+    <Content Include="admin\shop\ShopRegion.aspx" />
     <Content Include="channel\calender\index.aspx" />
     <Content Include="channel\calender\menu.ascx" />
     <Content Include="channel\music\comment.aspx" />
