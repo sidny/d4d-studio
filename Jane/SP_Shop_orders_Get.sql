@@ -21,10 +21,11 @@ BEGIN
 				paythirdnum,
 				paydate,
 			zipcode,
-				username
+				username,
+				RegionId,
+				Freight
     FROM shop_orders With(nolock)
     WHERE id =  @id
  
 END
-
 GO

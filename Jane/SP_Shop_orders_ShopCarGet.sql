@@ -21,7 +21,9 @@ BEGIN
 				paythirdnum,
 				paydate,
 			zipcode,
-				username
+				username,
+				RegionId,
+				Freight
     FROM shop_orders With(nolock)
     WHERE userid =  @userid and ordertype=0
 	ORDER BY id DESC
