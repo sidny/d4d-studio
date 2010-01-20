@@ -230,7 +230,7 @@
             if (int.TryParse(litID.Text, out id))
             {
                 ShopRegion m = JaneShopGateway.JaneShopProvier.GetShopRegion(id);
-                DrawAddPanel(m);
+                DrawAddPanel(m,m.ParentId,false);
                 btnAdd.Text = "更新";
                 addPanel.Visible = true;
             }
