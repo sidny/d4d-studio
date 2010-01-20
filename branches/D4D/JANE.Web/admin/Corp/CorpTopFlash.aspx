@@ -214,11 +214,11 @@
                 }
             }                                                     
         }
-        if (sb.Length > 0)
-        {
-            D4DGateway.CorpInfoProvider.SetProfileContent("ad", sb.ToString());
+        //if (sb.Length > 0)
+        //{
+        D4DGateway.CorpInfoProvider.SetProfileContent("ad", sb.ToString(), false);
             btnBack_Click(null, null);
-        }
+        //}
     }
     protected void btnBack_Click(object sender, EventArgs e)
     {

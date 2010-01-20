@@ -109,25 +109,25 @@
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        if (!string.IsNullOrEmpty(txtAd.Text))
-            D4DGateway.CorpInfoProvider.SetProfileContent("ad",txtAd.Text);
+        //if (!string.IsNullOrEmpty(txtAd.Text))          
+            D4DGateway.CorpInfoProvider.SetProfileContent("ad",txtAd.Text,false);
 
-        if (!string.IsNullOrEmpty(txtAbout.Value))
-            D4DGateway.CorpInfoProvider.SetProfileContent("about", txtAbout.Value);
+        //if (!string.IsNullOrEmpty(txtAbout.Value))
+            D4DGateway.CorpInfoProvider.SetProfileContent("about", txtAbout.Value, false);
 
-        if (!string.IsNullOrEmpty(txtContact.Value))
-            D4DGateway.CorpInfoProvider.SetProfileContent("contact", txtContact.Value);
+        //if (!string.IsNullOrEmpty(txtContact.Value))
+            D4DGateway.CorpInfoProvider.SetProfileContent("contact", txtContact.Value, false);
 
-        if (!string.IsNullOrEmpty(txtZhaopin.Value))
-            D4DGateway.CorpInfoProvider.SetProfileContent("zhaopin", txtZhaopin.Value);
+        //if (!string.IsNullOrEmpty(txtZhaopin.Value))
+            D4DGateway.CorpInfoProvider.SetProfileContent("zhaopin", txtZhaopin.Value, false);
 
-        if (!string.IsNullOrEmpty(txtCopyright.Value))
-            D4DGateway.CorpInfoProvider.SetProfileContent("copyright", txtCopyright.Value);
+       // if (!string.IsNullOrEmpty(txtCopyright.Value))
+            D4DGateway.CorpInfoProvider.SetProfileContent("copyright", txtCopyright.Value, false);
 		
-		if (!string.IsNullOrEmpty(txtLinks.Value))
-            D4DGateway.CorpInfoProvider.SetProfileContent("links", txtLinks.Value);
-        if (!string.IsNullOrEmpty(txtAdservice.Value))
-            D4DGateway.CorpInfoProvider.SetProfileContent("adservice", txtAdservice.Value);
+		//if (!string.IsNullOrEmpty(txtLinks.Value))
+            D4DGateway.CorpInfoProvider.SetProfileContent("links", txtLinks.Value, false);
+       // if (!string.IsNullOrEmpty(txtAdservice.Value))
+            D4DGateway.CorpInfoProvider.SetProfileContent("adservice", txtAdservice.Value, false);
 
         D4DGateway.CorpInfoProvider.SetProfileContent("flv", txtFlv.Text,false);
         Response.Redirect("CorpProfile.aspx");
