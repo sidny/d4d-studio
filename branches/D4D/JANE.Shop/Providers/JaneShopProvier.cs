@@ -164,9 +164,9 @@ namespace JANE.Shop.Providers
             return JaneShopRegionDao.GetShopRegion(id);
         }
 
-        public List<ShopRegion> GetShopItemsByParentId(int parentId)
+        public List<ShopRegion> GetShopRegionsByParentId(int parentId)
         {
-            return JaneShopRegionDao.GetShopItemsByParentId(parentId);
+            return JaneShopRegionDao.GetShopRegionsByParentId(parentId);
         }
         #endregion
 
