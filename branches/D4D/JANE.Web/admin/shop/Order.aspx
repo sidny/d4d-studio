@@ -299,7 +299,22 @@
                          <asp:TextBox ID="txtPayRemark" runat="server"></asp:TextBox>
                     </td>
                 </tr>                
-                
+                  <tr>
+                    <th>
+                        运送地区
+                    </th>
+                    <td>
+                         <asp:TextBox ID="txtRegionId" runat="server"></asp:TextBox>
+                    </td>
+                </tr>    
+                  <tr>
+                    <th>
+                        运费
+                    </th>
+                    <td>
+                         <asp:TextBox ID="txtFreight" runat="server"></asp:TextBox>
+                    </td>
+                </tr>    
                 <tr>
                     <th align="center" width="100">&nbsp;
                         
@@ -558,6 +573,15 @@
 
         item.Paythirdnum = txtPayThirdNum.Text;
         item.Payremark = txtPayRemark.Text;
+
+        int iRegionId = 0;
+        int.TryParse(txtRegionId.Text, out iRegionId);
+        item.RegionId = iRegionId;
+
+        double freight = 0;
+        double.TryParse(txtFreight.Text, out freight);
+        item.Freight = freight;
+         
         
         int result = JaneShopGateway.JaneShopProvier.SetShopOrder(item);
         addPanel.Visible = false;
@@ -595,6 +619,9 @@
         txtPayDate.Text = item.Paydate.ToLongDateString();
         txtPayThirdNum.Text = item.Paythirdnum;
         txtPayRemark.Text = item.Payremark;
+
+        txtRegionId.Text = item.RegionId.ToString();
+        txtFreight.Text = item.Freight.ToString();
     }
 
     protected void ddlOrderTypeFilter_SelectedIndexChanged(object sender, EventArgs e)

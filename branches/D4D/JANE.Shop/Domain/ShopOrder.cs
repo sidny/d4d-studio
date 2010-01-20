@@ -116,5 +116,18 @@ namespace JANE.Shop.Domain
                 _payDate = value;
             }
         }
+
+        public int RegionId
+        {
+            get;
+            set;
+        }
+
+        public double Freight
+        {
+            get;
+            set;
+        }
+
     }
 }
