@@ -63,7 +63,9 @@ BEGIN
 				paythirdnum,
 				paydate,
      				zipcode,
-				username
+				username,
+					RegionId,
+				Freight
 		FROM dbo.shop_orders t WITH(NOLOCK)
 		INNER JOIN @Results r ON  (t.Id = r.Id)	
 		WHERE 
@@ -71,13 +73,4 @@ BEGIN
 	   ORDER BY t.id DESC 	
   
 END
-
-
-
-
-	
-
- 
-
-
 GO

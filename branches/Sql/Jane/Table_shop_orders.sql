@@ -17,7 +17,9 @@ CREATE TABLE [dbo].[shop_orders] (
 	[paythirdnum] [nvarchar] (1000) COLLATE Chinese_PRC_CI_AS NULL ,
 	[paydate] [datetime] NULL ,
 	[zipcode] [nvarchar] (50) COLLATE Chinese_PRC_CI_AS NULL ,
-	[username] [nvarchar] (200) COLLATE Chinese_PRC_CI_AS NULL 
+	[username] [nvarchar] (200) COLLATE Chinese_PRC_CI_AS NULL ,
+	[RegionId] [int] NULL ,
+	[Freight] [float] NULL 
 ) ON [PRIMARY]
 GO
 
