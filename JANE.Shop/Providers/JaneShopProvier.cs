@@ -147,7 +147,29 @@ namespace JANE.Shop.Providers
         //订单列表      
 
         //收货地址信息
-        
+
+        #region 送货地域
+        public int SetShopRegion(ShopRegion item)
+        {
+            return JaneShopRegionDao.SetShopRegion(item);
+        }
+
+        public void DeleteShopRegion(int id)
+        {
+            JaneShopRegionDao.DeleteShopRegion(id);
+        }
+
+        public ShopRegion GetShopRegion(int id)
+        {
+            return JaneShopRegionDao.GetShopRegion(id);
+        }
+
+        public List<ShopRegion> GetShopItemsByParentId(int parentId)
+        {
+            return JaneShopRegionDao.GetShopItemsByParentId(parentId);
+        }
+        #endregion
+
 
     }
 }

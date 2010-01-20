@@ -60,11 +60,13 @@
     <Compile Include="Domain\PaymentDefine.cs" />
     <Compile Include="Domain\ShopItem.cs" />
     <Compile Include="Domain\ShopOrder.cs" />
+    <Compile Include="Domain\ShopRegion.cs" />
     <Compile Include="Domain\ShopTradelist.cs" />
     <Compile Include="Helper\PaymentHelper.cs" />
     <Compile Include="JaneShopGateway.cs" />
     <Compile Include="Persistence\JaneShopItemsDao.cs" />
     <Compile Include="Persistence\JaneShopOrdersDao.cs" />
+    <Compile Include="Persistence\JaneShopRegionDao.cs" />
     <Compile Include="Persistence\JaneShopTradelistDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\JaneShopProvier.cs" />
