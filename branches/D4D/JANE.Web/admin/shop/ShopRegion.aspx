@@ -145,14 +145,16 @@
             BindRegionList();
             addPanel.Visible = false;
             listPanel.Visible = true;
-            BindList(0);
-          
+            BindList(0);           
         }
     }
 
     private void BindRegionList()
     {
         List<ShopRegion> pList = JaneShopGateway.JaneShopProvier.GetShopRegionsByParentId(0);
+        ddlEditRegion.Items.Clear();
+        ddlRegion.Items.Clear();
+        
         ddlRegion.Items.Add(new ListItem("全部省直辖市","0"));
         ddlEditRegion.Items.Add(new ListItem("全部省直辖市", "0"));
         if (pList != null && pList.Count > 0)
@@ -289,12 +291,15 @@
             addPanel.Visible = false;
             listPanel.Visible = true;
             BindList(CurrentSelectParentId);
+            if (parentId == 0)
+                BindRegionList();
+                
         
     }
 
     protected void btnAdd_City(object sender, EventArgs e)
     {
-        DrawAddPanel(null,CurrentSelectParentId);
+        DrawAddPanel(null,CurrentSelectParentId,false);
         addPanel.Visible = true;
         listPanel.Visible = false;
         btnAdd.Text = "添加市";
@@ -309,20 +314,24 @@
     }
      private void DrawAddPanel(ShopRegion item)
      {
-         DrawAddPanel(item,0);    
+         DrawAddPanel(item,0,true);    
      }
-     private void DrawAddPanel(ShopRegion item, int selectParentId)
+     private void DrawAddPanel(ShopRegion item,int selectParentId, bool isRegion)
     {
-        if (item == null) item = new ShopRegion();
+        if (item == null)
+        {
+            item = new ShopRegion();
+        }
         txtNewsId.Value = item.Id.ToString();
         txtName.Text = item.Name;
         txtTransferPrice.Text = item.TransferPrice.ToString();
+        if (txtTransferPrice.Text == "0") txtTransferPrice.Text = "10";
 
         ddlEditRegion.SelectedValue = selectParentId.ToString();
-        if (selectParentId == 0)
-            ddlEditRegion.Enabled = false;
-        else
-            ddlEditRegion.Enabled = true;
+        //if (selectParentId == 0)
+        //    ddlEditRegion.Enabled = false;
+        //else
+        //    ddlEditRegion.Enabled = true;
          
          
     }
