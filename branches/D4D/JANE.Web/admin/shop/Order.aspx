@@ -51,6 +51,9 @@
                             <th>
                                 订单状态
                             </th>
+                             <th>
+                                送货地域
+                            </th>
                             <th>
                                 发货地址
                             </th>
@@ -109,6 +112,9 @@
                         <td>
                             <asp:Literal ID="litOrderType" runat="server"></asp:Literal>
                         </td>
+                         <td>
+                            <asp:Literal ID="litRegionStr" runat="server"></asp:Literal>
+                        </td>
                         <td>
                             <asp:Literal ID="litAddr" runat="server"></asp:Literal>
                         </td>
@@ -155,7 +161,7 @@
                 </ItemTemplate>
                 <FooterTemplate>
                     <tr align="right" style="font-size: medium; white-space: nowrap;">
-                        <td colspan="17" valign="middle" class="pagestyle" id="pager">
+                        <td colspan="18" valign="middle" class="pagestyle" id="pager">
                         </td>
                         <td class="pagestyle">
                             <asp:Button ID="btnAddShow" runat="server" OnClick="btnAdd_Show" Text="新增" />
@@ -301,12 +307,20 @@
                 </tr>                
                   <tr>
                     <th>
-                        运送地区
+                        运送地区id
                     </th>
                     <td>
                          <asp:TextBox ID="txtRegionId" runat="server"></asp:TextBox>
                     </td>
-                </tr>    
+                </tr>
+                 <tr>
+                    <th>
+                        运送地域
+                    </th>
+                    <td>
+                         <asp:TextBox ID="txtRegionStr" runat="server"></asp:TextBox>
+                    </td>
+                </tr>        
                   <tr>
                     <th>
                         运费
@@ -478,11 +492,14 @@
             Literal litPayThirdNum = e.Item.FindControl("litPayThirdNum") as Literal;
             Literal litPayRemark = e.Item.FindControl("litPayRemark") as Literal;
             Literal litTradeList = e.Item.FindControl("litTradeList") as Literal;
+            Literal litRegionStr = e.Item.FindControl("litRegionStr") as Literal;
 
             litId.Text = m.Id.ToString();
             litUserId.Text = m.UserId.ToString();
             litAddDate.Text = m.AddDate.ToString("yyyy-MM-dd HH:mm:ss");
             litOrderType.Text = (m.Ordertype == OrderType.Order)?"已生成订单":"购物车";
+
+            litRegionStr.Text = m.RegionStr;
             litAddr.Text = m.Address;
             litZipCode.Text = m.ZipCode;
             litEmail.Text = m.Email;
@@ -581,6 +598,8 @@
         double freight = 0;
         double.TryParse(txtFreight.Text, out freight);
         item.Freight = freight;
+
+        item.RegionStr = txtRegionStr.Text;
          
         
         int result = JaneShopGateway.JaneShopProvier.SetShopOrder(item);
@@ -622,6 +641,7 @@
 
         txtRegionId.Text = item.RegionId.ToString();
         txtFreight.Text = item.Freight.ToString();
+        txtRegionStr.Text = item.RegionStr;
     }
 
     protected void ddlOrderTypeFilter_SelectedIndexChanged(object sender, EventArgs e)
