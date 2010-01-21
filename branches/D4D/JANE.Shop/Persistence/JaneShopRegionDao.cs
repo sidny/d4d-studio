@@ -102,5 +102,41 @@ namespace JANE.Shop.Persistence
 
             return list;
         }
+
+         internal static Dictionary<int, ShopRegion> GetShopRegions20(List<int> ids)
+         {
+
+             Dictionary<int, ShopRegion> dic = new Dictionary<int, ShopRegion>();
+
+             if (ids != null && ids.Count > 0)
+             {
+                 SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+                "dbo.Shop_region_Get20",
+                delegate(IParameterSet parameters)
+                {
+                    int maxCount = ids.Count > 20 ? 20 : ids.Count;
+                    for (int i = 0; i < maxCount; i++)
+                    {
+                        parameters.AddWithValue("@tid" + (i + 1).ToString(), ids[i]);
+                    }
+                },
+                delegate(IRecord record)
+                {
+                    ShopRegion m = new ShopRegion();
+                    m.Id = record.GetInt32OrDefault(0, 0);
+                    m.Name = record.GetStringOrEmpty(1);
+                    m.ParentId = record.GetInt32OrDefault(2, 0);
+                    m.TransferPrice = record.GetDouble(3);
+                    m.TransferPrice1 = record.GetDouble(4);
+                    m.TransferPrice2 = record.GetDouble(5);
+
+                    if (!dic.ContainsKey(m.Id))
+                        dic.Add(m.Id, m);
+                }
+            );
+             }
+
+             return dic;
+         }
     }
 }

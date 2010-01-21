@@ -129,5 +129,11 @@ namespace JANE.Shop.Domain
             set;
         }
 
+        public string RegionStr
+        {
+            get;
+            set;
+        }
+
     }
 }
