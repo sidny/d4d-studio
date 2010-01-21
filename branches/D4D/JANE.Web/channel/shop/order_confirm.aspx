@@ -38,8 +38,9 @@
 		  <div class="order_confirm_left floatleft b">
 				送货地址：  
 		  </div>
-		  <div class="order_confirm_right floatleft">
+		  <div class="order_confirm_right floatleft">		        
 				<asp:Literal ID="litName" runat="server"></asp:Literal><br />
+				送货地域 <asp:Literal ID="litRegionId" Visible="false" runat="server"></asp:Literal><asp:Literal ID="litRegionStr" runat="server"></asp:Literal><br />				
 				<asp:Literal ID="litAddr" runat="server"></asp:Literal><br />
 				邮编	<asp:Literal ID="litZipCode" runat="server"></asp:Literal><br />
 				<asp:Literal ID="litEmail" runat="server"></asp:Literal><br />
@@ -69,7 +70,7 @@
 			订单价格：  
 		  </div>
 		  <div class="order_confirm_right floatleft">
-				<%=TotalPrice %>
+				商品金额:<%=TotalPrice %>元 + 运费：<asp:Literal ID="litTransferPrice" runat="server">0</asp:Literal>元= <%=TotalAddTransferPrice %>元
 		  </div>
 		  <div class="clear"></div>
 	     </div>
@@ -142,6 +143,24 @@
         get;
         set;
     }
+
+    protected double TransferPrice
+    {
+        get
+        {
+            double t = 0;
+            double.TryParse(litTransferPrice.Text, out t);
+            return t;
+        } 
+    }
+
+    protected double TotalAddTransferPrice
+    {
+        get
+        {
+            return TotalPrice + TransferPrice;
+        }
+    }
     protected int TotalItems
     {
         get;
@@ -158,6 +177,8 @@
                 int userId = D4D.Web.Helper.Helper.GetCookieUserId();
                 if (userId > 0)
                 {
+                    //Bindregion
+                    //BindddlRegion();
 
                     //GetAddress from addInfo,2000 is user address
                     AddInfo aInfo =
@@ -169,6 +190,8 @@
                         litZipCode.Text = aInfo.Info3;
                         litEmail.Text = aInfo.Info4;
                         litMobile.Text = aInfo.Info5;
+                        litRegionId.Text = aInfo.Info6;
+                        litRegionStr.Text = aInfo.Info7;
 
                     }
                     else
@@ -191,6 +214,7 @@
                                     bRedirect = false;
                                     ShopItem shopItem;
                                     Dictionary<int, ShopItem> dicItemPrice = new Dictionary<int, ShopItem>();
+                                    Dictionary<int, int> dicItemCount = new Dictionary<int, int>();
                                     foreach (ShopTradelist t in tradeList)
                                     {
                                         shopItem = null;
@@ -202,11 +226,17 @@
                                             {
                                                 shopItem = JaneShopGateway.JaneShopProvier.GetShopItem(t.ItemId);
                                                 if (shopItem != null)
+                                                {
                                                     dicItemPrice.Add(t.ItemId, shopItem);
+                                                    dicItemCount.Add(t.ItemId, t.ItemCount);
+                                                }
                                             }
                                             else
                                             {
                                                 dicItemPrice.TryGetValue(t.ItemId, out shopItem);
+                                                int currentcount = 0;
+                                                dicItemCount.TryGetValue(t.ItemId, out currentcount);
+                                                dicItemCount[t.ItemId] = currentcount + t.ItemCount;
 
                                             }
 
@@ -215,6 +245,33 @@
                                                 litOrderInfo.Text += shopItem.Name + "x" + t.ItemCount.ToString() + " ";
                                                 TotalPrice += (t.ItemCount * (shopItem.Price));
                                             }
+                                        }
+                                    }
+                                    //compute transfer
+                                    if (string.IsNullOrEmpty(litRegionId.Text))
+                                    {
+                                        Response.Redirect("/order/addr/" + OrderId.ToString() + ".html", true);
+                                        return;
+                                    }
+                                    else
+                                    {
+                                        int regionId;
+                                        int.TryParse(litRegionId.Text, out regionId);
+                                        ShopRegion sr = JaneShopGateway.JaneShopProvier.GetShopRegion(regionId);
+                                        if (sr != null)
+                                        {
+                                            ShopItem tshopItem;
+                                            double trprice = 0;
+                                            foreach (KeyValuePair<int, int> kvp in dicItemCount)
+                                            {
+                                                tshopItem = null;
+                                                if (dicItemPrice.TryGetValue(kvp.Key, out tshopItem))
+                                                {
+                                                    trprice += (sr.TransferPrice *
+                                                        JANE.Shop.Helper.CarriageHelper.Ceiling(kvp.Value, tshopItem.BaseCountEachdeliver));
+                                                }
+                                            }
+                                            litTransferPrice.Text = trprice.ToString(); 
                                         }
                                     }
 
@@ -243,10 +300,17 @@
             string.IsNullOrEmpty(litAddr.Text)||
             string.IsNullOrEmpty(litZipCode.Text)||
             string.IsNullOrEmpty(litEmail.Text)||
-            string.IsNullOrEmpty(litMobile.Text)
+            string.IsNullOrEmpty(litMobile.Text)            
             )
         {
             litInfo.Text = "<span style=\"color: #FF3300;\">请更新送货地址！</span>";
+            return;
+        }
+        
+        if (string.IsNullOrEmpty(litRegionId.Text)
+            || (litRegionId.Text == "0"))
+        {
+            litInfo.Text = "<span style=\"color: #FF3300;\">请更新送货地址,选择送货地域！</span>";
             return;
         }
         
@@ -272,10 +336,18 @@
               sOrder.Mobile = litMobile.Text;
               sOrder.ZipCode = litZipCode.Text;
 
+              int regionId = 0;
+              int.TryParse(litRegionId.Text, out regionId);
+              sOrder.RegionId = regionId;
+              sOrder.RegionStr = litRegionStr.Text;
+              double tPrice = 0;
+              double.TryParse(litTransferPrice.Text, out tPrice);
+              sOrder.Freight = tPrice;
+
               JaneShopGateway.JaneShopProvier.SetShopOrder(sOrder);
               Response.Redirect("/order/finish/"+ OrderId.ToString()+".html");
           }
     
-    }
+    } 
     
 </script>
