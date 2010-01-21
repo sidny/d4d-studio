@@ -50,7 +50,14 @@
 				地    址：  
 		  </div>
 		  <div class="order_confirm_right floatleft">
-		   <asp:TextBox ID="txtAddr" runat="server" CssClass="input01" Width="376px"></asp:TextBox>
+		  <asp:Literal ID="litRegionStr" runat="server" Visible="false"></asp:Literal>
+		  <asp:DropDownList ID="ddlRegion" runat="server" 
+                        onselectedindexchanged="ddlRegion_SelectedIndexChanged" 
+                        AutoPostBack="True">                       
+                        </asp:DropDownList> <asp:DropDownList ID="ddlCity" runat="server">                       
+                        </asp:DropDownList><br />
+		   <asp:TextBox ID="txtAddr" runat="server" CssClass="input01" Width="376px"></asp:TextBox><br />
+		   目前国外还无法到达，请正确选择和填写地址！
 		  </div>
 		  <div class="clear"></div>
 	     </div>		 
@@ -138,6 +145,7 @@
                 int userId = D4D.Web.Helper.Helper.GetCookieUserId();
                 if (userId> 0)
                 {
+                    BindddlRegion();
                     bRedirect = false;
                     //GetAddress from addInfo,2000 is user address
                     AddInfo aInfo =
@@ -149,6 +157,28 @@
                         txtZipCode.Text = aInfo.Info3;
                         txtEmail.Text = aInfo.Info4;
                         txtMobile.Text = aInfo.Info5;
+                        if (!string.IsNullOrEmpty(aInfo.Info6))
+                        {
+                            int regionId = 0;
+                            if (int.TryParse(aInfo.Info6, out regionId))
+                            {
+                                if (regionId > 0)
+                                {
+                                    ShopRegion reg = 
+                                    JaneShopGateway.JaneShopProvier.GetShopRegion(regionId);
+
+                                    if (reg != null&&reg.ParentId>0)
+                                    {
+                                        ddlRegion.SelectedValue = reg.ParentId.ToString();
+                                        BindddlCity(reg.ParentId);
+                                        ddlCity.SelectedValue = regionId.ToString();
+
+                                        litRegionStr.Text = ddlRegion.SelectedItem.Text + " " +
+                                            ddlCity.SelectedItem.Text;
+                                    }
+                                }
+                            }
+                        }
                         
                     }
                 }
@@ -167,6 +197,17 @@
     {
         AddInfo aInfo = new AddInfo();
         aInfo.ObjectType = 2000;
+        if (ddlRegion.SelectedValue == "0")
+        {
+            litInfo.Text = "请选择省直辖市！";
+            return;
+        }
+        if (ddlCity.SelectedValue == "0")
+        {
+            litInfo.Text = "请选择城市！";
+            return;
+        }
+        
         if (string.IsNullOrEmpty(txtName.Text))
         {
             litInfo.Text = "请输入姓名！";
@@ -200,6 +241,11 @@
              aInfo.Info3 = txtZipCode.Text;
              aInfo.Info4 = txtEmail.Text;
              aInfo.Info5 = txtMobile.Text;
+             aInfo.Info6 = ddlCity.SelectedValue;
+             aInfo.Info7 = ddlRegion.SelectedItem.Text + " " +
+                                            ddlCity.SelectedItem.Text;
+            
+            
              aInfo.ObjectId = userId;
 
              D4D.Platform.D4DGateway.AddInfoProvider.SetAddInfo(aInfo);
@@ -208,5 +254,61 @@
                  Response.Redirect("/order/check/" + OrderId.ToString() + ".html");
          }
     
+    }
+
+    private void BindddlRegion()
+    {
+        List<ShopRegion> pList = JaneShopGateway.JaneShopProvier.GetShopRegionsByParentId(0);
+
+        ddlRegion.Items.Clear();
+
+        ddlRegion.Items.Add(new ListItem("请选择", "0"));
+
+        if (pList != null && pList.Count > 0)
+        {
+            foreach (ShopRegion sr in pList)
+            {
+                ddlRegion.Items.Add(new ListItem(sr.Name, sr.Id.ToString()));
+            }
+        }
+        ddlRegion.SelectedIndex = 0;
+    }
+
+    private void BindddlCity(int parentId)
+    {
+        //bind ddlcity
+        List<ShopRegion> pList = JaneShopGateway.JaneShopProvier.GetShopRegionsByParentId(parentId);
+
+        ddlCity.Items.Clear();
+
+        ddlCity.Items.Add(new ListItem("请选择", "0"));
+
+        if (pList != null && pList.Count > 0)
+        {
+            foreach (ShopRegion sr in pList)
+            {
+                ddlCity.Items.Add(new ListItem(sr.Name, sr.Id.ToString()));
+            }
+        }
+       
+    }
+
+    protected int CurrentSelectRegionId
+    {
+        get
+        {
+            int parentId = 0;
+            int.TryParse(ddlRegion.SelectedValue, out parentId);
+            return parentId;
+        }
+    }
+    
+  
+
+    protected void ddlRegion_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+        BindddlCity(CurrentSelectRegionId);
+        ddlCity.SelectedIndex = 0;
     }
 </script>
