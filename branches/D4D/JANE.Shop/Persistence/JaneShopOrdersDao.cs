@@ -38,6 +38,7 @@ namespace JANE.Shop.Persistence
                  parameters.AddWithValue("@username", item.UserName);
                  parameters.AddWithValue("@RegionId", item.RegionId);
                  parameters.AddWithValue("@Freight", item.Freight);
+                 parameters.AddWithValue("@RegionStr", item.RegionStr);
                  parameters.AddWithValue("@RetVal", DBNull.Value, ParameterDirectionWrap.ReturnValue);
 
              },
@@ -87,6 +88,7 @@ namespace JANE.Shop.Persistence
                          m.UserName = record.GetStringOrEmpty(14);
                          m.RegionId = record.GetInt32OrDefault(15, 0);
                          m.Freight = record.GetDouble(16);
+                         m.RegionStr = record.GetStringOrEmpty(17);
                      },
                      id);
             }
@@ -120,6 +122,7 @@ namespace JANE.Shop.Persistence
                           m.UserName = record.GetStringOrEmpty(14);
                           m.RegionId = record.GetInt32OrDefault(15, 0);
                           m.Freight = record.GetDouble(16);
+                          m.RegionStr = record.GetStringOrEmpty(17);
                       },
                       userId);
              }
@@ -146,6 +149,7 @@ namespace JANE.Shop.Persistence
             m.UserName = record.GetStringOrEmpty(14);
             m.RegionId = record.GetInt32OrDefault(15, 0);
             m.Freight = record.GetDouble(16);
+             m.RegionStr = record.GetStringOrEmpty(17);
             list.Add(m);
         }
          internal static List<ShopOrder> GetPagedShopOrder(PagingContext pager, int ordertype)

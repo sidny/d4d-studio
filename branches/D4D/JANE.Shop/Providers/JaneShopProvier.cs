@@ -168,6 +168,10 @@ namespace JANE.Shop.Providers
         {
             return JaneShopRegionDao.GetShopRegionsByParentId(parentId);
         }
+        public Dictionary<int, ShopRegion> GetShopRegions20(List<int> ids)
+        {
+            return JaneShopRegionDao.GetShopRegions20(ids);
+        }
         #endregion
 
 
