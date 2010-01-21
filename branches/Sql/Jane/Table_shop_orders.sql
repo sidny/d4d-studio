@@ -19,7 +19,8 @@ CREATE TABLE [dbo].[shop_orders] (
 	[zipcode] [nvarchar] (50) COLLATE Chinese_PRC_CI_AS NULL ,
 	[username] [nvarchar] (200) COLLATE Chinese_PRC_CI_AS NULL ,
 	[RegionId] [int] NULL ,
-	[Freight] [float] NULL 
+	[Freight] [float] NULL ,
+	[RegionStr] [nvarchar] (100) COLLATE Chinese_PRC_CI_AS NULL 
 ) ON [PRIMARY]
 GO
 

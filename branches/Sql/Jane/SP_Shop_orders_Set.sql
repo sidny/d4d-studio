@@ -18,7 +18,8 @@ CREATE PROCEDURE [dbo].[Shop_orders_Set]
 @zipcode AS NVARCHAR(50), 
     @username AS NVARCHAR(200),
 	@RegionId AS INT = 0,
-	@Freight AS Float = 0    
+	@Freight AS Float = 0 ,
+  	@RegionStr AS NVARCHAR(50) = ''
 AS
 BEGIN
 	
@@ -42,7 +43,8 @@ BEGIN
 				zipcode,
 				username,
 				RegionId,
-				Freight
+				Freight,
+				RegionStr
 			   )
 		 VALUES
 			   (@userid,
@@ -60,7 +62,8 @@ BEGIN
 				@zipcode,
 				@username,
 				@RegionId,
-				@Freight
+				@Freight,
+				@RegionStr
 			 )
 		SET @id = 	 @@IDENTITY 
    END
@@ -71,7 +74,8 @@ BEGIN
     address=@address,email=@email,mobile=@mobile,
     paymoney=paymoney,paytype=@paytype,   payresult=@payresult,
 	 payremark=payremark,paythirdnum=@paythirdnum,   paydate=@paydate,
-   zipcode=@zipcode,username=@username,RegionId=@RegionId,Freight=@Freight
+   zipcode=@zipcode,username=@username,RegionId=@RegionId,Freight=@Freight,
+   RegionStr=@RegionStr
     WHERE id =  @id
    END
 	
