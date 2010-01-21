@@ -116,6 +116,12 @@
                               && sOrder.Id > 0 && (sOrder.Payresult == PayResult.None || sOrder.Payresult == PayResult.PayFaild)
                               )
                           {
+                              if (sOrder.RegionId <= 0)
+                              {
+                                  strMessage = "订单状态错误：请选择送货地域！";
+                                  return;
+                              }
+                              
                                List<ShopTradelist> tradeList = JaneShopGateway.JaneShopProvier.GetShopTradelistByOrderId(OrderId);
                                if (tradeList != null && tradeList.Count > 0)
                                {
@@ -154,7 +160,7 @@
                                            }
                                        }
                                    }//end foreach
-                                   string shopitemDes = sbShopItems.ToString();
+                                   string shopitemDes = sbShopItems.ToString() + " 运费:" + sOrder.Freight.ToString();
                                    if (!string.IsNullOrEmpty(shopitemDes))
                                    {
                                        shopitemDes = "张靓颖官网商品";
@@ -162,6 +168,8 @@
                                    else if (shopitemDes.Length > 350)
                                        shopitemDes = shopitemDes.Substring(0, 350);
                                    #endregion
+
+                                   double TotalAddTransferPrice = TotalPrice + sOrder.Freight;
                                    switch (sOrder.Paytype)
                                    {
                                        case PayType.AliPay:
@@ -177,7 +185,7 @@
                                             "张靓颖官网商品",
                                             shopitemDes,
                                             ((int)AliPaymentType.BuyProduct).ToString(),//1
-                                            TotalPrice.ToString(),
+                                            TotalAddTransferPrice.ToString(),//TotalPrice.ToString(),
                                             "http://cn.janezhang.com",//商品展示链接
                                             aliPayConfig.SellerEmail, //"bd@showcitytimes.net",
                                             aliPayConfig.PartnerKey,
