@@ -65,7 +65,8 @@ BEGIN
      				zipcode,
 				username,
 					RegionId,
-				Freight
+				Freight,
+				RegionStr
 		FROM dbo.shop_orders t WITH(NOLOCK)
 		INNER JOIN @Results r ON  (t.Id = r.Id)	
 		WHERE 

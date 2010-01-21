@@ -23,7 +23,8 @@ BEGIN
 			zipcode,
 				username,
 				RegionId,
-				Freight
+				Freight,
+				RegionStr
     FROM shop_orders With(nolock)
     WHERE id =  @id
  
