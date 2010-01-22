@@ -102,9 +102,8 @@
 		<div class="line_01"></div>
 		<div class="spacer12"></div>
 		<div class="spacer12"></div>
-
-	  	<div style="padding-left:238px;"><asp:LinkButton ID="btnUpdateAddr" CssClass="btn_blue floatleft" runat="server" OnClick="btnUpdateAddr_Click"> <span>更新收货地址</span></asp:LinkButton></div>
-	  <asp:Literal ID="litInfo" runat="server"></asp:Literal>
+<asp:Literal ID="litInfo" runat="server"></asp:Literal>
+	  	<div style="padding-left:238px;"><asp:LinkButton ID="btnUpdateAddr" CssClass="btn_blue floatleft" runat="server" OnClick="btnUpdateAddr_Click"> <span>更新收货地址</span></asp:LinkButton></div>	  
 	  <div class="spacer" style="height:30px"></div>
       
 	  <div class="clear"></div>
@@ -199,38 +198,38 @@
         aInfo.ObjectType = 2000;
         if (ddlRegion.SelectedValue == "0")
         {
-            litInfo.Text = "请选择省直辖市！";
+            litInfo.Text = "<span style=\"color: #FF3300;\">请选择省直辖市！</span>";
             return;
         }
         if (ddlCity.SelectedValue == "0")
         {
-            litInfo.Text = "请选择城市！";
+            litInfo.Text = "<span style=\"color: #FF3300;\">请选择城市！</span>";
             return;
         }
         
         if (string.IsNullOrEmpty(txtName.Text))
         {
-            litInfo.Text = "请输入姓名！";
+            litInfo.Text = "<span style=\"color: #FF3300;\">请输入姓名！</span>";
             return;
         }
         if (string.IsNullOrEmpty(txtAddr.Text))
         {
-            litInfo.Text = "请输入地址！";
+            litInfo.Text = "<span style=\"color: #FF3300;\">请输入地址！</span>";
             return;
         }
         if (string.IsNullOrEmpty(txtZipCode.Text))
         {
-            litInfo.Text = "请输入邮编！";
+            litInfo.Text = "<span style=\"color: #FF3300;\">请输入邮编！</span>";
             return;
         }
         if (string.IsNullOrEmpty(txtEmail.Text))
         {
-            litInfo.Text = "请输入邮箱！";
+            litInfo.Text = "<span style=\"color: #FF3300;\">请输入邮箱！</span>";
             return;
         }
         if (string.IsNullOrEmpty(txtMobile.Text))
         {
-            litInfo.Text = "请输入电话联系方式！";
+            litInfo.Text = "<span style=\"color: #FF3300;\">请输入电话联系方式！</span>";
             return;
         }
         int userId = D4D.Web.Helper.Helper.GetCookieUserId();
