@@ -59,7 +59,8 @@ namespace JANE.Web.Classes.Helper
                     {
                         if (st.ItemId == itemId)
                         {
-                            tradeListItem.ItemCount = tradeListItem.ItemCount + count;
+                            tradeListItem.Id = st.Id;
+                            tradeListItem.ItemCount = st.ItemCount + count;
                             break;
                         }
                     }
