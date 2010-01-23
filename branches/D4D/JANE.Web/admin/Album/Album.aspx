@@ -61,9 +61,6 @@
                       <asp:HiddenField ID="txtAlbumId" runat="server" Value="0" ></asp:HiddenField></td>
                       </tr>
                       <tr>
-                     <th width="100">歌手</th>
-                      <td><asp:DropDownList ID="txtBandId" runat="server"></asp:DropDownList></td>
-                    </tr>
                       <tr>
                      <th width="100">发布日期</th>
                       <td><asp:TextBox ID="txtPublishDate" runat="server" CssClass="has-datepicker"></asp:TextBox></td>
@@ -215,7 +212,6 @@
         {
            addPanel.Visible = false;
             BindList();
-            BindBandList();
         }
     }
     
@@ -227,23 +223,15 @@
         PagingContext pager = new PagingContext();
         pager.CurrentPageNumber = PageIndex;
         pager.RecordsPerPage = PageSize;
-        System.Collections.Generic.IList<Album> list = D4DGateway.AlbumProvider.GetPagedAlbums(pager, PublishStatus.ALL);
+        System.Collections.Generic.IList<Album> list = D4DGateway.AlbumProvider.GetPagedAlbumsByBandId(pager,
+            PublishStatus.ALL, D4D.Web.Helper.Helper.BandId);
         repList.DataSource = list;
         repList.DataBind();
         totalCount = pager.TotalRecordCount;
 
 
     }
-    private void BindBandList()
-    {
-        System.Collections.Generic.List<BandInfo> list = D4DGateway.BandInfoProvider.GetBandInfoList();
-
-        txtBandId.DataSource = list;
-        txtBandId.DataValueField = "BandId";
-        txtBandId.DataTextField = "BandName";
-        txtBandId.DataBind();
-    }
-
+   
     protected void btnUpdate_Click(object sender, EventArgs e)
     {
         Button bt = sender as Button;
@@ -329,7 +317,7 @@
         item.Title = txtTitle.Text;
         item.AddDate = DateTime.Now;
         item.AddUserID = D4D.Web.Helper.AdminHelper.CurrentUser.UserID;
-        item.BandId =Convert.ToInt32( txtBandId.SelectedValue);
+        item.BandId =D4D.Web.Helper.Helper.BandId;
         int result = D4DGateway.AlbumProvider.SetAlbum(item);
 
         D4DGateway.TagsProvider.DeleteTagRelationByObject(result, ObjectTypeDefine.Album);
@@ -372,10 +360,6 @@
     {
         if (item == null) item = new Album();
         txtAlbumId.Value = item.AlbumId.ToString(); 
-        if (item.BandId > 0)
-        {
-            txtBandId.SelectedValue = item.BandId.ToString();
-        }
         txtPublishDate.Text = (item.PublishDate == DateTime.MinValue) ? DateTime.Now.ToLongDateString() : item.PublishDate.ToLongDateString();
         txtLImage.UploadResult = item.LImage;
         txtSImage.UploadResult = item.SImage;
