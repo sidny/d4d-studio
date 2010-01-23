@@ -1,0 +1,114 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="JANE.Web.svc.comments" %>
+using System;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.ServiceModel.Activation;
+using System.ServiceModel.Web;
+using System.Collections.Generic;
+using LTP.Accounts.Bus;
+using D4D.Platform;
+using D4D.Platform.Domain;
+using D4D.Web.Helper;
+using System.Web;
+using System.Net;
+
+namespace JANE.Web.svc
+{
+    [ServiceContract(Namespace = "")]
+    [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
+    public class comments
+    {
+        // Add [WebGet] attribute to use HTTP GET
+        [OperationContract]
+        public void DoWork()
+        {
+            // Add your operation implementation here
+            return;
+        }
+        [OperationContract]
+        [WebGet(RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json)]
+        public CommentList GetList(int p, int size, int type, int id)
+        {
+            CommentList cl = new CommentList();
+            cl.Size = size;
+            cl.Current = p;
+            PagingContext pager = new PagingContext();
+            pager.CurrentPageNumber = p;
+            pager.RecordsPerPage = size;
+            List<Comment> list = D4DGateway.CommentProvider.GetPagedComments(pager, PublishStatus.Publish, id, (ObjectTypeDefine)type);
+            cl.List = (from i in list
+                    select new comment()
+                    {
+                        Id = i.CommentId,
+                        Content = i.Body,
+                        UserName = i.UserName, 
+                        UserId = i.UserId,
+                        AddDate = i.AddDate.ToString("yyyy-MM-dd HH:mm:ss")
+                    }).ToList();
+            cl.TotalCount = pager.TotalRecordCount;
+            return cl;
+        }
+        [OperationContract]
+        [WebInvoke(RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
+        public int Create(string content,int id, int type )
+        {
+            if (!Helper.IsDizLogin) return -1;
+            if (Helper.DizUser.Groupid == 4) return -2; //same to bbs
+            if (string.IsNullOrEmpty(content) || id == null || type == null) return 0;
+            try
+            {
+                DiscuzShortUserInfo user = Helper.DizUser;
+                return D4DGateway.CommentProvider.InsertComment(new Comment()
+                {
+                    ObjectId = id,
+                    ObjectType = (ObjectTypeDefine)type,
+                    Body =  D4D.Platform.Helper.SpamKeywordHelper.FilterContent( content),
+                    AddDate = DateTime.Now,
+                    UserId = user.Uid,
+                    AddUserID = user.Uid,
+                    UserName = user.Username,
+                    Status = PublishStatus.Publish
+                });
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
+        [OperationContract]
+        [WebGet(RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
+        public int Delete(int id)
+        {
+            if (AdminHelper.CurrentUser == null || AdminHelper.CurrentUser.UserType.Trim() != ((int)UserType.Type.Admin).ToString()) return -1;
+            if (id == null) return 0;
+            try
+            {
+                 D4DGateway.CommentProvider.DeleteComment(id);
+                 return 1;
+                
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
+        public struct comment
+        {
+            public int Id;
+            public string Content;
+            public string UserName;
+            public int UserId;
+            public string AddDate;
+        }
+
+        public struct CommentList
+        {
+            public IList<comment> List;
+            public int TotalCount;
+            public int Size;
+            public int Current;
+        }
+        // Add more operations here and mark them with [OperationContract]
+    }
+}

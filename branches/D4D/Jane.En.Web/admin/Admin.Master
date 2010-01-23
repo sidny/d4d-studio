@@ -1,0 +1,33 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="D4D.Web.admin.Admin" %>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <title></title>
+    <script type="text/javascript" src="/static/js/jquery-1.3.2.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.datepicker.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.pagination.js"></script>
+    <link href="/admin/Style.css" type="text/css" rel="stylesheet" />
+    <link href="/static/themes/base/ui.all.css" type="text/css" rel="stylesheet" />
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".has-datepicker").datepicker();
+        });
+    </script>
+</head>
+<body>
+<asp:ContentPlaceHolder ID="ContentBody" runat="server">
+        
+</asp:ContentPlaceHolder>
+<asp:Panel runat="server" ID="failPanel" Visible="false">
+    <script type="text/javascript">
+        top.location = "/admin/";
+    </script>
+</asp:Panel>
+</body>
+</html>
