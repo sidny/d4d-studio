@@ -139,16 +139,7 @@
 			
                     </td>
                 </tr>
-                <tr>
-                    <th width="100">
-                        ∏Ë ÷
-                    </th>
-                    <td>
-                        <asp:DropDownList ID="txtBandId" runat="server">
-                        </asp:DropDownList>
-                    </td>
-                </tr>
-                <tr>
+                               <tr>
                     <th width="100">
                         »’∆⁄
                     </th>
@@ -338,7 +329,6 @@
         {
             addPanel.Visible = false;
             BindList();
-            BindBandList();
             txtBody.ToolbarSet = "ShowCity";
         }
     }
@@ -355,22 +345,13 @@
       
         
         System.Collections.Generic.IList<News> list =
-            D4DGateway.NewsProvider.GetPagedNews(pager, PublishStatus.ALL,
-            (NewsRemarkType)iNewsRemarkType);
+            D4DGateway.NewsProvider.GetPagedNewsByNewsType(pager,(BandType)D4D.Web.Helper.Helper.BandId,PublishStatus.ALL,(NewsRemarkType)iNewsRemarkType);
         repList.DataSource = list;
         repList.DataBind();
         totalCount = pager.TotalRecordCount;
 
     }
-    private void BindBandList()
-    {
-        System.Collections.Generic.List<BandInfo> list = D4DGateway.BandInfoProvider.GetBandInfoList(true);
-
-        txtBandId.DataSource = list;
-        txtBandId.DataValueField = "BandId";
-        txtBandId.DataTextField = "BandName";
-        txtBandId.DataBind();
-    }
+   
 
     protected void btnUpdate_Click(object sender, EventArgs e)
     {
@@ -451,6 +432,7 @@
         item.NewsId = id;
         DateTime date = DateTime.MinValue;
         DateTime.TryParse(txtPublishDate.Text, out date);
+        item.NewsType = D4D.Web.Helper.Helper.BandId;
         item.PublishDate = date;
 
         if (string.IsNullOrEmpty(txtSImage.UploadResult) && !string.IsNullOrEmpty(txtLImage.ThumbnailImage))
@@ -459,7 +441,6 @@
             item.SImage = txtSImage.UploadResult;
 
         item.SImage = txtSImage.UploadResult;
-        item.NewsType = Convert.ToInt32(txtBandId.SelectedValue);
         item.Hits = Convert.ToInt32(txtHits.Value);
         if (txtStatus.Checked) item.Status = PublishStatus.Publish;
         item.Title = txtTitle.Text;
@@ -515,8 +496,6 @@
     {
         if (item == null) item = new News();
         txtNewsId.Value = item.NewsId.ToString();
-
-        txtBandId.SelectedValue = item.NewsType.ToString();
         txtHits.Value = item.Hits.ToString();
 
         txtPublishDate.Text = (item.PublishDate == DateTime.MinValue) ? DateTime.Now.ToLongDateString() : item.PublishDate.ToLongDateString();

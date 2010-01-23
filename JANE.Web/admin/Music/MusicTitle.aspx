@@ -23,13 +23,7 @@
                      <th width="100">专辑描述</th>
                       <td><asp:TextBox ID="txtBody" runat="server" Width="500px"></asp:TextBox></td>
                     </tr>
-                     <tr>
-                     <th align="center" width="100">歌手</th>
-                      <td>
-                          <asp:DropDownList ID="bandIdList" runat="server">
-                          </asp:DropDownList>
-                         </td>
-                    </tr>
+                  
                      <tr>
                      <th align="center" width="100">发布状态</th>
                       <td>
@@ -181,28 +175,17 @@
         {
             addPanel.Visible = false;
             BindMusicTitleRep(PageIndex);
-            BindBandList();
             labCurrentPage.Text = PageIndex.ToString();
         }
     }
 
-    private void BindBandList()
-    {
-        List<BandInfo> list = D4DGateway.BandInfoProvider.GetBandInfoList();
-
-        bandIdList.DataSource = list;
-        bandIdList.DataValueField = "BandId";
-        bandIdList.DataTextField = "BandName";
-        bandIdList.DataBind();
-    }
 
     private void BindMusicTitleRep(int pageIndex)
     {
         PagingContext pager = new PagingContext();
         pager.RecordsPerPage = PageSize;
         pager.CurrentPageNumber = pageIndex;
-        repMusicTitle.DataSource = D4DGateway.MusicProvider.GetPagedMusicTitles(pager,
-            PublishStatus.ALL);
+        repMusicTitle.DataSource = D4DGateway.MusicProvider.GetPagedMusicTitlesByBandId(pager,D4D.Web.Helper.Helper.BandId,PublishStatus.ALL);
         repMusicTitle.DataBind();
         totalCount = pager.TotalRecordCount;
 
@@ -236,7 +219,6 @@
                 txtPublishDate.Text = musicTitle.PublishDate.ToLongDateString();
                 txtTitle.Text = musicTitle.Title;
                 txtBody.Text = musicTitle.Body;
-                bandIdList.SelectedValue = musicTitle.BandId.ToString();
                 addPanel.Visible = true;
                 listPanel.Visible = false;
                 btnAdd.Text = "更新";
@@ -306,8 +288,7 @@
         int.TryParse(txtMusicId.Value, out musicId);
         m.MusicId = musicId;
         int bandId = 1;
-        int.TryParse(bandIdList.SelectedValue, out bandId);
-        m.BandId = bandId;
+        m.BandId = D4D.Web.Helper.Helper.BandId;
         User currentUser = Session["UserInfo"] as User;
         m.AddUserID = currentUser.UserID;
         DateTime date = DateTime.Now;
@@ -345,7 +326,6 @@
         txtPublishDate.Text = DateTime.Now.ToLongDateString();
         txtTitle.Text = "";
         txtBody.Text = "";
-        bandIdList.SelectedIndex = 0;
         txtJoyo.Text = "";
         txtDangDang.Text = "";
         addPanel.Visible = true;

@@ -3,6 +3,7 @@
 <%@ Import Namespace="D4D.Platform.Domain" %>
 <%@ Import Namespace=" D4D.Platform" %>
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="header">
+<meta name="Description" content="张靓颖官方网站是张靓颖个人拥有和唯一授权的官方站点。在这里，有张靓颖的最新资讯、行程、音乐、视频、图片、论坛和商城。" /> 
 <style type="text/css">
 .main{ width:100%; position:relative;z-index:10}
 .news-list{position: absolute; top: 100px; width: 342px; left: 523px;}
