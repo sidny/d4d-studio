@@ -69,11 +69,6 @@
                      <th align="center" width="100">LImage</th>
                       <td><uc1:FileUpload ID="txtLImage" runat="server" /></td>
                     </tr>
-                     <tr>
-                     <th align="center" width="100">BandId</th>
-                      <td><asp:DropDownList ID="txtBandId" runat="server">
-                          </asp:DropDownList></td>
-                    </tr>
                     <tr>
                      <th width="100">开始日期</th>
                       <td><asp:TextBox ID="txtShowDate" runat="server" CssClass="has-datepicker"></asp:TextBox></td>
@@ -164,7 +159,6 @@ protected int PageIndex
         {
             addPanel.Visible = false;
             BindList();
-            BindBandList();
         }
     }
 
@@ -174,21 +168,13 @@ protected int PageIndex
         PagingContext pager = new PagingContext();
         pager.RecordsPerPage = PageSize;
         pager.CurrentPageNumber = PageIndex;
-        System.Collections.Generic.IList<Show> list = D4DGateway.ShowProvider.GetPagedShow(pager,PublishStatus.ALL);
+        System.Collections.Generic.IList<Show> list = D4DGateway.ShowProvider.GetPagedShowByBandId(pager, D4D.Web.Helper.Helper.BandId,PublishStatus.ALL);
         repList.DataSource = list;
         totalCount = pager.TotalRecordCount;
         repList.DataBind();
 
     }
-    private void BindBandList()
-    {
-        System.Collections.Generic.List<BandInfo> list = D4DGateway.BandInfoProvider.GetBandInfoList();
-
-        txtBandId.DataSource = list;
-        txtBandId.DataValueField = "BandId";
-        txtBandId.DataTextField = "BandName";
-        txtBandId.DataBind();
-    }
+    
 
     protected void btnUpdate_Click(object sender, EventArgs e)
     {
@@ -256,9 +242,8 @@ protected int PageIndex
         int id = 0;
         int.TryParse(txtShowId.Value, out id);
         item.ShowId = id;
-        int.TryParse(txtBandId.SelectedValue, out id);
-        item.BandId = id;
         item.Body = txtBody.Text;
+        item.BandId = D4D.Web.Helper.Helper.BandId;
         DateTime date = DateTime.MinValue;    
         DateTime.TryParse(txtShowDate.Text, out date);
         item.ShowDate = date;
@@ -289,10 +274,7 @@ protected int PageIndex
     {
         if (item == null) item = new Show();
         txtShowId.Value = item.ShowId.ToString();
-        if (item.BandId > 0)
-        {
-            txtBandId.SelectedValue = item.BandId.ToString();
-        }
+       
         txtBody.Text =  item.Body;
         txtEndDate.Text = (item.EndDate == DateTime.MinValue) ? DateTime.Now.ToLongDateString() : item.EndDate.ToLongDateString();
         txtShowDate.Text = (item.ShowDate == DateTime.MinValue) ? DateTime.Now.ToLongDateString() : item.ShowDate.ToLongDateString();
