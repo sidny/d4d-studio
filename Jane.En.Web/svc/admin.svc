@@ -1,0 +1,79 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="JANE.Web.svc.admin" %>
+using System;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.ServiceModel.Activation;
+using System.ServiceModel.Web;
+using LTP.Accounts.Data;
+using System.Data;
+using System.Collections.Generic;
+
+namespace JANE.Web.svc
+{
+    [ServiceContract(Namespace = "")]
+    [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
+    public class admin
+    {
+        // Add [WebGet] attribute to use HTTP GET
+        [OperationContract]
+        public void DoWork()
+        {
+            // Add your operation implementation here
+            return;
+        }
+
+        [OperationContract]
+        [WebGet(RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
+        public IList<SvcPermission> GetPermission(int catId)
+        {
+
+            PermissionCategory pc = new PermissionCategory();
+            DataTable dt = pc.GetPermissionsInCategory(catId).Tables[0];
+            IList<SvcPermission> plist = new List<SvcPermission>();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                DataRow dr = dt.Rows[i];
+                SvcPermission sp = new SvcPermission();
+                sp.Id = (int)dr["PermissionID"];
+                sp.Desc = (string)dr["Description"];
+                sp.Url = (string)dr["Url"];
+                plist.Add(sp);
+            }
+            return plist;
+        }
+        [OperationContract]
+        [WebGet(RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
+        public IList<JSONTag> GetTag()
+        {
+            D4D.Platform.Domain.PagingContext pager = new D4D.Platform.Domain.PagingContext();
+            pager.CurrentPageNumber = 1;
+            pager.RecordsPerPage = 100;
+            IList<D4D.Platform.Domain.Tag> list = D4D.Platform.D4DGateway.TagsProvider.GetPagedTags(pager);
+
+            return (from item in list
+                    select new JSONTag()
+                    {
+                        Id = item.TagId,
+                        Text = item.TagName
+                    }).ToList();
+        }
+
+
+
+        // Add more operations here and mark them with [OperationContract]
+    }
+
+    public struct SvcPermission
+    {
+        public int Id;
+        public String Desc;
+        public String Url;
+    }
+    public struct JSONTag
+    {
+        public int Id;
+        public String Text;
+    }
+   
+}
