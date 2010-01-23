@@ -1,0 +1,73 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="JANE.Web.svc.user"  %>
+using System;
+using System.Linq;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.ServiceModel.Activation;
+using System.ServiceModel.Web;
+using D4D.Platform;
+using D4D.Platform.Domain;
+using System.Web;
+using System.Net;
+
+namespace JANE.Web.svc
+{
+    [ServiceContract(Namespace = "",SessionMode=SessionMode.Allowed)]
+    [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
+    [ServiceBehavior(IncludeExceptionDetailInFaults=true)]
+    public class user
+    {
+       
+        public user(){
+          
+        }
+        // Add [WebGet] attribute to use HTTP GET
+        [OperationContract]
+        public void DoWork()
+        {
+            // Add your operation implementation here
+            return;
+        }
+
+        [OperationContract]
+        [WebGet(RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
+        public bool CheckUserName(string username)
+        {
+            return (0 < DiscuzGateway.DiscuzAccountProvider.GetUserIdByUserName(username));
+        }
+
+        [OperationContract]
+        [WebGet(RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
+        public LoginInfo Login(string username, string password)
+        {
+            if (string.IsNullOrEmpty(key))
+            {
+                return new LoginInfo();
+            }
+            LoginInfo userinfo = new LoginInfo();
+            userinfo.UserId = DiscuzGateway.DiscuzAccountProvider.CheckPassword(username, password, true);
+            if (userinfo.UserId > 0)
+            {
+                userinfo.UserName = username;
+                DiscuzShortUserInfo dsui = DiscuzGateway.DiscuzAccountProvider.GetShortUserInfo(userinfo.UserId);
+                D4D.Platform.Helper.Discuz.DiscuzHelper.WriteUserCookie(dsui, 60 * 24, key);
+            }
+            return userinfo;
+        }
+        [OperationContract]
+        [WebGet(RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest, ResponseFormat = WebMessageFormat.Json)]
+        public Boolean LoginOut()
+        {
+            D4D.Platform.Helper.Discuz.DiscuzHelper.ClearUserCookie();
+            return true;
+              
+        }
+        
+        public struct LoginInfo{
+            public int UserId;
+            public string UserName;   
+        }
+
+        protected static string key = System.Configuration.ConfigurationManager.AppSettings["DiscuzKey"];
+    }
+}
