@@ -15,13 +15,13 @@
         <ul class="journey_month_title">
         </ul>
         <ul class="journey_week_title">
-          <li class="floatleft">日</li>
-          <li class="floatleft">一</li>
-          <li class="floatleft">二</li>
-          <li class="floatleft">三</li>
-          <li class="floatleft">四</li>
-          <li class="floatleft">五</li>
-          <li class="floatleft">六</li>
+          <li class="floatleft">Sun</li>
+          <li class="floatleft">Mon</li>
+          <li class="floatleft">Tue</li>
+          <li class="floatleft">Wed</li>
+          <li class="floatleft">Thu</li>
+          <li class="floatleft">Fri</li>
+          <li class="floatleft">Sat</li>
         </ul>
         <ul class="journey_month_date">
         </ul>
@@ -34,15 +34,15 @@
         <div class="w_562 h_578">
           <div class="spacer" style="height:36px"></div>
           <div class="cd_title journey_title">
-            <h1 class="font24 floatleft blue">行程<span>-<%=sDate.ToString("yyyy年M月") %></span></h1>
+            <h1 class="font24 floatleft blue">Calendar<span>-<%=sDate.ToString("yyyy/M") %></span></h1>
           </div>
           <div class="spacer" style="height:20px"></div>
           <div class="journey_table">
             <div class="journey_table_title">
-              <div class="wid_90">时间</div>
-              <div class="wid_93">地点</div>
-              <div class="wid_130">活动名称</div>
-              <div class="wid_210">活动说明</div>
+              <div class="wid_90">Time</div>
+              <div class="wid_93">Location</div>
+              <div class="wid_130">Event</div>
+              <div class="wid_210">Description</div>
             </div>
             <div id="calender">
               <asp:Repeater ID="repList" runat="server">
@@ -81,8 +81,6 @@
                     items_per_page: pageSize,
                     num_display_entries: 10,
                     current_page: cur - 1,
-                    prev_text: "上一页",
-                    next_text: "下一页",
                     callback: function(page) { 
 						$rows.hide();
 						for(var i = 0;i<pageSize ;i++){
@@ -111,9 +109,9 @@
         month = firstday.getMonth() + 1;
         var t = "<li class=\"blue\" onclick=\"showlist({1},this);return false;\">{0}</li>";
         var reg = /{(\d)}/gi;
-        $(".journey_month_title").html('<li class="floatleft journey_month_up"><a href="/calender/d'+(getMonthString(lastMonth))+'.html">'+(lastMonth.getMonth()+1)+'月</a></li>'
-                  +'<li class="floatleft journey_month_today">'+firstday.getFullYear() + '年'+ (firstday.getMonth() + 1)+ '月'+'</li>'
-                  +'<li class="floatleft journey_month_next"><a href="/calender/d'+(getMonthString(nextMonth))+'.html">'+(nextMonth.getMonth()+1)+'月</a></li>');
+        $(".journey_month_title").html('<li class="floatleft journey_month_up"><a href="/calender/d'+(getMonthString(lastMonth))+'.html">'+(lastMonth.getMonth()+1)+'</a></li>'
+                  +'<li class="floatleft journey_month_today">'+firstday.getFullYear() + '/'+ (firstday.getMonth() + 1)+'</li>'
+                  +'<li class="floatleft journey_month_next"><a href="/calender/d'+(getMonthString(nextMonth))+'.html">'+(nextMonth.getMonth()+1)+'</a></li>');
                   
         var str = "";
         for (var i = 0; i < firstday.getDay(); i++) {
@@ -262,7 +260,7 @@ protected int PageIndex
     {
         if (DateTime.Now > ((Show)o).EndDate.AddDays(1))
         {
-            return "<br/><font style=\"color:#bbb\">已过期</font>";
+            return "<br/><font style=\"color:#bbb\">Expired</font>";
         }
         else
         {

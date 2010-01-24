@@ -12,7 +12,7 @@
   <div class="cd_right_902">
     <div class="w_782 h_578">
       <div class="spacer" style="height:46px"></div>
-	  <div class="cd_title" style="width:782px; background-repeat:repeat"><h1 class="floatleft font24 blue">音乐</h1></div>
+	  <div class="cd_title" style="width:782px; background-repeat:repeat"><h1 class="floatleft font24 blue">Music</h1></div>
 	  <div class="spacer" style="height:40px"></div>
        <ul class="cd_list_01">
        <%for(int i = 0;i<musicList.Count;i++){
@@ -30,15 +30,15 @@
 		    <p><%=GetDate(item.PublishDate)%></p>
 		    <div class="clear" style="height:4px"></div>
 		    <div>
-                <a href="<%=GetUrl(item.MusicId,2) %>" class="btn_play">播放此专辑</a>
+                <a href="<%=GetUrl(item.MusicId,2) %>" class="btn_play">PlayAll</a>
                 <%if (!string.IsNullOrEmpty(info.Info1)){ %>
                 <div class="vspacer"></div>
-                <a href="<%=info.Info1%>" class="btn_gray floatleft"><span class="floatleft">amazon购买</span></a>
+                <a href="<%=info.Info1%>" class="btn_gray floatleft"><span class="floatleft">Amazon</span></a>
                 <%}
                     if(!string.IsNullOrEmpty(info.Info2)){
                  %>
                 <div class="vspacer"></div>
-                <a href="<%=info.Info2%>" class="btn_gray floatleft"><span class="floatleft">当当购买</span></a> <%} %>
+                <a href="<%=info.Info2%>" class="btn_gray floatleft"><span class="floatleft">DangDang</span></a> <%} %>
             </div>
             </div>
            </li>
@@ -100,7 +100,7 @@
 		if(date.Year > 2000)
         return date.ToString("yyyy-MM-d");
 		else
-			return "未发行";
+			return "Unpublished";
     }
     private static bool IsRewrite
     {

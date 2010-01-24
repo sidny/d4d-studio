@@ -27,23 +27,23 @@
  	<span class="search_form">
     	<form action="/search.html" method="get">
     	<input type="text" name="s" style="height:18px; line-height:18px; border:1px solid #c8c8c8; color:#333" />
-        <input type="image" src="/static/images/search/search_btn.gif" align="absmiddle"/>
+        <input type="submit" style="border:1px solid #CCC; height:20px;" value="search"/>
         </form>
     </span> 
    <%if (Helper.IsDizLogin != true)
           { %>
-  <a href="#" id="btnLogin">登录</a> | <a href="http://bbs.janezhang.com/register.aspx?agree=yes">注册</a>
+  <a href="#" id="btnLogin">Login</a> | <a href="http://bbs.janezhang.com/register.aspx?agree=yes">Regist</a>
   <div style="display:none"><div class="login" id="loginForm">
     <iframe style="width:398px; height:240px; position:absolute;z-index:-1; top:0; left:0; border:0;"></iframe>
     <form action="/svc/user.svc/Login">
 	  <div class="login_title">
-		<h1 class="font14">登录张靓颖官方网站</h1>
-		<span onclick="$.unblockUI()"><img src="/static/images/ico_close_01.gif" /></span>
+		<h1 class="font14">Login JaneZhang Official WebSite</h1>
+		<span onclick="$.unblockUI()"><img src="http://cn.janezhang.com/static/images/ico_close_01.gif" /></span>
 	  </div>
 	  <div class="spacer" style="height:30px"></div>
 	  <div class="login_row">
 		<div class="login_row_name font14 floatleft">
-		  用户名：
+		  UserName：
 		</div>
 		<div class="login_row_con floatright">
 			<input type="text" name="username" style="width:180px; height:16px;line-height:16px;" class="input_02 font14" />
@@ -54,7 +54,7 @@
 	  <div class="spacer"></div>
 	  <div class="login_row">
 		<div class="login_row_name font14 floatleft">
-		  密&nbsp;&nbsp;码：
+		  PassWord：
 		</div>
 		<div class="login_row_con floatright">
 			<input type="password" name="password" style="width:180px; height:16px;line-height:16px;" class="input_02 font14" />
@@ -69,9 +69,9 @@
 		 &nbsp;
 		</div>
 		<div class="login_row_con floatright">
-			<a href="#" id="btn-login-submit" class="btn_blue floatleft"><span>登录</span></a>
+			<a href="#" id="btn-login-submit" class="btn_blue floatleft"><span>Login</span></a>
 			<div class="vspacer"></div>
-			<div class="floatleft" style="line-height:20px"><a href="http://bbs.janezhang.com/register.aspx?agree=yes">立即注册</a> | <a href="http://bbs.janezhang.com/getpassword.aspx">忘记密码</a></div>	
+			<div class="floatleft" style="line-height:20px"><a href="http://bbs.janezhang.com/register.aspx?agree=yes">Regist</a> | <a href="http://bbs.janezhang.com/getpassword.aspx">forgot pw</a></div>	
 		</div>
 		<div class="clear"></div>
 	  </div>
@@ -87,9 +87,9 @@
    <%}
           else
           { %>
-          <label><%=Helper.GetCookieUserName() %></label> | <a href="#" id="logout">退出登录</a>
+          <label><%=Helper.GetCookieUserName() %></label> | <a href="#" id="logout">Logout</a>
         <%} %>
-| <a href="#">语言选择</a><img src="/static/images/ico_arrow.gif" align="absmiddle" />
+| <a href="#">Language</a><img src="http://cn.janezhang.com/static/images/ico_arrow.gif" align="absmiddle" />
   </div>
   <div>
   <script type="text/javascript">

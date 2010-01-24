@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" %>
 <div id="pager" class="pages_num"></div>
-<div id="jumper" style="width:160px; margin: 5px auto;"><div class="floatleft">跳转至 <input size="1" maxlength="2" type="text"/> 页　</div>
+<div id="jumper" style="width:160px; margin: 5px auto;"><div class="floatleft">To <input size="1" maxlength="2" type="text"/> Page　</div>
 <span id="go" style="margin-left:10px;" class="btn_blue floatleft"><span>GO</span></span>
 </div>
 <script type="text/javascript">
@@ -31,8 +31,6 @@
                     current_page: cur - 1,
                     num_edge_entries: 1,
                     link_to: href,
-                    prev_text: "上一页",
-                    next_text: "下一页",
                     callback: function(id) {
                         return true;
                     }

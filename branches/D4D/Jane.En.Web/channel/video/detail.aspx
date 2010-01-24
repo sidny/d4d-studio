@@ -10,8 +10,8 @@
     <div class="w_562 h_578">
       <div class="spacer" style="height:36px"></div>
       <div class="cd_title news_title" style="margin-bottom:10px;">
-        <div class="floatright alginright"><a href="/video.html">返回视频首页</a></div>
-        <span class="font18">全部视频</span>
+        <div class="floatright alginright"><a href="/video.html">Return</a></div>
+        <span class="font18">All Video</span>
 		</div>
 	  <div class="cd_title video_title font24">
       <h1 class="font24" style="width:99%; text-align:center"><%=CurrentNews.Title%></h1>
@@ -24,12 +24,12 @@
 	  <div class="spacer"></div>
 	  <div class="spacer"></div>
 	  <div class="video_play_bar">
-	    <div class="video_play_bar_tag floatleft deepblue"><%=GetTagHtml(CurrentNews.NewsId)%></div>
-	    <div class="video_play_bar_commend floatright">
+	    <div class="video_play_bar_tag floatleft deepblue" style="width:50%"><%=GetTagHtml(CurrentNews.NewsId)%></div>
+	    <div class="video_play_bar_commend floatright" style="width:50%">
 		
-		<a href="/video/c/<%=NewsId %>.html" class="btn_gray floatleft"><span>发表评论</span></a>
+		<a href="/video/c/<%=NewsId %>.html" class="btn_gray floatleft"><span>Comment This</span></a>
 		<div class="vspacer"></div>
-		<a href="/video/c/<%=NewsId %>.html" class="btn_gray floatleft"><span>评论（<%=CommentsCount%>条）</span></a>
+		<a href="/video/c/<%=NewsId %>.html" class="btn_gray floatleft"><span>Comments（<%=CommentsCount%>）</span></a>
 		</div>
 	  </div>
 	  <div class="spacer" style="height:20px"></div>
@@ -148,7 +148,7 @@
             if (TagYear <= 1900) return string.Empty;
             if (TagMonth > 12 && TagMonth <= 0) return string.Empty;
 
-            return string.Format("{0}年{1}月", TagYear, TagMonth);
+            return string.Format("{0}/{1}/", TagYear, TagMonth);
         }
     }
 
@@ -182,7 +182,7 @@
         }
     }
     
-    private const string TitleFormat = "{0}新闻";
+    private const string TitleFormat = "{0}";
     private const string TitleTagFormat = "/<font color=\"red\">{0}</font>";
    
     protected static News CurrentNews;
@@ -232,7 +232,7 @@
     }
     
     
-    private const string TagEmFormat = "标签：{0}";
+    private const string TagEmFormat = "Tag：{0}";
     private const string AFormat = "<a href=\"{0}\">{1}</a>";
     private const string TagLinkFormat = "/channel/video/index.aspx?id={0}&tagid={1}&tag={2}";
    
