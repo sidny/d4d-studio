@@ -6,7 +6,7 @@
 <asp:Content ContentPlaceHolderID="ContentHeader" runat="server" ID="ContentHeader">
   <script src="/static/js/jquery.ad-gallery.js" type="text/javascript"></script>
   <style type="text/css">
-@import "/static/jquery.ad-gallery.css";
+@import "http://cn.janezhang.com/static/jquery.ad-gallery.css";
 .ad-controls p.ad-info {
 	text-align: center;
 	float: none;
@@ -22,10 +22,10 @@
       <div class="w_562 h_578">
         <div class="spacer" style="height: 36px"> </div>
         <div class="cd_title pic_title">
-          <h1 class="font24 floatleft blue">图片<span>- <%=CurrentAlbum.Title%></span></h1>
+          <h1 class="font24 floatleft blue">Photos<span>- <%=CurrentAlbum.Title%></span></h1>
           <div class="floatright alginright">
             <div class="spacer4"> </div>
-            <a href="/photo.html">&lt;&lt;返回图片</a> </div>
+            <a href="/photo.html">&lt;&lt;return</a> </div>
         </div>
         <div class="spacer" style="height: 40px"> </div>
         <div class="ad-gallery" id="gallery">
@@ -55,14 +55,14 @@
         </div>
         <script type="text/javascript">
         $(document).ready(function() {
-            var galleries = $('.ad-gallery').adGallery({ loader_image: "/static/images/album/loader.gif",start_at_index:<%=startIndex %>});
+            var galleries = $('.ad-gallery').adGallery({ loader_image: "http://cn.janezhang.com/static/images/album/loader.gif",start_at_index:<%=startIndex %>});
         });
     </script>
         <div class="spacer" style="height:35px"></div>
         <div class="video_play_bar">
-          <div class="video_play_bar_commend floatright"> <a href="/photo/c/<%=AlbumId %>.html" class="btn_gray floatleft"><span>发表评论</span></a>
+          <div class="video_play_bar_commend floatright" style="width:50%"> <a href="/photo/c/<%=AlbumId %>.html" class="btn_gray floatleft"><span>Comment This</span></a>
             <div class="vspacer"></div>
-            <a href="/photo/c/<%=AlbumId %>.html" class="btn_gray floatleft"><span>评论（<%=CommentsCount %>条）</span></a> </div>
+            <a href="/photo/c/<%=AlbumId %>.html" class="btn_gray floatleft"><span>Comments（<%=CommentsCount %>）</span></a> </div>
         </div>
         <div class="spacer" style="height:50px"></div>
         <div class="clear"></div>

@@ -12,8 +12,8 @@
     <div class="w_562 h_578">
       <div class="spacer" style="height:36px"></div>
 	  <div class="cd_title news_title" style="margin-bottom:10px;">
-         <div class="floatright alginright"><a href="/news.html">返回资讯首页</a></div>
-         <span class="font18">全部资讯</span>
+         <div class="floatright alginright"><a href="/news.html">return</a></div>
+         <span class="font18">ALL News</span>
       </div>
 	  <div class="cd_title news_con_title">
 	  	<h1 class="font24 blue"><%=CurrentNews.Title%></h1>
@@ -33,17 +33,17 @@
     <div class="spacer"></div>
 	  <div class="spacer"></div>
 	  <div class="video_play_bar">
-	    <div class="video_play_bar_tag floatleft deepblue"><%=GetTagHtml(CurrentNews.NewsId)%></div>
-	    <div class="video_play_bar_commend floatright">
+	    <div class="video_play_bar_tag floatleft deepblue" style="width:50%;"><%=GetTagHtml(CurrentNews.NewsId)%></div>
+	    <div class="video_play_bar_commend floatright" style="width:50%;">
 		
-		<a href="/news/c/<%=NewsId %>.html" class="btn_gray floatleft"><span>发表评论</span></a>
+		<a href="/news/c/<%=NewsId %>.html" class="btn_gray floatleft"><span>Comment This</span></a>
 		<div class="vspacer"></div>
-		<a href="/news/c/<%=NewsId %>.html" class="btn_gray floatleft"><span>评论（<%=CommentsCount%>条）</span></a>
+		<a href="/news/c/<%=NewsId %>.html" class="btn_gray floatleft"><span>Comments（<%=CommentsCount%>）</span></a>
 		</div>
 	  </div>	  
      <div style="border-top:1px solid #dad7d5; padding:30px 0 30px 0; line-height:20px; margin-top:20px">   <%for(int i=0;i<NextPrev.Count;i++){
       News news = NextPrev[i];%>
-    <p><%if( news.NewsId > CurrentNews.NewsId){%>上一条<%}else{ %>下一条<%} %> ：<a href="/news/d/<%= news.NewsId%>.html"><%= news.Title%></a> &nbsp;&nbsp; <%= news.PublishDate.ToString("yyyy-MM-dd")%></p>
+    <p><%if( news.NewsId > CurrentNews.NewsId){%>Prev<%}else{ %>Next<%} %> ：<a href="/news/d/<%= news.NewsId%>.html"><%= news.Title%></a> &nbsp;&nbsp; <%= news.PublishDate.ToString("yyyy-MM-dd")%></p>
     <%} %>
     </div> 
     </div>
@@ -195,7 +195,7 @@ protected void Page_Load(object sender, EventArgs e)
     */
 }
 
-private const string TitleFormat = "{0}新闻";
+private const string TitleFormat = "{0}";
 private const string TitleTagFormat = "/<font color=\"red\">{0}</font>";
 private void SetTitle()
 {
@@ -272,7 +272,7 @@ private string GetTagHtml(int newsId, bool addHist)
     return result;
 }
 
-private const string TagEmFormat = "标签：{0}";
+private const string TagEmFormat = "Tag：{0}";
 private const string AFormat = "<a href=\"{0}\">{1}</a>";
 private const string TagLinkFormat = "/channel/news/news.aspx?id={0}&tagid={1}&tag={2}";
 protected void repList_ItemDataBound(object sender, RepeaterItemEventArgs e)

@@ -15,7 +15,7 @@
 		padding-bottom:50px;
 	}
 	.main .right_1100{
-		background-image:url(/static/images/cd_right_img_search.jpg);
+		background-image:url(http://cn.janezhang.com/static/images/cd_right_img_search.jpg);
 	}
 	.main .no-result{
 		font-size:24px; font-size:24px; font-family:'Microsoft YaHei'; text-align:center; line-height:1em;
@@ -36,7 +36,7 @@
       <div class="search w_782 h_578">
         <div class="search-nav">
           <div style="width:120px; height:24px; float:left">
-            <label style="float:left;color:#6E8600; width:100px; font-size:24px; font-family:'Microsoft YaHei'; line-height:24px; height:24px; margin-top:-10px; position:absolute">搜索结果</label>
+            <label style="float:left;color:#6E8600; width:100px; font-size:24px; font-family:'Microsoft YaHei'; line-height:24px; height:24px; margin-top:-10px; position:absolute">Result</label>
           </div>
           <%=GetSearchTab() %> </div>
         <div class="search-list">
@@ -94,8 +94,6 @@
                     current_page: cur - 1,
                     num_edge_entries: 0,
                     link_to: href.replace(/page=\d+/ig, "page=__id__"),
-                    prev_text: "上一页",
-                    next_text: "下一页",
                     callback: function(id) {
                         return true;
                     }
@@ -166,27 +164,27 @@
         
         sb.AppendFormat(SearchTabPFormat,
             (SearchType=="all"?tabSelectedForamt:string.Empty),
-            string.Format(AFormat, searchUrl, "全部"));
+            string.Format(AFormat, searchUrl, "All"));
 
         sb.AppendFormat(SearchTabPFormat,
            (SearchType == "news" ? tabSelectedForamt : string.Empty),
-           string.Format(AFormat, searchUrl+"&t=news", "资讯"));
+           string.Format(AFormat, searchUrl+"&t=news", "News"));
 
         sb.AppendFormat(SearchTabPFormat,
            (SearchType == "show" ? tabSelectedForamt : string.Empty),
-           string.Format(AFormat, searchUrl + "&t=show", "行程"));
+           string.Format(AFormat, searchUrl + "&t=show", "Calendar"));
 
         sb.AppendFormat(SearchTabPFormat,
            (SearchType == "music" ? tabSelectedForamt : string.Empty),
-           string.Format(AFormat, searchUrl + "&t=music", "音乐"));
+           string.Format(AFormat, searchUrl + "&t=music", "Music"));
 
         sb.AppendFormat(SearchTabPFormat,
            (SearchType == "video" ? tabSelectedForamt : string.Empty),
-           string.Format(AFormat, searchUrl + "&t=video", "视频"));
+           string.Format(AFormat, searchUrl + "&t=video", "Video"));
 
         sb.AppendFormat(SearchTabPFormat,
          (SearchType == "album" ? tabSelectedForamt : string.Empty),
-         string.Format(AFormat, searchUrl + "&t=album", "图片"));
+         string.Format(AFormat, searchUrl + "&t=album", "Photos"));
         
         return sb.ToString();
     }
@@ -201,7 +199,7 @@
             }
             else
             {
-                litInfo.Text = "无搜索结果！";
+                litInfo.Text = "No result！";
                 litInfo.CssClass = "no-result";
             }
         }
@@ -278,7 +276,7 @@
         }
         else
         {
-            litInfo.Text = "无搜索结果！";
+            litInfo.Text = "No result！";
             litInfo.CssClass = "no-result";
         }
     }
@@ -297,7 +295,7 @@
             switch (m.ObjectType)
             {
                 case ObjectTypeDefine.News:
-                    litType.Text = string.Format(AFormat, "/news.html", "资讯");
+                    litType.Text = string.Format(AFormat, "/news.html", "News");
                     litTitle.Text = string.Format(AFormat, "/news/d/" + m.ObjectId.ToString()
                         + ".html",
                         m.Title);
@@ -306,7 +304,7 @@
                     litBody.Text += "...";
                     break;
                 case ObjectTypeDefine.MusicTitle:               
-                    litType.Text = string.Format(AFormat, "/music.html", "音乐");
+                    litType.Text = string.Format(AFormat, "/music.html", "Music");
                     litTitle.Text = string.Format(AFormat, "/music/b"+m.BandId.ToString()+"/song/"+m.ObjectId.ToString()
                         + ".html",
                       m.Title);
@@ -315,7 +313,7 @@
                     litBody.Text += "...";
                     break;
                 case ObjectTypeDefine.Show:
-                    litType.Text = string.Format(AFormat, "/calender.html", "行程");
+                    litType.Text = string.Format(AFormat, "/calender.html", "Calendar");
                     litTitle.Text = string.Format(AFormat, "/calender/b" + m.BandId.ToString()+"/d"+
                         m.PublishDate.ToString("yyyyMM") + ".html",
                       m.Title);
@@ -324,7 +322,7 @@
                     litBody.Text += "...";
                     break;                    
                 case ObjectTypeDefine.Video:
-                    litType.Text = string.Format(AFormat, "/video.html", "视频");
+                    litType.Text = string.Format(AFormat, "/video.html", "Video");
                     litTitle.Text = string.Format(AFormat, "/video/d/" + 
                         m.ObjectId.ToString() + ".html",
                       m.Title);
@@ -332,7 +330,7 @@
 					litBody.Visible = false;
                     break;
                 case ObjectTypeDefine.Album:
-                    litType.Text = string.Format(AFormat, "/photo.html", "图片");
+                    litType.Text = string.Format(AFormat, "/photo.html", "Photos");
                     litTitle.Text = string.Format(AFormat, "/photo/album/" +
                         m.ObjectId.ToString() + ".html",
                       m.Title);                 

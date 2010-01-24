@@ -8,12 +8,12 @@
   <div class="left floatleft">
     <div class="spacer" style="height:56px;"></div>
 	<div class="jane_info_menu">
-		<a class="about" href="/about.html">公司介绍</a> 
-		<a class="links" href="/links.html">合作伙伴</a> 
-		<a class="contact" href="/contact.html">联系我们</a>
-		<a class="zhaopin" href="/zhaopin.html">招聘信息</a>
+		<a class="about" href="/about.html">Introduction</a> 
+		<a class="links" href="/links.html">Cooperative partner</a> 
+		<a class="contact" href="/contact.html">Contact us</a>
+		<a class="zhaopin" href="/zhaopin.html">Jobs</a>
         <!-- a class="adservice" href="/adservice.html">广告服务</a --> 
-		<a class="copyright" href="/copyright.html">免责声明</a>
+		<a class="copyright" href="/copyright.html">Disclaimers</a>
 	</div>
 	<div class="spacer"></div>
   </div>
@@ -52,24 +52,24 @@
             {
                 
                 case "contact":
-                    Channel = "联系我们";
+                    Channel = "Contact us";
                     break;
                 case "zhaopin":
-                    Channel = "招聘信息";
+                    Channel = "Jobs";
                     break;
                 case "copyright":
-                    Channel = "免责声明";
+                    Channel = "Disclaimers";
                     break;
 				case "adservice":
                     Channel = "广告服务";
                     break;
 				case "links":
-                    Channel = "合作伙伴";
+                    Channel = "Cooperative partner";
                     break;
                 case "about":
                 default:
                     page = "about";
-                    Channel = "公司介绍";
+                    Channel = "Company's introduction";
                     break;
                 
             }

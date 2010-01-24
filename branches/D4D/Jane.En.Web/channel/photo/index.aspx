@@ -12,7 +12,7 @@
     <div class="w_562 h_578">
       <div class="spacer" style="height:36px"></div>
 	   <div class="cd_title pic_title">
-       <h1 class="font24 floatleft blue">图片<span><asp:Literal ID="litTitle" runat="server"></asp:Literal></span></h1> 
+       <h1 class="font24 floatleft blue">Photos<span><asp:Literal ID="litTitle" runat="server"></asp:Literal></span></h1> 
 </div>	 
 	  <div class="spacer" style="height:40px"></div>
                
@@ -25,7 +25,7 @@
                 <div><a href="/photo/album/<%#((Album)Container.DataItem).AlbumId %>.html"><img width="150" height="100" src="<%#((Album)Container.DataItem).SImage%>" alt="" /></a></div>
 			<p>
 				<a href="/photo/album/<%#((Album)Container.DataItem).AlbumId %>.html"><%#((Album)Container.DataItem).Title %></a><br />
-				<span class="blue"><%#((Album)Container.DataItem).TotalCount %>张</span> <span class="gray">| <%#((Album)Container.DataItem).PublishDate.ToString("yyyy-MM-dd")%> <%#GetNewImage((Album)Container.DataItem)%></span>
+				<span class="blue"><%#((Album)Container.DataItem).TotalCount %></span> <span class="gray">| <%#((Album)Container.DataItem).PublishDate.ToString("yyyy-MM-dd")%> <%#GetNewImage((Album)Container.DataItem)%></span>
 			</p>
                  </li>
                 </ItemTemplate>
@@ -150,7 +150,7 @@
             if (TagYear <= 1900) return string.Empty;
             if (TagMonth > 12 && TagMonth <= 0) return string.Empty;
 
-            return string.Format("{0}年{1}月", TagYear, TagMonth);
+            return string.Format("{0}/{1}", TagYear, TagMonth);
         }
     }
     
@@ -236,7 +236,7 @@
 
     }
     private const string TitleFormat = "- {0}";
-    private const string OnlyTitleFormat = "- {0}照片";
+    private const string OnlyTitleFormat = "- {0}";
     private void SetTitle()
     {
         //check bandName
@@ -245,7 +245,7 @@
         if (BandColl.TryGetValue(BandId, out info))
             HeadTitle = info.BandName;
 
-        if (String.IsNullOrEmpty(HeadTitle)) HeadTitle = "全部";
+        if (String.IsNullOrEmpty(HeadTitle)) HeadTitle = "All";
 
 
         if (TagId > 0)
@@ -254,7 +254,7 @@
         }
         else if (TagYear >= 1900 && TagMonth > 0 && TagMonth <= 12)
         {
-            litTitle.Text = string.Format(TitleFormat,TagYear.ToString() + "年" + TagMonth + "月");
+            litTitle.Text = string.Format(TitleFormat,TagYear.ToString() + "/" + TagMonth);
         }
         
         
@@ -262,7 +262,7 @@
     }
     protected string GetDate(DateTime date)
     {
-        return date.ToString("yyyy年M月d日");
+        return date.ToString("yyyy/M/d");
     }
     private static bool IsRewrite
     {
@@ -293,7 +293,7 @@
         if (DateTime.Now > n.PublishDate.AddDays(100))
             return "";
         else
-            return "<img src=\"/static/images/new.gif\"> ";
+            return "<img src=\"http://cn.janezhang.com/static/images/new.gif\"> ";
     }
 </script>
 

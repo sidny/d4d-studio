@@ -10,7 +10,7 @@
     <div class="w_562 h_578">
       <div class="spacer" style="height:36px"></div>
 	  <div class="cd_title video_title font24">
-       <h1 class="floatleft font24 blue" style="width:98%">视频<span><asp:Literal ID="litTitle" runat="server"></asp:Literal></span></h1>
+       <h1 class="floatleft font24 blue" style="width:98%">Video<span><asp:Literal ID="litTitle" runat="server"></asp:Literal></span></h1>
       </div>
 	  <div class="spacer" style="height:20px"></div>
 	  <asp:Repeater ID="repList" OnItemDataBound="repList_ItemDataBound" runat="server">
@@ -144,7 +144,7 @@
             if (TagYear <= 1900) return string.Empty;
             if (TagMonth > 12 && TagMonth <= 0) return string.Empty;
 
-            return string.Format("{0}年{1}月", TagYear, TagMonth);
+            return string.Format("{0}/{1}", TagYear, TagMonth);
         }
     }
     protected void Page_Load(object sender, EventArgs e)
@@ -160,7 +160,7 @@
         
     }
     
-    private const string TitleFormat = "{0}视频";
+    private const string TitleFormat = "{0}";
     private const string TitleTagFormat = "- {0}";
     private void SetTitle()
     {
@@ -304,7 +304,7 @@
         return result.Trim();
     }
     
-    private const string TagEmFormat = "<span class=\"black_6666\">标签:{0}</span>";
+    private const string TagEmFormat = "<span class=\"black_6666\">Tag:{0}</span>";
     private const string AFormat = "<a href=\"{0}\">{1}</a>";
     private const string TagLinkFormat = "/video.html?id={0}&tagid={1}&tag={2}";
     protected void repList_ItemDataBound(object sender, RepeaterItemEventArgs e)
