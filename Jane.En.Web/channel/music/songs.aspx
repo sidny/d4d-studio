@@ -17,8 +17,8 @@
       <div class="spacer" style="height:36px"></div>
 	  
 	  <div class="cd_title">
-      <h1 class="floatleft font24 blue">音乐<span>- <%=Music.Title%></span></h1>
-	  <div class="floatright"><a href="/music.html">返回音乐</a></div>
+      <h1 class="floatleft font24 blue">Music<span>- <%=Music.Title%></span></h1>
+	  <div class="floatright"><a href="/music.html">return</a></div>
 	  </div>
 	  
 	  <div class="spacer" style="height:20px"></div>
@@ -32,22 +32,22 @@
 			<p><%if (Music.PublishDate.Year < 2000)
         { %>未发行
         <%}else{
-              Response.Write(Music.PublishDate.ToString("yyyy年M月d日"));
+              Response.Write(Music.PublishDate.ToString("yyyy/M/d"));
           }%><br />
             <%=Music.Body%></p>
 		    <div class="spacer" style="height:11px"></div>
 		    <div class="cd_info_btn">
-			<a href="#" id="btn-play-all" class="btn_play">播放此专辑</a>
+			<a href="#" id="btn-play-all" class="btn_play">PlayAll</a>
 			<%if (!string.IsNullOrEmpty(AddUrlInfo.Info1))
      { %>
 			<div class="vspacer"></div>
-			<a href="<%=AddUrlInfo.Info1 %>#" class="btn_gray floatleft"><span class="floatleft">amazon购买</span></a>
+			<a href="<%=AddUrlInfo.Info1 %>#" class="btn_gray floatleft"><span class="floatleft">Amazon</span></a>
 			<%}
      if (!string.IsNullOrEmpty(AddUrlInfo.Info2))
      {
            %>
 			<div class="vspacer"></div>
-			<a href="<%=AddUrlInfo.Info2 %>#" class="btn_gray floatleft"><span class="floatleft">当当购买</span></a>
+			<a href="<%=AddUrlInfo.Info2 %>#" class="btn_gray floatleft"><span class="floatleft">DangDang</span></a>
 			<%} %>
 			</div>
 	    </div>
@@ -89,9 +89,9 @@
 	  <div class="spacer" style="height:20px"></div>
 	  
       <div class="cd_music_btn">
-		  <a href="/music/b<%=Music.BandId%>/c/<%=Music.MusicId%>.html" class="btn_gray floatright"><span class="floatleft">评论(<%=CommentsCount %>条)</span></a>
+		  <a href="/music/b<%=Music.BandId%>/c/<%=Music.MusicId%>.html" class="btn_gray floatright"><span class="floatleft">Comments(<%=CommentsCount %>)</span></a>
 		
-		  <a href="/music/b<%=Music.BandId%>/c/<%=Music.MusicId%>.html" class="btn_gray floatright mgr_10"><span class="floatleft">发表评论</span></a>
+		  <a href="/music/b<%=Music.BandId%>/c/<%=Music.MusicId%>.html" class="btn_gray floatright mgr_10"><span class="floatleft">Comment This</span></a>
 		  
 	      <div class="clear"></div>
       </div>
@@ -305,7 +305,7 @@
         }
     protected string GetDate(DateTime date)
     {
-        return date.ToString("yyyy年M月d日");
+        return date.ToString("yyyy/M/d");
     }
     private int? count;
     protected int CommentsCount

@@ -24,10 +24,10 @@
   <div class="left floatleft">
     <div class="spacer" style="height:56px;"></div>
 	<div class="jane_info_menu">
-		<a href="#" class="jane_info_menu_on">靓颖档案</a> 
-		<a href="#">靓颖历程</a> 
-		<a href="#">靓颖奖项</a>
-		<a href="#">靓颖演唱会</a>
+		<a href="#" class="jane_info_menu_on">Biography</a> 
+		<a href="#">Course</a> 
+		<a href="#">Awards</a>
+		<a href="#">Concert</a>
 	</div>
 	<div class="spacer"></div>
   </div>
@@ -37,7 +37,7 @@
       <div class="spacer" style="height:36px"></div>
 	  
 	  <div class="cd_title jane_info_title">
-      	<h1 class="blue">档案<span>- 张靓颖档案</span></h1>
+      	<h1 class="blue">Bio<span>- Biography</span></h1>
       </div>
 	  
 	  <div class="spacer" style="height:20px"></div>

@@ -8,7 +8,7 @@
 	<div class="spacer"></div>
 	
 	<div class="video_tag_time">
-		<h2 class="black_5757">时间标签</h2>
+		<h2 class="black_5757">Date Tag</h2>
 	    <div class="video_tag_time_year">
        	<%int startYear = (CurrentSelectYear == DateTime.Now.Year) ? CurrentSelectYear : CurrentSelectYear + 1;
 		int month = 12;
@@ -16,7 +16,7 @@
               month = DateTime.Now.Month;
       		for (int n = startYear; n > startYear-3; n--)
       			{
-           %><a  href="/video.html?year=<%=n %>&month=<%=month %>" <%=(CurrentSelectYear==n)?"class=\"white\"":"" %>><%=n%>年</a> <%}%> <a href="/video.html?year=<%=CurrentSelectYear-1 %>&month=<%=month %>" class="video_tag_time_year_img"><img src="/static/images/ico_next.gif" /></a>
+           %><a  href="/video.html?year=<%=n %>&month=<%=month %>" <%=(CurrentSelectYear==n)?"class=\"white\"":"" %>><%=n%></a> <%}%> <a href="/video.html?year=<%=CurrentSelectYear-1 %>&month=<%=month %>" class="video_tag_time_year_img"><img src="/static/images/ico_next.gif" /></a>
            <%if(startYear > CurrentSelectYear){%>
 		   <a href="/video.html?year=<%=CurrentSelectYear+1 %>&month=<%=month %>" class="video_tag_time_year_img"><img src="/static/images/ico_up.gif" /></a>
            <%}%>
@@ -27,12 +27,12 @@
           int length = (CurrentSelectYear == DateTime.Now.Year) ? DateTime.Now.Month : 12;
           for (int n = length; n > 0; n--)
           {%><a href="/video.html?year=<%=CurrentSelectYear %>&month=<%=n %>" <%=(n == CurrentSelectMonth)?"class=\"orange\"":"" %>>
-          <%=((n < 10) ? "0" : "") + n.ToString()%>月</a><% }%>
+          <%=((n < 10) ? "0" : "") + n.ToString()%></a><% }%>
 		</div>
 	</div>
 	<div class="spacer" style="height:30px"></div>
 	<div class="video_tag_hot">
-		<h2>热门标签</h2>
+		<h2>Hot Tag</h2>
 	    <div class="video_tag_hot_key">
 		<% foreach(Tag tag in ListTags){
                Response.Write(GetTagStr(tag) + " ");

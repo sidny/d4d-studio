@@ -12,7 +12,7 @@
       <div class="spacer" style="height:36px"></div>
 	  
 	  <div class="cd_title commend_title">
-      	<h1 class="floatleft blue" style="width:100%">评论<span>-<a href="/video/d/<%=CurrentNews.NewsId%>.html"><span class="blue font24"><%=CurrentNews.Title%></span></a></span> </h1> 
+      	<h1 class="floatleft blue" style="width:100%">Comments<span>-<a href="/video/d/<%=CurrentNews.NewsId%>.html"><span class="blue font24"><%=CurrentNews.Title%></span></a></span> </h1> 
 		
 	  </div>
 	  
@@ -28,7 +28,7 @@
         {
             Comment item = CommentList[i];%>
 	  	<li>
-			<a href="#" class="blue"><%=item.UserName%></a>  <span class="gray">发表于 <%=item.AddDate.ToString("yyyy-MM-dd HH:mm:ss")%></span> <%if (isAdmin)
+			<a href="#" class="blue"><%=item.UserName%></a>  <span class="gray">created by <%=item.AddDate.ToString("yyyy-MM-dd HH:mm:ss")%></span> <%if (isAdmin)
                                                                                                                                       { %><del cid="<%=item.CommentId%>">删除</del><%} %><br />
 			<%=HttpUtility.HtmlEncode(item.Body)%> 
 			
@@ -93,8 +93,6 @@
                     current_page: cur - 1,
                     num_edge_entries: 0,
                     link_to: href.replace(/page=\d+/ig, "page=__id__"),
-                    prev_text: "上一页",
-                    next_text: "下一页",
                     callback: function(id) {
                         return true;
                     }

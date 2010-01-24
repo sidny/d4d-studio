@@ -11,7 +11,7 @@
    <div class="w_562 h_578">
      <div class="spacer" style="height:36px"></div>
      	<div class="cd_title news_title">
-       		<h1 class="floatleft blue">资讯<span><asp:Literal ID="litTitle" runat="server"></asp:Literal></span> </h1> 
+       		<h1 class="floatleft blue">News<span><asp:Literal ID="litTitle" runat="server"></asp:Literal></span> </h1> 
 			<div class="floatright alginright">
             	<div class="spacer4"></div>
 			</div>
@@ -141,7 +141,7 @@
         {
             if (TagYear <= 1900) return string.Empty;
             if (TagMonth > 12 && TagMonth <= 0) return string.Empty;
-           return string.Format("{0}年{1}月", TagYear, TagMonth);
+           return string.Format("{0}/{1}", TagYear, TagMonth);
         }
     }
    public static IDictionary<int, BandInfo> BandColl
@@ -175,7 +175,7 @@
         
     }
     
-    private const string TitleFormat = "{0}新闻";
+    private const string TitleFormat = "{0}";
     private const string TitleTagFormat = "- {0}";
     private void SetTitle()
     {
@@ -363,7 +363,7 @@
         return result;
     }
     
-    private const string TagEmFormat = "标签：{0}";
+    private const string TagEmFormat = "Tag：{0}";
     private const string AFormat = "<a href=\"{0}\">{1}</a>";
     private const string TagLinkFormat = "/channel/news/news.aspx?id={0}&tagid={1}&tag={2}";
     protected void repList_ItemDataBound(object sender, RepeaterItemEventArgs e)

@@ -26,7 +26,7 @@
 <script type="text/javascript">
     function homeReady() {
         var flash = window["index"] || document["index"];
-        flash.setContent({movie:"/static/images/photo.swf"})
+        flash.setContent({movie:"http://cn.janezhang.com/static/images/photo.swf"})
     }
 <% string flv =D4D.Platform.D4DGateway.CorpInfoProvider.ReadProfileContent("flv").Trim();
 if(!string.IsNullOrEmpty(flv)){
@@ -35,7 +35,7 @@ $(function(){
 	
 		$("<div id=\"video\"></div>").insertAfter($("div.main"))
 		.html( AC_FL_RunHTML(
-		"src", "/static/images/video",
+		"src", "http://cn.janezhang.com/static/images/video",
 		"width", "191",
 		"height", "133",
 		"quality", "high",
@@ -84,10 +84,10 @@ $(function(){
     <%} %>
 </ul>
 <div class="link">
-    <a href="http://www.kaixin001.com/zhangliangying" target="_blank"><img src="/static/images/intro/kaixin.gif" /></a>
-    <a href="http://www.myspace.cn/zhangliangying " target="_blank"><img src="/static/images/intro/myspace.gif" /></a>
-    <a href="http://music.youku.com/JaneZhang" target="_blank"><img src="/static/images/intro/youku.gif" /></a>
-    <a href="http://blog.sina.com.cn/zhangliangying" target="_blank"><img src="/static/images/intro/sina.gif" /></a>
+    <a href="http://www.kaixin001.com/zhangliangying" target="_blank"><img src="http://cn.janezhang.com/static/images/intro/kaixin.gif" /></a>
+    <a href="http://www.myspace.cn/zhangliangying " target="_blank"><img src="http://cn.janezhang.com/static/images/intro/myspace.gif" /></a>
+    <a href="http://music.youku.com/JaneZhang" target="_blank"><img src="http://cn.janezhang.com/static/images/intro/youku.gif" /></a>
+    <a href="http://blog.sina.com.cn/zhangliangying" target="_blank"><img src="http://cn.janezhang.com/static/images/intro/sina.gif" /></a>
 </div>
 </asp:Content>
 <script runat="server">
