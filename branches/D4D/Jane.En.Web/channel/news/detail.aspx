@@ -12,7 +12,7 @@
     <div class="w_562 h_578">
       <div class="spacer" style="height:36px"></div>
 	  <div class="cd_title news_title" style="margin-bottom:10px;">
-         <div class="floatright alginright"><a href="/news.html">return</a></div>
+         <div class="floatright alginright"><a href="/news.html">Return</a></div>
          <span class="font18">ALL News</span>
       </div>
 	  <div class="cd_title news_con_title">
