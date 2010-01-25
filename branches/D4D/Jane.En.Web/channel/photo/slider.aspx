@@ -25,7 +25,7 @@
           <h1 class="font24 floatleft blue">Photos<span>- <%=CurrentAlbum.Title%></span></h1>
           <div class="floatright alginright">
             <div class="spacer4"> </div>
-            <a href="/photo.html">&lt;&lt;return</a> </div>
+            <a href="/photo.html">&lt;&lt;Return</a> </div>
         </div>
         <div class="spacer" style="height: 40px"> </div>
         <div class="ad-gallery" id="gallery">
