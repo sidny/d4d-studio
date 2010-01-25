@@ -11,7 +11,7 @@
       <div class="spacer" style="height:36px"></div>
       <div class="cd_title news_title" style="margin-bottom:10px;">
         <div class="floatright alginright"><a href="/video.html">Return</a></div>
-        <span class="font18">All Video</span>
+        <span class="font18">All Videos</span>
 		</div>
 	  <div class="cd_title video_title font24">
       <h1 class="font24" style="width:99%; text-align:center"><%=CurrentNews.Title%></h1>

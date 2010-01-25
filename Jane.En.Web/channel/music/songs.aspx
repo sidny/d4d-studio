@@ -18,7 +18,7 @@
 	  
 	  <div class="cd_title">
       <h1 class="floatleft font24 blue">Music<span>- <%=Music.Title%></span></h1>
-	  <div class="floatright"><a href="/music.html">return</a></div>
+	  <div class="floatright"><a href="/music.html">Return</a></div>
 	  </div>
 	  
 	  <div class="spacer" style="height:20px"></div>

@@ -32,7 +32,7 @@
     </span> 
    <%if (Helper.IsDizLogin != true)
           { %>
-  <a href="#" id="btnLogin">Login</a> | <a href="http://bbs.janezhang.com/register.aspx?agree=yes">Regist</a>
+  <a href="#" id="btnLogin">Login</a> | <a href="http://bbs.janezhang.com/register.aspx?agree=yes">Register</a>
   <div style="display:none"><div class="login" id="loginForm">
     <iframe style="width:398px; height:240px; position:absolute;z-index:-1; top:0; left:0; border:0;"></iframe>
     <form action="/svc/user.svc/Login">
@@ -71,7 +71,7 @@
 		<div class="login_row_con floatright">
 			<a href="#" id="btn-login-submit" class="btn_blue floatleft"><span>Login</span></a>
 			<div class="vspacer"></div>
-			<div class="floatleft" style="line-height:20px"><a href="http://bbs.janezhang.com/register.aspx?agree=yes">Regist</a> | <a href="http://bbs.janezhang.com/getpassword.aspx">forgot pw</a></div>	
+			<div class="floatleft" style="line-height:20px"><a href="http://bbs.janezhang.com/register.aspx?agree=yes">Register</a> | <a href="http://bbs.janezhang.com/getpassword.aspx">Forgot PW</a></div>	
 		</div>
 		<div class="clear"></div>
 	  </div>

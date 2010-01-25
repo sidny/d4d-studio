@@ -690,7 +690,8 @@ a..btn_blue:hover{
 }
 .shopping_cart_list{
 	width:562px;
-	height:80px;
+	min-height:80px;
+	_height:80px;
 	padding:18px 0px;
 	border-bottom:1px #DAD7D5 dotted;
 }
@@ -700,7 +701,8 @@ a..btn_blue:hover{
 }
 .shopping_cart_list_price{
 	width:360px;
-	height:80px;
+	min-height:80px;
+	_height:80px;
 	padding-left:12px;
 }
 .shopping_cart_list_price h2{
