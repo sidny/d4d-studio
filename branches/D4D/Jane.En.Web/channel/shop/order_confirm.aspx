@@ -267,7 +267,12 @@
                                                 tshopItem = null;
                                                 if (dicItemPrice.TryGetValue(kvp.Key, out tshopItem))
                                                 {
-                                                    trprice += (sr.TransferPrice *
+                                                    //if BaseCountEachdeliver is 0 then//
+                                                    //商城后台有的商品不需要送货计价单位，就是说此商品不分数量运费都为10元。
+                                                    if (tshopItem.BaseCountEachdeliver <= 0)
+                                                        trprice += 10;
+                                                    else
+                                                        trprice += (sr.TransferPrice *
                                                         JANE.Shop.Helper.CarriageHelper.Ceiling(kvp.Value, tshopItem.BaseCountEachdeliver));
                                                 }
                                             }
