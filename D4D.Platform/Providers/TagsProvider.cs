@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using D4D.Platform.Domain;
 using D4D.Platform.Persistence;
+using D4D.Platform.Helper;
 namespace D4D.Platform.Providers
 {
     public class TagsProvider
@@ -71,6 +72,60 @@ namespace D4D.Platform.Providers
         {
             return TagsDao.GetTopTags(maxCount);
         }
+        const int FilterGetMaxCount = 1000;
+        public List<Tag> GetTopTagsEN(int maxCount)
+        {
+            List<Tag> list = TagsDao.GetTopTags(FilterGetMaxCount);
+            if (list != null && list.Count > 0)
+            {
+                int nowCount = 0;
+                List<Tag> listResult = new List<Tag>(maxCount);
+                foreach (Tag tag in list)
+                {
+                    if (nowCount == maxCount) 
+                        break;
+
+                    if (StringHelper.IsNatural_Number(tag.TagName))
+                    {
+                        listResult.Add(tag);
+                        nowCount++;
+                    }
+                }
+
+                return listResult;
+            }
+            else
+                return list;
+        }
+
+        public List<Tag> GetTopTagsCN(int maxCount)
+        {
+            List<Tag> list = TagsDao.GetTopTags(FilterGetMaxCount);
+            if (list != null && list.Count > 0)
+            {
+                int nowCount = 0;
+                List<Tag> listResult = new List<Tag>(maxCount);
+                foreach (Tag tag in list)
+                {
+                    if (nowCount == maxCount)
+                        break;
+
+                    if (string.IsNullOrEmpty(tag.TagName))
+                        continue;
+
+                    if (!StringHelper.IsNatural_Number(tag.TagName))
+                    {
+                        listResult.Add(tag);
+                        nowCount++;
+                    }
+                }
+
+                return listResult;
+            }
+            else
+                return list;
+        }
+
         /// <summary>
         /// 获取带分页的Tags
         /// </summary>
