@@ -89,7 +89,7 @@
     protected List<int> tagsSortList;
     protected void Page_Load(object sender, EventArgs e)
     {
-        ListTags = D4D.Platform.D4DGateway.TagsProvider.GetTopTags(20);
+        ListTags = D4D.Platform.D4DGateway.TagsProvider.GetTopTagsEN(20);
         ListTags = (from i in ListTags
                     orderby i.TagId
                     select i).ToList();

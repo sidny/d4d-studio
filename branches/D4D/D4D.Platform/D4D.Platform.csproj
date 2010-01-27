@@ -77,6 +77,7 @@
     <Compile Include="Helper\DiscuzHelper.cs" />
     <Compile Include="Helper\ImageHelper.cs" />
     <Compile Include="Helper\SpamKeywordHelper.cs" />
+    <Compile Include="Helper\StringHelper.cs" />
     <Compile Include="Persistence\AddInfoDao.cs" />
     <Compile Include="Providers\AddInfoProvider.cs" />
     <Compile Include="Persistence\AlbumDao.cs" />
