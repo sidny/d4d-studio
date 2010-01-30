@@ -184,51 +184,29 @@
         pager.RecordsPerPage = PageSize;
         pager.CurrentPageNumber = pageIndex;
         List<News> resultList=null;
-     
-        if (BandId < 0)
+   
+        if (TagId > 0)
         {
-            if (TagId > 0)
-            {
-                resultList = D4DGateway.NewsProvider.GetPagedNewsByTag(pager, PublishStatus.Publish, TagId,
-                    NewsRemarkType.Video);
-            }
-            else if (TagYear >= 1900 && TagMonth > 0 && TagMonth <= 12)
-            {
-                DateTime sTime = new DateTime(TagYear, TagMonth, 1);
-                DateTime eTime = sTime.AddMonths(1).AddDays(-1);
+            resultList = D4DGateway.NewsProvider.GetPagedNewsByTagAndNewsType(pager,
+                PublishStatus.Publish, TagId, (BandType)BandId, NewsRemarkType.Video);
+     
+        }
+        else if (TagYear >= 1900 && TagMonth > 0 && TagMonth <= 12)
+        {
+            DateTime sTime = new DateTime(TagYear, TagMonth, 1);
+            DateTime eTime = sTime.AddMonths(1).AddDays(-1);
 
-                resultList = D4DGateway.NewsProvider.GetPagedNewsByPublishDate(pager,
-                  sTime, eTime, PublishStatus.Publish, NewsRemarkType.Video);
-            }
-            else
-                resultList = D4DGateway.NewsProvider.GetPagedNews(pager, PublishStatus.Publish,NewsRemarkType.Video);
-           
+            resultList = D4DGateway.NewsProvider.GetPagedNewsByTypeANDPublishDate(pager, 
+                (BandType)BandId, sTime, eTime,
+               PublishStatus.Publish, NewsRemarkType.Video);
+         
         }
         else
-        {
-            if (TagId > 0)
-            {
-                resultList = D4DGateway.NewsProvider.GetPagedNewsByTagAndNewsType(pager,
-                    PublishStatus.Publish, TagId, (BandType)BandId, NewsRemarkType.Video);
-         
-            }
-            else if (TagYear >= 1900 && TagMonth > 0 && TagMonth <= 12)
-            {
-                DateTime sTime = new DateTime(TagYear, TagMonth, 1);
-                DateTime eTime = sTime.AddMonths(1).AddDays(-1);
-
-                resultList = D4DGateway.NewsProvider.GetPagedNewsByTypeANDPublishDate(pager, 
-                    (BandType)BandId, sTime, eTime,
-                   PublishStatus.Publish, NewsRemarkType.Video);
+        {    
+            resultList = D4DGateway.NewsProvider.GetPagedNewsByNewsType(pager, (BandType)BandId,
+                PublishStatus.Publish, NewsRemarkType.Video);
              
-            }
-            else
-            {    
-                resultList = D4DGateway.NewsProvider.GetPagedNewsByNewsType(pager, (BandType)BandId,
-                    PublishStatus.Publish, NewsRemarkType.Video);
-                 
-            }              
-        }
+        }    
         //band
         if (resultList != null && resultList.Count > 0)
         {
