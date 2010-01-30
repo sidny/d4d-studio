@@ -323,7 +323,7 @@
         if (DateTime.Now > n.PublishDate.AddDays(7))
             return "";
         else
-            return "<img src=\"/static/images/new.gif\" align=\"absmiddle\"> ";
+            return "<img src=\"http://cn.janezhang.com/static/images/new.gif\" align=\"absmiddle\"> ";
     }
     protected string GetSubString(string s, int length)
     {
