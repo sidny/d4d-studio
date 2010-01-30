@@ -117,7 +117,7 @@
         if (DateTime.Now > m.PublishDate.AddDays(7))
             return "";
         else
-            return "<img src=\"/static/images/new.gif\" align=\"absmiddle\"> ";
+            return "<img src=\"http://cn.janezhang.com/static/images/new.gif\" align=\"absmiddle\"> ";
     }
     protected string GetAddUrl(int Id, int Type)
     {

@@ -380,6 +380,6 @@
         if (DateTime.Now > n.PublishDate.AddDays(7))
             return "";
         else
-            return "<img src=\"/static/images/new.gif\"> ";
+            return "<img src=\"http://cn.janezhang.com/static/images/new.gif\"> ";
     }
 </script>
