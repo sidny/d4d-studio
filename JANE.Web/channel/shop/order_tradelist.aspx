@@ -69,7 +69,7 @@
 	<asp:Repeater ID="repList" runat="server">
 	    <ItemTemplate>
 	    <div class="shopping_cart_list">
-	  	<div class="shopping_cart_list_img floatleft"><a href="/shop/d/<%#((ShopTradelistDetail)Container.DataItem).ItemId %>.html"><img src="<%#((ShopTradelistDetail)Container.DataItem).Item.LImage %>" /></a></div>
+	  	<div class="shopping_cart_list_img floatleft"><a href="/shop/d/<%#((ShopTradelistDetail)Container.DataItem).ItemId %>.html"><img src="<%#((ShopTradelistDetail)Container.DataItem).Item.LImage %>" width="80" height="80" /></a></div>
 		<div class="shopping_cart_list_price floatleft">
 			<h2><%#((ShopTradelistDetail)Container.DataItem).Item.Name%></h2>
 			<p><%#((ShopTradelistDetail)Container.DataItem).Item.Price%>元</p>
