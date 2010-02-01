@@ -50,6 +50,16 @@
 		  </div>
 		  <div class="clear"></div>
 	     </div>
+	       <div class="spacer" style="height:30px"></div>		 
+		 <div class="order_confirm">
+		  <div class="order_confirm_left floatleft b">
+				订单备注：  
+		  </div>
+		  <div class="order_confirm_right floatleft">
+				<asp:TextBox ID="txtOrderUserRemark" runat="server" TextMode="MultiLine" MaxLength="1000"></asp:TextBox>
+		  </div>
+		  <div class="clear"></div>
+	     </div>		
 		 
 		 <div class="spacer" style="height:30px"></div>
 		 
@@ -350,6 +360,20 @@
               sOrder.Freight = tPrice;
 
               JaneShopGateway.JaneShopProvier.SetShopOrder(sOrder);
+
+              //add 订单备注
+              if (!string.IsNullOrEmpty(txtOrderUserRemark.Text))
+              {
+                  AddInfo aInfo = new AddInfo();
+                  aInfo.ObjectType = 2100;
+                  aInfo.ObjectId = OrderId;
+                  if (txtOrderUserRemark.Text.Length >= 1000)
+                      aInfo.Info1 = txtOrderUserRemark.Text.Substring(0, 999);
+                  else
+                      aInfo.Info1 = txtOrderUserRemark.Text;
+                  D4D.Platform.D4DGateway.AddInfoProvider.SetAddInfo(aInfo);
+              }
+              
               Response.Redirect("/order/finish/"+ OrderId.ToString()+".html");
           }
     

@@ -31,6 +31,8 @@ namespace D4D.Platform.Domain
         Image=5,
         Show = 6,
         Video=7,
+        //2000 is 商品订单
+        //2100 订单用户录入备注
     }
     /// <summary>
     /// 发布状态

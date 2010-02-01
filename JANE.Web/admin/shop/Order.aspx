@@ -328,7 +328,15 @@
                     <td>
                          <asp:TextBox ID="txtFreight" runat="server"></asp:TextBox>
                     </td>
-                </tr>    
+                </tr>
+                <tr>
+                    <th>
+                        订单用户备注
+                    </th>
+                    <td>
+                         <asp:TextBox ID="txtOrderUserRemakr" MaxLength="1000" TextMode="MultiLine" runat="server"></asp:TextBox>
+                    </td>
+                </tr>  
                 <tr>
                     <th align="center" width="100">&nbsp;
                         
@@ -642,6 +650,14 @@
         txtRegionId.Text = item.RegionId.ToString();
         txtFreight.Text = item.Freight.ToString();
         txtRegionStr.Text = item.RegionStr;
+
+        if (item.Id > 0)
+        {
+            AddInfo aInfo =
+            D4D.Platform.D4DGateway.AddInfoProvider.GetAddInfo(item.Id, 2100);
+            if (aInfo != null && !string.IsNullOrEmpty(aInfo.Info1))
+                txtOrderUserRemakr.Text = aInfo.Info1;
+        }
     }
 
     protected void ddlOrderTypeFilter_SelectedIndexChanged(object sender, EventArgs e)
