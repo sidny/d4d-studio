@@ -124,6 +124,11 @@ namespace D4D.Platform.Providers
         {
             return NewsDao.GetNewsPreviousNext(currentNewsId, (int)newsRemarkType);
         }
+
+        public List<News> GetNewsPreviousNextWithBandType(int currentNewsId, NewsRemarkType newsRemarkType,int bandType)
+        {
+            return NewsDao.GetNewsPreviousNextWithBandType(currentNewsId, (int)newsRemarkType, bandType);
+        }
         /// <summary>
         /// 获取相关新闻
         /// </summary>

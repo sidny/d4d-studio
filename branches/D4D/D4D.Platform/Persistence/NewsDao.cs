@@ -445,6 +445,48 @@ namespace D4D.Platform.Persistence
             return list;
         }
 
+        internal static List<News> GetNewsPreviousNextWithBandType(int currentNewsId, 
+            int newsRemarkType, int bandType)
+        {
+            List<News> list = new List<News>(2);
+
+            if (newsRemarkType == -1)
+            {
+                SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+              "dbo.News_GetPreviousNextV3WithBandType",
+              delegate(IRecord record)
+              {
+                  MapList(record, list);
+
+              }, currentNewsId, bandType);
+
+            }
+            else if (newsRemarkType == 0)
+            {
+                SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+              "dbo.News_GetPreviousNextWithBandType",
+              delegate(IRecord record)
+              {
+                  MapList(record, list);
+
+              }, currentNewsId, bandType);
+
+            }
+            else //only video
+            {
+                SafeProcedure.ExecuteAndMapRecords(Database.GetDatabase(D4DDefine.DBInstanceName),
+             "dbo.News_GetPreviousNextV2WithBandType",
+             delegate(IRecord record)
+             {
+                 MapList(record, list);
+
+             }, currentNewsId, bandType);
+            }
+
+
+            return list;
+        }
+
 
         internal static List<News> GetNewsPreviousNext(int currentNewsId, 
             int newsRemarkType)
