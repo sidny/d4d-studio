@@ -222,7 +222,9 @@ private void BindNews()
 {
 
     CurrentNews = D4DGateway.NewsProvider.GetNewsAddHits(NewsId);
-    NextPrev = D4DGateway.NewsProvider.GetNewsPreviousNext(NewsId);
+    NextPrev = D4DGateway.NewsProvider.GetNewsPreviousNextWithBandType(NewsId,
+         NewsRemarkType.Normal, 2);//2 is en-Us ,this is hardCode
+    //D4DGateway.NewsProvider.GetNewsPreviousNext(NewsId);
 
 }
 protected List<News> NextPrev = new List<News>(2);
