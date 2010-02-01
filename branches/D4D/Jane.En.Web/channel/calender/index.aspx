@@ -40,8 +40,8 @@
           <div class="journey_table">
             <div class="journey_table_title">
               <div class="wid_90">Time</div>
-              <div class="wid_93">Location</div>
-              <div class="wid_130" style="width:340px;">Event</div>
+              <div class="wid_130">Location</div>
+              <div class="wid_130" style="width:310px;">Event</div>
               <!-- div class="wid_210">Description</div -->
             </div>
             <div id="calender">
@@ -49,8 +49,8 @@
                 <ItemTemplate>
                   <div class="journey_table_con date<%#((Show)Container.DataItem).ShowDate.ToString("yyyyMMdd")%>">
                     <div class="wid_90"><%#((Show)Container.DataItem).ShowDate.ToString("yyyy-MM-dd") %><%#GetExpireString(Container.DataItem)%></div>
-                    <div class="wid_93"><%#((Show)Container.DataItem).ShowPlace%></div>
-                    <div class="wid_130" style="width:340px;"><%#((Show)Container.DataItem).Title%></div>
+                    <div class="wid_130"><%#((Show)Container.DataItem).ShowPlace%></div>
+                    <div class="wid_130" style="width:310px;"><%#((Show)Container.DataItem).Title%></div>
                    <%// <div class="wid_210">#((Show)Container.DataItem).Body</div> %>
                     <div class="clear"></div>
                   </div>
