@@ -18,9 +18,16 @@ ul.friend-recommend li{width:122px; float:left;padding-top:7px;text-align:center
 ul.friend-recommend p{	padding-top:7px;}
 ul.friend-recommend p.follow{color:#00cc00; line-height:22px;}
 
-ul.friend-list{width:488px;border:1px solid #ededed;border-bottom:none;}
+ul.friend-list{width:488px;border-bottom:none;}
 ul.friend-list li{clear:both;padding:10px;position:relative;_height:40px;border-bottom:1px solid #ededed;}
 ul.friend-list a.userid{color:#0a8be6;}
 ul.friend-list p{ line-height:14px;}
 ul.friend-list p.img{float:left; padding-right:10px;}
 ul.friend-list li .follow{position:absolute ; top:10px; right: 10px; text-align:righ;color:#00cc00;}
+
+ul.follow-list{width:420px;margin:0 5px;border-bottom:none;}
+ul.follow-list li{clear:both;padding:10px;position:relative;_height:40px;border-bottom:1px solid #ededed;}
+ul.follow-list a.userid{color:#0a8be6;}
+ul.follow-list p{padding-left:50px;line-height:14px;}
+ul.follow-list p.img{float:left;padding:0;}
+ul.follow-list li .follow{position:absolute ; top:10px; right: 10px; text-align:righ;color:#00cc00;}
