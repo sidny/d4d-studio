@@ -39,3 +39,8 @@ html{ background: url(images/html-bg.gif); }
 .di-help-content dl{ width: 500px; margin: 10px 0 0 0; }
 .di-help-content dt{ background: #EAF6FF; color: #0A8BE6; font-weight: bolder; line-height: 25px; padding: 0 10px; }
 .di-help-content dd{ line-height: 1.6; padding: 10px; margin: 0; }
+
+.di-adv-play{ width: 215px; margin: 10px 5px 0; height: 240px; overflow: hidden; float: left; display: inline; }
+.di-adv-play h4{ width: 180px; border-bottom: 1px solid #E5E5E5; font-size: 14px; color: #0A8BE6; margin: 0; line-height: 30px; }
+.di-adv-play h5{ width: 180px; line-height: 1.6; font-size: 12px; line-height: 1.6; margin: 10px 0 0 0; font-weight: normal; }
+.di-adv-play p{ width: 178px; height: 118px; border: 1px solid #7F9DB9; margin: 10px 0 0 0; overflow: hidden; }
