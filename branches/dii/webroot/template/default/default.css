@@ -19,7 +19,7 @@ div.user-info div.avatar img{ width:124px; height:124px;}
 div.user-info div.following{ color:#cc0000; line-height:20px; text-align:center; position:absolute; top:145px; width:132px;left:13px;}
 div.user-info div.info{ padding:20px 20px 0 153px; overflow:hidden; line-height:19px;}
 div.user-info div.message{ position:absolute; right:20px; bottom:5px;}
-div.user-info ul{
+div.user-info ul{}
 
 div.feed-list{ width:448px; _height:334px; max-height:334px; overflow-y:scroll; zoom:1;}
 div.feed-list div.date{ position:absolute; top:210px; left:10px; width:40px; text-align:center; color:#999;}
