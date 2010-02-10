@@ -25,6 +25,17 @@ html{ background: url(images/html-bg.gif); }
 .di-footer{ width: 800px; float: left; padding: 10px 0; text-align: center; }
 
 .di-content{ width: 800px; float: left; background: white; }
-.di-content-wapper{ width: 680px; padding: 0 60px; }
+.di-content-wapper{ width: 680px; padding: 10px 60px 50px; }
 .di-content h3.tit{ border-bottom: 1px solid #E5E5E5; line-height: 50px; font-size: 12px; font-weight: normal; }
 .di-content h3.tit strong{ color: #0A8BE6; font-size: 14px; }
+
+.di-help-menu{ width: 160px; float: left; margin: 0; }
+.di-help-menu ul{ margin: 10px 0 0 0; }
+.di-help-menu li{ line-height: 1.8; }
+.di-help-menu li.name{ font-size: 14px; font-weight: bolder; color: #0A8BE6; }
+.di-help-menu li a{ color: black; }
+
+.di-help-content{ width: 500px; border-left: 1px solid #E5E5E5; float: left; padding-left: 10px; }
+.di-help-content dl{ width: 500px; margin: 10px 0 0 0; }
+.di-help-content dt{ background: #EAF6FF; color: #0A8BE6; font-weight: bolder; line-height: 25px; padding: 0 10px; }
+.di-help-content dd{ line-height: 1.6; padding: 10px; margin: 0; }
