@@ -15,11 +15,10 @@ html{ background: url(images/html-bg.gif); }
 .di-wapper a{ color: #0A8BE6; }
 .di-header{ width: 800px; float: left; padding: 5px 0 10px; }
 .di-header .logo{ float: left; margin: 10px 0 0 0; }
-.di-header .logo a{ background:url(images/logo.png) no-repeat;width:63px; height:39px; display:block;}
-* html .di-header .logo a
-{
-background-image: none;
-filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/logo.png", sizingMethod="crop");
+.di-header .logo a{ background:url(images/logo.png) no-repeat;width:63px; height:39px; display:block;
+_background-image: none;
+_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/logo.png");
+/* png必须写绝对地址 上线时要做修改 */
 }
 .di-header .logo-r{ float: right; }
 .di-header .logo-r h3.name{ font-weight: normal;  color: #CCCCCC; text-align: right; margin: 0; font-size: 12px; }
