@@ -63,3 +63,18 @@ _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/logo.
 .di-invite-success .version .screen{ position:absolute; top:23px;left:20px;}
 .di-invite-success .version .banner{ position:absolute;top:78px;left:311px;}
 .di-invite-success .version .download-area{position:absolute;top:165px;left:363px;text-align:left;}
+
+.tab-setting {height:26px; padding-left:10px; position:relative;}
+.tab-setting em{border-bottom:1px solid #e5e5e5; position:absolute; height:25px; left:0; z-index:-1; display:block; width:100%;}
+.tab-setting a{ display:block; background:url(images/tab_setting.gif) no-repeat; width:100px; height:18px; padding-top:8px;float:left; margin-right:2px; text-align:center; z-index:2; color:#0099ff; text-decoration:none;}
+.tab-setting a.on{ background-image:url(images/tab_setting_on.gif); color:#333333; font-weight:bold}
+
+ul.di-form{ margin-top:20px; min-height:200px;}
+ul.di-form input { width:248px; vertical-align:middle; margin-right:20px;}
+ul.di-form button.submit{border:0; padding:0; height:40px; width:100px; cursor:pointer;}
+ul.di-form li{ height:36px; }
+ul.di-form li.black{ height:auto; padding:10px 112px; line-height:150%; }
+ul.di-form label{ display:block; float:left; width:102px; padding-right:8px; text-align:right; height:22px; line-height:22px;}
+ul.di-form span{height:22px; line-height:22px; margin:0 0 0 20px;}
+ul.di-form li.block button{border:0; padding:0; height:40px; width:140px; cursor:pointer; vertical-align:middle;}
+ul.di-form li.block label{padding-top:12px;}
