@@ -53,3 +53,13 @@ _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/logo.
 .di-reg-success p.info{font-size:18px; line-height:26px;font-family:'Microsoft YaHei';color:#333333;}
 .di-reg-success p.info label{color:#ff6600}
 .di-reg-success p.download {margin-top:30px;}
+
+.di-invite-success{ background:url(images/invite_bg.jpg) no-repeat center ; border:none;height:460px;text-align:center; padding:10px 20px; width:760px;}
+.di-invite-success .info-area{ border-bottom:1px solid #cbe9ff; height:157px;}
+.di-invite-success .info-area h3{ color: #0a8be6; font-family:'Microsoft YaHei';font-size:30px; margin:0; padding:37px 0 0 0;}
+.di-invite-success .info-area p.info{font-size:18px; line-height:26px;font-family:'Microsoft YaHei';color:#333333;}
+.di-invite-success .info-area p.info label{color:#ff6600}
+.di-invite-success .version{ position:relative; width:760px;}
+.di-invite-success .version .screen{ position:absolute; top:23px;left:20px;}
+.di-invite-success .version .banner{ position:absolute;top:78px;left:311px;}
+.di-invite-success .version .download-area{position:absolute;top:165px;left:363px;text-align:left;}
