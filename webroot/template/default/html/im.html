@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel="stylesheet" href="../im.css" />
+</head>
+
+<body class="im">
+<div class="im-tab">
+	<a href="recommend.html" target="imframe" class="on">随缘推荐</a>
+    <a href="search&hot.html" target="imframe">查找</a>
+    <a href="search&hot.html" target="imframe">昨日最热关注</a>
+</div>
+<div class="im-frame">
+	<iframe name="imframe" scrolling="no" frameborder="0" height="100%" width="100%" src="recommend.html"></iframe>
+</div>
+<script type="text/javascript" src="../js/jquery-1.3.2.js"></script>
+<script type="text/javascript">
+$(function(){
+	$(".im-tab a").click(function(){
+		$(this).parent().find("a.on").removeClass("on");
+		$(this).addClass("on");
+		return true;
+	})
+	.eq(0).click();
+});
+</script>
+</body>
+</html>

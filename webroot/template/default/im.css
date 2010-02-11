@@ -40,10 +40,22 @@ ul.friend-recommend li{width:122px; float:left;padding-top:7px;text-align:center
 ul.friend-recommend p{	padding-top:7px;}
 ul.friend-recommend p.follow{color:#00cc00; line-height:22px;}
 
-ul.friend-list.user{width:488px;border:1px solid #ededed;border-bottom:none;}
+div.search-result{ margin:10px; border:1px solid #ededed; height:278px; overflow-y:scroll}
+ul.friend-list.user{width:488px;}
 ul.friend-list.follow{width:420px;margin:0 5px;border-bottom:none;}
-ul.friend-list li{clear:both;padding:10px;position:relative;_height:40px;border-bottom:1px solid #ededed;}
+ul.friend-list li{clear:both;padding:10px;_height:40px;border-bottom:1px solid #ededed;}
 ul.friend-list a.userid{color:#0a8be6;}
 ul.friend-list p{padding-left:50px;line-height:14px;}
 ul.friend-list p.img{float:left;padding:0;}
-ul.friend-list li .follow{position:absolute ; top:10px; right: 10px; text-align:righ;color:#00cc00;}
+ul.friend-list p.img em{ display:block; height:36px; width:36px; background:no-repeat url(images/mask36.gif); position:absolute;}
+ul.friend-list p.img img{ height:36px; width:36px;}
+ul.friend-list li .follow{ text-align:right;color:#00cc00; padding:0; float:right; width:100px;}
+
+body.im{ background:url(images/imbg.gif) no-repeat; height:370px; width:530px; overflow:hidden;}
+div.im-tab { height:26px;}
+div.im-tab a{ float:left; margin-right:2px; background:url(images/tab.gif) no-repeat; width:100px; text-align:center; color:#0a8be6; padding-top:9px; padding-bottom:3px ;text-decoration:none;}
+div.im-tab a:hover{ text-decoration:none;}
+div.im-tab a.on{ background-image:url(images/tabon.gif); color:#333333; font-weight:bold;}
+div.im-frame{ width:528px; margin:1px; height:342px;}
+div.im-pager{ color:#666; text-align:right; padding-right:20px; padding-top:10px;}
+div.im-pager a{ display:inline-block; margin:0 5px;color:#0a8be6;}
