@@ -76,5 +76,22 @@ ul.di-form li{ height:36px; }
 ul.di-form li.black{ height:auto; padding:10px 112px; line-height:150%; }
 ul.di-form label{ display:block; float:left; width:102px; padding-right:8px; text-align:right; height:22px; line-height:22px;}
 ul.di-form span{height:22px; line-height:22px; margin:0 0 0 20px;}
-ul.di-form li.block button{border:0; padding:0; height:40px; width:140px; cursor:pointer; vertical-align:middle;}
+ul.di-form li.block button{border:0; padding:0; height:42px; width:142px; cursor:pointer; vertical-align:middle;}
 ul.di-form li.block label{padding-top:12px;}
+
+.di-reg-info{padding:14px 0 0 0; height:106px; background:#eaf6ff;}
+.di-reg-info p.avatar{ padding:4px 18px 4px 54px;; background:url(images/regavatar.gif) 50px 0  no-repeat; text-align:right; float:left; width:80px;}
+.di-reg-info div.info p{ padding-top:9px;}
+.di-reg-info p.text{ color:#0A8BE6;}
+
+ul.di-reg-form{border-top:1px solid #E5E5E5; padding-top:15px;}
+ul.di-reg-form.noborder{ border:none; padding-top:0;}
+ul.di-reg-form li{ height:36px; }
+ul.di-reg-form li.submit{height:55px; line-height:55px;}
+ul.di-reg-form input { width:200px; margin-right:20px;}
+ul.di-reg-form input.radio{ display:inline;float:none; width:auto;margin:0;}
+ul.di-reg-form input.verifycode{ display:inline;float:none; width:70px;margin:0 10px 0 0 ;}
+ul.di-reg-form label{ display:block; float:left; width:220px; padding-right:8px; text-align:right; height:22px; line-height:22px;}
+ul.di-reg-form span{height:22px; line-height:22px; margin:0 0 0 20px;}
+ul.di-reg-form li.submit label{ padding-top:18px;}
+ul.di-reg-form li.submit button{border:0; padding:0; height:42px; width:102px; cursor:pointer; vertical-align:middle;}
