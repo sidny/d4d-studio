@@ -16,7 +16,7 @@ var __reglib = {
 	pdf				:	/[\w]+\.(pdf)$/gi
 };
 function __createTips(target,message,type,onstatus){
-	if(onstatus instanceof Function) onstatus(target,message,type);
+	if(onstatus instanceof Function) onstatus.call(target,message,type);
 	$(target).trigger(((type == "error")?type:"normal"));
 	if ($.bt){
 			$(target).bt(message,$.extend(
