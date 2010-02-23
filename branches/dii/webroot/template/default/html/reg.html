@@ -136,8 +136,8 @@ $(function(){
 			method: 'default',
 			error: 'email error',
 			onstatus:
-			function(target,message,status){
-				document.title = status + ":" + message;
+			function(message,type){
+				document.title = this.name+"-"+type + ":" + message;
 				}});
 });
 </script>
