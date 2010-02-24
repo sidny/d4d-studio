@@ -22,7 +22,7 @@ div.user-info div.following{ color:#cc0000; line-height:20px; text-align:center;
 div.user-info div.info{ padding:20px 20px 0 153px; overflow:hidden; line-height:19px;}
 div.user-info div.message{ position:absolute; right:20px; bottom:5px;}
 
-div.feed-list{ width:448px; _height:334px; max-height:334px; overflow-y:scroll; zoom:1;}
+div.feed-list{ height:334px; width:448px; overflow-y:scroll; zoom:1;}
 div.feed-list ul{max-width:448px;padding:0 2px; border-bottom:1px solid #c4d9e2}
 div.feed-list ul li{border-bottom:1px solid #ededed;_height:50px; min-height:50px; line-height:17px;padding:7px 0 7px 68px;}
 div.feed-list ul li p.from{color: #aeaeae;}
@@ -42,7 +42,7 @@ ul.friend-recommend p.follow{color:#00cc00; line-height:22px;}
 
 div.search-result{ margin:10px; border:1px solid #ededed; height:278px; overflow-y:scroll}
 ul.friend-list.user{width:488px;}
-ul.friend-list.follow{width:420px;margin:0 5px;border-bottom:none;}
+ul.friend-list.follow{width:440px;padding:0 5px;border-bottom:none; overflow-y:scroll; height:434px;}
 ul.friend-list li{clear:both;padding:10px;_height:40px;border-bottom:1px solid #ededed;}
 ul.friend-list a.userid{color:#0a8be6;}
 ul.friend-list p{padding-left:50px;line-height:14px;}
@@ -50,6 +50,7 @@ ul.friend-list p.img{float:left;padding:0;}
 ul.friend-list p.img em{ display:block; height:36px; width:36px; background:no-repeat url(images/mask36.gif); position:absolute;}
 ul.friend-list p.img img{ height:36px; width:36px;}
 ul.friend-list li .follow{ text-align:right;color:#00cc00; padding:0; float:right; width:100px;}
+div.friend-list-top{ width:440px; height:30px; line-height:30px; border-bottom:1px solid #c4d9e2; padding-right:16px; text-align:right; background:url(images/info_bg.png) top repeat-x;}
 
 body.im{ background:url(images/imbg.gif) no-repeat; height:370px; width:530px; overflow:hidden;}
 div.im-tab { height:26px;}
@@ -59,3 +60,4 @@ div.im-tab a.on{ background-image:url(images/tabon.gif); color:#333333; font-wei
 div.im-frame{ width:528px; margin:1px; height:342px;}
 div.im-pager{ color:#666; text-align:right; padding-right:20px; padding-top:10px;}
 div.im-pager a{ display:inline-block; margin:0 5px;color:#0a8be6;}
+div.im-pager.friend-pager{ background:#f1f9ff; width:440px; padding-bottom:10px;  border-top:1px solid #c4d9e2;}
