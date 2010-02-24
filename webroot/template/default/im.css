@@ -61,3 +61,8 @@ div.im-frame{ width:528px; margin:1px; height:342px;}
 div.im-pager{ color:#666; text-align:right; padding-right:20px; padding-top:10px;}
 div.im-pager a{ display:inline-block; margin:0 5px;color:#0a8be6;}
 div.im-pager.friend-pager{ background:#f1f9ff; width:440px; padding-bottom:10px;  border-top:1px solid #c4d9e2;}
+div.search-option{padding:5px 0 0 90px;}
+div.search-option .search-button{ padding-right:90px; text-align:center;}
+div.search-option .options{ height:230px;}
+div.search-option .options .accurate{ padding-top:50px;}
+div.search-option .options .condition{ line-height:20px;}
