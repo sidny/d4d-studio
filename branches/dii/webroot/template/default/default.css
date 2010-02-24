@@ -71,12 +71,12 @@ _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/logo.
 
 ul.di-form{ margin-top:20px; min-height:200px;}
 ul.di-form input { width:248px; vertical-align:middle; margin-right:20px;}
-ul.di-form button.submit{border:0; padding:0; height:40px; width:100px; cursor:pointer;}
+ul.di-form button{border:0; padding:0; height:42px; width:102px; cursor:pointer; vertical-align:middle}
 ul.di-form li{ height:36px; }
 ul.di-form li.black{ height:auto; padding:10px 112px; line-height:150%; }
 ul.di-form label{ display:block; float:left; width:102px; padding-right:8px; text-align:right; height:22px; line-height:22px;}
 ul.di-form span{height:22px; line-height:22px; margin:0 0 0 20px;}
-ul.di-form li.block button{border:0; padding:0; height:42px; width:142px; cursor:pointer; vertical-align:middle;}
+ul.di-form button.block-btn{border:0; padding:0; width:100px; cursor:pointer; height:42px; width:142px; cursor:pointer; vertical-align:middle;}
 ul.di-form li.block label{padding-top:12px;}
 
 .di-reg-info{padding:14px 0 0 0; height:106px; background:#eaf6ff;}
