@@ -32,6 +32,19 @@ _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/logo.
 .di-content h3.tit{ border-bottom: 1px solid #E5E5E5; line-height: 50px; font-size: 12px; font-weight: normal; }
 .di-content h3.tit strong{ color: #0A8BE6; font-size: 14px; }
 
+.di-index-banner{ background:#023c72 url(images/home.jpg) no-repeat; width:798px; height:340px; position:relative;}
+.di-index-banner div{ position:absolute; right:20px; bottom:2px; color:#7bcdfe; line-height:18px;}
+.di-index-banner div p.download{ float:left; width:200px; text-align:center; padding-top:3px;}
+.di-index-content{ padding:20px 0; width:798px;}
+.di-index-content dl{ float:left; width:230px; padding:18px;}
+.di-index-content dt{ font-weight:bold; color:#333333; border-bottom:1px solid #e5e5e5; font-size:14px; padding-bottom:3px; margin-bottom:10px;}
+.di-index-content dd{ margin:0; height:20px;}
+.di-index-content label{ float:right; color:#999999; font-size:11px; font-family:Verdana, Geneva, sans-serif}
+.di-index-content label a{ font-size:12px;}
+.di-index-content a:hover{ color:#ff6600}
+.di-index-content .faq dd{ margin-left:12px;}
+.di-index-content .link dd{ padding-left:12px; float:left; width:100px;}
+
 .di-help-menu{ width: 160px; float: left; margin: 0; }
 .di-help-menu ul{ margin: 10px 0 0 0; }
 .di-help-menu li{ line-height: 1.8; }
