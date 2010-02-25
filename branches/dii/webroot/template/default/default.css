@@ -33,7 +33,7 @@ _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../images/logo.
 .di-content h3.tit strong{ color: #0A8BE6; font-size: 14px; }
 
 .di-index-banner{ background:#023c72 url(images/home.jpg) no-repeat; width:798px; height:340px; position:relative;}
-.di-index-banner div{ position:absolute; right:20px; bottom:2px; color:#7bcdfe; line-height:18px;}
+.di-index-banner div{width:400px; position:absolute; right:20px; bottom:2px; color:#7bcdfe; line-height:18px;}
 .di-index-banner div p.download{ float:left; width:200px; text-align:center; padding-top:3px;}
 .di-index-content{ padding:20px 0; width:798px;}
 .di-index-content dl{ float:left; width:230px; padding:18px;}
