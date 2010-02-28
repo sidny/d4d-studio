@@ -24,7 +24,8 @@ BEGIN
 			   [Status],
                 body,
 			  Hits,
-         BaseCountEachdeliver			  
+         BaseCountEachdeliver,
+		 Weight
     FROM shop_items With(nolock)
     WHERE id =  @id
  
