@@ -85,7 +85,7 @@
                                第三方支付单号
                             </th>
                              <th>
-                               支付备注
+                               用户备注
                             </th>
                             <th>
                                商品
@@ -146,7 +146,7 @@
                             <asp:Literal ID="litPayThirdNum" runat="server"></asp:Literal>
                         </td>
                          <td>
-                            <asp:Literal ID="litPayRemark" runat="server"></asp:Literal>
+                            <asp:Literal ID="litUserRemark" runat="server"></asp:Literal>
                         </td>
                          <td>
                             <asp:Literal ID="litTradeList" runat="server"></asp:Literal>
@@ -498,7 +498,7 @@
 
             Literal listPayDate = e.Item.FindControl("listPayDate") as Literal;
             Literal litPayThirdNum = e.Item.FindControl("litPayThirdNum") as Literal;
-            Literal litPayRemark = e.Item.FindControl("litPayRemark") as Literal;
+            Literal litUserRemark = e.Item.FindControl("litUserRemark") as Literal;
             Literal litTradeList = e.Item.FindControl("litTradeList") as Literal;
             Literal litRegionStr = e.Item.FindControl("litRegionStr") as Literal;
 
@@ -546,7 +546,14 @@
             }
             listPayDate.Text = m.Paydate.ToString("yyyy-MM-dd HH:mm:ss");
             litPayThirdNum.Text = m.Paythirdnum;
-            litPayRemark.Text = m.Payremark;
+            if (m.Id > 0)
+            {
+                AddInfo mInfo =
+                D4D.Platform.D4DGateway.AddInfoProvider.GetAddInfo(m.Id, 2100);
+                if (mInfo != null && !string.IsNullOrEmpty(mInfo.Info1))
+                    litUserRemark.Text = mInfo.Info1;
+            }
+           // litUserRemark.Text = //m.Payremark;
             litTradeList.Text =string.Format("<a href='OrderTradeList.aspx?id={0}'>详细</a>",m.Id);
          
         }
