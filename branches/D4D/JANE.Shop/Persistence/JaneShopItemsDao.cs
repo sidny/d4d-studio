@@ -32,7 +32,8 @@ namespace JANE.Shop.Persistence
                  parameters.AddWithValue("@AddUserId", item.AddUserID);
                  parameters.AddWithValue("@Status", (int)(item.Status));
                  parameters.AddWithValue("@Hits", (int)(item.Hits));
-                 parameters.AddWithValue("@BaseCountEachdeliver", (int)(item.BaseCountEachdeliver));   
+                 parameters.AddWithValue("@BaseCountEachdeliver", (int)(item.BaseCountEachdeliver));
+                 parameters.AddWithValue("@Weight", item.Weight);   
                  parameters.AddWithValue("@RetVal", DBNull.Value, ParameterDirectionWrap.ReturnValue);
 
              },
@@ -81,6 +82,7 @@ namespace JANE.Shop.Persistence
                          m.Body = record.GetStringOrEmpty(10);
                          m.Hits = record.GetInt32OrDefault(11,0);
                          m.BaseCountEachdeliver = record.GetInt32OrDefault(12, 5);
+                         m.Weight = record.GetDouble(13);
                      },
                      id, hits);
             }
@@ -103,6 +105,7 @@ namespace JANE.Shop.Persistence
             m.Body = record.GetStringOrEmpty(10);
             m.Hits = record.GetInt32OrDefault(11, 0);
             m.BaseCountEachdeliver = record.GetInt32OrDefault(12, 5);
+            m.Weight = record.GetDouble(13);
             list.Add(m);
         }
         /// <summary>
