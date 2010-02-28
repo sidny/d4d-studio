@@ -271,11 +271,13 @@
                                         {
                                             ShopItem tshopItem;
                                             double trprice = 0;
+                                            double totalWeight = 0;
                                             foreach (KeyValuePair<int, int> kvp in dicItemCount)
                                             {
                                                 tshopItem = null;
                                                 if (dicItemPrice.TryGetValue(kvp.Key, out tshopItem))
                                                 {
+                                                    /*
                                                     //if BaseCountEachdeliver is 0 then//
                                                     //商城后台有的商品不需要送货计价单位，就是说此商品不分数量运费都为10元。
                                                     if (tshopItem.BaseCountEachdeliver <= 0)
@@ -283,7 +285,14 @@
                                                     else
                                                         trprice += (sr.TransferPrice *
                                                         JANE.Shop.Helper.CarriageHelper.Ceiling(kvp.Value, tshopItem.BaseCountEachdeliver));
+                                                     */
+                                                     //购物车商品进行累加的时候，计算方法：
+                                                    //多件商品总价 +（多件商品总重量/1000克=商品千克重量）x 运费单价 = 用户支付的总价
+                                                    //商品总重量，向上取整（例：2.1千克 2.9千克 都取整为3千克）
+                                                    totalWeight += tshopItem.Weight * kvp.Value;
                                                 }
+                                                
+                                                trprice = (sr.TransferPrice *   Math.Ceiling(totalWeight/1000) );
                                             }
                                             litTransferPrice.Text = trprice.ToString(); 
                                         }
