@@ -45,7 +45,7 @@
                                 价格
                             </th>
                             <th>
-                                送货计价单位
+                                重量(克）
                             </th>
                             <th>
                                 发布状态
@@ -76,7 +76,7 @@
                             <asp:Literal ID="litPrice" runat="server"></asp:Literal>
                         </td>
                         <td>
-                            <asp:Literal ID="litBaseCountEachdeliver" runat="server"></asp:Literal>
+                            <asp:Literal ID="litWeight" runat="server"></asp:Literal>
                         </td>
                         <td>
                             <asp:CheckBox ID="litStatus" runat="server"></asp:CheckBox>
@@ -134,14 +134,11 @@
                 </tr>
                   <tr>
                     <th width="100">
-                        送货计价单位
+                        重量
                     </th>
                     <td>
-                       <asp:TextBox ID="txtBaseCountEachdeliver" runat="server"></asp:TextBox>
-                       比如CD 送货计价单位 = 5 ，那么快递费用为10时，
-                       当买小于等于5件商品时候 费用就是10元；
-                       当买大于5小于等于10件商品 费用就是10x2 ，依次类推。
-                       送货计价单位=0，不管数量多少运费都是10元
+                       <asp:TextBox ID="txtWeight" runat="server"></asp:TextBox>千克 用于计费
+                       <br />多件商品总价 +（多件商品总重量/1000克=商品千克重量）x 运费单价 = 用户支付的总价                       
                     </td>
                 </tr>
                 <tr>
@@ -343,8 +340,9 @@
             CheckBox litStatus = e.Item.FindControl("litStatus") as CheckBox;
             Literal litPublishDate = e.Item.FindControl("litPublishDate") as Literal;
             Literal litAddDate = e.Item.FindControl("litAddDate") as Literal;
-            Literal litBaseCountEachdeliver = e.Item.FindControl("litBaseCountEachdeliver") as Literal;
+           // Literal litBaseCountEachdeliver = e.Item.FindControl("litBaseCountEachdeliver") as Literal;
 
+            Literal litWeight = e.Item.FindControl("litWeight") as Literal;
             litId.Text = m.Id.ToString();
             litTitle.Text = m.Name;
             litTitle.NavigateUrl = "/channel/shop/detail.aspx?id=" + m.Id.ToString();
@@ -354,7 +352,8 @@
             litStatus.Enabled = false;
             litAddDate.Text = m.AddDate.ToLongDateString();
             litPublishDate.Text = m.PublishDate.ToLongDateString();
-            litBaseCountEachdeliver.Text = m.BaseCountEachdeliver.ToString();
+            //litBaseCountEachdeliver.Text = m.BaseCountEachdeliver.ToString();
+            litWeight.Text = m.Weight.ToString();
         }
     }
 
@@ -382,13 +381,19 @@
         item.AddDate = DateTime.Now;
         item.AddUserID = D4D.Web.Helper.AdminHelper.CurrentUser.UserID;
         
-        int iBaseCountEachdeliver = 5;
-        if (!string.IsNullOrEmpty(txtBaseCountEachdeliver.Text))
-        {
-            int.TryParse(txtBaseCountEachdeliver.Text, out iBaseCountEachdeliver);
-        }
+        //int iBaseCountEachdeliver = 5;
+        //if (!string.IsNullOrEmpty(txtBaseCountEachdeliver.Text))
+        //{
+        //    int.TryParse(txtBaseCountEachdeliver.Text, out iBaseCountEachdeliver);
+        //}
 
-        item.BaseCountEachdeliver = iBaseCountEachdeliver;
+        //item.BaseCountEachdeliver = iBaseCountEachdeliver;
+        double weight = 1000;
+        if (!string.IsNullOrEmpty(txtWeight.Text))
+        {
+            double.TryParse(txtWeight.Text, out weight); 
+        }
+        item.Weight = weight;
 
         int result = JaneShopGateway.JaneShopProvier.SetShopItem(item);
         addPanel.Visible = false;
@@ -415,7 +420,8 @@
         txtPreview.Text = item.Description;
         txtBody.Value = item.Body;
         txtPrice.Text = item.Price.ToString();
-        txtBaseCountEachdeliver.Text = item.BaseCountEachdeliver.ToString();
+       // txtBaseCountEachdeliver.Text = item.BaseCountEachdeliver.ToString();
+        txtWeight.Text = item.Weight.ToString();
         
     }
 

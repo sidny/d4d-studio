@@ -96,5 +96,26 @@ namespace JANE.Shop.Domain
                 _BaseCountEachdeliver = value;
             }
         }
+
+        private double _weight =1000;
+        /// <summary>
+        ///商品录入时增加一个重量的输入框，单位是克
+        ///购物车商品进行累加的时候，计算方法：
+        ///多件商品总价 +（多件商品总重量/1000克=商品千克重量）x 运费单价 = 用户支付的总价
+        ///商品总重量，向上取整（例：2.1千克 2.9千克 都取整为3千克推
+        /// </summary>
+        public double Weight
+        {
+            get
+            {
+                return _weight;
+            }
+            set
+            {
+                _weight = value;
+            }
+        }
+
+
     }
 }
