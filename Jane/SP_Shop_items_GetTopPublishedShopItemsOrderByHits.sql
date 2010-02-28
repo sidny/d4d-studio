@@ -19,7 +19,8 @@ BEGIN
 			   [Status],
                 body,
 			  Hits,
-BaseCountEachdeliver			  
+BaseCountEachdeliver,
+Weight			  
     FROM shop_items With(nolock)
     WHERE [Status] = 1 
 	ORDER BY Hits DESC, PublishDate DESC

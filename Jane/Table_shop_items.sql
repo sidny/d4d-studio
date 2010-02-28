@@ -15,7 +15,8 @@ CREATE TABLE [dbo].[shop_items] (
 	[AddDate] [datetime] NULL ,
 	[Status] [int] NULL ,
 	[Hits] [int] NULL ,
-	[BaseCountEachdeliver] [int] NULL 
+	[BaseCountEachdeliver] [int] NULL ,
+	[Weight] [float] NULL 
 ) ON [PRIMARY]
 GO
 

@@ -62,7 +62,8 @@ BEGIN
 			   [Status],
                                            body,
                                            Hits,
-BaseCountEachdeliver										   
+BaseCountEachdeliver,
+Weight										   
 		FROM dbo.shop_items t WITH(NOLOCK)
 		INNER JOIN @Results r ON  (t.Id = r.Id)	
 		WHERE 
