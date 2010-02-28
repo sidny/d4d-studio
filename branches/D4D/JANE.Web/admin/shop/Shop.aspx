@@ -137,8 +137,8 @@
                         重量
                     </th>
                     <td>
-                       <asp:TextBox ID="txtWeight" runat="server"></asp:TextBox>千克 用于计费
-                       <br />多件商品总价 +（多件商品总重量/1000克=商品千克重量）x 运费单价 = 用户支付的总价                       
+                       <asp:TextBox ID="txtWeight" runat="server"></asp:TextBox>千克                             
+                       <br /> 用于计费 多件商品总价 +（多件商品总重量/1000克=商品千克重量）x 运费单价 = 用户支付的总价                       
                     </td>
                 </tr>
                 <tr>
