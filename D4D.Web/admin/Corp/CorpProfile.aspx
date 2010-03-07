@@ -3,6 +3,7 @@
 <%@ Import Namespace="D4D.Platform.Domain" %>
 <%@ Import Namespace="LTP.Accounts.Bus"%>
 <%@ Register Assembly="FredCK.FCKeditorV2" Namespace="FredCK.FCKeditorV2" TagPrefix="FCKeditorV2" %>
+<%@ Register src="../Controls/FileUpload.ascx" tagname="FileUpload" tagprefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title></title>
 </asp:Content>
@@ -55,6 +56,12 @@
                <asp:TextBox ID="txtFlv" runat="server" Width="100%"></asp:TextBox>
             </td>
          </tr>
+          <tr>
+            <th align="center" style="width: 30px;">首页LOGO</th>
+            <td>
+               <uc1:FileUpload ID="txtLogo" runat="server" AutoCreateThumbnailImage="false" AutoShowAddWaterMark="false"/>
+            </td>
+         </tr>
        </table>
 </form>
 </asp:Content>
@@ -91,6 +98,7 @@
            txtCopyright.Value = D4DGateway.CorpInfoProvider.ReadProfileContent("copyright");
 		   txtLinks.Value = D4DGateway.CorpInfoProvider.ReadProfileContent("links");
            txtFlv.Text = D4DGateway.CorpInfoProvider.ReadProfileContent("flv");
+		   txtLogo.UploadResult = D4DGateway.CorpInfoProvider.ReadProfileContent("logo");
         }
     }
     protected void btnGoFlashPage_Click(object sender, EventArgs e)
@@ -120,6 +128,7 @@
             D4DGateway.CorpInfoProvider.SetProfileContent("links", txtLinks.Value);
         
             D4DGateway.CorpInfoProvider.SetProfileContent("flv", txtFlv.Text,true);
+			D4DGateway.CorpInfoProvider.SetProfileContent("logo", txtLogo.UploadResult,false);
         Response.Redirect("CorpProfile.aspx");
     }
 </script>
