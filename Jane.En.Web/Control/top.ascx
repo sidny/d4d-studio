@@ -101,6 +101,10 @@
 		"id", "menu",
 		"quality", "high",
 		"name", "menu",
+		<% string logo =D4D.Platform.D4DGateway.CorpInfoProvider.ReadProfileContent("logo").Trim();
+if(!string.IsNullOrEmpty(logo)){%>
+		"flashvars","logo=<%=logo%>",
+		<% }%>
 		"allowScriptAccess", "always",
 		"wmode","transparent",
 		"type", "application/x-shockwave-flash",
