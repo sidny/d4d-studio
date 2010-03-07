@@ -1,7 +1,8 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="top.ascx.cs" Inherits="D4D.Web.Control.top" %>
 <div class="header">
-    <a href="/">
-        <img src="/static/images/logo.png" alt="少城时代" /></a>
+    <a href="/"><% string logo =D4D.Platform.D4DGateway.CorpInfoProvider.ReadProfileContent("logo").Trim();
+if(!string.IsNullOrEmpty(logo)){%><img src="<%=logo%>" alt="少城时代" /><% }else{%>
+    <img src="/static/images/logo.png" alt="少城时代" /><%}%></a>
     <div class="login">
         欢迎光临少城时代，
         <%if (D4D.Web.Helper.AdminHelper.CurrentUser == null)
