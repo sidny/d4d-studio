@@ -3,6 +3,7 @@
 <%@ Import Namespace="D4D.Platform.Domain" %>
 <%@ Import Namespace="LTP.Accounts.Bus"%>
 <%@ Register Assembly="FredCK.FCKeditorV2" Namespace="FredCK.FCKeditorV2" TagPrefix="FCKeditorV2" %>
+<%@ Register src="../Controls/FileUpload.ascx" tagname="FileUpload" tagprefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title></title>
 </asp:Content>
@@ -56,12 +57,20 @@
                <FCKeditorV2:FCKeditor ID="txtAdservice" ToolbarSet="ShowCity" runat="server" />
             </td>
          </tr>
-            <tr>
+         <tr>
             <th align="center" style="width: 30px;">首页FLV</th>
             <td>
                <asp:TextBox ID="txtFlv" runat="server" Width="100%"></asp:TextBox>
             </td>
          </tr>
+         <tr>
+            <th align="center" style="width: 30px;">首页LOGO</th>
+            <td>
+               <uc1:FileUpload ID="txtLogo" runat="server" AutoCreateThumbnailImage="false" AutoShowAddWaterMark="false"/>
+            </td>
+         </tr>
+         <tr>
+          
        </table>
 </form>
 </asp:Content>
@@ -97,8 +106,9 @@
            txtZhaopin.Value = D4DGateway.CorpInfoProvider.ReadProfileContent("zhaopin");
            txtCopyright.Value = D4DGateway.CorpInfoProvider.ReadProfileContent("copyright");
 		   txtLinks.Value = D4DGateway.CorpInfoProvider.ReadProfileContent("links");
-           txtAdservice .Value = D4DGateway.CorpInfoProvider.ReadProfileContent("adservice");
+           txtAdservice.Value = D4DGateway.CorpInfoProvider.ReadProfileContent("adservice");
            txtFlv.Text = D4DGateway.CorpInfoProvider.ReadProfileContent("flv");
+		   txtLogo.UploadResult = D4DGateway.CorpInfoProvider.ReadProfileContent("logo");
         }
     }
     protected void btnGoFlashPage_Click(object sender, EventArgs e)
@@ -130,6 +140,7 @@
             D4DGateway.CorpInfoProvider.SetProfileContent("adservice", txtAdservice.Value, false);
 
         D4DGateway.CorpInfoProvider.SetProfileContent("flv", txtFlv.Text,false);
+		D4DGateway.CorpInfoProvider.SetProfileContent("logo", txtLogo.UploadResult,false);
         Response.Redirect("CorpProfile.aspx");
     }
 </script>
