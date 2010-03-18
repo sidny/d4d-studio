@@ -51,7 +51,7 @@ namespace D4D.Web.svc
         {
             D4D.Platform.Domain.PagingContext pager = new D4D.Platform.Domain.PagingContext();
             pager.CurrentPageNumber = 1;
-            pager.RecordsPerPage = 100;
+            pager.RecordsPerPage = 10000;
             IList<D4D.Platform.Domain.Tag> list = D4D.Platform.D4DGateway.TagsProvider.GetPagedTags(pager);
 			
             return (from item in list
