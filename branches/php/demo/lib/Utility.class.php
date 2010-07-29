@@ -38,7 +38,7 @@ class Utility {
 	{
 		if(empty($a)) return array();
 		$ret = array();
-		JWDB::CheckArray( $column );
+		DB::CheckArray( $column );
 		if(1>=count($column))
 		{
 			$col = $column[0];
@@ -104,7 +104,7 @@ class Utility {
 	/* support 1-level now */
 	static public function SetColumn($a=array(), $columns=array('id'))
 	{
-		JWDB::CheckArray($columns);
+		DB::CheckArray($columns);
 
 		$ret = array();
 		foreach( $a AS $one )
@@ -145,14 +145,14 @@ class Utility {
 
 		/**
 		XXX useless?
-		if ( preg_match( '/reg/', $url ) && JWLogin::IsLogined() )
+		if ( preg_match( '/reg/', $url ) && Login::IsLogined() )
 			$url = 'index.php';
 
 **/
 		if ( $err )
 		{
 			die( 'ERROR ' . $err .'<br/><a href="javascript:history.go(-1)">back</a>' );
-			die( JWTemplate::Render( 'redirect', array( 'reason' => $err, 'url' => $url)) );
+			die( Template::Render( 'redirect', array( 'reason' => $err, 'url' => $url)) );
 		}
 	
 		$https_to_http = isset($_SERVER['HTTPS']) && 'http:'==mb_substr($url, 0, 5) ? 1 : 0 ;
@@ -390,8 +390,8 @@ class Utility {
 
 	static public function GetArrayByPage($arr = array(), $options=array())
 	{
-		$page_no = isset($options['page_no']) ? JWDB::CheckInt($options['page_no'], 1) : 1;
-		$page_size = isset($options['page_size']) ? JWDB::CheckInt($options['page_size'], 1) : 20;
+		$page_no = isset($options['page_no']) ? DB::CheckInt($options['page_no'], 1) : 1;
+		$page_size = isset($options['page_size']) ? DB::CheckInt($options['page_size'], 1) : 20;
 		if($page_size)
 		{
 			if(!$page_no)
@@ -641,7 +641,7 @@ class Utility {
 	}
 
 	static function Txt2Html($str) {
-	  return htmlspecialchars(JWString::Utf8Sanitize($str), ENT_QUOTES, 'UTF-8');
+	  return htmlspecialchars(String::Utf8Sanitize($str), ENT_QUOTES, 'UTF-8');
 	}
 
 	// this is for cases (html_hyperlink, intern stuff that already his it right)
@@ -686,7 +686,7 @@ class Utility {
         }
 	
 	static public function FormatUrlInText( $text ){
-		return preg_replace_callback( self::HTTP_URL_REGIX, 'JWUtility::FormatUrl', $text );
+		return preg_replace_callback( self::HTTP_URL_REGIX, 'Utility::FormatUrl', $text );
 	}
 
 	static public function GetHeaderNameByUrl($url='')
@@ -708,8 +708,6 @@ class Utility {
 			return 'regactive';
 		elseif (0===strncmp($url,'/index.php', 10) && $_SERVER['HTTP_HOST'] == WWW_HOSTNAME) 
 			return 'nologinhome';
-		elseif ($_SERVER['HTTP_HOST'] ==TALKER_HOSTNAME && 0!==strncmp($url,'/index.php', 10))
-			return 'talker';
 		else
 			return '';
 	}
@@ -808,7 +806,7 @@ class Utility {
 	{
 		global $current_user_active;
 		if(0>=strlen($url))
-			$url = JWUtility::GetHeaderNameByUrl();
+			$url = Utility::GetHeaderNameByUrl();
 		if(!in_array($url, array('register', 'help', 'talker')))
 		{
 			return 0>=$current_user_active ? 1 : 2;
@@ -819,7 +817,7 @@ class Utility {
 	static public function HttpsRedirect($url='')
 	{
 		//用于　https　返回　http　的特殊跳转
-		JWTemplate::Instance()->Assign(array(
+		Template::Instance()->Assign(array(
 			'url' => $url
 			))
 		->SetTitle('登录后跳转')

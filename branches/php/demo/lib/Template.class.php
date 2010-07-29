@@ -1,6 +1,4 @@
 <?php
-require( dirname(__FILE__).'/Smarty-2.6.19/libs/Smarty.class.php' );
-
 if(false==defined('TPL_COMPILED_DIR')) define('TPL_COMPILED_DIR','/tmp');
 if(false==defined('TPL_PLUGINS_DIR')) define('TPL_PLUGINS_DIR','/tmp');
 if(false==defined('TPL_TEMPLATE_DIR')) define('TPL_TEMPLATE_DIR','/tmp');
