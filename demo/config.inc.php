@@ -1,0 +1,13 @@
+<?php
+define('PEAR_LIB','/usr/lib/php/');
+define('ROOT', dirname(__FILE__).'/');
+define('LIB', ROOT . 'lib/');
+define('CLS', ROOT . 'class/');
+define('CONFIG', ROOT . 'config/' );
+define('ASSET_PATH',ROOT .'asset');
+define('HOSTNAME', 'localhost/~yangfan/demo');
+define('ASSET_HOSTNAME', HOSTNAME.'/asset');
+define('TPL_COMPILED_DIR', ROOT . 'compiled');
+define('TPL_TEMPLATE_DIR', ROOT . 'template');
+define('TPL_PLUGINS_DIR', ROOT . 'plugin');
+
