@@ -52,13 +52,13 @@ function smarty_block_editor($params, $content, &$smarty, &$repeat)
 		$url 		= 'http://' . $_SERVER['HTTP_HOST'];
 		preg_match_all("(\w{1,}\.\w{2,3}$)", $_SERVER[HTTP_HOST], $result);
 		$domain 	= $result[0];
-		$configJs 	= JWAsset::GetAssetUrl('/lib/fckeditor/myconfig.js');
+		$configJs 	= Asset::GetAssetUrl('/lib/fckeditor/myconfig.js');
 		
 		if (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE')) {
-			$js = JWAsset::GetAssetUrl('/lib/fckeditor/fckeditor.js');
+			$js = Asset::GetAssetUrl('/lib/fckeditor/fckeditor.js');
 			$script = '<script type="text/javascript">(function(){var s=document.createElement("script"); s.setAttribute("src", "'.$js.'");document.write(s.outerHTML);})();</script>';
 		}else{
-			$script = '<script type="text/javascript" src="'.JWAsset::GetAssetUrl('/lib/fckeditor/fckeditor.js').'"></script>';
+			$script = '<script type="text/javascript" src="'.Asset::GetAssetUrl('/lib/fckeditor/fckeditor.js').'"></script>';
 		}
 		$html .= '<textarea name="'.$name.'" rows="10" cols="80" style="width: 100%; height: 200px">';
 		$html .= htmlspecialchars($content);
@@ -78,7 +78,7 @@ function smarty_block_editor($params, $content, &$smarty, &$repeat)
 		$script .= '})();';
 		$script .= '</script>';
 		$script .= "\n";
-		JWTemplate::ScriptHolder('', $script);
+		Template::ScriptHolder('', $script);
 
 		return $html;
 	}

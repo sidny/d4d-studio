@@ -72,18 +72,18 @@ function smarty_function_validate($params, &$smarty)
 
 	// 实现了经Script Holder处理的优化方案
 	if($version == '1'){
-		$script =	JWTemplate::RequireJs('/core/js/jquery/validate/jquery.validate.js').
-			JWTemplate::RequireJs('/core/js/jquery/bt/jquery.bt.js');
+		$script =	Template::RequireJs('/core/js/jquery/validate/jquery.validate.js').
+			Template::RequireJs('/core/js/jquery/bt/jquery.bt.js');
 	}else{
-		$script  = JWTemplate::RequireJs('/scripts/jquery.validate.js');
+		$script  = Template::RequireJs('/scripts/jquery.validate.js');
 	}
 	$html .= '$(function(){';
 	$html .= '$("'.$field.'").validate(';
 	$html .= json_encode($js_data);
 	
 	$html .= ');});';
-	JWTemplate::AddJsCode( $html);
-	JWTemplate::ScriptHolder('',$script);
+	Template::AddJsCode( $html);
+	Template::ScriptHolder('',$script);
 	
 	return ''; //$html;
 }

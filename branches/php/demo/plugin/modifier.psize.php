@@ -22,7 +22,7 @@
  */
 function smarty_modifier_psize($url, $type=0 )
 {
-	$size = JWPicture::GetSize($url, $type);
+	$size = Picture::GetSize($url, $type);
 	if(0==$type)
 		return $size['width'];
 	else

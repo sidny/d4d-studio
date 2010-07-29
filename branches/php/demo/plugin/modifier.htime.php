@@ -22,5 +22,5 @@
  */
 function smarty_modifier_htime( $time  )
 {
-	return JWUtility::GetHumanTime($time);
+	return Utility::GetHumanTime($time);
 }

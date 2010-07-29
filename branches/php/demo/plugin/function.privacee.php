@@ -49,17 +49,17 @@ function smarty_function_privacee($params, &$smarty)
 	$onabort = $params['onabort'];	
 	$onerror = $params['onerror'];
 	$origin = explode(';',$origin); //var_dump($origin);
-	$html = '<link href="'.JWAsset::GetAssetUrl('/css/components/privacy.css').'" rel="stylesheet" type="text/css" />';
+	$html = '<link href="'.Asset::GetAssetUrl('/css/components/privacy.css').'" rel="stylesheet" type="text/css" />';
 	$html .= "\n";
-	JWTemplate::Assign('oringin', $origin);
-	JWTemplate::Assign('oringin_type', $origin[0]);
-	JWTemplate::Assign('oringin_data', $origin[1]);
-	$html .= JWTemplate::Render( 'section/privacy_setting.tpl');
-	$html = JWTemplate::RequireJsCode($html);
-	JWTemplate::ScriptHolder('', $html);
+	Template::Assign('oringin', $origin);
+	Template::Assign('oringin_type', $origin[0]);
+	Template::Assign('oringin_data', $origin[1]);
+	$html .= Template::Render( 'section/privacy_setting.tpl');
+	$html = Template::RequireJsCode($html);
+	Template::ScriptHolder('', $html);
 	
 	
-	$script = JWTemplate::RequireJs('/lib/jquery/jquery.form.js');
+	$script = Template::RequireJs('/lib/jquery/jquery.form.js');
 	$script .= "\n";
 	$script .= <<<EOF
 <script type="text/javascript">
@@ -87,7 +87,7 @@ $('$link').click(function(){
 
 EOF;
 	
-	JWTemplate::ScriptHolder('', $script);
+	Template::ScriptHolder('', $script);
 	return '';
 }
 

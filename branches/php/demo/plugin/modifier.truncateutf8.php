@@ -26,7 +26,7 @@
 function smarty_modifier_truncateutf8($string, $length = 80, $etc = '...',
                                                 $break_words = false, $middle = false)
 {
-    return JWUtility::Truncateutf8($string, $length, $etc, $break_words, $middle);
+    return Utility::Truncateutf8($string, $length, $etc, $break_words, $middle);
 }
 
 /* vim: set expandtab: */

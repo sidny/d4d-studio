@@ -23,7 +23,7 @@ function smarty_modifier_ad($sid)
 {
 	//$js 	= smarty_modifier_formaturl('/scripts/bd.js');
 
-	$advstr = JWTemplate::Render("wptpl/advertiseposition/{$sid}.tpl");
+	$advstr = Template::Render("wptpl/advertiseposition/{$sid}.tpl");
 	//$content = preg_replace("/\n/","",$advstr);
 	$content =  $advstr;
 

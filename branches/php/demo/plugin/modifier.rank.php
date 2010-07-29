@@ -23,7 +23,7 @@
  */
 function smarty_modifier_rank( $rank_id, $type='1')
 {
-	$path = JWUtility::RankImgurl($rank_id,$type);
+	$path = Utility::RankImgurl($rank_id,$type);
 	return $path;
 }
 ?>
