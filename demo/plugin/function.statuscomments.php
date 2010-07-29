@@ -10,7 +10,7 @@
 * Purpose:         To render comments in a unify style or form, also simple etc
 *                  
 * @author      wangweisen<visen1118@gmail.com>
-* @param       array,　其中model表示展现的样式，暂时支持JWComment::MODEL_
+* @param       array,　其中model表示展现的样式，暂时支持Comment::MODEL_
 * @param       Smarty*
 *
 *
@@ -37,7 +37,7 @@ function smarty_function_statuscomments($params, &$smarty)
 
 	$model = $params['model'];
 	if( !isset( $model ) )
-		$model = JWComments::MODEL_ASYNC_ONLOAD;
+		$model = Comments::MODEL_ASYNC_ONLOAD;
 
 	$pagesize = $params['pagesize'];
 	if( !isset( $pagesize ) )
@@ -45,7 +45,7 @@ function smarty_function_statuscomments($params, &$smarty)
 
 	$maxlen = $params['maxlen'];
 	if( !isset( $maxlen ) )
-		$maxlen = JWComments::DEFAULT_MAX_LEN;
+		$maxlen = Comments::DEFAULT_MAX_LEN;
 
 	$orderby = $params['orderby'];
 	if( !isset( $orderby ) )
@@ -92,7 +92,7 @@ function smarty_function_statuscomments($params, &$smarty)
 	if( isset( $topic_owner_id ) )
 		$options['topic_owner_id'] = $topic_owner_id;
 
-	$subapp = JWComments::getSubCommentSetting( $app );
+	$subapp = Comments::getSubCommentSetting( $app );
 	if( isset( $subapp ) ){
 		$subcomment = $subapp;
 
@@ -103,10 +103,10 @@ function smarty_function_statuscomments($params, &$smarty)
 			$subcomment['orderby'] = 'asc';
 		}
 		if( !isset( $subcomment['maxlen'] ) ){
-			$subcomment['maxlen'] = JWComments::DEFAULT_MAX_LEN;
+			$subcomment['maxlen'] = Comments::DEFAULT_MAX_LEN;
 		}
 
-		$subcomment['model'] = JWComments::MODEL_ASYNC;
+		$subcomment['model'] = Comments::MODEL_ASYNC;
 		$subcomment['issub'] = true;
 		$subcomment['userid'] = $userid;
 		$subcomment['postable'] = $postable;
@@ -114,7 +114,7 @@ function smarty_function_statuscomments($params, &$smarty)
 		$options['subcomment'] = $subcomment;
 	}
 
-	JWTemplate::AddCss( array('/css/pages/comment.css' ) );
+	Template::AddCss( array('/css/pages/comment.css' ) );
 	
 	$html = '<div id="comments_'.$app.'_'.$topic.'" ';
 
@@ -125,15 +125,15 @@ function smarty_function_statuscomments($params, &$smarty)
 		$html .= ' class="commentlist"';
 	$html .= '>';
 	
-	$templatehtml = JWTemplate::Render( 'statuscomment/comments.tpl', $options );
+	$templatehtml = Template::Render( 'statuscomment/comments.tpl', $options );
 	$html .= $templatehtml;
 
 	$html .= '</div>';
 
     $has_sub = isset( $subapp );
 	
-	$script = JWTemplate::RequireJs( '/lib/jquery/jquery.form.js' );
-	$script .= JWTemplate::RequireJs( '/scripts/jquery.comments.js' );
+	$script = Template::RequireJs( '/lib/jquery/jquery.form.js' );
+	$script .= Template::RequireJs( '/scripts/jquery.comments.js' );
     $params_str = '{';
     $params_str .= '"model":'.$model;
     $params_str .= ',"maxlen":'.$options['maxlen'];
@@ -144,7 +144,7 @@ function smarty_function_statuscomments($params, &$smarty)
     	$script .= '$("#comments_'.$app.'_'.$topic.'" ).comments( '.$params_str.');';
     	$script .= '</script>';
 	}
-	JWTemplate::ScriptHolder('', $script);
+	Template::ScriptHolder('', $script);
 
 	return $html;
 }

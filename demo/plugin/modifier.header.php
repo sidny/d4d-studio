@@ -2,5 +2,5 @@
 
 function smarty_modifier_header()
 {
-	return JWUtility::GetHeaderNameByUrl();
+	return Utility::GetHeaderNameByUrl();
 }

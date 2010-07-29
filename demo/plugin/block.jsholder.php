@@ -30,12 +30,12 @@ function smarty_block_jsholder($params, $content, &$smarty, &$repeat) {
 			return '';
 
 		if(ASSET_COMBO) {
-			$url = "'" . JWAsset::GetComboUrl(array_keys($cont)) . "'";
+			$url = "'" . Asset::GetComboUrl(array_keys($cont)) . "'";
 		}
 		else {
 			$js = array();
 			foreach ($cont as $key => $value) {
-				$js[] = JWAsset::GetAssetUrl($key);
+				$js[] = Asset::GetAssetUrl($key);
 			}
 			$url = json_encode($js);
 		}

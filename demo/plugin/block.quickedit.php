@@ -68,15 +68,15 @@ function smarty_block_quickedit($params, $content, &$smarty, &$repeat)
 		$html .= '</div>';
 		$html .= '</form>';
 		$html .= '</div>';
-		$script .= '<script type="text/javascript" src="'.JWAsset::GetAssetUrl('/lib/jquery/jquery.form.js').'"></script>';
-		$script .= '<script type="text/javascript" src="'.JWAsset::GetAssetUrl('/scripts/jquery.quickedit.js').'"></script>';
+		$script .= '<script type="text/javascript" src="'.Asset::GetAssetUrl('/lib/jquery/jquery.form.js').'"></script>';
+		$script .= '<script type="text/javascript" src="'.Asset::GetAssetUrl('/scripts/jquery.quickedit.js').'"></script>';
 		$script .= '<script type="text/javascript">';
 		$script .= '$(\'#'.$target.'\').quickedit({action:\''.$action.'\'';
 		if(isset($oncomplete)) $script .= ', oncomplete: function(){eval(\''. $oncomplete .'\');}';
 		$script .= '});';
 		$script .= '</script>';
 		
-		JWTemplate::ScriptHolder('', $script);
+		Template::ScriptHolder('', $script);
 
 		return $html;
 	}

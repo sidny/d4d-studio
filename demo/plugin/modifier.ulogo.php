@@ -24,5 +24,5 @@
  */
 function smarty_modifier_ulogo($file_info = '', $size='48x48' , $reg=1)
 {
-	return JWAsset::GetUrlByName($file_info, $size, 'avatar', $reg);
+	return Asset::GetUrlByName($file_info, $size, 'avatar', $reg);
 }

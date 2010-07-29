@@ -23,7 +23,7 @@ function smarty_block_combocss($params, $content, &$smarty)
         return '';
     $urls = explode("\n", trim($content));
     $urls = array_map('trim', $urls);
-    return JWTemplate::CssToString($urls);
+    return Template::CssToString($urls);
 }
 
 /* vim: set expandtab: */

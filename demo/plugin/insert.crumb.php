@@ -15,7 +15,7 @@
  */
 function smarty_insert_crumb()
 {
-        return JWCrumb::GetCrumb();
+        return Crumb::GetCrumb();
 }
 
 /* vim: set expandtab: */

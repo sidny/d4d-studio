@@ -22,7 +22,7 @@
  */
 function smarty_modifier_link( $str, $val, $ignore='')
 {
-    $pager = new JWPager(array());
+    $pager = new Pager(array());
 	return $pager->genLink($str, $val, $ignore);
 }
 

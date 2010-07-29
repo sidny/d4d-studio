@@ -21,5 +21,5 @@
  */
 function smarty_modifier_cardencrypt($uid='')
 {
-	return JWUtility::CardEncrypt($uid);
+	return Utility::CardEncrypt($uid);
 }

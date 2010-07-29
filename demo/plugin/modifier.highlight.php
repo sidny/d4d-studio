@@ -22,7 +22,7 @@ function smarty_modifier_highlight($s)
     $q = isset($_GET['q']) ?
         $_GET['q'] : null;
 
-    $q = JWUtility::BigToGb( $q );
+    $q = Utility::BigToGb( $q );
     $q = preg_replace( '/[\(\)\+\s\/]+/', ' ', $q );
     $q = trim($q);
     $q = preg_replace( '/\s+/', '|', $q );
