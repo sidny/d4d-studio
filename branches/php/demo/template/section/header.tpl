@@ -1,0 +1,24 @@
+<{include file="section/htmheader_mail.tpl"}>
+<{cssholder}>
+/core/css/header-footer/header-footer.css
+/core/css/global.css
+/css/site/links.css
+/css/components/lightbox.css
+/core/css/tbox/tbox.css
+/css/site/elements.css
+/core/js/jquery/interactive2/default/interactive.css
+<{/cssholder}>
+<{jsholder}>
+/core/js/jquery/jquery.js
+/core/js/jquery/cookie/jquery.cookie.js
+/core/js/jquery/hook/jquery.hook.js
+/core/js/global/genesis.js
+/core/js/jquery/interactive/jquery.interactive.js
+/core/js/jquery/form/jquery.form.js
+/core/js/jquery/waituntil/jquery.waituntil.js
+/core/js/others/swfobject/swfobject.js
+/core/js/jquery/flxproxy/jquery.flxproxy.js
+/core/js/jquery/swfajax/jquery.swfajax.js
+/scripts/jquery.inputlimit.js
+/core/js/jquery/interactive2/jquery.interactive.js
+<{/jsholder}>
