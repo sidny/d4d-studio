@@ -52,7 +52,7 @@ function smarty_function_sendmusic($params, &$smarty)
 		$oncomplete = 'void(0);';
 	}
 	
-	$html = JWTemplate::RequireJsCode('<link href="'.JWAsset::GetAssetUrl('/css/components/matchbox.css').'" rel="stylesheet" type="text/css" />');
+	$html = Template::RequireJsCode('<link href="'.Asset::GetAssetUrl('/css/components/matchbox.css').'" rel="stylesheet" type="text/css" />');
 	$html .= "<a  title=\"送歌\"  href=\"javascript:void(0);\" onclick=\"__openSendMusicDialog('$number', '$title', '$artist')\" class=\"$cssclass\">$text</a>";	
 	$script = <<< EOF
 <script type="text/javascript">
@@ -83,20 +83,20 @@ function __openSendMusicDialog(number, title, artist){
 }
 </script>
 EOF;
-	$script = JWTemplate::RequireJsCode($script);
-	JWTemplate::ScriptHolder('', $script);
+	$script = Template::RequireJsCode($script);
+	Template::ScriptHolder('', $script);
 
 	$html_dialog = '<div id="sendmusic-dialog" style="display:none;">';
-	$html_dialog .= JWTemplate::Render( 'section/music_send_user.tpl');
+	$html_dialog .= Template::Render( 'section/music_send_user.tpl');
 	$html_dialog .= '</div>';
 
-	$html_dialog = JWTemplate::RequireJsCode($html_dialog);
-	JWTemplate::ScriptHolder('', $html_dialog);
+	$html_dialog = Template::RequireJsCode($html_dialog);
+	Template::ScriptHolder('', $html_dialog);
 
-	$script = JWTemplate::RequireJs('/scripts/jquery.matchbox.js');
-	$script .= JWTemplate::RequireJs('/scripts/jquery.peoplepicker.js');
+	$script = Template::RequireJs('/scripts/jquery.matchbox.js');
+	$script .= Template::RequireJs('/scripts/jquery.peoplepicker.js');
 
-	JWTemplate::ScriptHolder('', $script);
+	Template::ScriptHolder('', $script);
 	
 	return $html;
 }

@@ -22,7 +22,7 @@ function smarty_block_combo($params, $content, &$smarty)
     $urls = explode("\n", trim($content));
     //$urls = array_filter($urls, create_function('$a', 'return !empty($a);'));
     $urls = array_map('trim', $urls);
-    $urls = JWAsset::GetComboUrl($urls);
+    $urls = Asset::GetComboUrl($urls);
 
     return $urls;
 }

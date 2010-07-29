@@ -21,10 +21,10 @@ function smarty_block_scriptholder($params, $content, &$smarty, $open)
 {
     if(!$open) {
         if(isset($params['output']) and $params['output']) {
-            return JWTemplate::GetScriptHolder($params);
+            return Template::GetScriptHolder($params);
         }
 
-        JWTemplate::ScriptHolder($params, $content);
+        Template::ScriptHolder($params, $content);
     }
 }
 

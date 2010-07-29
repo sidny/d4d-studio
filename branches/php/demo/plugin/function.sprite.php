@@ -55,7 +55,7 @@ function smarty_function_sprite($params, &$smarty)
 	$title = $params['title'];
 	$mask = $params['mask'];
 	
-	$script = JWTemplate::RequireJs('/lib/jquery/jquery.form.js');
+	$script = Template::RequireJs('/lib/jquery/jquery.form.js');
 	$script .= "\n";
 	$script .= '<script type="text/javascript">';
 	$script .= '$(\''.$link.'\').sprite(';
@@ -72,7 +72,7 @@ function smarty_function_sprite($params, &$smarty)
 	$script .= '</script>';
 	$script .= "\n";
 	
-	JWTemplate::ScriptHolder('', $script);
+	Template::ScriptHolder('', $script);
 	return '';
 }
 

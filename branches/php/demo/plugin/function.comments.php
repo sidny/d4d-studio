@@ -90,7 +90,7 @@ function smarty_function_comments($params, &$smarty)
             'usearrow'    => $usearrow,
 			);
 
-	$html = JWTemplate::Render('comments/default.tpl', $options);
+	$html = Template::Render('comments/default.tpl', $options);
 	if($params['noscript'] == 1){
 		$script .= <<<EOF
 			<script type="text/javascript">
@@ -99,8 +99,8 @@ function smarty_function_comments($params, &$smarty)
 			</script>
 EOF;
 	}else{
-		$script = JWTemplate::RequireJs('/lib/jquery/jquery.form.js');
-		$script .= JWTemplate::RequireJs('/core/js/jquery/commentupon/jquery.commentupon.js');
+		$script = Template::RequireJs('/lib/jquery/jquery.form.js');
+		$script .= Template::RequireJs('/core/js/jquery/commentupon/jquery.commentupon.js');
 		
 		if(!$options['issub']){
 	    	$script .= '<script type="text/javascript">';
@@ -109,7 +109,7 @@ EOF;
 		}
 	}	
 	
-		JWTemplate::ScriptHolder('', $script);
+		Template::ScriptHolder('', $script);
 
 	return $html;
 }

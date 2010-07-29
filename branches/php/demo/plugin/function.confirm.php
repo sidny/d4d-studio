@@ -59,7 +59,7 @@ function smarty_function_confirm($params, &$smarty)
 	$script .= '$("'.$link.'").confirm("'.$message.'", {title:"'.$title.'",oncomplete : '.$oncomplete.'});';
 	$script .= '</script>';
 	$script .= "\n";
-	JWTemplate::ScriptHolder('', $script);
+	Template::ScriptHolder('', $script);
 
 	return '';
 }

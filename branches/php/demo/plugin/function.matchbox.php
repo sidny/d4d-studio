@@ -76,13 +76,13 @@ function smarty_function_matchbox($params, &$smarty)
 	$filter = $params['filter']; // group, online...
 	
 	
-	$html = '<link href="'.JWAsset::GetAssetUrl('/css/components/matchbox.css').'" rel="stylesheet" type="text/css" />';
+	$html = '<link href="'.Asset::GetAssetUrl('/css/components/matchbox.css').'" rel="stylesheet" type="text/css" />';
 	$htlm .= "\n";
 	$html .= '<div title="请输入好友姓名，支持全拼、中文、首字母模糊输入" class="floatleft" style="width:'.$width.'px"><div id="jquery-matchbox-'.$name.'" class="matchbox"></div></div>';
 	
-	$script .= '<script type="text/javascript" src="'.JWAsset::GetAssetUrl('/scripts/jquery.matchbox.js').'"></script>';
+	$script .= '<script type="text/javascript" src="'.Asset::GetAssetUrl('/scripts/jquery.matchbox.js').'"></script>';
 	$script .= "\n";
-	$script .= '<script type="text/javascript" src="'.JWAsset::GetAssetUrl('/scripts/jquery.peoplepicker.js').'"></script>';
+	$script .= '<script type="text/javascript" src="'.Asset::GetAssetUrl('/scripts/jquery.peoplepicker.js').'"></script>';
 	$script .= "\n";
 	$script .= '<script type="text/javascript">';
 	$script .= '$(\'#jquery-matchbox-'.$name.'\').matchbox({name: "'.$name.'", userid:"'.$userid.'", groupid:"'.$groupid.'"';
@@ -95,7 +95,7 @@ function smarty_function_matchbox($params, &$smarty)
 	$script .= '});';
 	$script .= '</script>';
 	$script .= "\n";
-	JWTemplate::ScriptHolder('', $script);
+	Template::ScriptHolder('', $script);
 	
 	
 	return $html;

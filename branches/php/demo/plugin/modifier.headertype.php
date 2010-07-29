@@ -21,6 +21,6 @@
  */
 function smarty_modifier_headertype($url='')
 {
-	return JWUtility::GetHeaderTypeByUrl($url);
+	return Utility::GetHeaderTypeByUrl($url);
 }
 

@@ -21,9 +21,9 @@
  */
 function smarty_modifier_inarray( $val, $values='')
 {
-	JWDB::CheckInt($val, 1);
+	DB::CheckInt($val, 1);
 	$values = explode(',', $values);
-	JWDB::CheckArray($values);
+	DB::CheckArray($values);
 	$ret = in_array($val, $values);
 	return $ret;
 }

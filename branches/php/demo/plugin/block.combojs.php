@@ -23,6 +23,6 @@ function smarty_block_combojs($params, $content, &$smarty)
         return '';
     $urls = explode("\n", trim($content));
     $urls = array_map('trim', $urls);
-    return JWTemplate::JsToString($urls);
+    return Template::JsToString($urls);
 }
 

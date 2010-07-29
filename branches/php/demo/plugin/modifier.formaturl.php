@@ -23,5 +23,5 @@
  */
 function smarty_modifier_formaturl( $url , $mtime=true , $type=1)
 {
-	return JWAsset::GetAssetUrl( $url , $mtime , $type) ;
+	return Asset::GetAssetUrl( $url , $mtime , $type) ;
 }

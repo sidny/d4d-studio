@@ -26,7 +26,7 @@ function smarty_modifier_page( $count, $page_size=20)
 {
 	$count = intval($count);
 	$page_size = intval($page_size);
-    $pager = new JWPager(array(
+    $pager = new Pager(array(
 		'rowCount' => $count,
 		'pageSize' => $page_size,
 		));

@@ -56,12 +56,12 @@ function smarty_function_audioplayer($params, &$smarty)
 		$width = 200;
 	}
 	
-	$html = JWTemplate::RequireJs('/lib/audioplayer.js');
-	$html .= '<script type="text/javascript">AudioPlayer.setup("'.JWAsset::GetAssetUrl('/lib/audioplayer.swf').'", { width: '.$width.' }); </script>';
+	$html = Template::RequireJs('/lib/audioplayer.js');
+	$html .= '<script type="text/javascript">AudioPlayer.setup("'.Asset::GetAssetUrl('/lib/audioplayer.swf').'", { width: '.$width.' }); </script>';
 	$html .= '<script type="text/javascript">';
 	$html .= "AudioPlayer.embed('audioplayer-$name', {soundFile: '$url', titles: '$titles', artists: '$artists', autostart: '$autostart', loop: '$loop'}); ";
 	$html .= '</script>';
-	JWTemplate::ScriptHolder('', $html);
+	Template::ScriptHolder('', $html);
 	
 	return '<div id="audioplayer-'.$name.'"></div>'; //$html;
 }
