@@ -1,2 +1,13 @@
 convert D4D cms to PHP Base
 long long waiting ......edit by espresso
+
+
+install :
+php
+pear
+
+pear channel-discover pear-smarty.googlecode.com/svn
+
+pear install Smarty/Smarty
+
+
