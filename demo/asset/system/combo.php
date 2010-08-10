@@ -45,7 +45,8 @@ die;
 $tmp = tempnam('/tmp', 'combo');
 foreach($files as $k => $v) 
     $files[$k] = escapeshellcmd($assetPath . $v);
-
+var_dump($files);
+die();
 system("cat " . join(' ', $files) . " > $tmp 2>/dev/null");
 rename($tmp, $real);
 
