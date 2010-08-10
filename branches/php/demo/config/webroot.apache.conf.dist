@@ -1,0 +1,23 @@
+<Directory "/Users/fanyang/Work/php/demo">
+    Options Indexes MultiViews Includes FollowSymLinks
+    AllowOverride None
+    Order allow,deny
+    Allow from all
+</Directory>
+
+
+<VirtualHost *:80>
+    ServerAdmin webmaster@dummy-host.example.com
+    DocumentRoot "/Users/fanyang/Work/php/demo/webroot"
+    ServerName d4d
+    ServerAlias www.dummy-host.example.com
+    ErrorLog "/private/var/log/apache2/dummy-d4d-error_log"
+    CustomLog "/private/var/log/apache2/dummy-d4d-access_log" common
+    RewriteEngine On
+    RewriteRule /combo/([^?]*)$  /system/combo.php?$1 
+    RewriteRule ^(.*?)__(.*?)$ $1?$2
+    RewriteLog "/private/var/log/apache2/d4d.rewrite.log"
+    RewriteLogLevel 9
+</VirtualHost>
+
+

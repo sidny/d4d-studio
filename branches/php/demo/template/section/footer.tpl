@@ -1,1 +1,1 @@
-<{include file="section/htmfooter_mail.tpl" }>
+<{include file="section/htmfooter.tpl" }>

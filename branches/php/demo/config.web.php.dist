@@ -8,7 +8,6 @@ if(!function_exists('autoload'))
         $filename = str_replace('_', '/',$classname) . '.class.php';
 
         $filepath = CLS . $filename;
-        print_r($filepath);
         if(file_exists($filepath))
             return require($filepath);
 
@@ -20,7 +19,6 @@ if(!function_exists('autoload'))
         if(file_exists($filepath))
             return require($filepath);
 
-        print_r($filepath);
         throw new Exception( $filepath . ' NOT FOUND IN PRJ_CLS');
     }   
 }
