@@ -1,8 +1,6 @@
 <Directory "/Users/fanyang/Work/php/demo">
     Options Indexes MultiViews Includes FollowSymLinks
     AllowOverride None
-    Order allow,deny
-    Allow from all
 </Directory>
 
 
@@ -11,12 +9,14 @@
     DocumentRoot "/Users/fanyang/Work/php/demo/webroot"
     ServerName d4d
     ServerAlias www.dummy-host.example.com
-    ErrorLog "/private/var/log/apache2/dummy-d4d-error_log"
-    CustomLog "/private/var/log/apache2/dummy-d4d-access_log" common
+    XSendFile on
+    XSendFileAllowAbove on
+    ErrorLog "/Users/fanyang/Work/php/demo/dummy-d4d-error_log"
+    CustomLog "/Users/fanyang/Work/php/demo/dummy-d4d-access_log" common
     RewriteEngine On
-    RewriteRule /combo/([^?]*)$  /system/combo.php?$1 
-    RewriteRule ^(.*?)__(.*?)$ $1?$2
-    RewriteLog "/private/var/log/apache2/d4d.rewrite.log"
+    RewriteRule /combo/__[^/]+/([^?]*)$  /Users/fanyang/Work/php/demo/asset/system/combo.php?$1 
+    RewriteRule ^(.*?)__(.*?)$ /Users/fanyang/Work/php/demo/$1?$2
+    RewriteLog "/Users/fanyang/Work/php/demo/d4d.rewrite.log"
     RewriteLogLevel 9
 </VirtualHost>
 
