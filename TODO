@@ -10,3 +10,5 @@ pear channel-discover pear-smarty.googlecode.com/svn
 
 pear install smarty/smarty
 
+
+apache mod_xsendfile module : http://tn123.ath.cx/mod_xsendfile/
