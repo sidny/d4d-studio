@@ -18,8 +18,7 @@ class Asset {
 	static private $msAssetRoot;
 
 	static private $msAssetCounter 	= 0;
-	static private $msAssetMax 	= 1;
-
+    static private $msAssetMax = ASSET_RANDOM;
 	/*
 	 * Get asset url with timestamp
 	 *	@param	path		the path of asset.jiwai.de/$path
@@ -53,6 +52,7 @@ class Asset {
 		$abs_file 	= $asset_path . $absUrlPath;
 		$tmp		= explode('.', $absUrlPath);
 		$ext		= array_pop($tmp);
+       // var_dump($abs_file);
 		$timestamp 	= file_exists($abs_file) ? filemtime($abs_file) : 0;
 		if($extLen > strlen($ext))
 			$timestamp.= '0';
@@ -83,8 +83,9 @@ class Asset {
 
 		$timestamp 	= 0;
 		foreach((array)$absUrlPaths as $v) 
+        {
 			$timestamp = max(self::_getTimestamp($v), $timestamp);
-
+        }
 		return "$asset_name$prefix$split$timestamp/$absUrlPath";
 	}
 
@@ -95,14 +96,22 @@ class Asset {
 	 *	@param	path		path of the asset, asset.jiwai.de/$path
 	 *	@return	int 		the number
 	 */
-	static public function GetAssetServer($absUrlPath, $is_http = true)
-	{
-		$n = sprintf('%u',crc32($absUrlPath));
-		$n %= self::$msAssetMax;
-		if($is_http)
-			return 'http://asset' . $n . '.' . ASSET_HOSTNAME;
-		else
-			return 'asset' . $n . '.' . ASSET_HOSTNAME;
+    static public function GetAssetServer($absUrlPath, $is_http = true)
+    {
+        $n = sprintf('%u',crc32($absUrlPath));
+        if(self::$msAssetMax > 0 ){
+            $n %= self::$msAssetMax;
+            if($is_http)
+                return 'http://asset' . $n . '.' . ASSET_HOSTNAME;
+            else
+                return 'asset' . $n . '.' . ASSET_HOSTNAME;
+        }else{
+            if($is_http)
+                return 'http://'.HOSTNAME . '/asset';
+            else
+                return HOSTNAME . '/asset';
+
+        }
 	}
 
 	/**
@@ -114,7 +123,7 @@ class Asset {
 	static private function _getTimestamp($absUrlPath)
     {   
         $asset_name = 'http://'.$asset_path;
-		$abs_file 	= "$asset_path$absUrlPath";
+		$abs_file 	= ASSET_PATH."/$absUrlPath";
 		$timestamp 	= file_exists($abs_file) ? filemtime($abs_file) : 0;
 		return $timestamp;
 	}

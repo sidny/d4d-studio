@@ -3,8 +3,7 @@
 <{cssholder}>
 /css/css.css
 <{/cssholder}>
-
+22
 <{jsholder}>
-/js/js.js
 <{/jsholder}>
 <{include file='section/footer.tpl'}>
