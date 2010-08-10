@@ -3,13 +3,18 @@ if(false==defined('TPL_COMPILED_DIR')) define('TPL_COMPILED_DIR','/tmp');
 if(false==defined('TPL_PLUGINS_DIR')) define('TPL_PLUGINS_DIR','/tmp');
 if(false==defined('TPL_TEMPLATE_DIR')) define('TPL_TEMPLATE_DIR','/tmp');
 
+/**
+ * @package JiWai.de
+ * @copyright AKA Inc. 
+ * @author shwdai@gmail.com
+ */
 class Template{
 
 	static private $mTemplate 	= null;
 	static private $_instance	= null;
-    static private $_showNotice = true;
 
 	static public $scirptholder = array();
+	static public $cssholder 	= array();
 
 	static private $_csses		= array();
 	static private $_jses		= array();
@@ -22,10 +27,6 @@ class Template{
 		return self::$_instance;
 	}
 
-    static function DisableNotice() {
-        self::$_showNotice = false;
-    }
-
 	static private function GetTemplate(){
 		if ( null==self::$mTemplate )
 		{
@@ -36,18 +37,17 @@ class Template{
 			$smarty->plugins_dir = isset( $GLOBALS['CONFIG_TPLPLUGINS_DIRS'] )?$GLOBALS['CONFIG_TPLPLUGINS_DIRS']:array('plugins' ,TPL_PLUGINS_DIR);
 			$smarty->left_delimiter = '<{'; 
 			$smarty->right_delimiter = '}>';
+			$smarty->load_filter('output', 'cssholder');
             
             /* for convenience */
-            /*
-			global $current_user_id, $current_user_mobile, $current_user_active, $current_user_province, $current_user_city, $carrytime_beginning, $current_user_info, $current_header_type, $https_to_http;
+		//	global $current_user_id, $current_user_mobile, $current_user_active, $current_user_province, $current_user_city, $carrytime_beginning, $current_user_info, $current_header_type, $https_to_http;
+		
 			$current_error = $current_alert = '';
-            if (self::$_showNotice) {
-                if(!isset($https_to_http) || 0>=$https_to_http)
-                {
-                    $current_error = JWSession::GetInfo('error');
-                    $current_alert= JWSession::GetInfo('alert');
-                }
-            }
+			if(!isset($https_to_http) || 0>=$https_to_http)
+			{
+				$current_error = Session::GetInfo('error');
+				$current_alert= Session::GetInfo('alert');
+			}
 			//$system_notice = array('type'=>'', 'message'=>'');
 			$system_notice = 'null';
 			if(!empty($current_alert))
@@ -63,7 +63,9 @@ class Template{
 				//$system_notice = array('type'=>'error', 'message'=>$current_error);
 			}
 
-	    $smarty->assign('current_header_type', $current_header_type);
+			if(!isset($current_header_type))
+				$current_header_type = Utility::GetHeaderTypeByUrl();
+         /*   $smarty->assign('current_header_type', $current_header_type);
             $smarty->assign('current_user_id', $current_user_id);
             $smarty->assign('current_user_info', $current_user_info);
             $smarty->assign('current_user_mobile', $current_user_mobile);
@@ -72,10 +74,7 @@ class Template{
             $smarty->assign('current_user_city', $current_user_city);
             $smarty->assign('system_notice', $system_notice); 
 			$smarty->assign('carrytime_beginning', $carrytime_beginning);
-            */
-    		if(!isset($current_header_type))
-				$current_header_type = Utility::GetHeaderTypeByUrl();
-        
+          */
 			if(isset($_REQUEST['ajax']))
 				$smarty->assign('ajax', $_REQUEST['ajax']);
 
@@ -89,7 +88,6 @@ class Template{
 
 	static private function CloseTemplate(){
 		self::$mTemplate = null;
-        self::$_showNotice= true;
 	}
 
 	static public function Render( $templateFile, $v=array(), $cache_id=null ){
@@ -110,9 +108,10 @@ class Template{
 			$smarty->assign('javascripts', self::JsToString(array_keys(self::$_jses)));
 		if(!empty(self::$_csses))
 			$smarty->assign('csses', self::CssToString(array_keys(self::$_csses)));
-		if(!empty(self::$_jsVars))
-			$smarty->assign('envobj', json_encode(self::$_jsVars));
+		
+        $smarty->assign('envobj', json_encode(self::$_jsVars));
 
+//		Msg::RevertPost(1);
 		$smarty->display( $templateFile, $cache_id );
 		self::CloseTemplate();
 	}
@@ -198,30 +197,37 @@ class Template{
 
 		$str = isset(self::$scirptholder[$assign]) ? self::$scirptholder[$assign] : '';
         foreach(str_split($str, 512) as $v)
-            echo $v;
-
+            echo preg_replace('/(<\\s*script\\s+[^>]*\\s*>)|(<\\s*\/\\s*script\\s*>)/i', '', $v);
 
 		return '';
 	}
 
+	static public function CssHolder($cssUrl = "") {
+		if(empty($cssUrl)) 
+			return empty(self::$cssholder) ? '' : self::CssToString(array_keys(self::$cssholder));
+
+		self::$cssholder[$cssUrl] = 1;
+	}
 
 	static public function Clear(){
 		self::CloseTemplate();
 	}
+
+
 
 	/**
 	 * 向头部添加 css 文件
 	 *
 	 * Example:
 	 * <code>
-	 * JWTemplate::AddCss('/css/main.css');
-	 * JWTemplate::AddCss(array('/css/Mypage.css', '/css/style.css'));
+	 * Template::AddCss('/css/main.css');
+	 * Template::AddCss(array('/css/Mypage.css', '/css/style.css'));
 	 * </code>
 	 * 
 	 * @param string|array $css			文件路径
 	 * @param boolean $mtime			是否带时间戳
 	 * @return void
-	 * @see JWTemplate::CssToString()		
+	 * @see Template::CssToString()		
 	 */
 	static public function AddCss($css = array(), $mtime = true)
 	{
@@ -241,14 +247,14 @@ class Template{
 	 * 
 	 * Example:
 	 * <code>
-	 * JWTemplate::AddJs('/js/prototype.js');
-	 * JWTemplate::AddJs(array('/js/jQuery.js', '/js/jQuery.calc.js'));
+	 * Template::AddJs('/js/prototype.js');
+	 * Template::AddJs(array('/js/jQuery.js', '/js/jQuery.calc.js'));
 	 * </code>
 	 *
 	 * @param string|array $js			文件路径
 	 * @param boolean $mtime			是否带时间戳
 	 * @return void
-	 * @see JWTemplate::JsToString()
+	 * @see Template::JsToString()
 	 */
 	static public function AddJs($js = array())
 	{
@@ -269,8 +275,8 @@ class Template{
 	 * 
 	 * Example:
 	 * <code>
-	 * JWTemplate::AddJsVars("target", 6);
-	 * JWTemplate::AddJsVars(array("target" => 7, "next" => true, "list" => array( 1, 2, 3, 4)));
+	 * Template::AddJsVars("target", 6);
+	 * Template::AddJsVars(array("target" => 7, "next" => true, "list" => array( 1, 2, 3, 4)));
 	 * </code>
 	 *
 	 * @param string|array $js			变量名或变量数组
@@ -324,7 +330,7 @@ class Template{
 	 * @param array $js
 	 * @param boolean $mtime
 	 * @return string
-	 * @see JWAsset::GetAssetUrl()
+	 * @see Asset::GetAssetUrl()
 	 */
 	static public function JsToString(array $js, $mtime = true)
 	{
@@ -351,8 +357,8 @@ class Template{
 	 * 
 	 * Example:
 	 * <code>
-	 * JWTemplate::AddJsCode('var a = 111;');
-	 * JWTemplate::AddJsCode(array('var data = {"json": 1};', 'alert('Hello World!')'));
+	 * Template::AddJsCode('var a = 111;');
+	 * Template::AddJsCode(array('var data = {"json": 1};', 'alert('Hello World!')'));
 	 * </code>
 	 * 
 	 * @param string|array $code
@@ -361,7 +367,7 @@ class Template{
 	static public function AddJsCode($code)
 	{
 		$str = "";
-		JWDB::CheckArray($code);
+		DB::CheckArray($code);
 		
 		self::$_jsCodes = array_merge(self::$_jsCodes, $code);
 		
@@ -382,14 +388,14 @@ class Template{
 	 *     array('name' => "publishid",'content' => "30,59,1"),
 	 *     array('name' => 'stencil', 'content'=> 'PGLS000022')
 	 * );
-	 * JWTemplate::AddMeta($meta, true);
-	 * JWTemplate::AddMeta(array('name' => 'stencil', 'content'=> 'PGLS000022'));
+	 * Template::AddMeta($meta, true);
+	 * Template::AddMeta(array('name' => 'stencil', 'content'=> 'PGLS000022'));
 	 * </code>
 	 * 
 	 * @param array $metas			键值对
 	 * @param boolean $multi		是否是二维数组
 	 * @return void
-	 * @see JWTemplate::MetaToString()
+	 * @see Template::MetaToString()
 	 */
 	static public function AddMeta($metas, $multi = false)
 	{
@@ -412,7 +418,7 @@ class Template{
 	 *
 	 * Example:
 	 * <code>
-	 * JWTemplate::SetTitle('139');
+	 * Template::SetTitle('139');
 	 * </code>
 	 * 
 	 * @param string $title
@@ -451,7 +457,7 @@ class Template{
 	 *
 	 * Example:
 	 * <code>
-	 * JWTemplate::AddMoreString('139');
+	 * Template::AddMoreString('139');
 	 * </code>
 	 * 
 	 * @param string $title
