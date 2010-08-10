@@ -33,16 +33,10 @@ if(file_exists($real)) {
             break;
         }
     }
-if (file_exists($real)) {;
     if(!$old) {
-  //      header("X-Accel-Redirect: $alias");
         header("X-SendFile: $real");
         die;
     }
-}else{
-    var_dump($alias);
-    die;
-}
 } 
 
 $tmp = tempnam('/tmp', 'combo');
@@ -51,10 +45,7 @@ foreach($files as $k => $v)
 system("cat " . join(' ', $files) . " > $tmp 2>/dev/null");
 rename($tmp, $real);
 
-//header("X-Accel-Redirect: $alias");
-var_dump($alias);
-die;
-//header("X-SendFile: $alias");
+header("X-SendFile: $real");
 
 function getMimeType($filename, $ext=null) {
        if(empty($ext))
