@@ -8,6 +8,5 @@ pear
 
 pear channel-discover pear-smarty.googlecode.com/svn
 
-pear install Smarty/Smarty
-
+pear install smarty/smarty
 
