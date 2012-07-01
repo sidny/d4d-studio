@@ -1,0 +1,8 @@
+<?php
+
+define('DB_GLOBAL_IP', '10.8.8.12');
+define('DB_GLOBAL_PORT', '3306');
+define('DB_GLOBAL_USER', 'aspire');
+define('DB_GLOBAL_PASSWD', 'aspire.de');
+define('DB_GLOBAL_NAME', 'observer');
+
