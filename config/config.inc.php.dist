@@ -1,0 +1,19 @@
+<?php
+define('TOP_TITLE','D4D Studio');
+define('ROOT', dirname(__FILE__).'/../');
+define('LIB', ROOT . 'lib/');
+define('CLS', ROOT . 'class/');
+define('PEAR_LIB', ROOT . 'lib/pear/');
+define('CONFIG', ROOT . 'config/' );
+define('ASSET_PATH',ROOT .'webroot/');
+define('HOSTNAME', 'cms.local');
+define('LOG_PATH', ROOT.'log/');
+define('ASSET_HOSTNAME', HOSTNAME.'');
+define('TPL_COMPILED_DIR', ROOT . 'compiled');
+define('TPL_TEMPLATE_DIR', ROOT . 'template');
+define('TPL_PLUGINS_DIR', ROOT . 'plugin');
+define('ASSET_RANDOM' , 0);
+define('ASSET_COMBO',0);
+require_once('db.inc.php');
+
+date_default_timezone_set('Asia/Shanghai');
