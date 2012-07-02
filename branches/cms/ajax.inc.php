@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/../myfolder/config/config.web.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/../config/config.web.php');
 //ini_set('display_errors','1');
 //{{{统一输出函数
 function ajaxOutput() {
