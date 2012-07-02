@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '../init.inc.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/../init.inc.php');
 $table = $_REQUEST['table'];
 $result = array();
 if($table){
@@ -43,7 +43,7 @@ if ($type){
 }
 $assign = array(
 		'table' => $table,
-		'column' => $result['data'],
+		'column' => $result['list'],
 		);
 header('content-type: text/html');
 Template::assign($assign);
