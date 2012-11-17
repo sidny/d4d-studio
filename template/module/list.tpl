@@ -2,36 +2,10 @@
 /static/css/list.css
 <{/cssholder}>
 <div class="pageList clearfix">
+	<{foreach from=$itemType.list key=key item=item}>
 	<dl>
-		<dt><a href="#"><img src="<{'/static/images/categorys.png'|formaturl}>" /></a></dt>
-		<dd>商品分类</dd>
+		<dt><a href="/list_<{$item.id}>.html"><img src="<{$item.image|default:'/static/images/categorys.png'|formaturl}>" /></a></dt>
+		<dd><{$item.title}></dd>
 	</dl>
-	<dl>
-		<dt><a href="#"><img src="<{'/static/images/categorys.png'|formaturl}>" /></a></dt>
-		<dd>商品分类</dd>
-	</dl>
-	<dl>
-		<dt><a href="#"><img src="<{'/static/images/categorys.png'|formaturl}>" /></a></dt>
-		<dd>商品分类</dd>
-	</dl>
-	<dl>
-		<dt><a href="#"><img src="<{'/static/images/categorys.png'|formaturl}>" /></a></dt>
-		<dd>商品分类</dd>
-	</dl>
-	<dl>
-		<dt><a href="#"><img src="<{'/static/images/categorys.png'|formaturl}>" /></a></dt>
-		<dd>商品分类</dd>
-	</dl>
-	<dl>
-		<dt><a href="#"><img src="<{'/static/images/categorys.png'|formaturl}>" /></a></dt>
-		<dd>商品分类</dd>
-	</dl>
-	<dl>
-		<dt><a href="#"><img src="<{'/static/images/categorys.png'|formaturl}>" /></a></dt>
-		<dd>商品分类</dd>
-	</dl>
-	<dl>
-		<dt><a href="#"><img src="<{'/static/images/categorys.png'|formaturl}>" /></a></dt>
-		<dd>商品分类</dd>
-	</dl>
+	<{/foreach}>
 </div>

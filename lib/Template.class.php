@@ -2,7 +2,7 @@
 if(false==defined('TPL_COMPILED_DIR')) define('TPL_COMPILED_DIR','/tmp');
 if(false==defined('TPL_PLUGINS_DIR')) define('TPL_PLUGINS_DIR','/tmp');
 if(false==defined('TPL_TEMPLATE_DIR')) define('TPL_TEMPLATE_DIR','/tmp');
-require_once(dirname(__FILE__).'/Smarty/Smarty.class.php');
+require_once(SMARTY_LIB.'/Smarty.class.php');
 
 class Template{
 
@@ -245,7 +245,7 @@ class Template{
 	 * @param boolean $value			变量值
 	 * @return void
 	 */
-	static public function AddJsVars($vars = array(), $value)
+	static public function AddJsVars($vars = array(), $value = null)
 	{
 		if (is_array($vars)) {
 			foreach ($vars as $key => $value) {
