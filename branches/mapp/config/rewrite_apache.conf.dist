@@ -1,0 +1,19 @@
+<VirtualHost *:80>
+	ServerName cms.yangfan.deving.3322.org
+	DocumentRoot /home/yangfan/cms/webroot/
+	DirectoryIndex index.php
+	CustomLog /home/yangfan/logs/cms_acess.log  combined
+	ErrorLog  /home/yangfan/logs/cms_error.log
+
+	RewriteEngine On
+	RewriteRule  ^/ajax/([^/]+)/([^/\.]+)\.([^/]+)/([^/]+)(/(.+))?$   /ajax/$2/$3.php?resp_type=$1&act=$4&$6 [QSA,L,NE,PT]
+	RewriteRule  ^/ajax/([^/]+)/([^/]+)/([^/]+)(/(.+))?$   /ajax/$2.php?resp_type=$1&act=$3&$5 [QSA,L,NE,PT]
+	RewriteRule ^(.*?)__(.*?)$ /$1?$2 
+	RewriteRule ^/file/thumb/(.*?)$  /zqfile.php?id=$1&type=thumb [QSA,L,NE]
+	RewriteRule ^/file/(.*?)$  /zqfile.php?id=$1 [QSA,L,NE]
+	ExpiresByType image/jpeg "access plus 4 weeks"    
+	ExpiresByType image/gif "access plus 1 month"   
+	ExpiresByType image/x-icon "access plus 1 year"    
+	ExpiresByType application/javascript "modification plus 2 weeks"  
+</VirtualHost>
+
