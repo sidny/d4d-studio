@@ -1,0 +1,8 @@
+/*cm*/
+.cmbox{width:304px; margin:10px auto;}
+.cmbox ul{width:304px; height:80px; position:relative;}
+.cmbox ul li{position:absolute; height:80px; overflow:hidden; left:0; top:0;}
+.cmbox ul li img{width:304px; height:80px;}
+.cmbox .pages{text-align:center; margin:5px 0;}
+.cmbox .pages a{width:8px; height:8px; display:inline-block; background-image:url(/static/css/pagination.png); background-repeat:no-repeat; margin-right:5px;}
+.cmbox .pages a.current{background-position:left bottom;}

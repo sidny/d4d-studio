@@ -1,0 +1,17 @@
+.cpdetail{zoom:1;}
+.cpdetail .cpname{font-size:14px; line-height:20px; margin:10px;}
+.cpdetail .cppic{width:304px; margin:10px auto;}
+.cpdetail .cppic ul{position:relative; height:310px;}
+.cpdetail .cppic ul li{position:absolute; width:300px; height:300px; top:0; left:0;}
+.cpdetail .cppic ul li img{width:300px; height:300px;}
+.cpdetail .cppic p.pages{text-align:center;}
+.cpdetail .cppic p.pages .next, .cpdetail .cppic p.pages .prev{width:26px; height:25px; display:inline-block; background-repeat:no-repeat; background-image:url(/static/css/flip.png); vertical-align:middle;}
+.cpdetail .cppic p.pages a.next{background-position:center -27px;}
+.cpdetail .cppic p.pages span.next{background-position:center -81px;}
+.cpdetail .cppic p.pages a.prev{background-position:center top;}
+.cpdetail .cppic p.pages span.prev{background-position:center -54px;}
+.cpdetail .cppic p.pages em{line-height:24px; font-size:14px; margin:0 10px;}
+.cpdetai .buyOperate{margin:10px;}
+.cpdetail .buyOperate dl{margin:5px 0; line-height:20px; font-size:14px;}
+.cpdetail .buyOperate dl dt{width:49.8%; float:left; text-align:right;}
+.cpdetail .buyOperate dl dd{width:49.8%; float:right;}
