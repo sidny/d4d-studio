@@ -11,8 +11,20 @@
 .cpdetail .cppic p.pages a.prev{background-position:center top;}
 .cpdetail .cppic p.pages span.prev{background-position:center -54px;}
 .cpdetail .cppic p.pages em{line-height:24px; font-size:14px; margin:0 10px;}
-.cpdetai .buyOperate{margin:10px;}
+.cpdetail .buyOperate{margin:10px auto; width:302px; background-color:#F4EED7; padding:10px 0; border:1px solid #fff;}
 .cpdetail .buyOperate dl{margin:5px 0; line-height:20px; font-size:14px;}
-.cpdetail .buyOperate dl dt{width:49.8%; float:left; text-align:right;}
-.cpdetail .buyOperate dl dd{width:49.8%; float:right;}
-.cpdetail .buyOperate dl dd{}
+.cpdetail .buyOperate dl:after{content:"."; display:block; height:0; visibility:hidden; clear:both;}
+.cpdetail .buyOperate dl dt{width:150px; float:left; text-align:right;}
+.cpdetail .buyOperate dl dd{width:152px; float:right; color:#666;}
+.cpdetail .buyOperate dl dd .price{display:inline-block; padding:0 5px; border-radius:4px; background-color:#fff; color:red;}
+.b-shopCart, .b-shopAdd{margin:10px; border-width:1px; border-style:solid; background-image:url(/static/css/b-buy.gif); background-repeat:repeat-x; color:#fff; display:block; line-height:38px; height:39px; font-size:14px; font-weight:bold; text-align:center;}
+.b-shopCart{background-position:left top; text-shadow:1px 1px 1px #000; border-color:#e12c2c;}
+.b-shopAdd{background-position:left bottom; text-shadow:1px 1px 1px #fff; color:#000; border-color:#baac9d;}
+
+.cpdetail .cpItem{background-color:#FFFDF7; border:1px solid #CDC2B0; border-radius:5px; font-size:14px; zoom:1; margin:10px; line-height:20px;}
+.cpdetail .cpItem h2{line-height:30px; border-bottom:1px solid #DED6C9; padding:0 10px; font-weight:bold;}
+.cpdetail .cpItem dl{margin:10px 0;}
+.cpdetail .cpItem dl dt{width:115px; float:left;}
+.cpdetail .cpItem dl dd{margin-left:115px;}
+.cpdetail .cpItem article{padding:10px;}
+.cpdetail .cpItem h3{font-weight:bold; text-align:center; line-height:20px;}
