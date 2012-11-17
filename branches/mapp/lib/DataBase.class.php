@@ -63,7 +63,6 @@ class Database extends MDB2{
 			'debug'       => 2,
 			'portability' => MDB2_PORTABILITY_ALL,
 		);
-
 		$this->_mConnection = &MDB2::connect($dsn, $options);
 		if (MDB2::isError($this->_mConnection)) {
 			die(MDB2::errorMessage($this->_mConnection));
