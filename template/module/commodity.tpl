@@ -2,6 +2,7 @@
 /static/css/commodity.css
 <{/cssholder}>
 <div class="commodity">
+	<h2>分类名称</h2>
 	<{*aitem begin*}>
 	<a href="cpdetail.php">
 		<div class="item">
