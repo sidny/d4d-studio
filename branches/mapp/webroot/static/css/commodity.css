@@ -8,3 +8,5 @@
 .commodity .body h2{min-height:54px; line-height:20px; zoom:1;}
 .commodity .body .price{margin-top:15px; color:#888;}
 .commodity .body .price span{display:inline-block; background-color:#fff; padding:5px 10px; border-radius:4px; border:1px solid #e3e3e3;}
+
+.commodity h2{line-height:40px; font-size:14px; font-weight:bold; text-align:center;}
