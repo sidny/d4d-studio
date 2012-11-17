@@ -1,0 +1,171 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*reset*/ 
+html{background: none repeat scroll 0 0;color: #666;overflow-y: scroll; height:100%;}
+body{height:100%;}
+body, div, td{font-size: 12px;font-family: verdana;line-height: 1.4em; font-family:Tahoma,SimSun;}
+body, div, ul, ol, li, h1, h2, h3, h4, h5, h6, form, fieldset, legend, input, textarea, p, th, td, dl, dt, dd{margin: 0;padding: 0;}
+table{border-collapse: collapse;border-spacing: 0;}
+img{border:none;}
+address, caption, cite, code, dfn, em, th, var{font-style: normal;font-weight: normal;}
+ul li{list-style-image: none;list-style-position: outside;list-style-type: none;}
+caption, th{text-align: left;}
+h1, h2, h3, h4, h5, h6{font-size: 100%;font-weight: normal;vertical-align: baseline;zoom: 1;}
+input, textarea, select, button{font-family: Verdana;font-size: 12px;font-weight: inherit; vertical-align:middle}
+input[type=radio], input[type=checkbox]{vertical-align: middle;}
+textarea{resize:none; overflow-x:hidden; overflow-y:auto; outline:medium none; word-wrap:break-word;}
+/*base*/
+a{text-decoration:none;}
+a:focus{outline-style: none;outline-width: 0;}
+a:link, a:visited, a:active{text-decoration: none;}
+a:hover{text-decoration: underline;}
+.number{color:#999;font-family: Arial;font-size: 12px;_vertical-align:text-top;}
+.datetime{color:#999;}
+.options{float:right;display: block;}
+.position{position:relative;}
+.error{color:red;}strong{font-weight: bold;}
+.floatleft{float:left;}
+.floatright{float:right;}
+.aligncenter{text-align:center;}
+.alignright{text-align:right;}
+.alignleft{text-align:left;}
+.block{display:block;}
+.inlineblock{display:inline-block;}
+.former_color, .former_color a{color:#616161;}
+.former_color a:hover{color:#1f7cad;}
+.gray{color:#7f7f7f;}
+.gray-d{color:#666;}
+.red{color:#a10000;}
+.orange{color:#fb811d;}
+.green{color:#72a514;}
+.black{color:#000!important;}
+.forcewrap{word-wrap: break-word;word-break:break-all;text-overflow: hidden;overflow: hidden;}
+.noborder{border:none!important;}
+.nopadding{padding:0!important;}
+.nobg{ background-image:none!important;}
+label.checkbox, label.radio, label.text{padding-left: 4px;vertical-align: top;}
+
+/*background*/
+.ground-f{background-color:#fff;}
+/*clear*/
+.clear{clear:both;line-height: 0;height:0;font-size:0;}
+.clearfix:after{content:".";display: block;height:0;clear: both;visibility: hidden}
+.clearfix {zoom:1}
+
+.fam_yahei{font-family:Microsoft YaHei,SimSun;}
+
+/*header*/
+#header{height:60px; border-bottom:1px solid #474747;}
+#header a.logoTxt{font-size:30px; font-family:Microsoft YaHei,SimHei; line-height:60px; margin-left:20px;}
+#header a.logoTxt:hover{text-decoration:none; color:#fff;}
+#header .option{float:right; line-height:60px; padding-right:20px;}
+#header .option .user{padding-right:20px;}
+#content{zoom:1; background:url(/static/ht/left_bg.gif) repeat-y; margin-top:10px;}
+#leftcolumn{width:230px; float:left; height:100%;}
+.stretch{width:15px; float:left; height:100%;padding-left:2px;}
+.stretch a{with:15px; height:40px; background-image:url(/static/ht/stretch.png); background-repeat:no-repeat; margin-top:180px; display:block;}
+.stretch a.current{background-position:right top;}
+#maincolumn{margin-left:249px; margin-right:10px; height:100%; background-color:#fff; border-radius:4px 4px 0 0;}
+
+/*login*/
+.loginbox{width:430px; margin:0 auto; padding-bottom:1px; margin-top:100px; padding-bottom:20px; border-radius:4px 4px 0 0; background:url(/static/ht/login_bg.gif) no-repeat 50px 80px; background-color:#fff;}
+.loginbox h2{font-size:16px; font-family:Microsoft YaHei,SimSun; text-align:center; margin-bottom:45px; border-radius:4px 4px 0 0; background:url(/static/ht/skin1/left_navcurrent.gif) repeat-x; height:30px; line-height:30px;color:#fff;}
+.loginbox dl{margin:10px 0; padding:0 20px 0 100px;}
+.loginbox dl dt{width:90px; line-height:20px; text-align:right; font-size:14px; font-family:Microsoft YaHei,SimSun; float:left;}
+.loginbox dl dd{margin-left:95px;}
+.loginbox dl dd input.txt-normal{width:200px;}
+.loginbox dl dd input.mini{width:130px;}
+.loginbox dl dd img{margin-left:10px;}
+.loginbox .b-green{margin-left:15px;}
+.loginbox .checkbox{margin-right:5px;}
+.loginbox dl.btnbox{margin:25px 20px 0 20px; padding-top:15px; border-top:1px dashed #ddd}
+
+ul.leftnav{width:200px; margin-left:20px; padding-top:10px;}
+ul.leftnav li{font-weight:bold; margin-bottom:10px;}
+ul.leftnav li.current{border-radius:4px 4px 0 0;}
+ul.leftnav li a{display:block; line-height:30px;}
+ul.leftnav li a:hover{text-decoration:none;}
+ul.leftnav li div.twobox{font-weight:normal; display:none; background-color:#376ea6;}
+ul.leftnav li div.twobox a{color:#d7d7d7; line-height:30px; border-width:1px 0; border-style:solid; border-color:#598bc0 #4376ab #316394 #4376ab; padding-left:30px;}
+ul.leftnav li div.twobox a:hover{color:#fff;}
+ul.leftnav li div.twobox a.current{color:#fff;}
+ul.leftnav li div.twobox div.thbox{font-size:12px; zoom:1; background-color:#5c92c9; padding:10px 0; display:none;}
+ul.leftnav li div.twobox div.thbox a{color:#d7d7d7; line-height:20px; border:none;font-size:12px; padding-left:45px;}
+ul.leftnav li div.twobox div.thbox a.current{color:#fff; font-size:12px;}
+
+.pdbody{padding:0 20px 20px 20px;}
+h2.contentTitle{font-size:16px; font-family:Microsoft YaHei, SimSun; font-weight:bold; line-height:36px; height:36px; padding:0 20px; background:url(/static/ht/skin1/h2_bg.gif) repeat-x; color:#fff; border-radius:4px 4px 0 0;}
+.pdbody h3{font-size:14px; font-weight:bold; line-height:30px; margin:15px 0;}
+
+/*main部分标签样式*/
+.topbar{height:35px; line-height:34px; border-bottom:1px solid #ccc; margin:15px 0;}
+.topbar ul{border-bottom:1px solid #fff; padding-left:10px;}
+.topbar ul li{padding:0 10px; margin-right:2px; float:left; height:33px; line-height:32px; position:relative; bottom:-2px;}
+.topbar ul li.current{border-radius:4px 4px 0 0; border:1px solid #ccc; border-bottom:none; font-weight:bold; background-color:#fff;}
+
+/*table样式*/
+.tablebox{zoom:1; margin:15px 0; line-height:18px;}
+.tablebox p.title{font-weight:bold; margin-bottom:10px;}
+.tablebox .tableheader{height:30px; line-height:30px; padding:0 15px; background:url(/static/ht/table_header.gif) repeat-x; border:1px solid #ccc; border-radius:6px 6px 0 0;}
+.tablebox .tableheader span.name{font-size:14px; font-weight:bold; float:left; line-height:30px;}
+.tablebox .tableheader ul{float:right; padding-top:5px; position:relative; bottom:-1px;}
+.tablebox .tableheader ul li{height:24px; line-height:24px; padding:0 10px; float:left; margin-left:2px; border-radius:4px 4px 0 0;}
+.tablebox .tableheader ul li.current{background-color:#fff; border:1px solid #ccc; border-bottom:0;}
+.tablebox .tableheader ul li a{color:#666;}
+.tablebox .tableheader ul li a:hover{color:#57A000; text-decoration:none;}
+.tablebox .tableheader a.openUp{width:20px; height:20px; background-image:url(/static/ht/table_select.gif);background-repeat:no-repeat; background-position:left bottom; float:right; margin:6px 0 0 10px;}
+.tablebox .tableheader a.openDown{background-position:left top;}
+.tablebox .tablecontent{background-color:#fff; border:1px solid #ccc; border-top:none; padding:10px;}
+.tablebox table{width:100%; border-top:1px solid #ddd; border-left:1px solid #ddd;}
+.tablebox table th{font-weight:bold; color:#666;}
+.tablebox table td, .tablebox table th{line-height:20px; padding:4px 10px; border-bottom:1px solid #ddd; border-right:1px solid #ddd;}
+
+/*主体部分左右栏*/
+.mainitem{zoom:1; margin:15px 0;}
+.tablebox .leftitem{width:49%; float:left;}
+.tablebox .rightitem{width:49%;float:right;}
+.tablebox .leftitem .tableheader span.name, .tablebox .rightitem .tableheader span.name{font-size:12px;}
+
+/*提醒框样式*/
+.remindbox{line-height:30px; padding:0 20px 0 35px; zoom:1;background-repeat:no-repeat; background-position:10px 7px; border-width:1px; border-style:solid; border-radius:6px; margin:5px 0; position:relative;}
+.orangeRemind{background-image:url(/static/ht/orangeRemind.png); background-color:#FFFBCC; border-color:#E6DB55}
+.blueRemind{background-image:url(/static/ht/blueRemind.png); background-color:#DBE3FF; border-color:#A2B4EE}
+.greenRemind{background-image:url(/static/ht/greenRemind.png); background-color:#D5FFCE; border-color:#9ADF8F}
+.redRemind{background-image:url(/static/ht/redRemind.png); background-color:#FFCECE; border-color:#DF8F8F}
+
+
+/*按钮样式*/
+.b-green, .b-gray{cursor:pointer; border-width:1px; border-style:solid; background:none; background-repeat:repeat-x; height:28px; line-height:28px; padding:0 5px; margin-right:5px;_width:60px; min-width:60px; white-space:nowrap; text-align:center;}
+.b-green{background-image:url(/static/ht/b-green.gif); border-color:#3d74aa; color:#fff; background-color:#4f86bc;}
+.b-gray{background-image:url(/static/ht/b-gray.gif); border-color:#b7b7b7; color:#666; background-color:#e4e4e4}
+a.b-green, a.b-gray{display:inline-block;}
+a.b-green:hover, a.b-gray:hover{text-decoration:none;}
+
+
+/*下拉框*/
+.pdbody select{padding:4px; border:1px solid #ccc; border-radius:4px;}
+.txt-normal{border:1px solid #ccc; border-radius:4px; padding:4px;}
+
+/*分页器*/
+.pagenation{zoom:1; margin:15px 0;}
+.pagenation ul{float:right;}
+.pagenation ul li{float:left; margin-right:5px; padding:0 5px; background:url(/static/ht/b-gray.gif) repeat-x; border-radius:3px; border:1px solid #b7b7b7; line-height:24px; background-color:#e4e4e4}
+.pagenation ul li.current{border:1px solid #459300; background:url(/static/ht/b-green.gif) repeat-x; background-color:#459300}
+.pagenation ul li.current a{color:#fff;}
+.pagenation ul li a{display:block; color:#333;}
+.pagenation ul li a:hover{text-decoration:none;}
+.pagenation ul li.prev, .pagenation ul li.next{background:none; border:none; padding:0 10px;}
+
+/*填写列表*/
+.writeList{zoom:1; margin:15px 0;}
+.writeList dl{margin:10px 0;}
+.writeList dl dt{width:140px; float:left; text-align:right; line-height:22px;}
+.writeList dl dd{margin-left:145px; line-height:22px;}
+.writeList dl dd .txt-normal{width:200px;}
+.writeList dl dd textarea.txt-normal{height:80px;}
+
+#rightForm{border-radius:4px 4px 0 0;}
+/*弹层*/
+.mainOperateCount{display:none;}
+.uiClose{width:15px; height:15px; display:block; position:absolute; right:5px; top:5px; background:url(/static/ht/close.gif)}

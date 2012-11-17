@@ -1,0 +1,4 @@
+/*list*/
+.pageList{width:304px; margin:10px auto;}
+.pageList dl{width:25%; float:left; height:70px; overflow:hidden; text-align:center;}
+.pageList dl dd{line-height:14px; text-align:center;}

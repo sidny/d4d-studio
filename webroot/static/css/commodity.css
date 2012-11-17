@@ -1,0 +1,10 @@
+.commodity{zoom:1; border-width:1px 0; border-color:#DDD8D5 #DDD8D5 #fff #fff; border-style:solid;}
+.commodity .item{zoom:1; padding:10px 20px 10px 10px; border-width:1px 0; border-style:solid; border-color:#fff #fff #DDD8D5 #DDD8D5; margin-right:5px; background:url(/static/css/arrow.gif) no-repeat right center;}
+.commodity a:hover{text-decoration:none;}
+.commodity .item:after{content:'.'; display:block; height:0; visibility:hidden; clear:both;}
+.commodity .avatar{width:100px; height:100px; float:left;}
+.commodity .avatar img{width:100px; height:100px;}
+.commodity .body{margin-left:110px; zoom:1; font-size:14px;}
+.commodity .body h2{min-height:54px; line-height:20px; zoom:1;}
+.commodity .body .price{margin-top:15px; color:#888;}
+.commodity .body .price span{display:inline-block; background-color:#fff; padding:5px 10px; border-radius:4px; border:1px solid #e3e3e3;}

@@ -1,0 +1,7 @@
+<?php
+define('DB_GLOBAL_IP', 'localhost');
+define('DB_GLOBAL_PORT', '3306');
+define('DB_GLOBAL_USER', 'root');
+define('DB_GLOBAL_PASSWD', '123456');
+define('DB_GLOBAL_NAME', 'myweb');
+

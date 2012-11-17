@@ -1,0 +1,13 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{background:url(body_bg.jpg) repeat; background-color:#f0f0f0;}/*全站背景图及背景颜色*/
+a{color:#333;}/*全站链接颜色*/
+ul.leftnav a{color:#666;}/*左侧链接颜色*/
+#header{background:url(header_bg.gif) repeat-x; color:#fefefe;}/*页头背景（可用图）及文字颜色*/
+#header a{color:#fefefe;}/*页头链接颜色*/
+ul.leftnav li{background-image:url(left_nav.gif); text-align:left; background-position:right top;}/*左侧导航 背景图片 文字靠向*/
+ul.leftnav li.current{background-image:url(left_navcurrent.gif);}
+ul.leftnav li.current a{color:#fff;}
+ul.leftnav li a{padding:0 15px;}/*左侧导航距离右边距*/
+ul.leftnav li .twobox a.current{background:url(two_current.gif) no-repeat right center;}/*左侧二级导航当前状态背景图（右侧小尖）*/
